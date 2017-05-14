@@ -1,0 +1,279 @@
+<!--------------------------------------------------------------------
+Choisissez dans le wikicode ci-dessous les parties qui vous intéressent
+pour enrichir le chapitre consacré au finances locales
+<ARTICLE_VILLE><VILLE>
+--------------------------------------------------------------------->
+
+<!-- !!! Contenu généré automatiquement par l'outil <OUTIL_NOM> !!!
+    Généré le <DATE> par le programme <NOM_PROG> (<OPTIONS>)
+    version <VERSION> du <VERSION_DATE>
+    et le modèle <NOM_MODELE> pour l'article <VILLE>.
+    En cas de problème, contactez-moi SVP : Utilisateur:Thierry46
+    Additionnons nos forces, partageons nos connaissances ! -->
+Cette section est consacrée aux [[Finances locales en France|finances locales]] <ARTICLE_VILLE><VILLE> de <ANNEE0> à <ANNEE><ref group="Note">Cette section est réalisée à partir des données des données du site <URL_BASE> du [[Ministère de l'Économie et des Finances (France)|ministère de l'Économie et des Finances]].
+Pour constituer cette partie, l'outil <OUTIL_NOM> version <VERSION> <VERSION_PICTO> a effectué la synthèse des {{nobr|<NB_PAGES_MINFI> pages}} du site <URL_BASE> concernant <VILLE>.
+Finances locales est un [[logiciels libres|logiciel libre]] distribué en [[copyleft]] sous [[licence (juridique)|licence]] [[Licence publique générale GNU|GNU GPL version 3]].
+</ref>.
+
+Les comparaisons des [[Fraction (mathématiques)|ratio]]s par habitant sont effectuées avec ceux des <DEF_STRATE>, c'est à dire à la même {{page h'|Strate#En_sciences_sociales|strate}} fiscale.
+
+== Budget général ==
+Pour l'exercice <ANNEE>, le compte administratif du [[budget]] municipal <ARTICLE_VILLE><VILLE> s'établit à  {{euro|<DEPENSES_TOTAL>}} en [[Dépenses publiques|dépenses]] et {{euro|<RECETTES_TOTAL>}} en [[Recettes publiques|recettes]]<ref group="A2" name="<REF_NAME0>"/> :
+* les dépenses se répartissent en {{euro|<CHARGES_FONCTIONNEMENT>}} de [[Charge (comptabilité)|charges]] de fonctionnement et {{euro|<EMPLOIS_INVEST>}} d'emplois d'[[investissement]] ;
+* les recettes proviennent des {{euro|<PRODUITS_FONCTIONNEMENT>}} de [[Produit (comptabilité)|produits]] de fonctionnement et de {{euro|<RESSOURCES_INVEST>}} de ressources d'investissement.
+
+=== Évolution du fonctionnement et de l'investissement de <ANNEE0> à <ANNEE> ===
+{| class="wikitable centre" style="width:80%;"
+ |+G0a - Évolution de la section fonctionnement <ARTICLE_VILLE><VILLE><ref group="A2" name="<REF_NAME0>"/>
+ |------
+ <GRAPHIQUE_RECETTES_CHARGES_FONCTIONNEMENT>
+ |------
+ | <LEGENDE_RECETTES_CHARGES_FONCTIONNEMENT>
+ |}
+{| class="wikitable centre" style="width:80%;"
+ |+G0b - Évolution de la section investissement <ARTICLE_VILLE><VILLE><ref group="A2" name="<REF_NAME0>"/>
+ |------
+ <GRAPHIQUE_EMPLOIS_RESSOURCES_INVESTISSEMENT>
+ |------
+ | <LEGENDE_EMPLOIS_RESSOURCES_INVESTISSEMENT>
+ |}
+
+=== Tableau des chiffres clés du budget de <ANNEE-N> à <ANNEE> ===
+{|class="wikitable centre"
+ |+T0v - Chiffres clés des finances <ARTICLE_VILLE><VILLE> de <ANNEE-N> à <ANNEE><ref group="A2" name="<REF_NAME0>"/>
+ |------
+ <TABLEAU_PRINCIPAL>
+ |}
+{{Clr}}
+
+== Fonctionnement ==
+{|class="wikitable right"
+ |+T1p - Section de fonctionnement <ARTICLE_VILLE><VILLE> en <ANNEE><ref group="A2" name="<REF_NAME1>"/>
+ |----
+ ! !! scope="col" | <VILLE><br/>(€/hab.) !! scope="col" | Strate<br/>(€/hab.)
+ <GEN_LIGNES_TABLEAU_PICTO_SOLDE_FONCT><GEN_LIGNES_TABLEAU_PICTO_CHARGE><GEN_LIGNES_TABLEAU_PICTO_RECETTE>
+ |------
+ | colspan="4" |Écart par rapport à la moyenne de la strate :<br/><LEGENDE_ECART_TABLEAU_PICTO>
+ |}
+Pour <VILLE> en <ANNEE>, la section de fonctionnement<ref group="Note">La  « section de fonctionnement » est constituée des [[Dépenses publiques|dépense]]s courantes et récurrentes nécessaires au bon fonctionnement des services municipaux et à la mise en œuvre des actions décidées par les élus, mais sans influence sur la consistance du [[Patrimoine (droit)|patrimoine]] de la commune. Y figure aussi le [[Plan de remboursement|remboursement]] des [[Intérêt (finance)|intérêt]]s des [[Emprunt (finance)|emprunt]]s. Elle enregistre également les [[Recettes publiques|recettes]] fiscales, les [[Dotation publique|dotation]]s et participations de l’État ainsi que les recettes d’exploitation des services municipaux.</ref> se répartit en {{euro|<CHARGES_FONCTIONNEMENT>}}  de charges ({{euro|<CHARGES_FONCTIONNEMENT_PAR_HAB>}} par habitant) pour {{euro|<PRODUITS_FONCTIONNEMENT>}} de produits ({{euro|<PRODUITS_FONCTIONNEMENT_PAR_HAB>}} par habitant), soit un solde de la section de fonctionnement de {{euro|<RESULTAT_COMPTABLE>}} ({{euro|<RESULTAT_COMPTABLE_PAR_HAB>}} par habitant)<ref group="A2" name="<REF_NAME0>">
+{{Lien web
+ |titre=Les comptes des communes - <VILLE>
+ |sous-titre=<URL_NOMPAGE0>
+ |url=<URL_TAB0>
+ |consulté le=<DATE_EXTRACTION>
+}}.</ref>{{,}}<ref group="A2" name="<REF_NAME1>">
+{{Lien web
+ |titre=Les comptes des communes - <VILLE>
+ |sous-titre=<URL_NOMPAGE1>
+ |url=<URL_TAB1>
+ |consulté le=<DATE_EXTRACTION>
+}}.</ref> :
+
+* le principal pôle de [[Dépenses publiques|dépenses]] de fonctionnement est celui <PHRASE_CHARGE1>. <VALEUR_CHARGE_TENDANCE_SERIE1>. Viennent ensuite les groupes <LIBELLE_CHARGE2><ref group="Note"><NOTE_CHARGE2></ref> pour <VALEUR_CHARGE_PC2>, <LIBELLE_CHARGE3><ref group="Note"><NOTE_CHARGE3></ref> pour <VALEUR_CHARGE_PC3>, <LIBELLE_CHARGE4><ref group="Note"><NOTE_CHARGE4></ref> pour <VALEUR_CHARGE_PC4> et finalement celui <LIBELLE_CHARGE5><ref group="Note"><NOTE_CHARGE5></ref> pour <VALEUR_CHARGE_PC5> ;
+* la plus grande part des [[Recettes publiques|recettes]] est constituée <PHRASE_RECETTE1>. <VALEUR_RECETTE_TENDANCE_SERIE1>. Viennent ensuite <LIBELLE_RECETTE2><ref group="Note"><NOTE_RECETTE2></ref> pour <VALEUR_RECETTE_PC2> et <LIBELLE_RECETTE3><ref group="Note"><NOTE_RECETTE3></ref> pour <VALEUR_CHARGE_PC3>.
+
+La dotation globale de fonctionnement est <TENDANCE_DGF> à celle versée en <ANNEE-1>.
+
+=== Évolution des produits et charges de fonctionnement de <ANNEE0> à <ANNEE> ===
+{| class="wikitable centre" style="width:80%;"
+ |+G1a - Évolution des produits de fonctionnement pour <VILLE><ref group="A2" name="<REF_NAME1>"/>
+ |------
+ <GRAPHIQUE_PRODUITS>
+ |------
+ | <LEGENDE_PRODUITS><LEGENDE_STRATE_PRODUITS>
+ |}
+
+{| class="wikitable centre" style="width:80%;"
+ |+G1b1 - Évolution des charges de personnel et externes pour <VILLE><ref group="A2" name="<REF_NAME1>"/>
+ |------
+ <GRAPHIQUE_CHARGES_PERSONNELS_EXTERNES>
+ |------
+ | <LEGENDE_CHARGES_PERSONNELS_EXTERNES>
+ |}
+{| class="wikitable centre" style="width:80%;"
+ |+G1b2 - Évolution des charges financières et des subventions versées pour <VILLE><ref group="A2" name="<REF_NAME1>"/>
+ |------
+ <GRAPHIQUE_CHARGES_FINANCIERES_SUBVENTIONS_VERSEES>
+ |------
+ | <LEGENDE_CHARGES_FINANCIERES_SUBVENTIONS_VERSEES>
+ |}
+{{Clr}}
+
+=== Tableau des valeurs pour les produits et charges de <ANNEE-N> à <ANNEE> ===
+{|class="wikitable centre"
+ |+T1v - Produits et charges de fonctionnement <ARTICLE_VILLE><VILLE> de <ANNEE-N> à <ANNEE><ref group="A2" name="<REF_NAME1>"/>
+ |------
+ <TABLEAU_PRODUITS_CHARGES>
+ |}
+{{Clr}}
+
+== Fiscalité communale ==
+{|class="wikitable right"
+ |+T2p - Fiscalité <ARTICLE_VILLE><VILLE> en <ANNEE><ref group="A2" name="<REF_NAME_DETAIL>"/>
+ |----
+ ! !! scope="col" | <VILLE><br/>(%) !! scope="col" | Strate<br/>(%)
+ <GEN_LIGNES_TABLEAU_PICTO_TAXES>
+ |------
+ | colspan="4" |Écart par rapport à la moyenne de la strate :<br/><LEGENDE_ECART_TABLEAU_PICTO>
+ |}
+Le tableau T2p compare les [[taux d'imposition]] locaux à ceux des autres communes de la même {{page h'|Strate#En_sciences_sociales|strate}} fiscale.
+
+Les taux des [[taxe]]s ci-dessous sont votés par la municipalité <ARTICLE_VILLE><VILLE>. Ils ont varié de la façon suivante par rapport à <ANNEE-1><ref group="A2" name="<REF_NAME_DETAIL>"/> :
+* la [[taxe d'habitation]] <TENDANCE_TAUX_TAXE_HABITATION_PAR_HABITANT1> <VALEUR_TAUX_TAXE_HABITATION_PAR_HABITANT1_NM1> % ;
+* la [[Taxe foncière|taxe foncière sur le bâti]] <TENDANCE_TAUX_FONCIER_BATI_PAR_HABITANT1> <VALEUR_TAUX_FONCIER_BATI_PAR_HABITANT1_NM1> % ;
+* celle sur le [[Taxe foncière|non bâti]] <TENDANCE_FONCIER_NON_BATI_PAR_HABITANT1> <VALEUR_FONCIER_NON_BATI_PAR_HABITANT1_NM1> %.
+{{Clr}}
+
+=== Évolution des taux des différentes taxes de <ANNEE0> à <ANNEE> ===
+{| class="wikitable centre" style="width:80%;"
+ |+G2a - Évolution de la taxe d'habitation et foncière sur le bâti pour <VILLE><ref group="A2" name="<REF_NAME_DETAIL>">
+{{Lien web
+ |titre=Les comptes des communes - <VILLE>
+ |sous-titre=<URL_NOMPAGE_DETAIL>
+ |url=<URL_TAB_DETAIL>
+ |consulté le=<DATE_EXTRACTION>
+}}.</ref>
+ |------
+ <GRAPHIQUE_TAXES>
+ |------
+ | <LEGENDE_TAXES><LEGENDE_STRATE_TAXES>
+ |}
+
+{| class="wikitable centre" style="width:80%;"
+ |+G2b - Évolution de la taxe foncière sur le non bâti pour <VILLE><ref group="A2" name="<REF_NAME_DETAIL>"/>
+ |------
+ <GRAPHIQUE_TAXES_NB>
+ |------
+ | <LEGENDE_TAXES_NB><LEGENDE_STRATE_TAXES_NB>
+ |}
+
+=== Tableau des taux des impôts et taxes de <ANNEE-N_TAUX> à <ANNEE> ===
+{|class="wikitable centre"
+ |+T2v - Taux des impôts et taxes pour <VILLE> de <ANNEE-N_TAUX> à <ANNEE><ref group="A2" name="<REF_NAME_DETAIL>"/>
+ |------
+ <TABLEAU_TAXES>
+ |}
+{{Clr}}
+
+== Investissement ==
+{|class="wikitable right"
+ |+T3p - Investissement <ARTICLE_VILLE><VILLE> en <ANNEE><ref group="A2" name="<REF_NAME2>"/>
+ |----
+ ! !! scope="col" | <VILLE><br/>(€/hab.) !! scope="col" | Strate<br/>(€/hab.)
+ <GEN_LIGNES_TABLEAU_PICTO_EMPLOI_INVEST><GEN_LIGNES_TABLEAU_PICTO_RESSOURCES_INVEST>
+ |------
+ | colspan="4" |Écart par rapport à la moyenne de la strate :<br/><LEGENDE_ECART_TABLEAU_PICTO>
+ |}
+Cette section détaille les [[investissement]]s<ref group="Note">La section « [[investissement]] » concerne essentiellement les opérations visant à [[Achat|acquérir]] des équipements d’envergure et aussi au [[Plan de remboursement|remboursement]] du capital de la [[Dette publique|dette]].</ref> réalisés par la commune <ARTICLE_VILLE><VILLE>.
+
+Les emplois d'investissement en <ANNEE> comprenaient par ordre d'importance<ref group="A2" name="<REF_NAME2>">{{Lien web
+ |titre=Les comptes des communes - <VILLE>
+ |sous-titre=<URL_NOMPAGE2>
+ |url=<URL_TAB2>
+ |consulté le=<DATE_EXTRACTION>
+}}.</ref> :
+* <PHRASE_EMPLOI_INVEST1>. <VALEUR_EMPLOI_INVEST_TENDANCE_SERIE1> ;
+* <PHRASE_EMPLOI_INVEST2>.
+
+Les ressources en investissement <ARTICLE_VILLE><VILLE> se répartissent principalement en<ref group="A2" name="<REF_NAME2>"/> :
+* <PHRASE_RESSOURCES_INVEST1>. <VALEUR_RESSOURCES_INVEST_TENDANCE_SERIE1> ;
+* <PHRASE_RESSOURCES_INVEST2>.
+
+=== Évolution de l'investissement de <ANNEE0> à <ANNEE> ===
+{| class="wikitable centre" style="width:80%;"
+ |+G3a - Évolution des emplois d'investissement pour <VILLE><ref group="A2" name="<REF_NAME2>"/>
+ |------
+<GRAPHIQUE_EMPLOIS_INVEST>
+ |------
+ | <LEGENDE_EMPLOIS_INVEST>
+ |}
+{| class="wikitable centre" style="width:80%;"
+ |+G3b - Évolution des ressources d'investissement pour <VILLE><ref group="A2" name="<REF_NAME2>"/>
+ |------
+<GRAPHIQUE_RESSOURCES_INVEST>
+ |------
+ | <LEGENDE_RESSOURCES_INVEST>
+ |}
+{{Clr}}
+
+=== Tableau des valeurs d'investissement de <ANNEE-N> à <ANNEE> ===
+{|class="wikitable centre"
+ |+T3v - Investissement <ARTICLE_VILLE><VILLE> de <ANNEE-N> à <ANNEE><ref group="A2" name="<REF_NAME1>"/>
+ |------
+ <TABLEAU_INVEST>
+ |}
+{{Clr}}
+
+== Endettement ==
+{|class="wikitable right"
+ |+T4p - Endettement et capacité d'autofinancement <ARTICLE_VILLE><VILLE> en <ANNEE><ref group="A2" name="<REF_NAME4>"/>{{,}}<ref group="A2" name="<REF_NAME5>"/>
+ |----
+ ! !! scope="col" | <VILLE><br/>(€/hab.) !! scope="col" | Strate<br/>(€/hab.)
+ <GEN_LIGNES_TABLEAU_PICTO_ENCOURS_DETTE><GEN_LIGNES_TABLEAU_PICTO_ANNUITE_DETTE><GEN_LIGNES_TABLEAU_PICTO_CAF>
+ |------
+ | colspan="4" |Écart par rapport à la moyenne de la strate :<br/><LEGENDE_ECART_TABLEAU_PICTO>
+ |}
+L'[[Emprunt (finance)|endettement]] <ARTICLE_VILLE><VILLE> au {{Date-|31|décembre|<ANNEE>}} peut s'évaluer à partir de trois critères : l'encours de la dette<ref group="Note">L'« [[encours]] de la dette » représente la somme que la commune doit aux [[banque]]s au {{Date-|31/12}} de l'année considérée</ref>, l'annuité de la dette<ref group="Note">L'« annuité de la [[Emprunt (finance)|dette]] » équivaut à la somme des intérêts d'emprunts de la commune et du montant de remboursement du capital au cours de l'année</ref> et sa capacité de désendettement<ref group="Note">La « capacité de [[Dette publique|désendettement]] » est basée sur le ratio suivant défini par la formule : {{Formule|§=ratio = {{fraction|encours de la dette|capacité d'autofinancement}}}}. Ce ratio montre, à un instant donné, le nombre d'années qui seraient nécessaires au remboursement des dettes en considérant les ressources <ARTICLE_VILLE><VILLE>.</ref> :
+* <PHRASE_ENCOURS_DETTE1>. <VALEUR_ENCOURS_DETTE_TENDANCE_SERIE1><ref group="A2" name="<REF_NAME5>">
+{{Lien web
+ |titre=Les comptes des communes - <VILLE>
+ |sous-titre=<URL_NOMPAGE5>
+ |url=<URL_TAB5>
+ |consulté le=<DATE_EXTRACTION>
+}}.</ref> ;
+* <PHRASE_ANNUITE_DETTE1>. <VALEUR_ANNUITE_DETTE_TENDANCE_SERIE1><ref group="A2" name="<REF_NAME5>"/> ;
+* <PHRASE_CAF1>. <VALEUR_CAF_TENDANCE_SERIE1><ref group="A2" name="<REF_NAME4>">
+{{Lien web
+ |titre=Les comptes des communes - <VILLE>
+ |sous-titre=<URL_NOMPAGE4>
+ |url=<URL_TAB4>
+ |consulté le=<DATE_EXTRACTION>
+}}.</ref>. La capacité de [[Dette publique|désendettement]] est <RATIO_N> en <ANNEE>. <TENDANCE_RATIO_DETTE_CAF>
+{{Clr}}
+
+=== Évolution de la capacité d'autofinancement (CAF) et de l'encours de la dette de <ANNEE0> à <ANNEE> ===
+Les courbes G4a et G4b présentent l'historique des [[Dette publique|dette]]s <ARTICLE_VILLE><VILLE>.
+{| class="wikitable centre" style="width:80%;"
+ |+G4a - Capacité d'autofinancement et encours total de la dette <ARTICLE_VILLE><VILLE><ref group="A2" name="<REF_NAME4>"/>{{,}}<ref group="A2" name="<REF_NAME5>"/>
+ |------
+<GRAPHIQUE_DETTE_CAF>
+ |------
+ | <LEGENDE_DETTE_CAF><LEGENDE_STRATE_DETTE_CAF>
+ |}
+
+{| class="wikitable centre" style="width:80%;"
+ |+G4b - Nombre d'années pour rembourser la dette en fonction de la [[capacité d'autofinancement|CAF]] <ARTICLE_VILLE><VILLE><ref group="A2" name="<REF_NAME4>"/>{{,}}<ref group="A2" name="<REF_NAME5>"/>
+ |------
+ <GRAPHIQUE_RATIO>
+ |------
+ | <LEGENDE_RATIO>
+ |}
+{{Clr}}
+
+=== Tableau des valeurs d'endettement de <ANNEE-N> à <ANNEE> ===
+{|class="wikitable centre"
+ |+T4v - Encours de la dette et capacité d'autofinancement <ARTICLE_VILLE><VILLE> de <ANNEE-N> à <ANNEE><ref group="A2" name="<REF_NAME4>"/>{{,}}<ref group="A2" name="<REF_NAME5>"/>
+ |------
+ <TABLEAU_DETTE_CAF>
+ |}
+{{Clr}}
+
+== Faits en rapport avec les finances locales ==
+{{...}}
+
+== Références ==
+=== Notes ===
+{{Références|groupe=Note|colonnes=2}}
+
+=== Base de données du ministère du Budget, relative aux comptes des communes ===
+{{Références|groupe=A2|colonnes=2}}
+
+=== Autres références ===
+{{Références|colonnes=2}}
+
+[[Catégorie:<CATEGORIE_ARTICLE>|<VILLE>]]
+[[Catégorie:<VILLE>]]
+<!-- Fin du wikicode généré le <DATE>
+    par le programme <NOM_PROG> <OPTIONS> version <VERSION> 
+    et le modèle <NOM_MODELE> pour l'article <VILLE>.
+    En cas de problème, contactez-moi SVP : Utilisateur:Thierry46 -->

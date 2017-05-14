@@ -3,7 +3,7 @@
 """
 Name : test_global.py
 Author : Thierry Maillard (TMD)
-Date : 2/8/2015
+Date : 2/8/2015 - 13/9/2015
 Role : Tests unitaires globaux du projet FinancesLocales avec py.test
 Utilisation : python3 -m pytest -s -k global .
  options :
@@ -37,8 +37,8 @@ import os.path
 
 import extractionWeb
 import utilitaires
-import genWikiCode
-import genPaquets
+import genCode
+import genSiteWeb
 import genCleFi
 
 def test_globalExtractionWeb1Ville():
@@ -56,12 +56,13 @@ def test_globalExtractionWeb1Ville():
     shutil.rmtree(repertoire, ignore_errors=True)
 
     villeExtraction = config.get('Test', 'test.villeExtraction')
-    param = ['extractionWeb.py', '-v', villeExtraction]
+    param = ['extractionWeb.py', villeExtraction]
     extractionWeb.main(param)
 
     assert os.path.isdir(repertoire)
     indicateurNomFicBd = config.get('EntreesSorties', 'io.indicateurNomFicBd')
-    ficVille = utilitaires.construitNomFic(repertoire, villeExtraction, indicateurNomFicBd)
+    ficVille = utilitaires.construitNomFic(repertoire, villeExtraction,
+                                           indicateurNomFicBd, '.txt')
     assert os.path.isfile(ficVille)
     villeTailleResuOk = int(config.get('Test', 'test.villeTailleResu'))
     villeTailleTolerance = float(config.get('Test', 'test.villeTailleTolerance'))
@@ -88,7 +89,7 @@ def test_globalExtractionWeb1Departement():
     shutil.rmtree(repertoire, ignore_errors=True)
 
     depExtraction = config.get('Test', 'test.departementExtraction')
-    param = ['extractionWeb.py', '-v', depExtraction]
+    param = ['extractionWeb.py', depExtraction]
     extractionWeb.main(param)
 
     assert os.path.isdir(repertoire)
@@ -98,7 +99,7 @@ def test_globalExtractionWeb1Departement():
     nbFicDepartementExtractionOk = int(config.get('Test', 'test.nbFicDepartementExtraction'))
     assert len(listFicRepertoire) == nbFicDepartementExtractionOk
 
-def test_globalGenWikicode1Departement():
+def test_globalGenCode1Departement():
     """ Test de génération du Wikicode pour toutes les villes d'un département """
     config = configparser.RawConfigParser()
     config.read('FinancesLocales.properties')
@@ -109,61 +110,57 @@ def test_globalGenWikicode1Departement():
     assert os.path.isdir(repertoire), 'test dependant de test_globalExtractionWeb1Departement'
 
     indicateurNomFicBd = config.get('EntreesSorties', 'io.indicateurNomFicBd')
-    listFicRepertoire = [fic for fic in os.listdir(repertoire)
-                         if fic.endswith(indicateurNomFicBd + '.txt')]
+    listFicRepertoireExtraction = [fic for fic in os.listdir(repertoire)
+                                   if fic.endswith(indicateurNomFicBd + '.txt')]
     nbFicDepartementExtractionOk = int(config.get('Test', 'test.nbFicDepartementExtraction'))
-    assert len(listFicRepertoire) == nbFicDepartementExtractionOk, \
+    assert len(listFicRepertoireExtraction) == nbFicDepartementExtractionOk, \
         'test dependant de test_globalExtractionWeb1Departement'
 
     # Suppression Résultats run precédents
-    repertoireBaseWikicode = config.get('EntreesSorties', 'io.repertoirewikicode')
-    repertoirewikicode = os.path.normcase(repertoireBaseWikicode + '_' + numDep)
-    shutil.rmtree(repertoirewikicode, ignore_errors=True)
-    repertoireBaseHTML = config.get('EntreesSorties', 'io.repertoireBase')
-    repertoireHTML = os.path.normcase(repertoireBaseHTML + '_' + numDep)
-    shutil.rmtree(repertoireBaseHTML, ignore_errors=True)
+    repertoireBase = config.get('EntreesSorties', 'io.repertoireBase')
+    repertoireHTML = os.path.normcase(repertoireBase + '_' + numDep)
+    shutil.rmtree(repertoireHTML, ignore_errors=True)
 
-    param = ['genWikiCode.py', '-v', numDep]
-    genWikiCode.main(param)
+    param = ['genCode.py', numDep]
+    genCode.main(param)
 
-    assert os.path.isdir(repertoirewikicode)
     assert os.path.isdir(repertoireHTML)
 
-    listFicRepertoire = [fic for fic in os.listdir(repertoirewikicode)
-                         if fic.endswith('.txt')]
-    assert len(listFicRepertoire) == 2 * nbFicDepartementExtractionOk
-    listFicRepertoire = [fic for fic in os.listdir(repertoireHTML)
-                         if fic.endswith('.html')]
-    assert len(listFicRepertoire) == 2 * nbFicDepartementExtractionOk + 1
+    listFicRepertoireDep = [fic for fic in os.listdir(repertoireHTML)]
+    assert len(listFicRepertoireDep) == nbFicDepartementExtractionOk + 1
+    nomFicIndexHTML = config.get('EntreesSorties', 'io.nomFicIndexHTML')
+    assert nomFicIndexHTML in listFicRepertoireDep
+    idFicDetail = config.get('GenCode', 'gen.idFicDetail')
+    for villesExtraction in listFicRepertoireExtraction:
+        ville = villesExtraction.replace('_' + indicateurNomFicBd + '.txt', '')
+        assert ville in listFicRepertoireDep
+        repVille = os.path.join(repertoireHTML, ville)
+        listFicVille = [fic for fic in os.listdir(repVille)
+                        if fic.endswith('.html')]
+        assert ville + '.html' in listFicVille
+        assert ville + '_' + idFicDetail + '.html' in listFicVille
 
-    nomFicNoticeHTML = config.get('EntreesSorties', 'io.nomFicNoticeHTML')
-    pathFicNoticeHTML = os.path.join(repertoireHTML, nomFicNoticeHTML)
-    assert os.path.isfile(pathFicNoticeHTML)
-
-def test_globalGenPaquets():
+def test_globalGenSiteWeb():
     """ Test global génération des paquets de déploiement """
     config = configparser.RawConfigParser()
     config.read('FinancesLocales.properties')
 
-    repertoireBaseHTML = config.get('EntreesSorties', 'io.repertoireBase')
+    repertoireBase = config.get('EntreesSorties', 'io.repertoireBase')
     numDep = config.get('Test', 'test.numDepDepartementExtraction')
-    repertoireHTML = os.path.normcase(repertoireBaseHTML + '_' + numDep)
+    repertoireHTML = os.path.normcase(repertoireBase + '_' + numDep)
     assert os.path.isdir(repertoireHTML), 'test dependant de test_globalGenWikicode1Departement'
 
     # Suppression Résultats run precédents
     repTransfertWeb = config.get('EntreesSorties', 'io.repTransfertWeb')
     shutil.rmtree(repTransfertWeb, ignore_errors=True)
 
-    param = ['genPaquets.py', '-v']
-    genPaquets.main(param)
+    param = ['genSiteWeb.py', '-v']
+    genSiteWeb.main(param)
 
     assert os.path.isdir(repTransfertWeb)
     repSrcFicAux = config.get('EntreesSorties', 'io.RepSrcFicAux')
     pathRepSrcFicAux = os.path.join(repTransfertWeb, repSrcFicAux)
     assert os.path.isdir(pathRepSrcFicAux)
-    srepPaquets = config.get('EntreesSorties', 'io.srepPaquets')
-    pathSrepPaquets = os.path.join(repTransfertWeb, srepPaquets)
-    assert os.path.isdir(pathSrepPaquets)
     nomNoticeDeploiement = config.get('EntreesSorties', 'io.nomNoticeDeploiement')
     pathNoticeDeploiement = os.path.join(repTransfertWeb, nomNoticeDeploiement)
     assert os.path.isfile(pathNoticeDeploiement)

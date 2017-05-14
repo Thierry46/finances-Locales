@@ -17,7 +17,7 @@
     ],
     [
         "0",
-        "Besoin ou capacit\u00e9 de financement de la section d'investissement"
+        "Besoin ou capacité de financement de la section d'investissement"
     ],
     [
         "0",
@@ -33,11 +33,11 @@
     ],
     [
         "1",
-        "dont : Imp\u00f4ts Locaux"
+        "dont : Impôts Locaux"
     ],
     [
         "1",
-        "Autres imp\u00f4ts et taxes"
+        "Autres impôts et taxes"
     ],
     [
         "1",
@@ -45,11 +45,11 @@
     ],
     [
         "1",
-        "Charges financi\u00e8res"
+        "Charges financières"
     ],
     [
         "1",
-        "Subventions vers\u00e9es"
+        "Subventions versées"
     ],
     [
         "1",
@@ -61,7 +61,7 @@
     ],
     [
         "2",
-        "Subventions re\u00e7ues"
+        "Subventions reçues"
     ],
     [
         "2",
@@ -69,15 +69,15 @@
     ],
     [
         "2",
-        "dont : D\u00e9penses d'\u00e9quipement"
+        "dont : Dépenses d'équipement"
     ],
     [
         "2",
-        "Remboursement d'emprunts et dettes assimil\u00e9es"
+        "Remboursement d'emprunts et dettes assimilées"
     ],
     [
         "2",
-        "dont : Emprunts bancaires et dettes assimil\u00e9es"
+        "dont : Emprunts bancaires et dettes assimilées"
     ],
     [
         "3",
@@ -85,15 +85,15 @@
     ],
     [
         "3",
-        "Foncier b\u00e2ti"
+        "Foncier bâti"
     ],
     [
         "3",
-        "Foncier non b\u00e2ti"
+        "Foncier non bâti"
     ],
     [
         "4",
-        "Capacit\u00e9 d'autofinancement = CAF"
+        "Capacité d'autofinancement = CAF"
     ],
     [
         "5",
@@ -101,6 +101,6 @@
     ],
     [
         "5",
-        "Annuit\u00e9 de la dette"
+        "Annuité de la dette"
     ]
 ]

@@ -3,7 +3,7 @@
 *********************************************************
 Module : extractionMinFi.py
 Auteur : Thierry Maillard (TMD)
-Date : 24/5/2015 - 3/6/2015
+Date : 24/5/2015 - 4/11/2015
 
 Role : Récupère des informations sur les villes sur le
         site du minitère des finances.
@@ -55,8 +55,10 @@ def recupDataMinFi(config, listeVilleDict, cleFi, urlMinFi,
     listAnnee = getAnneesMinFi(config, urlMinFi, listeVilleDict[0]['icom'],
                                listeVilleDict[0]['dep'], 0,
                                opener, verbose)
-    msg = "Erreur : nombre d'année inférieur à 10 : " + str(len(listAnnee))
-    assert len(listAnnee) > 10, msg
+    nbAnneeMinimum = config.getint('Extraction', 'extraction.nbAnneeMinimum')
+    msg = "Erreur : nombre d'années inférieur à " + str(nbAnneeMinimum) + " : " + \
+          str(len(listAnnee))
+    assert len(listAnnee) > nbAnneeMinimum, msg
 
     # Traitement des villes
     for ville in listeVilleDict:
@@ -103,7 +105,7 @@ def recupDataMinFi(config, listeVilleDict, cleFi, urlMinFi,
 
                 # Raccrochement au dico des annees
                 dictPagesWeb[str(annee)] = dictPages
-            print(" OK")
+            print("OK")
 
             # Récupère les clés dans les pages WEB
             dictCle = dict()
@@ -138,8 +140,10 @@ def recupDataMinFi(config, listeVilleDict, cleFi, urlMinFi,
             ville['defStrate'] = defStrate.replace("Strate : ", "").replace("hab ", "habitants ")
 
             # Pour toutes les clés, les années max et max-1 doivent exister
+            # V2.4.0 : récupération listAnnee[1] au lieu de listAnnee[0]-1
+            # car pour des villes comme guéret 2014 et définie mais pas 2013.
             for cle in list(ville['data'].keys()):
-                for annee in [listAnnee[0], listAnnee[0]-1]:
+                for annee in [listAnnee[0], listAnnee[1]]:
                     if ville['data'][cle][str(annee)] is None:
                         msg = "Erreur : la cle " +\
                             cle + " n'est pas definie dans la BD Alize2 pour l'année" +\
@@ -308,7 +312,7 @@ def getAnneesMinFi(config, urlMinFi, icom, dep, numTab, opener, verbose):
     if len(listAnnees) == 0:
         print("Aucune")
     else:
-        print(" OK")
+        print("OK")
 
     if verbose:
         print("listAnnees :", listAnnees)

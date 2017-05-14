@@ -4,24 +4,27 @@
 *********************************************************
 Programme : extractionWeb.py
 Auteur : Thierry Maillard (TMD)
-Date : 24/5/2015 - 22/7/2015
+Date : 24/5/2015 - 17/8/2016
 
 Role : Récupère les finances locales des communes sur le site du
         Ministère des Finances : alize2.finances.gouv.fr
-        Ces donnees seront traitées par genWikiCode.py.
+        Ces donnees seront traitées par genCode.py.
 
 Options :
     -h ou --help : affiche ce message d'aide.
     -u ou --usage : affice des exemples de ligne lancement
     -V ou --version : affiche la version du programme
     -v ou --verbose : rend le programme bavard (mode debug)
-    -c ou --complet : force l'extraction des données de toutes les villes d'un département.
-            (par défaut, seules les villes prioritaires d'un département sont extraites)
+    -c ou --complet : force l'extraction des données de toutes les villes d'une liste.
+            (par défaut, seules les villes prioritaires d'une liste sont extraites)
 
-paramètre :
+paramètre : au choix 3 possibilités
     - nom de l'article de Wikipédia fr qui correspond à une ville à extraire
-        ou à une liste de ville d'un département : toutes les villes sont extraites
-        (voir aussi l'option -c)
+    - nom de l'article de Wikipédia fr qui correspond à une liste de ville d'un département :
+        seules les villes les plus importantes sont extraites (voir aussi l'option -c)
+    - Numéro de département : Un fichier texte contenant une liste de villes est cherché
+        Format du fichier : codeInsee;nom;nom article Wikipédia
+        Ce fichier du répertoire Listes_villes_par_departement peut être généré par GenListeDep.py
 
 ------------------------------------------------------------
 Licence : GPLv3 (en français dans le fichier gpl-3.0.fr.txt)
@@ -100,8 +103,8 @@ def main(argv=None):
     for option, arg in opts:
         verboseOpt, sortiePgm = \
             utilitaires.traiteOptionStd(config, option, nomProg, __doc__,
-                                        ['Liste des communes xxx',
-                                         'nom_article_commune'])
+                                        ['Liste des communes du Lot',
+                                         'Aynac', '46'])
         verbose = verbose or verboseOpt
         if sortiePgm:
             sys.exit(0)
@@ -109,7 +112,7 @@ def main(argv=None):
         if option in ("-c", "--complet"):
             toutesLesVilles = True
 
-    utilitaires.checkPythonVersion(verbose)
+    utilitaires.checkPythonVersion(config, verbose)
 
     # Contournement OS X invalide locale
     if platform.system() == 'Darwin' and locale.getlocale()[0] is None:
@@ -127,18 +130,21 @@ def main(argv=None):
         print(msg, file=sys.stderr)
         raise
 
-    # Récuperation du paramètre
+    # Récuperation et analysedu paramètre
     if len(args) != 1:
         msg = __doc__ + "\nDonnez 1 seul paramètre : " + \
-               "nom d'article ou de liste Wikipédia !"
+               "nom d'article ou de liste Wikipédia ou numéro de département !"
         if len(args) > 1:
             msg += "\nau lieu de : " + str(args)
         print(msg, file=sys.stderr)
         sys.exit(1)
-
     nomArticle = args[0]
+    numDep = args[0]
     debutArticleliste = config.get('Extraction', 'extraction.debutArticleliste')
     isDepartement = nomArticle.startswith(debutArticleliste)
+    if len(numDep) == 2:
+        numDep = '0' + numDep
+    isListeDep = isnumDep(numDep)
 
     nbMaxTableaux = config.getint('Tableaux', 'tableaux.nbMaxTableaux')
     nomsTableaux = []
@@ -172,14 +178,16 @@ def main(argv=None):
     if verbose:
         msg = ""
         if isDepartement:
-            msg += "Extrait du site MinFi les données de toutes\n" + \
-                    "\tles villes d'un département\n" + \
-                    "nomArticle = " + nomArticle
-            if toutesLesVilles:
-                pass
+            msg += "Extrait du site MinFi les données des villes d'un département\n" + \
+                    "à partir de l'article nomArticle = " + nomArticle + "."
+        elif isListeDep:
+            msg += "Extrait du site MinFi les données des villes d'une liste\n" + \
+                "pour le département = " + numDep + "."
         else:
-            msg += "Extrait du site MinFi une commune les données d'une commune\n" + \
-                    "nomArticle = " + nomArticle
+            msg = "Extrait du site MinFi les données d'une seule commune\n" + \
+                    "nomArticle = " + nomArticle + "."
+        if toutesLesVilles:
+            msg += "\nToutes les villes (option -c)."
         msg += "\ncleFi = "
         for cle in cleFi:
             msg += "\n\ttableau = " + cle[0] + ", clé= " + cle[1]
@@ -200,11 +208,15 @@ def main(argv=None):
     print("\nAnalyse liste des villes...")
     if isDepartement:
         listeVilleDict = extractionWikipediaFr.recupVilles(config, nomArticle, verbose)
+    elif isListeDep:
+        listeVilleDict = recupVillesListe(config, numDep, verbose)
     else:
         listeVilleDict = extractionWikipediaFr.recup1Ville(config, nomArticle, verbose)
         toutesLesVilles = True
+    print()
+    print(len(listeVilleDict), "communes à traiter...")
+    assert len(listeVilleDict) > 0, "Aucune commune à traiter !"
 
-    print(len(listeVilleDict), "villes.")
     # v1.0.4 : Début : Récup. nom département et evaluation priorité de déploiement
     # Recuperation du nom du département en chaine de caractere pour la 1ere ville enregistree
     nomDepStr = extractionWikipediaFr.recupNomDepStr(config, listeVilleDict[0]['lien'], verbose)
@@ -235,7 +247,7 @@ def main(argv=None):
     dep = listeVilleDict[0]['dep']
     if dep.startswith('0'):
         dep = dep[1:]
-    print("\nUtilisez : genWikiCode.py", dep, "pour produire le wikicode.")
+    print("\nUtilisez : genCode.py", dep, "pour produire le wikicode.")
     print("Fin de", nomProg)
 
 def triSelectVilles(config, listeVilleDict, toutesLesVilles, verbose):
@@ -288,6 +300,8 @@ def corrigeDepartement97(listeVilleDict, verbose):
             dep = "103"
         elif 'Réunion' in listeVilleDict[0]['nomDepStr']:
             dep = "104"
+        elif 'Miquelon' in listeVilleDict[0]['nomDepStr']:
+            dep = "097"
 
         # Application à toute les communes de la liste
         for ville in listeVilleDict:
@@ -297,6 +311,67 @@ def corrigeDepartement97(listeVilleDict, verbose):
         print("Num departement corrige :", listeVilleDict[0]['dep'])
         print("Sortie de corrigeDepartement97")
 
+def isnumDep(numDep):
+    """
+    Détermine si numDep est un nom de répertoire valide.
+    Retourne True si OK
+    v2.4.2 : Correction bug retournait False pour pour numDep de la forme 02[1-9]
+    """
+    return len(numDep) == 3 and numDep[0] in "01" and \
+         numDep[1].isnumeric() and numDep != "000" and \
+         ((numDep[0] == "0" and numDep[1] == "2" and numDep[2] in 'AB') or \
+          (numDep[0] == "0" and numDep[1] == "2" and numDep[2] in '123456789') or \
+          (numDep[0] == "0" and numDep[1] == "9" and numDep[2] in '01234567') or \
+          (numDep[0] == "0" and numDep[1] not in "29" and numDep[2].isnumeric()) or \
+          (numDep[0] == "1" and numDep[1] == "0" and numDep[2] in '1234'))
+
+def recupVillesListe(config, numDep, verbose):
+    """
+    V2.2.0 : Extrait une liste de ville depuis un fichier correspondant à un département
+    """
+    if verbose:
+        print("Entrée dans recupVillesListe")
+        print("\tnumDep =", numDep)
+
+    listeVilleDict = []
+
+    # Construit le nom du fichier liste
+    repertoireListeDep = config.get('EntreesSorties', 'io.repertoireListeDep')
+    nomFicListeVille = config.get('EntreesSorties', 'io.nomFicListeVille')
+    # Modif v2.4.2 : Suppr 0 devant nombre nomdep
+    numDep1 = numDep
+    if len(numDep1) == 3 and numDep1.startswith('0'):
+        numDep1 = numDep1[1:]
+    nomFicListeVilleDep = nomFicListeVille + '_' + numDep1 + '.txt'
+    pathFicListeVilleDep = os.path.join(repertoireListeDep, nomFicListeVilleDep)
+    print("Lecture de", pathFicListeVilleDep)
+
+    with open(pathFicListeVilleDep, 'r') as hFic:
+        for line in hFic.read().splitlines():
+            # Eliminate comment
+            posComment = line.find('#')
+            if posComment != -1:
+                line = line[:posComment]
+            # If gorgon parameter line, register key and value in dictionary
+            elements = line.split(';')
+            if len(elements) == 3:
+                ville = dict()
+                ville['dep'] = numDep
+                ville['icom'] = elements[0].strip()
+                ville['nom'] = elements[1].strip()
+                ville['nomWkpFr'] = elements[2].strip()
+                extractionWikipediaFr.setArticleLiens(ville, verbose)
+                listeVilleDict.append(dict(ville)) # dict() to avoid copy of the reference only
+                print('.', end='', flush=True)
+    hFic.close()
+
+    if verbose:
+        print("listeVilleDict[:5] : ")
+        for ville in listeVilleDict[:5]:
+            print(ville)
+        print("Sortie de recupVilles")
+
+    return listeVilleDict
 
 ##################################################
 #to be called as a script

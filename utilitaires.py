@@ -36,17 +36,19 @@ import random
 import time
 import platform
 import sys
+import imp # To test if a module is available
 
 __TPREC__ = 0.0
 
-def construitNomFic(repertoire, nomArticle, indicateur):
+def construitNomFic(repertoire, nomArticle, indicateur, extFic):
     """ Construit le nom d'un fichier de sortie """
-    # Change les caractères à problene
-    #nomVille = re.sub('[\W_]+', '_', nomArticle)
     nomVille = nomArticle
     for char in "()":
         nomVille = nomVille.replace(char, '_')
-    ficVilleIndicateur = nomVille + '_' + indicateur + ".txt"
+    ficVilleIndicateur = nomVille
+    if len(indicateur) > 0:
+        ficVilleIndicateur += '_' + indicateur
+    ficVilleIndicateur += extFic
     if repertoire is not None:
         ficVilleIndicateur = os.path.join(repertoire, ficVilleIndicateur)
     pathficNomVille = os.path.normcase(ficVilleIndicateur)
@@ -64,16 +66,20 @@ def calculAugmentation(config, valeurArrivee, valeurDepart):
 
 # V1.0.0 : Suppression couleurs = jugement de valeur
 # V1.0.2 : Accessibilité : texte alternatif
-def choixPicto(config, ratio):
+def choixPicto(config, ratio, isWikicode):
     """Choix d'un pictogramme en fonction d'un ratio"""
-    if abs(ratio) < float(config.get('GenWIkiCode', 'gen.seuilValeurPourCentDifferente')):
-        picto = config.get('Picto', 'picto.ecartNul')
+    if isWikicode:
+        prefix = 'picto'
+    else:
+        prefix = 'pictoHtml'
+    if abs(ratio) < float(config.get('GenCode', 'gen.seuilValeurPourCentDifferente')):
+        picto = config.get('Picto', prefix + '.ecartNul')
         alt = config.get('Picto', 'picto.ecartNulAlt')
-    elif abs(ratio) < config.getfloat('GenWIkiCode', 'gen.seuilValeurPourCentgrande'):
-        picto = config.get('Picto', 'picto.ecartMoyen')
+    elif abs(ratio) < config.getfloat('GenCode', 'gen.seuilValeurPourCentgrande'):
+        picto = config.get('Picto', prefix + '.ecartMoyen')
         alt = config.get('Picto', 'picto.ecartMoyenAlt')
     else:
-        picto = config.get('Picto', 'picto.ecartFort')
+        picto = config.get('Picto', prefix + '.ecartFort')
         alt = config.get('Picto', 'picto.ecartFortAlt')
     return picto, alt
 
@@ -115,38 +121,6 @@ def getValeurIntTotale(ville, cle, annee, verbose=False):
         print("\nSortie de getValeurIntTotale")
     return valeur
 
-def presentRatioDettesCAF(config, ratio, verbose):
-    """
-    Construit une chaine de caractères qualifiant le ration Dettes / CAF
-    V0.8 : précision qualification ratio
-    """
-    if verbose:
-        print("\nEntrée dans presentRatioDettesCAF")
-        print("Ratio =", ratio)
-
-    seuilBigRatioStr = int(config.get('GenWIkiCode', 'gen.seuilBigRatio'))
-    seuilEcreteRatio = int(config.get('GenWIkiCode', 'gen.seuilEcreteRatio'))
-    if verbose:
-        print("seuilBigRatioStr =", seuilBigRatioStr)
-
-    if ratio < 1:
-        ratioStr = "de moins d'un an"
-    elif ratio < 2:
-        ratioStr = "d'environ un an"
-    else:
-        if ratio >= seuilEcreteRatio:
-            ratioStr = "très élevé, de plus de "
-        elif ratio >= seuilBigRatioStr:
-            ratioStr = "élevé d'un montant de "
-        else:
-            ratioStr = "d'environ "
-        ratioStr += "{{nobr|%.0f années}}"%ratio
-
-    if verbose:
-        print("ratioStr=", ratioStr)
-        print("Sortie de presentRatioDettesCAF")
-    return ratioStr
-
 def ecritVilleDict(config, ville, verbose):
     """ Ecrit une ville dans le fichier résultat d'extraction """
     if verbose:
@@ -168,11 +142,13 @@ def ecritVilleDict(config, ville, verbose):
         os.mkdir(repertoire)
 
     # Ecrit les données de la ville dans un fichier texte
-    nomFic = construitNomFic(repertoire, ville['nom'], indicateurNomFicBd)
+    nomFic = construitNomFic(repertoire, ville['nom'],
+                             indicateurNomFicBd, '.txt')
     msg = "Ecriture de : " + nomFic
     print(msg)
     hFic = open(nomFic, 'w')
-    json.dump(ville, hFic, indent=4, sort_keys=False)
+    # V2.4.0 : Correction problème encoding caractères accentués lors dump json : ensure_ascii=False
+    json.dump(ville, hFic, indent=4, sort_keys=False, ensure_ascii=False)
     hFic.close()
 
     if verbose:
@@ -199,7 +175,8 @@ def isCommuneDejaExtraite(config, ville, verbose):
     if numDep[0] == '0':
         numDep = numDep[1:]
     repertoire = repertoireBase + "_" + numDep
-    nomFic = construitNomFic(repertoire, ville['nom'], indicateurNomFicBd)
+    nomFic = construitNomFic(repertoire, ville['nom'],
+                             indicateurNomFicBd, '.txt')
     dejaExtraite = os.path.isfile(nomFic)
 
     if verbose:
@@ -215,10 +192,10 @@ def calculeTendance(config, valeurN, valeurNM1):
     tendance = calculAugmentation(config, valeurN, valeurNM1)
     tendancestr = ""
     ecartAbs = abs(tendance)
-    if ecartAbs >= float(config.get('GenWIkiCode', 'gen.seuilValeurPourCentgrande')):
+    if ecartAbs >= float(config.get('GenCode', 'gen.seuilValeurPourCentgrande')):
         tendancestr = "très "
-    if ecartAbs < float(config.get('GenWIkiCode', 'gen.seuilValeurPourCentDifferente')):
-        egal = random.choice(["égale", "sans variation", "constante"])
+    if ecartAbs < float(config.get('GenCode', 'gen.seuilValeurPourCentDifferente')):
+        egal = "égale"
         if ecartAbs < float(config.get('Math', 'math.procheZero')):
             tendancestr = egal
         else:
@@ -284,7 +261,8 @@ def calculeTendanceSerie(nomValeur, dictAneeesValeur, verbose):
         print("\nSortie de tendanceValeur")
     return minAnnee, maxAnnee, croissante, decroissante, constante
 
-def calculeTendanceSerieStr(nomValeur, dictAneeesValeur, unite, verbose):
+def calculeTendanceSerieStr(nomValeur, dictAneeesValeur, unite,
+                            isWikicode, verbose):
     """
     Calcule une tendance refletant la variation d'une grandeur
     et l'exprime dans une phrase
@@ -315,22 +293,27 @@ def calculeTendanceSerieStr(nomValeur, dictAneeesValeur, unite, verbose):
     vp5 = "Pour la période allant de " + str(annee0) + " à " + str(anneeM)
     strTendance = random.choice([vp1, vp2, vp3, vp4, vp5]) + ", "  + nomValeur + " "
     if constante:
-        strTendance += "est constant et proche de {{euro|" + \
-                       str(dictAneeesValeur[minAnnee]) + "}} "+ unite
+        if isWikicode:
+            strTendance += "est constant et proche de " + \
+                           modeleEuro(str(dictAneeesValeur[minAnnee]), isWikicode) + \
+                           " " + unite
     elif croissante:
-        strTendance += "augmente de façon continue de {{euro|" + \
-                       str(dictAneeesValeur[minAnnee]) + "}} " + "à {{euro|" + \
-                       str(dictAneeesValeur[maxAnnee]) + "}} "+ unite
+        strTendance += "augmente de façon continue de "+ \
+                       modeleEuro(str(dictAneeesValeur[minAnnee]), isWikicode) + \
+                       " à " + modeleEuro(str(dictAneeesValeur[maxAnnee]), isWikicode) + \
+                       " " + unite
     elif decroissante:
-        strTendance += "diminue de façon continue de {{euro|" + \
-                       str(dictAneeesValeur[maxAnnee]) + "}} " + "à {{euro|" + \
-                       str(dictAneeesValeur[minAnnee]) + "}} "+ unite
+        strTendance += "diminue de façon continue de " + \
+                       modeleEuro(str(dictAneeesValeur[maxAnnee]), isWikicode) + \
+                       " à " +  modeleEuro(str(dictAneeesValeur[minAnnee]), isWikicode) + \
+                       " " + unite
     else:
-        strTendance += "fluctue et présente un minimum de {{euro|"
-        strTendance += str(dictAneeesValeur[minAnnee]) + "}} " + unite + \
-                       " en " + minAnnee + " et un maximum de {{euro|" + \
-                       str(dictAneeesValeur[maxAnnee]) + "}} " + unite + \
-                       " en " + maxAnnee
+        strTendance += "fluctue et présente un minimum de "+ \
+                       modeleEuro(str(dictAneeesValeur[minAnnee]), isWikicode) + \
+                       " " + unite + \
+                       " en " + minAnnee + " et un maximum de " + \
+                       modeleEuro(str(dictAneeesValeur[maxAnnee]), isWikicode) + \
+                       " " + unite + " en " + maxAnnee
 
     if verbose:
         print("strTendance=", strTendance)
@@ -367,15 +350,40 @@ def getVersion(config):
     versionDate = config.get('Version', 'version.date')
     return appName + " " + versionNumber + " du " + versionDate
 
-def checkPythonVersion(verbose):
+def checkPythonVersion(config, verbose):
     """ Vérifie la version de python requise """
-    pythonVersionReq = '3.4'
-    versionPython = platform.python_version()
-    msg = 'Installer une version de Python récente : >= ' + pythonVersionReq
-    assert pythonVersionReq in versionPython, msg
     if verbose:
-        msg = "Version Python OK : " + versionPython
-        print(msg)
+        print("\nEntrée dans checkPythonVersion")
+
+    pythonVersionReq = config.get('Env', 'env.pythonVersionReq')
+    if verbose:
+        print("Version requise :", pythonVersionReq)
+    pythonVersionReqTest = pythonVersionReq.replace('x', '')
+    versionPython = platform.python_version()
+    if not versionPython.startswith(pythonVersionReqTest):
+        print("Version de python incompatible :", versionPython)
+        print("requis :", pythonVersionReq)
+        sys.exit(1)
+    else:
+        print("Version Python OK :", versionPython)
+
+    if verbose:
+        print("\nSortie de checkPythonVersion")
+
+def checkMatplolibOK():
+    """ Vérifie que le module matplotlib est installé """
+    try:
+        imp.find_module('matplotlib')
+        print("Module matplotlib : trouvé")
+        isMatplotlibOk = True
+    except ImportError as exc:
+        print("Warning : module matplotlib non disponible !")
+        print(str(exc))
+        print("Pour générer des graphiques, téléchargez et installez le module :")
+        print("matplotlib : http://matplotlib.org")
+        isMatplotlibOk = False
+    return isMatplotlibOk
+
 
 def traiteOptionStd(config, option, nomProg, docProgramme, usageListe):
     """ Traite les options communes des modules """
@@ -402,3 +410,42 @@ def traiteOptionStd(config, option, nomProg, docProgramme, usageListe):
         sortiePgm = True
 
     return verbose, sortiePgm
+
+# V1.3.0 : Wikicode + HTML
+def modeleEuro(valeur, isWikicode):
+    """ Formate une valeur en Euros selon le type de code à produire"""
+    chResult = ""
+    if isWikicode:
+        chResult += "{{euro|"
+    chResult += valeur
+    if isWikicode:
+        chResult += "}}"
+    else:
+        chResult += "&nbsp;€"
+    return chResult
+
+def convertLettresAccents(ligne):
+    """ # V2.4.0 : Conversion caractères accentués ou interdits dans un nom de fichier """
+    accents = {'a': ['à', 'ã', 'á', 'â'],
+               'A': ['À', 'Ã', 'Á', 'Â'],
+               'e': ['é', 'è', 'ê', 'ë'],
+               'E': ['É', 'È', 'Ê', 'Ë'],
+               'i': ['î', 'ï'],
+               'I': ['Î', 'Ï'],
+               'u': ['ù', 'ü', 'û'],
+               'U': ['Ù', 'Ü', 'Û'],
+               'o': ['ô', 'ö'],
+               'O': ['Ô', 'Ö'],
+               'oe': ['œ'],
+               'OE': ['Œ'],
+               'ae': ['æ'],
+               'AE': ['Æ'],
+               'c': ['ç'],
+               'C': ['Ç'],
+               '_': ['(', ')']}
+
+    for char in accents.keys():
+        for accented_char in accents[char]:
+            ligne = ligne.replace(accented_char, char)
+    return ligne
+
