@@ -3,7 +3,7 @@
 *********************************************************
 Module : genHTML.py
 Auteur : Thierry Maillard (TMD)
-Date : 14/7/2015
+Date : 15/7/2015
 
 Role : Routines de génération du code HTML de déploiement.
 ------------------------------------------------------------
@@ -32,37 +32,31 @@ import os
 import os.path
 import shutil
 import time
-import re
 
-def genNoticeHTML(config, numDep, listeVilleDict, verbose):
-    """Génération de la notice de déploiement et de ses fichiers auxiliaires"""
-    msg = "genHTML : Aucune ville à traiter !"
+def genIndexHTML(config, numDep, listeVilleDict, verbose):
+    """Génération de l'index des viles d'un département"""
+    msg = "genIndexHTML : Aucune ville à traiter !"
     assert len(listeVilleDict) > 0, msg
 
     if verbose:
-        print("Entree dans genHTML")
+        print("Entree dans genNoticeHTML")
         print(listeVilleDict[0])
 
     # Lecture du modèle
-    ficModelHTML = config.get('EntreesSorties', 'io.nomModeleNoticeHTML')
+    ficModelHTML = config.get('EntreesSorties', 'io.nomModeleIndexHTML')
     htmlText = litModeleHTML(ficModelHTML, verbose)
 
     # Remplacement des variables texte
     htmlText = replaceTags(config, htmlText, listeVilleDict[0]['nomDepStr'], verbose)
 
-    # Insertion des lignes de tableau pour les villes prioritaires
-    htmlText = insertVillesTableau(config, htmlText, listeVilleDict, verbose)
+    # Insertion des lignes de tableau les villes traitées
+    htmlText = insertVillesTableau(htmlText, listeVilleDict, verbose)
 
     # Enregistrement du fichier
-    enregistreNoticeHTML(config, numDep, htmlText, verbose)
-
-    # Copie des fichiers auxiliaires
-    repertoireBase = config.get('EntreesSorties', 'io.repertoireBase')
-    repertoireDest = os.path.normcase(repertoireBase + '_' + numDep)
-    copieFicAux(config, repertoireDest, verbose)
+    enregistreIndexHTML(config, numDep, htmlText, verbose)
 
     if verbose:
-        print("Sortie de genHTML")
+        print("Sortie de genIndexHTML")
 
 def litModeleHTML(ficModelHTML, verbose):
     """Lecture du fichier modèle HTML"""
@@ -97,33 +91,37 @@ def replaceTags(config, htmlText, nomDepStr, verbose):
 
 # V1.0.5 : Pas de selection de ville ici :
 #           c'est lors de l'extraction de la base du MinFi que se fait la sélectio
-def insertVillesTableau(config, htmlText, listeVilleDict, verbose):
+def insertVillesTableau(htmlText, listeVilleDict, verbose):
     """ Insere les villes dans le texte passé en paramètre """
     if verbose:
         print("Entree dans InsertVillesTableau")
         print("Nombre de ville :", len(listeVilleDict))
 
-    baseURLWikipedia = config.get('Extraction', 'extraction.wikipediafrBaseUrl')
-
     lignes = ""
     for ville in listeVilleDict:
         lignes += '<tr>\n'
+
+        # Lien article Finances locales
+        lignes += '<td><a href="' + ville['html'] + '" target="_blank">'
+        lignes += ville['nom'] + ' (HTML)</a></td>\n'
+
+        # Lien Wikicode
+        lignes += '<td><a href="' + ville['wikicode'] +  \
+                  '" target="_blank">Wiki</a></td>\n'
+
+        # Liens CSV
+        lignes += '<td><a href="' + ville['csv'] +  \
+                  '_Valeur_totale.csv' + \
+                  '" target="_blank">Valeur totale (CSV)</a></td>\n'
+        lignes += '<td><a href="' + ville['csv'] +  \
+                  '_Par_habitant.csv' + \
+                  '" target="_blank">Par habitant (CSV)</a></td>\n'
+        lignes += '<td><a href="' + ville['csv'] +  \
+                  '_En_moyenne_pour_la_strate.csv' + \
+                  '" target="_blank">strate (CSV)</a></td>\n'
+
+        # Info score Wikipédia
         lignes += '<td>' + str(ville['Score']) + '</td>\n'
-
-        # Lien article Wikipédia
-        lignes += '<td><a href="' + baseURLWikipedia + ville['lien'] + '" target="_blank">'
-        lignes += ville['nom'] + '</a></td>\n'
-
-        # Lien section Wikicode
-        articleSection = ville['nom'] + '_section.html'
-        lignes += '<td><a href="' + articleSection + '" target="_blank">'
-        lignes += articleSection + '</a></td>\n'
-
-        # Lien article Wikicode
-        articleDetail = ville['nom'] + '_detail.html'
-        lignes += '<td><a href="' + articleDetail + '" target="_blank">'
-        lignes += articleDetail + ' </a></td>\n'
-
         lignes += '<td>' + ville['avancement'] + '</td>\n'
         lignes += '<td>' + ville['importanceCDF'] + '</td>\n'
         lignes += '<td>' + ville['importanceVDM'] + '</td>\n'
@@ -137,10 +135,11 @@ def insertVillesTableau(config, htmlText, listeVilleDict, verbose):
         print("Sortie de InsertVillesTableau")
     return htmlText
 
-def enregistreNoticeHTML(config, numDep, htmlText, verbose):
+def enregistreIndexHTML(config, numDep, htmlText, verbose):
     """ Enregistre la notice HTML """
     if verbose:
-        print("Entree dans enregistreNoticeHTML")
+        print("Entree dans enregistreIndexHTML")
+        print("numDep =", numDep)
 
     # Création du répertoire de préparation des paquets
     repertoireBase = config.get('EntreesSorties', 'io.repertoireBase')
@@ -149,22 +148,23 @@ def enregistreNoticeHTML(config, numDep, htmlText, verbose):
     msg = "Le répertoire " + repertoire + " n'existe pas !"
     assert os.path.isdir(os.path.normcase(repertoire)), msg
 
-    ficResu = config.get('EntreesSorties', 'io.nomFicNoticeHTML')
+    ficResu = config.get('EntreesSorties', 'io.nomFicIndexHTML')
     pathFileHTML = os.path.normcase(os.path.join(repertoire, ficResu))
     enregistreFicHTML(pathFileHTML, htmlText, verbose)
 
     if verbose:
-        print("Sortie de enregistreNoticeHTML")
+        print("Sortie de enregistreIndexHTML")
 
 def enregistreFicHTML(pathFileHTML, htmlText, verbose):
     """ Enregistre un fichier HTML à l'endroit spécifé """
     if verbose:
         print("Entree dans enregistreFicHTML")
+        print("pathFileHTML :", pathFileHTML)
 
     if verbose:
         print("Ouverture de :", pathFileHTML)
     ficNotice = open(pathFileHTML, 'w')
-    print("Ecriture de :", pathFileHTML)
+    print("Ecriture de :", os.path.basename(pathFileHTML))
     ficNotice.write(htmlText)
     if verbose:
         print("Fermeture de :", pathFileHTML)
@@ -173,14 +173,13 @@ def enregistreFicHTML(pathFileHTML, htmlText, verbose):
     if verbose:
         print("Sortie de enregistreFicHTML")
 
-def copieFicAux(config, repertoireDest, verbose):
-    """Copie des fichiers auxiliaires"""
+def copieRepertoire(repertoireSource, repertoireDest, verbose):
+    """Copie d'un répertoire"""
     if verbose:
-        print("Entree dans copieFicAux")
+        print("Entree dans copieRepertoire")
 
     msg = "Le répertoire " + repertoireDest + " n'existe pas !"
     assert os.path.isdir(repertoireDest), msg
-    repertoireSource = config.get('EntreesSorties', 'io.RepSrcFicAux')
     repertoireDestTotal = os.path.normcase(os.path.join(repertoireDest, repertoireSource))
     if os.path.isdir(repertoireDestTotal):
         if verbose:
@@ -189,16 +188,13 @@ def copieFicAux(config, repertoireDest, verbose):
     shutil.copytree(repertoireSource, repertoireDestTotal)
     if verbose:
         print(repertoireSource + " copié dans", repertoireDest)
-        print("Sortie de copieFicAux")
+        print("Sortie de copieRepertoire")
 
 def convertWikicode2Html(config, pathVille, verbose):
     """Conversion d'un fichier wikicode en HTML"""
     if verbose:
         print("Entree dans convertWikicode2Html")
         print("pathVille =", pathVille)
-
-    repertoirewikicode = config.get('EntreesSorties', 'io.repertoirewikicode')
-    repertoireBase = config.get('EntreesSorties', 'io.repertoireBase')
 
     # Lecture du wikicode produit en utf8
     if verbose:
@@ -219,34 +215,27 @@ def convertWikicode2Html(config, pathVille, verbose):
     htmlText = htmlText.replace("++TITRE++", titrePage)
     htmlText = htmlText.replace("++CODE++", wikicode)
 
-    # Sauvegarde
+    # Sauvegarde du html et suppresion fichier texte
     pathFicResu = pathVille.replace('.txt', '.html')
-    pathFicResu = pathFicResu.replace(repertoirewikicode, repertoireBase)
     if verbose:
         print("Ecriture de :", pathFicResu)
     enregistreFicHTML(pathFicResu, htmlText, verbose)
-
+    os.remove(pathVille)
     if verbose:
         print("Sortie de convertWikicode2Html")
 
-def genNoticeDeploiement(config, verbose):
-    """Genere la notice de déploiement selon les paquets disponibles"""
+def genIndexDepartement(config, verbose):
+    """Genere l'index des déparetements disponibles"""
 
-    # Expresion régulière de sélection du numéro de département
-    selectNumDep = config.get('EntreesSorties', 'io.repertoireBase') + '_' + \
-                   r'(?P<NumDep>\d?[0-9AB]\d)\.zip'
-
-    # Récupère la liste des paquets disponibles et la trie par département
+    # Récupère la liste des departements disponibles + tri
+    repertoireBase = config.get('EntreesSorties', 'io.repertoireBase')
     repTransfertWeb = config.get('EntreesSorties', 'io.repTransfertWeb')
     assert os.path.isdir(repTransfertWeb)
-    srepPaquets = config.get('EntreesSorties', 'io.srepPaquets')
-    repPaquets = os.path.join(repTransfertWeb, srepPaquets)
-    regexpNumDep = re.compile(selectNumDep)
-    listePaquets = [pathPaquet for pathPaquet in os.listdir(repPaquets)
-                    if os.path.isfile(os.path.join(repPaquets, pathPaquet)) and
-                    regexpNumDep.search(pathPaquet) is not None]
-    listePaquets.sort()
-    assert len(listePaquets) > 0
+    listeDept = [dept for dept in os.listdir(repTransfertWeb)
+                 if os.path.isdir(os.path.join(repTransfertWeb, dept)) and
+                 dept.startswith(repertoireBase + '_')]
+    listeDept.sort()
+    assert len(listeDept) > 0
 
     # Lecture modèle de la Notice de Deploiement
     ficModelHTML = config.get('EntreesSorties', 'io.nomModeleNoticeDeploiement')
@@ -255,34 +244,34 @@ def genNoticeDeploiement(config, verbose):
     htmlText = litModeleHTML(ficModelHTML, verbose)
 
     # Remplacement des tags
-    htmlText = htmlText.replace("++OUTIL_NOM++", config.get('Version', 'version.appName'))
+    htmlText = htmlText.replace("++OUTIL_NOM++",
+                                config.get('Version', 'version.appName'))
     version = config.get('Version', 'version.number') + " : " + \
               config.get('Version', 'version.nom')
     htmlText = htmlText.replace("++VERSION++", version)
+    htmlText = htmlText.replace("++URL_BASE++",
+                                '<a href="' + \
+                                config.get('GenCode', 'gen.siteAlize2') + \
+                                '" target="_blank">Alize2</a>')
     htmlText = htmlText.replace("++DATE++", time.strftime("%d %B %G - %H:%M:%S"))
 
-    # Construction des lignes de paquet du tableau
-    lignesPaquets = ""
-    for pathPaquet in listePaquets:
-        lignesPaquets += '<tr>\n'
+    # Construction des lignes de departements du tableau
+    lignesDept = ""
+    for dept in listeDept:
+        lignesDept += '<tr>\n'
 
-        # Numéro du département
-        m = regexpNumDep.search(pathPaquet)
-        msg = "Problème nom de paquet " + pathPaquet
-        assert m, msg
-        lignesPaquets += '<td>' + m.group('NumDep') + '</td>\n'
-
-        # Lien zip
-        lignesPaquets += '<td><a href="' + os.path.join(srepPaquets, pathPaquet) + '">'
-        lignesPaquets += pathPaquet + '</a></td>\n'
+        # Numéro et lien département
+        lignesDept += '<td><a href="' + dept + '/index.html" target="_blank">' + \
+                         dept.replace(repertoireBase + '_', '') + \
+                         '</a></td>\n'
 
         # Récupération de la date de modification du paquet
-        timeSecEpoch = os.path.getmtime(os.path.join(repPaquets, pathPaquet))
+        timeSecEpoch = os.path.getmtime(os.path.join(repTransfertWeb, dept))
         tDeniereModif = time.strftime("%d %B %G - %H:%M:%S", time.localtime(timeSecEpoch))
-        lignesPaquets += '<td>' + tDeniereModif + '</td>\n'
+        lignesDept += '<td>' + tDeniereModif + '</td>\n'
 
-        lignesPaquets += '</tr>\n'
-    htmlText = htmlText.replace("++LIGNES_PAQUETS++", lignesPaquets)
+        lignesDept += '</tr>\n'
+    htmlText = htmlText.replace("++LIGNES_DEPARTEMENTS++", lignesDept)
 
     # Sauvegarde
     nomNoticeDeploiement = config.get('EntreesSorties', 'io.nomNoticeDeploiement')

@@ -1,0 +1,124 @@
+Thierry Maillard - 24/5/2015 - 15/8/2016
+
+Compil libxml2 et libxslt sur mac mini Aude.
+Pour utiliser avec python :
+1 : installer python 3.x.x :
+	- /Users/thierry/Documents/informatique/logiciels/python/doc/
+2 : installer la libxml2-2.9.2
+3 : installer la libxslt-1.1.28
+4 : Installer lxml
+
+Recup src : ftp://xmlsoft.org/libxml2/
+libxml2-2.9.4.tar.gz et libxslt-1.1.29.tar.gz
+
+cd /Users/thierry/Documents/informatique/logiciels/libxml2/libxml2-2.9.4
+./configure --prefix=/opt/local
+make
+cd ../libxslt-1.1.29
+./configure --prefix=/opt/local
+make
+
+renommage anciennes librairie
+su admin
+su -
+cd /opt/local/lib
+for lib in libxml* libxsl*; do echo $lib; mv $lib ${lib}.old; done
+cd /Users/thierry/Documents/informatique/logiciels/libxml2/libxml2-2.9.4
+make install
+cd /Users/thierry/Documents/informatique/logiciels/libxml2/libxslt-1.1.29
+make install
+
+Install lxml python :
+sh-3.2# python3 -m pip install -U lxml
+Collecting lxml
+  Downloading lxml-3.6.1.tar.gz (3.7MB)
+    100% |████████████████████████████████| 3.7MB 280kB/s 
+Installing collected packages: lxml
+  Running setup.py install for lxml ... done
+Successfully installed lxml-3.6.1
+
+Supprimer les répertoires de compilation :
+cd ..
+rm -r libxml2-2.9.4 libxslt-1.1.29
+
+====================
+test python3 lxml module :
+pc19:libxslt-1.1.29 thierry$ python3
+Python 3.5.1 (v3.5.1:37a07cee5969, Dec  5 2015, 21:12:44) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from lxml import etree
+>>> 
+Pas d’erreur.
+
+=================
+Compil libxml2 et libxslt sur mac mini Aude.
+
+Pour utiliser avec python :
+1 : installer python 2.7.9 :
+	- /Users/thierry/Documents/informatique/logiciels/python/doc/install_python_2.7.x.txt
+2 : installer la libxml2-2.9.2
+3 : installer la libxslt-1.1.28
+4 : Installer lxml
+
+Recup src : ftp://xmlsoft.org/libxml2/
+libxml2-2.9.2.tar.gz et libxslt-1.1.28.tar.gz
+
+cd /Users/thierry/Documents/informatique/logiciels/libxml2/libxml2-2.9.2
+./configure --prefix=/opt/local
+make
+cd ../libxslt-1.1.28
+./configure --prefix=/opt/local
+make
+
+renommage anciennes librairie
+su admin
+su -
+cd /opt/local/lib
+for lib in libxml* libxsl*; do echo $lib; mv $lib ${lib}.old; done
+cd /Users/thierry/Documents/informatique/logiciels/libxml2/libxml2-2.9.2
+make install
+cd /Users/thierry/Documents/informatique/logiciels/libxml2/libxslt-1.1.28
+make install
+
+Install lxml python :
+télécharger lxml sous : http://lxml.de/
+installation par sudo pip install lxml
+python3 -m pip install -U lxml
+
+test python lxml module :
+macmini-aude:libxslt-1.1.28 thierry$ python
+Python 2.7.9 (v2.7.9:648dcafa7e5f, Dec 10 2014, 10:10:46) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+from lxml import etree
+OK
+
+====================
+A considérer aussi :
+http://lxml.de/installation.html
+MacOS-X
+On MacOS-X, use the following to build the source distribution, and make sure you have a working Internet connection, as this will download libxml2 and libxslt in order to build them:
+STATIC_DEPS=true sudo pip install lxml
+
+Sous Python3
+cd /Users/thierry/Documents/informatique/logiciels/python/python3
+curl -O https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py
+su
+cd /Users/thierry/Documents/informatique/logiciels/python/python3
+python3 get-pip.py
+
+
+Install lxml python3 :
+télécharger lxml sous : http://lxml.de/
+installation par su :
+python3 -m pip install -U lxml
+
+====================
+test python3 lxml module :
+pc19:python3 thierry$ python3
+Python 3.5.0 (v3.5.0:374f501f4567, Sep 12 2015, 11:00:19) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from lxml import etree
+

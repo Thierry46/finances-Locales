@@ -1,24 +1,30 @@
-Name                         Stmts   Miss  Cover   Missing
-----------------------------------------------------------
-extractionMinFi                222      5    98%   144-149, 303, 309, 398
-extractionWeb                  151     20    87%   83, 94-97, 107, 110, 116, 121-128, 132-137, 179, 304-305
-extractionWikipediaFr          186      5    97%   107-111, 236-238
-genCleFi                        22      2    91%   130-131
-genHTML                        173      3    98%   186-188
-genPaquets                      63     12    81%   71, 82-85, 93, 98-99, 150-153
-genWikiCode                    237     16    93%   77, 88-91, 99, 104-106, 304, 306, 347, 407-410
-genWikiCodeGraphiques          252      3    99%   622, 673, 678
-genWikiCodeTableaux            309      7    98%   229, 305, 571, 620-622, 639
-genWikiCodeTexte               100      1    99%   70
-test_extractionMinFi            31      0   100%   
-test_extractionWeb              21      0   100%   
-test_extractionWikipediaFr      79      0   100%   
-test_genHTML                   144      2    99%   53, 187
-test_genWikiCodeTableaux        59      0   100%   
-test_genWikicode                26      0   100%   
-test_genWikicodeTexte            6      0   100%   
-test_global                    107      0   100%   
-test_utilitaires                90      3    97%   230-233, 304
-utilitaires                    254      6    98%   109-111, 114-115, 392
-----------------------------------------------------------
-TOTAL                         2532     85    97%   
+Name                         Stmts   Miss  Cover
+------------------------------------------------
+extractionMinFi                222      9    96%
+extractionWeb                  151     21    86%
+extractionWikipediaFr          187      5    97%
+genCleFi                        22      2    91%
+genCode                        134     15    89%
+genCodeCSV                      28      0   100%
+genCodeGraphiques              107      2    98%
+genCodeTableaux                270      1    99%
+genCodeTexte                   106      1    99%
+genHTML                        158      7    96%
+genHTMLCodeGraphiques           50      0   100%
+genHTMLCodeTableaux             95      2    98%
+genSiteWeb                      60     12    80%
+genWikiCodeGraphiques          145      2    99%
+genWikiCodeTableaux             82      2    98%
+test_extractionMinFi            31      0   100%
+test_extractionWeb              21      0   100%
+test_extractionWikipediaFr      79      0   100%
+test_genCodeTableaux            59      0   100%
+test_genCodeTexte                6      0   100%
+test_genHTML                   164      2    99%
+test_global                    105      0   100%
+test_utilCode                   30      0   100%
+test_utilitaires                88      1    99%
+utilCode                       192      9    95%
+utilitaires                    267     15    94%
+------------------------------------------------
+TOTAL                         2859    108    96%

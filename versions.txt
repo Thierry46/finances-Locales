@@ -1,9 +1,611 @@
 ------------------------------------
 Evolutions du projet FinancesLocales
 ------------------------------------
+* V2.4.1 : nom de code : Yin Yang Rhô - 7/11/2015
+- Correction remarques Pylint
+- extractionWikipediaFr.py/recupVilles() : Suppr. cas particuliers 'Guéret' et 'Bommiers'
 
-* v0.5 à v1.0.x :
-    - Voir : https://fr.wikipedia.org/wiki/Utilisateur:Thierry46/Finances_Locales#.C3.89volutions
+* V2.4.0 : nom de code : Yin Yang Pi - 4/11/2015
+- Conversion caractères accentués dans les noms de répertoire et de fichiers
+- Texte en clair dans fichier dump json : ajout param ensure_ascii=False
+	json.dump(cleFi, hFic, indent=4, sort_keys=True, ensure_ascii=False)
+- problèmes lecture/écriture json : é (\u00e9) -> é (\u0301)
+Unicode Character LATIN SMALL LETTER E WITH ACUTE' (U+00E9) -> ’COMBINING ACUTE ACCENT' (U+0301)
+Très surprenant :
+>>> 'é' == 'é'
+False
+import json
+>>> json.dumps({'fooe': 'baré'})
+'{"fooe": "bar\\u00e9"}'
+>>> json.dumps({'fooe': 'baré'})
+'{"fooe": "bare\\u0301"}'
+A lire : https://recalll.co/app/?q=JSON%20Unicode%20escape%20sequence%20-%20lowercase%20or%20not?
+ How can I fix this with free tools
+By using the function equivalent to Python's text = unicodedata.normalize('NFC', text)
+Solution :
+>>> import unicodedata
+>>> 'é' == unicodedata.normalize('NFC','é')
+True
+- Ajout et utilisation property : extraction.nbAnneeMinimum=6
+	suite problème extraction de 10 années minimum codé en dur
+et plantage pour certaine ville car nb année mini <10
+- Correction problèmes d’extraction et de génération de code pour certaines villes.
+- extractionMinFi.py : Récupération listAnnee[1] au lieu de listAnnee[0]-1
+	car pour des villes comme guéret 2014 et définie mais pas 2013.
+- genCodeTexte.py l.132: idem
+
+* V2.3.0 : nom de code : Yin Yang omicron - 1/11/2015
+- extractionWikipediaFr.py/recupVilles() : supports autres formats liste de communes
+	par département de Wikipédia.
+- genCode.py ne génère plus les villes dont le répertoire existe.
+- extractionWikipediaFr.py/recupScoreDataVilles + FinancesLocales.properties :
+	Acceptation des importances faible et moyenne avec et sans majuscules
+	en 1ère lettre.
+
+- extractionWeb.py/main() : Paramètre pour choix des formats liste de communes
+	ou recherche ordre code postal Insee pour distinguer formats homonymes.
+- Qualité : Pylint : utiliser Mac Mini Salon et Python 3.4.5.
+- Afficher format trouvé
+
+* V2.2.0 : nom de code : Yin Yang Xi - 27/10/2015
+- GenListeDep.py : Génération liste de département à partir de résultats d’extraction
+- extractionWeb.py/recupVillesListe() : accepte en paramètre un numéro de département
+	en référence à un fichier texte contenant une liste de communes.
+- extractionWikipediaFr.py/recupVilles() : supports autres formats liste de communes
+	par département de Wikipédia :
+	- Gironde : Commune;Code postal;Code Insee
+	- Aveyron : Utilisation du modèle {{Tableau Liste commune de France}}
+
+* V2.1.1 : nom de code : Yin Yang Nu - 23/10/2015
+- Correction problèmes de légendes axe Y des graphiques SVG :
+	Précision « par habitant »
+- UtilCode.py/getListAnnees() : suppression assertion année max > 2013 en dur
+- extractionWikipediaFr.py/recupNomDepStr() : correction pb recul nom département
+	Pb Achenheim (67) :
+	[[Catégorie:Commune de la communauté de communes les Châteaux]]
+- extractionWikipediaFr.py/recup1Ville() : Correction expo régulière d’extraction
+	du numéro de département pour les villes Corses 2A et 2B
+
+* V2.1.0 : nom de code : Yin Yang Mu - 22/10/2015
+- Correction problèmes de légendes des courbes des graphiques SVG :
+    strate non indiquée, répétition de certains termes
+- isComplet = False pour Paris
+- Ajout légende des tableaux picto HTML
+- Ref URL BD MinFI dans fichier CSV
+- Ref lien site MinFi Alize2 dans HTML : ajout target="_blank" pour ouverture dans nouvelle fenêtre.
+- Correction date de consultation fausse (date génération code) dans lien site MinFi Alize2
+
+* V2.0.0
+    - Génération Wikicode, HTML et données brutes au format CSV
+Version 2.0.0 ; nom de code : Yin Yang Lambda Logo de l'outil Finances locales
+Statut : Fait : Déployée sur site web perso.
+Thierry46 (d · c · b) 19 octobre 2015
+Fait Héberger sortie de l'outil sur site Web indépendant.
+Fait Produire du Wikicode qui pourra servir à enrichir Wikipédia
+Fait Produire du code HTML et des graphiques au format SVG directement visibles sur le site Web
+Fait Présenter les données sous forme de tableau au format CSV.
+--A+ Thierry (discuter) 12 août 2015 à 11:10 (CEST)
+Fait Pour : Afficher des messages plus explicites si erreur lors de la recherche des scores dans les
+    PDD Wikipédia : PDD non trouvée ou problèmes paramètres modèle {{Wikiprojet}} erronés.
+Fait Pour : La routine CopyFicAux ne doit plus être appelée avec le paramètre verbose figé à True.
+A2 (d · c · b) 12 août 2015 à 19:00 :
+Fait Pour : séparer les notes spécifiques aux finances qui ne devraient pas être mêlées aux autres
+    de l'article
+
+==========================
+* v0.5 à v1.x.y :
+    - https://fr.wikipedia.org/wiki/Utilisateur:Thierry46/Finances_Locales#.C3.89volutions
+
+Version 1.2.1 ; nom de code : Yin Yang Kappa Logo de l'outil Finances locales
+Statut : Stop.
+
+[Enrouler]
+Propositions retenues
+
+Roland45 (d · c · b) 5 août 2015 à 19:07
+Fait Pour : Dans l'article principal, limiter les renvois vers l'article détaillé.
+Pic-Sou (d · c · b) 6 août 2015 à 21:34
+Fait Pour : ‎Certaines phrases générées automatiquement heurtent franchement, voir diff Toulouse.
+
+Version 1.2.0 ; nom de code : Yin Yang Iota Logo de l'outil Finances locales
+Statut : Stop. Déployée sur les pages Lunegarde, Issendolus, Cahors, Toulouse.
+
+[Enrouler]
+Propositions retenues
+
+Éduarel (d · c · b) 30 juillet 2015 à 17:04 :
+Fait Pour : Typo : écrire Finances locales au lieu de Finances Locales.
+--Père Igor 30 juillet 2015 à 11:18
+Fait Pour : Préciser période en années pour les phrases de tendance : Sur une période de 5 années
+    -> Sur la période 2009 - 2013.
+Kootshisme 29 juillet 2015 à 20:12
+Fait Fichier texte inséré dans la distribution du logiciel Pour : Ajouter une notice et des
+    exemples d'utilisation.
+--A+ Thierry (discuter) 31 juillet 2015 à 07:48 (CEST)
+Fait Voir #Qualité et mesures logicielles Pour : Améliorer la qualité logicielle par l'utilisation
+    des outils Pylint et Pycoverage (couverture de test).
+Collectif : Thierry46 (d · c · b), Jack ma (d · c · b), AntonyB (d · c · b), Kootshisme (d · c · b),
+    Kormin (d · c · b), Herminien2 (d · c · b), Rehtse (d · c · b), Camster (d · c · b),
+    Roland45 (d · c · b), Seudo (d · c · b) :
+Fait Pour : Suite aux remarques formulées lors du vote : réduire fortement la section Finances
+    locales insérée dans les articles de communes, supprimer les tableaux redondants avec ceux de
+    l'article détaillé, réduire à une section simple sans subdivision. (25 Ko de Wikicode en v1.1.0,
+    réduit à 12 Ko en V1.2.0)
+Roland45 (d · c · b) 31 juillet 2015 :
+Fait Pour Remplacer "Fiscalité locale" par "Fiscalité communale"
+
+
+Version 1.1.0 ; nom de code : Yin Yang Thêta Logo de l'outil Finances locales
+Statut : Stop. Déployée sur les pages Lunegarde, Issendolus, Cahors, Toulouse.
+
+[Enrouler]
+Propositions retenues
+
+--Père Igor 29 juillet 2015 à 16:55
+Fait Pour : Bug fonction calcule de tendance d'une grandeur : Comment le ratio (CAF de Lunegarde)
+    peut-il passer en 5 ans de -497 à 397, s'il est à 215 en 2013 ? En consultant le détail,
+    j'arrive à comprendre, et le ratio ne progresse absolument pas de façon continue.
+    Je le formulerais sous la forme « Sur une période de cinq années, ce ratio a une valeur
+    minimale de -497 € par habitant en 2010 et maximale de 397 € en 2011A2 5 ».
+--A+ Thierry (discuter) 30 juillet 2015 à 07:45 (CEST)
+Fait Pour : Manque article dans tableau T3p : Remboursements emprunts -> Remboursements d'emprunts.
+
+
+Version 1.0.6 ; nom de code : Yin Yang Êta Logo de l'outil Finances locales
+Statut : Stop.
+
+[Enrouler]
+Propositions retenues
+
+--A+ Thierry (discuter) 29 juillet 2015 à 10:51 (CEST)
+Fait Pour : Changement de version Python utilisée : 2.7.9 vers 3.4.5. La version 3.4.3 est une
+    version récente qui a fait ses preuves et simplifie la programmation, notamment par
+    son support plus intégré de l'encodage UTF-8.
+Fait Pour : Correction répétition le dans la rubrique fiscalité. Problème signalé par
+    Jeepevade (d · c · b) dans l'article Issendolus, voir le diff.
+
+Version 1.0.5 ; nom de code : Yin Yang Zêta Logo de l'outil Finances locales
+Statut : Stop.
+
+[Enrouler]
+Propositions retenues
+
+--A+ Thierry (discuter) 16 juillet 2015 à 07:50 (CEST)
+Fait Pour : Corriger bug liste de commune dont le nom comporte des accents.
+Fait Pour : Corriger bug Parsing liste des commune formatées comme Liste des communes de La Réunion.
+Fait Pour : Corriger bug si tag Wikiprojet mal formaté (PDD Anteuil).
+Fait Pour : Vérifier strictement les labels du modèle Wikiprojet dans les pages de PDD lors de
+    l'évaluation du score de la commune.
+Fait Pour : Lors d'une extraction par département, n'extraire de la base Alizé2 que les seules
+    villes prioritaires.
+Fait Pour : Lors d'une extraction par département, prévoir une option pour extraire toute les villes.
+Fait Pour : Pas pas extraire une ville traité précédemment.
+Fait Pour : Délai minimum entre deux requêtes à la base Alizé2 pour éviter de se faire blacklister.
+Fait Pour : Deux des communes de Haute-Corse ont deux codes postaux, ce qui entraîne un plantage
+    test unitaire test_recupVilles() de extractionWikipediaFr.
+Fait Pour : Corriger bug extraction quand une ville ne comporte pas de données dans la base
+    Alize2 pour une année : ex. Beaucourt et année 2009.
+Fait Pour : Dans article de détail, budget général, graphique G0 et Tableau T0V, corriger
+    imprécisions section investissement : Nouvelle courbe Ressources d'investissement dans G0 +
+    légendes précises et idem dans tableau T0V + ligne delta(emplois, ressources) d'investissement.
+Fait Pour : Séparer en deux les graphique à 4 courbes difficilement lisibles dans certains cas.
+Fait Pour : Le tableau T1v ne reprend pas les valeurs du graphique G1a qui sont dupliquées dans le tableau T2v
+Fait Pour : Conseils en cas de problèmes dans la notice de déploiement.
+Fait Pour : Pouvoir Ouvrir les pages de wikicode des paquets de déploiement directement depuis
+    un navigateur.
+Fait Pour : Générer automatiquement la page de déploiement et des paquets avec liens sur les pages
+    de Wikicode à insérer.
+! Attendre Pas reproduit avec le dernière version Pour : Contourner bug graphiques baveux qui
+    persiste.
+Fait Pour : traçabilité afficher des pictogramme de version dans les notes de l'article principal
+    et détaillé, dans la notice de déploiement.
+Fait Pour : Traiter les cas des départements dont les numéros sont particuliers :
+    corse (2A, 2B), Guadeloupe (Wikipedia:97, Insee:971, MinFi:101), Guyane (Wikipedia:97,
+    Insee:972, MinFi:102), Martinique (Wikipedia:97, Insee:973, MinFi:103), Réunion (Wikipedia:97,
+    Insee:974, MinFi:104), Guyane (Wikipedia:97, Insee:972, MinFi:102).
+Fait Pour : Ne pas convertir les noms des labels Wikiprojet en minuscule.
+Gtaf (d · c · b) : 15 juillet 2015 à 20:23
+Fait Séparation des graphiques Pour : Je te suggérais d'ajouter dans ton code ce que j'ai fait ici
+    et dans le tableau suivant. Les subventions reçues sont dans la troisième ligne du tableau
+    investissement d'Alize2. Exemple ici. Cependant, je trouve que le résultat du graphique
+    2000-2013 n'est pas génial. On se perd dans les courbes. Si tu as une idée pour l'améliorer...
+
+Version 1.0.4 ; nom de code : Yin Yang Epsilon Logo de l'outil Finances locales
+Statut : Stop. Déployée sur les pages Lunegarde, Issendolus, Cahors, Toulouse.
+
+[Enrouler]
+Propositions retenues
+
+AntonyB (d · c · b) 11 juillet 2015 à 20:07 :
+Dans la phrase suivante des commentaires du Wikicode (en haut et en bas de la sous-section)
+    En cas de probleme, contactez-moi SVP : https://fr.wikipedia.org/wiki/Utilisateur:Thierry46
+Fait Pour : remplacer probleme par problème
+Fait Utilisateur:Thierry46 sans lien car supprimé par robot WikiCleanerBot Pour :
+    remplacer contactez-moi SVP : https://fr.wikipedia.org/wiki/Utilisateur:Thierry46
+    par contactez [[Utilisateur:Thierry46]]
+Fait Pour : ajouter un interligne avant ==== Fonctionnement ====
+Fait Saut de ligne en trop dans entête tableaux t2v et t4v juste avant l'année Pour :
+    il y a une erreur de syntaxe quelque part mais je ne l'ai pas trouvée, pourtant
+    j'ai cherché ! Elle est signalée en rouge au début de {|class
+Fait Pour : remplacer autres villes par autres communes car il s'agit des comptes des communes
+    et non pas des villes
+Fait Pour : pour tous les pourcentages exprimés avec le modèle {{unité}}, remplacer {{unité|8.98}}
+    % par 8.98 % 8,98 % comme cela est expliqué dans l'aide WP.
+Fait Pour : Idem pour Article détaillé : outre les même commentaires que ci-dessus
+    (texte en haut et en bas, et surtout tous les modèles {{unité}} en trop pour les pourcentages)
+Fait Pour : remplacer (plusieurs fois) ===Tableau par === Tableau
+Fait Pour : supprimer l'interligne après == Références ==
+Fait Pour : remplacer {{Références|groupe=Note}} par {{Références|groupe=Note|colonnes=2}}
+Fait Supprimé car inutile, ref : Aide:Catégorisation#Particularité : les clefs de tri Pour :
+    je n'ai pas compris l'intérêt de la ligne {{DEFAULTSORT:Issendolus}}
+AntonyB (d · c · b) et Aurelien33380 (d · c · b) 11 juillet 2015
+Fait Création dans les paquets départementaux d'un fichier HTML où les villes sont classées par
+    importance Pour : Déploiement : ne pas déséquilibrer les petits articles par l'ajout d'une
+    grosse section finances locales.
+--A+ Thierry (discuter) 12 juillet 2015 à 11:11 (CEST)
+Fait Pour : Génération d'une liste des villes prioritaires par département.
+Fait Pour : régler problème de catégorie de l'article détaillé à corriger à la main actuellement.
+Gtaf (d · c · b) 12 juillet 2015 à 17:57
+Fait Pour : Erreur titres chapitres graphique dans article détaillé : Attention, certains
+    graphiques du modèle donnent des évolutions de 2000 (et non 2010) à 2013.
+--A+ Thierry (discuter) 13 juillet 2015 à 11:53 (CEST)
+Fait Pour : Amélioration de la couverture par les tests unitaire dans la partie qui
+    recherche des infos dans Wikipédia : module extractionWikipediaFr.py
+--A+ Thierry (discuter) 15 juillet 2015 à 10:32 (CEST)
+Fait Pour : Régler problèmes de support par l'outil des listes de communes par
+    département non homogène : Voir celle du Lot et celle du Doubs.
+Fait Pour : Traçabilité : mettre la date de la version dans les commentaires du wikicode généré
+    (section et détail) et dans la notice HTML.
+
+Version 1.0.3 ; nom de code : Yin yang Delta Logo de l'outil Finances locales
+Statut : Stop
+
+[Enrouler]
+Propositions retenues
+
+Arcyon37 18 juin 2015 à 08:53
+Fait Pour tableaux complexes utiliser les attributs id et headers pour relier les cellules à leurs
+    entêtes.
+--Thierry46 (discuter) 5-8 juillet 2015
+Fait Pour Accessibilité : section Fiscalité locale des articles des commune : Ce tableau à
+    remplacer par Le tableau t2p,
+Fait Pour Lien alize2.finances.gouv.fr à insérer dans notes des pages générées.
+Fait Pour Améliorer la visibilité de l'article détaillé par des liens depuis la section
+    Finances locales.
+Harrieta (d) 10 juillet 2015 à 03:04
+Fait Pour : J’ai peut-être mal interprété ce qui est dit ci-dessus au sujet des liens redondants,
+    mais dans la version du 10 juillet matutinale, il y en a encore beaucoup. Par exemple dépenses,
+    recettes, strate, désendettement ou ratio dans le texte et les tableaux. Dans la même phrase
+    d’ailleurs, dette et désendettement pointent sur emprunt (finance) (voir le paragraphe
+    endettement).
+Fait Pour : Référence A2 1 : « « Les comptes des communes - Cahors : Chiffres clés » », chiffres
+    venant après un « : » devrait prendre une minuscule.
+Fait Pour : Référence A2 2 : « « Les comptes des communes - Cahors : Opérations de
+    Fonctionnement » », même remarque pour opérations.
+Fait Pour : Référence A2 3 : « « Les comptes des communes - Cahors : Analyse des équilibres
+    financiers fondamentaux » », même remarque pour analyse.
+Fait Pour : Référence A2 4 : « « Les comptes des communes - Cahors : Opérations
+    d'investissement » », même remarque pour opérations.
+Fait Pour : Référence A2 5 : « « Les comptes des communes - Cahors : Autofinancement »,
+    même remarque pour autofinancement.
+Fait Pour : Référence A2 6 : « « Les comptes des communes - Cahors : Endettement » »,
+    même remarque pour endettement.
+Fait Pour : Pour les indexations des tableaux, je propose de remplacer le « : » par un « - »
+    pour éviter le problème de majuscule suivant un « : » Par exemple : T1p - Section de
+    fonctionnement de Cahors en 2013.
+Fait Pour : Note 11 : La « section investissement » devrait être remplacée par La
+    section « investissement ».
+Fait Pour : Note 12 : Les « Dépenses d’équipement » devrait être remplacée par
+    Les « dépenses d’équipement ».
+Fait Pour : Note 16 : La « capacité de désendettement » est basée sur le ratio suivant défini par
+    ratio = encours de la dette/CAFCe ratio montre, à un instant donné, le nombre d'années qui
+    seraient nécessaires au remboursement des dettes en considérant les ressources de Cahors.
+    doit être modifié en La « capacité de désendettement » est basée sur le ratio suivant défini
+    par ratio = encours de la dette/CAF. Ce ratio montre, à un instant donné, le nombre d'années
+    qui seraient nécessaires au remboursement des dettes en considérant les ressources de Cahors.
+--A+ Thierry (discuter) 11 juillet 2015
+Fait Bug signalé le 11/7 Pour : Toujours un bug dans certains graphiques qui présentent de
+    larges traits de couleur d'orientation qui rayonnent du coin bas-gauche.
+Fait Pour : Nettoyer le wikicode généré par l'outil.
+Philippe rogez (d · c · b) : 5 juillet 2015 à 13:57‎
+Fait Pour : de en trop dans titres tableau t4v et t0v
+
+Version 1.0.2 ; nom de code : Yin yang Gamma Logo de l'outil Finances locales
+Statut : Stop
+
+[Enrouler]
+Propositions retenues
+
+Arcyon37 18 juin 2015 à 08:53
+Fait Pour Handicap Améliorer l'accessibilité des tableaux au niveau des entêtes de lignes et
+    colonnes et de la signification des puces de couleur.
+Fait Pour Titres de section : résumer avec concision le contenu de la section : précision titres :
+    Tableau des valeurs de <ANNEE-N> à <ANNEE>.
+Fait Pour Références à un contenu par sa position à l'écran : Numéroter les tableaux et graphiques.
+Fait Pour Recours aux symboles graphiques Unicode : éviter ces symboles et préférer des images avec
+    alternatives textuelles.
+Fait Pour Alternative des liens sur image : Insérer des textes alternatifs pour les
+    pictogrammes |alt=.
+Harrieta171 25 juin 2015 à 03:06
+Fait A réévaluer cependant pour voir si c'est suffisant. Pour Supprimer liens internes redondants
+Le pro du 94 :) : 30 juin 2015 à 11:38
+Fait Pour Taxe d'habitation|taxe d'habitation : Lien interne avec cible identique au texte.
+Utilisateur:NicoV 30 juin 2015 à 22:44
+Fait Pour Il n’est pas d'usage que les articles encyclopédiques contiennent des liens vers des
+    pages de l’espace utilisateur. J'ai donc supprimé ces liens dans une dizaine d'articles dans
+    les sections créées par votre outil Finances locales. Je pense qu'il serait bien de modifier
+la génération pour que ces liens ne soient pas créés avant de l'utiliser à plus grande échelle.
+Harrieta : 2 juillet 2015 à 03:03
+Fait Pour Prendre en comptes les remarques d'Harrieta, voir la PDD.
+--A+ Thierry (discuter) 4 juillet 2015 à 09:54 (CEST)
+Fait Pour Ajout graphique et tableau pour la section investissement de la page de détail.
+
+
+Version 1.0.1 ; nom de code : Yin Yang Bêta Logo de l'outil Finances locales
+Statut : Stop
+
+[Enrouler]
+Propositions retenues
+
+AntonyB 17 juin 2015 à 22:39 et 18 juin 2015 à 10:56
+Fait Pour Appliquer modèle unité/2 dans définition de la strate.
+AntonyB 17 juin 2015 à 22:39 et 18 juin 2015 à 10:56
+Fait Les boîtes déroulantes sont parfois décriées compte tenu des difficultés de mise ne page lors
+    des impressions, voire des blocages. Il me semble donc important, de proposer une version
+    « courte » ne contenant que du texte + courbes + tableaux, sans boîte déroulante,
+    et une version plus complète
+Collectif : voir PDD
+Fait Pour Modification des pages des communes par insertion d'une section simple et création
+    d'une page détaillée : génération du Wikitexte pour la section simple et article détaillé.
+Fait Pour Maj notice de déploiement pour la modification au-dessus.
+AntonyB 24 juin 2015 à 19:57
+Fait Pour « petit » résumé que l'on pourrait mettre dans un article de commune, tout le reste étant
+    à placer dans un article détaillé. Ce « petit » résumé doit être « petit » en regard de
+    la taille de l'article type.
+Fait Pour nombreux & nbsp ; étranges, ils sont inutiles devant le caractère « % »
+Fait Pour reformuler la phrase « Les taux des taxes, incluses dans les impôts locaux, sont votées
+    et perçues par la municipalité d'Issendolus. » car il y a un sérieux pb entre sujet et verbe :
+    les taux sont votés et les impôts sont perçus.
+Fait Pour Utiliser le modèle date-, équivalent du modèle nobr pour une date. Il a l'avantage
+    qu'on peut remplacer ainsi corriger en ajoutant un simple « - » de façon à éviter des wikiliens
+    généralement non pertinents.
+Fait Pour a effectué la synthèse des 98 pages du site alize2.finances.gouv.fr, utiliser : des
+    nobr|98 pages du site alize2.finances.gouv.fr
+Fait Pour par habitants sont effectués : suppr s + ées à effectués
+Fait Pour Par & nbsp ; hab* : suppr & nbsp ;
+Harrieta171 25 juin 2015 à 03:06
+Fait Pour Deuxième phrase, un accord à modifier : Les comparaisons des ratios par habitants sont
+    effectuées.
+Fait Pour Suppression des lien dans entêtes boîtes déroulantes Redondance de liens internes dans
+    menu déroulant.
+Fait Pour Paragraphe investissements : un espace est nécessaire après la ponctuation entre
+    (79 € par habitant). et Sur une période de 5 années
+
+
+Version 1.0.0 ; nom de code : Yin Yang Alpha Logo de l'outil Finances locales
+Statut : Stop.
+
+[Enrouler]
+Propositions retenues
+
+Utilisateur:Harrieta171 17 juin 2015 à 14:15
+Fait Pour fort Ajouter une légende aux tableaux picto.
+Fait Pour Valeur de la strate dans le corps du texte et non dans une note.
+Fait Pour Négligeables % à corriger.
+Fait Pour Le mot solde de la première ligne du tableau devrait prendre une majuscule initiale.
+
+euro;texte=value euro)
+
+Père Igor 17 juin 2015 à 17:41
+Fait Pour Préciser « en euros par habitant » dans les tableaux « Fonctionnement 2013 » et
+    « Investissements 2013 ».
+Fait Pour fort Caler l'ensemble des données numériques à droite dans les tableaux pictos.
+Fait Pour Écrire « Investissement » au singulier.
+Fait Pour Pour les courbes « Évolution des produits et charges de Fonctionnement de 2000 à 2013 »
+    et « Évolution de la capacité d'autofinancement (CAF) et de l'encours de la dette de 2010 à
+    2013 », le mot « euros » devrait prendre une minuscule.
+Fait Pour wikifier les termes charges, produits, recettes, encours + « strate »
+    mais c'est une page d'homonymie
+Fait Pour fort Sur le tableau de fonctionnement, une séparation claire des charges et des
+    produits (par couleur comme dans « Tableau des valeurs de 2010 à 2013 », par exemple) en
+    simplifierait la lecture.
+Fait Pour « Évolution des produits et charges de Fonctionnement de 2000 à 2013 » : écrire
+    « fonctionnement » avec une minuscule, « charges de Fonctionnement » sans majuscule
+    à « locaux ».
+Fait Pour « Tableau des valeurs de 2010 à 2013 » : la phrase de bas de tableau devrait indiquer
+    « euros » avec une minuscule.
+Fait Pour Dans la phrase « Le tableau suivant compare les Taux des taxes », mettre une minuscule
+    à « taux ».
+Fait Pour « Évolution de la capacité d'autofinancement (CAF) et de l'encours de la dette de 2010
+    à 2013 » : le « Tableau des valeurs de 2010 à 2013 » indique « Encours de la dette et Capacité
+    d'autofinancement de de Cahors de 2010 à 2013 » : je verrais bien la capacité sans majuscule et
+    la suppression du doublon « de de ».
+Fait Pour Dans le « Tableau des valeurs de 2010 à 2013 » , le libellé « Encours total de la dette
+    au 31/12/N » me laisse perplexe : dois-je comprendre 31°12' nord ?
+AntonyB 17 juin 2015 à 22:39 et 18 juin 2015 à 10:56
+Fait Pour Corriger corrections/améliorations apportées sur Issendolus
+Arcyon37 18 juin 2015 à 08:53
+Fait Pour désactiver le lien vers le fichier commons de ces puces ; exemple : [[fichier:Button Icon
+    Lime.svg|10px|link=]] au lieu de [[fichier:Button Icon Lime.svg|10px]].
+Roland45 19 juin 2015 à 22:09
+Fait Pour l'indicateur d'évolution de la dette sur 3 ou 5 ans serait bien plus intéressant.
+Harrieta (d) 20 juin 2015 à 02:53
+Fait Pour Créer une page de log pour suivre les problèmes après cette version.
+Fait Pour Tableaux pictos situés tous suivant la même logique.
+Fait Pour Fonctionnement : le premier alinéa de la liste à puces — introduite par le « : » de la
+    phrase « Pour Toulouse en 2013, la section de fonctionnement […] résultat comptable de
+    18 146 000 € (40 € par habitant) : » — devrait se terminer par un « ; » et par conséquent,
+    le second alinéa devrait commencer par une lettre minuscule (La plus grande --> la plus grande)
+--A+ Thierry (discuter) 21 juin 2015 à 14:17 (CEST)
+Fait Pour Corriger bug tableaux des taux pour Paris qui est la seule ville dont des tableaux
+    détaillés n'existent pas avant 2009.
+Fait Pour Compléter la notice de déploiement avec un avertissement pour les communes
+    particulières : Paris (une seule ville dans le département), Rochefourchat (un seul habitant).
+
+Version 0.11 ; nom de code : CSN : capitalo-simplette neutralisée
+Statut : Stop
+Rôle : corrige la version précédente.
+
+[Enrouler]
+Propositions retenues
+
+Utilisateur:Harrieta171 17 juin 2015 à 14:15
+Fait Pour fort Pictogrammes de couleur et légende, éviter les jugements de valeur.
+
+Version 0.9 vers version 0.10
+
+Version 0.10 ; nom de code : capitalo-simplette
+Statut : Stop
+Problème : cette version porte des jugements de valeur inadmissibles : détectés par Harrieta qui a
+    reçu cette récompense :
+
+Récompense 	Merci Harrieta pour ton aide, tes idées, remarques et conseils qui permettent la
+    réalisation de l'outil Finances locales. Surgi de la nuit et du brouillard, tel l'archange
+    Michel ou de façon plus prosaïquement un lanceur d'alerte, tu as terrassé la monstrueuse
+    version 0.10, rebaptisée depuis la capitalo-simplette. Cette bête infâme ne prétendait-elle
+    pas porter des jugements de valeur manichéens sur les finances locales avec son perfide
+    système de couleurs et ternir à jamais l'image de Wikipédia ? Suite à tes remarques, elle
+    sera métamorphosée en une v1.0 baptisée Yin yang en référence à ses pictogrammes tout en
+    nuances. Gloire éternelle à toi ô Harrieta Clin d'œil. Additionnons nos forces,
+    partageons nos connaissances --A+ Thierry (discuter) 18 juin 2015 à 08:45 (CEST).
+[Enrouler]
+Propositions retenues
+
+--A+ Thierry (discuter) 17 juin 2015 à 08:47 (CEST)
+Fait Pour DGF : couleur picto à inverser.
+Fait Pour Modèle simple : Erreur référence au tableau 0.
+Fait Pour Note définition Strate à séparer.
+Fait Pour Rattacher aux sous-sections les tableaux et graphiques.
+Fait Pour Réorganiser module d'extraction ;
+Fait Pour Attacher les tableaux pictos au module genWikiCodeTableaux
+
+
+Version 0.8 vers version 0.9
+[Enrouler]
+Propositions retenues
+
+Utilisateur:AntonyB (discuter) 15 juin 2015 à 23:18
+Fait Pour Il y avait beaucoup de fautes d'orthographe, de typo, de syntaxe wiki,
+    j'ai ajouté des points finals manquants, j'ai enlevé des espaces superflues… Merci de
+    prendre en compte ces améliorations (déjà signalées pour certaines d'entre-elles la
+    dernière fois).
+--A+ Thierry (discuter) 16 juin 2015 à 08:30 (CEST)
+Fait Pour Créer une section fiscalité à à placer après celle des produits de fonctionnement.
+    On y trouverait un petit tableau comparatif des taux d'imposition par rapport à ceux de
+    la strate.
+Fait Pour Dans la section des produits de fonctionnement, corriger couleurs des pictos des impôts.
+Fait Pour Corriger problèmes de mise en page du modèle simple : saut de section à ajouter
+    dans la partie texte.
+Fait Pour Découper le module genWikiCode.py qui est devenu trop gros.
+Fait Pour Préciser refnec dans note.
+Fait Pour Augmenter le nombre de couleurs des pictogrammes.
+
+
+Version 0.7 vers version 0.8
+[Enrouler]
+Propositions retenues
+
+Utilisateur:Roland45 11 juin 2015 à 22:21 (CEST)
+Fait Pour Structurer partie texte selon proposition de Roland45
+Utilisateur:EBarronet 5 juin 2015 à 17:09
+    Fait Pour il ne serait peut-être pas inutile de prévoir, associé au texte, un jeu de notes de
+    pied de page permettant d'expliciter les termes utilisés et de les rapprocher des normes
+    comptables utilisées par les collectivités locales.
+--A+ Thierry (discuter) 13 juin 2015 à 10:36 (CEST)
+Fait Pour correction ratio Dette/CAF mal écrêté : 1515 ans pour rembourser les dettes, c'est
+    trop long !
+Fait Pour Note explicative capacité de désendettement, ratio ;
+Fait Pour Éviter bug {{Graphique polygonal}} : graphiques "baveux" dans certains cas :
+    Marjevols, Neuilly-sur-Seine ;
+Fait Pour Problème choix du multiple pour les ordonnées des courbes : exemple Toulouse, courbe :
+    Détail Produits et charges de Fonctionnement / Évolution des charges de fonctionnement pour
+    Toulouse : les charges financières sont proches de 0, alors que les charges de personnels
+    s'élèvent à plus de 300 Meuros, l'algo choisit comme multiple Euros en prenant en compte
+    les charges financières, ce qui conduit à des valeurs affichées (et tronquées en partie) de
+    l'ordre de 3.5e8.
+Utilisateur:EBarronet 12 juin 2015 à 18:05 (CEST)
+Fait Inciter les contributeurs à s'exprimer dans un chapitre généré vide et mettre à jour notice
+    de déploiement. Il faudra donc de vrais contributeurs pour poursuivre et approfondir
+    un travail que ce nouvel outil permet déjà de dégrossir de manière très appréciable!
+Utilisateur:BTH 12 juin 2015 à 20:11
+Fait Mais, lorsque l'outil sera stabilisé, définir procédure de vote pour passer au déploiement,
+    puis solliciter pour le vote les autres membres du projets commune de France. Il ne reste plus
+    qu'à déployer, en commençant par les plus grosses communes
+Utilisateur:AntonyB 12 juin 2015 :
+Fait Intégrer les remarques. Peux-tu regarder et reporter ces corrections dans ton outil ?
+Fait Voir ma remarque plus haut. Que dois-je conclure de l'évocation des 1 515 ans ?
+
+Version 0.6 vers version 0.7
+[Enrouler]
+Propositions retenues
+
+Utilisateur:AntonyB 9 juin 2015 à 18:54 :
+Fait Pour Compléter les sorties par un graphique et un tableau sur l'évolution des taux de
+    fiscalité locale tels que demandés par AntonyB.
+Utilisateur:Thierry46 10 juin 2015 :
+Fait Pour Problèmes référence tableaux
+Utilisateur:EBarronet 10 juin 2015 :
+Fait Pour Prendre modèle pour la partie texte sur la proposition d'EBarronet.
+Utilisateur:AntonyB 10 juin 2015
+Fait Pour Prise en compte des remarques d'AntonyB
+--A+ Thierry (discuter) 12 juin 2015 à 07:58 (CEST)
+Fait Pour Traçabilité : mettre infos de traçabilité (version, date génération) dans une note.
+Fait Pour Mieux paramétrer le programme en déplaçant le plus de constantes possibles dans
+    fichier des propriétés FinancesLocales.properties.
+Fait Pour Passer en paramètre l'ensemble des propriétés et non des valeurs discrètes.
+Fait Pour Déplacer commentaire Wiki du programme vers le fichier modèle externe
+
+Version 0.5 vers version 0.6
+[Enrouler]
+Propositions retenues
+
+Utilisateur:AntonyB 9 juin 2015 à 18:54 et Utilisateur:BTH 9 juin 2015 à 20:58 :
+Fait Prise en compte des remarques sur la forme signalées sous :
+    Discussion_utilisateur:Thierry46/Finances_Locales#Version_0.5
+
+
+Version 0.4 vers version 0.5
+[Enrouler]
+Propositions retenues
+
+A+ Thierry (discuter) 5 juin 2015 à 08:39 (CEST) :
+Fait. Pour fort Les arrondis des valeurs certains graphiques doivent être améliorés :
+    exemple pour le graphique des Taxes de Longjumeau.
+Fait Pour fort Le ratio dette / CAF peut tendre vers l'infini si la CAF s'approche de 0, Ne
+    pas afficher des délais supérieurs à 15 ans.
+Fait Pour La version simplifiée ne présente aucune donnée de strate, mais une phrase en donne
+    la définition.
+Fait Pour fort Traçabilité : mettre version de l'outil dans les commentaires du Wikicode.
+Utilisateur:EBarronet 5 juin 2015 à 17:09 :
+Fait Pour Remplacement de Résultat fiscal par Solde de la section de fonctionnement ;
+Fait  Plutôt pour tableau sur les chiffres clés à structurer en Section de fonctionnement et
+    Section d'investissement
+Fait Pour dettes à préciser : encours total de la dette;
+Fait Pour Ajouter texte d'introduction : Les résultats sont présentés de façon standardisés pour
+    toutes les communes. Ils ne concernent que le périmètre municipal et ne prennent pas en compte
+    les finances des EPCI à fiscalité propres.
+Utilisateur:AntonyB 5 juin 2015 à 16:44‎ :
+Fait Ajout tendance sur 14 ans + graphique Bien mettre en valeur le rapport dette/CAF, explications
+    et afficher cette donnée sur 5 à 10 ans.
+Fait Je ne détaille plus les impôts locaux Pour ceux qui veulent en savoir plus, présenter les
+    impôts locaux sur 10 ans ;
+Utilisateur:Arcyon37 6 juin 2015 à 11:45 :
+Fait Doit être corrélée avec les Dettes Bien présenter la CAF.
+Utilisateur:Roland45 6 juin 2015 à 15:01 :
+Fait Pour différencier fonctionnement et investissement ;
+Fait Pour remplacer "autofinancement" par "capacité d'autofinancement" ;
+Fait Pour "charges de personnel" et "Achats et charges externes" doivent figurer en sous-détails
+    des dépenses de fonctionnement ;
+Fait Regroupées dans Impôts locaux Taxe d'habitation et taxe foncier bâti devraient être
+    regroupés dans un bloc .
+Fait  Plutôt pour Utiliser des couleurs pour distinguer les grands groupes d'indicateurs ;
+Fait  Plutôt pour il parait utile de faire un tableau séparé pour détailler les recettes de
+    fonctionnement.
+Bonnes contributions - BTH (discuter) 9 juin 2015 à 09:26 (CEST)
+Fait Pour fort Pour obtenir une certaine concision d'affichage, le(s) tableau(x) de nombres qui
+    soutien(nen)t et éventuellement complète(nt) les graphiques peu(ven)t être mis dans un espace
+    escamotable (bandeau déroulant)
+
 * v0.4 : 3/6/2015 :
     - Correction problèmes d'affichage des graphiques
     - Gestion des données manquantes sur le site du ministère des finances

@@ -1,0 +1,77 @@
+TMD - 11/6/2015
+
+------------------------
+Note utilisation py.test
+------------------------
+
+Role : test unitaire facile en python
+
+# Utilisation : py.test .
+#  options :
+#     -s : pour voir les sorties sur stdout
+#	-k <nom_test> : pour ne jouer que le test <nom_test>
+# d'autre options existe voir --help
+# Ref : http://sametmax.com/un-gros-guide-bien-gras-sur-les-tests-unitaires-en-python-partie-3/
+# Ref : http://pytest.org/latest/
+# prerequis : pip install pytest
+
+============
+Exemple script :
+============
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+import ConfigParser
+import pytest
+import genWikiCode
+@pytest.mark.parametrize("ratio,ch", [
+    (0, "de moins d'un an"),
+    (1, "d'environ un an"),
+    (10, "10 an"),
+    (20, "15 an")
+    ])
+def test_presentRatio(ratio, ch):
+    assert ch in genWikiCode.presentRatio(ratio)
+
+============
+Problèmes possibles :
+============
+1 Import impossible : ne trouve pas votre module à tester
+	Votre module doit etre importable : nom sans .
+	tester sous la console python
+
+2 Pb encoding :
+	a : Vous avez oublié dans le script à tester ou dans votre module :
+# pour encoding utf8 par défaut des chaines
+from __future__ import unicode_literals
+
+	b : Votre module contient des erreurs, et l'interpreteur les
+	signale avec des caracteres non unicode
+	Lancer votre pgm hors de py.test
+
+3 : ___________________ ERROR collecting test_extractionMinFi.py ___________________
+import file mismatch:
+imported module 'test_extractionMinFi' has this __file__ attribute:
+  /Users/thierry/Documents/informatique/developpement/python/exemple_py_tmd/finances_locales_wkpfr/FinancesLocales_v0.7/test_extractionMinFi.py
+which is not the same as the test file we want to collect:
+  /Users/thierry/Documents/informatique/developpement/python/exemple_py_tmd/finances_locales_wkpfr/FinancesLocales_v0.8/test_extractionMinFi.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
+
+Vous avez renommé le répertoire contenant le test et des infos ont été stockées dans
+un répertoire __pycache__ lors d'un test précédent.
+Sol : rm -r __pycache__ *.pyc
+
+
+================
+Installation Py.test pour python 3.4
+cd /Users/thierry/Documents/informatique/logiciels/python/python3
+curl -O https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py
+
+su
+cd /Users/thierry/Documents/informatique/logiciels/python/python3
+python3 get-pip.py
+python3 -m pip install -U pytest
+
+Utilisation sous compte user :
+python3 -m pytest .
+

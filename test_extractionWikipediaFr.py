@@ -3,7 +3,7 @@
 """
 Name : test_extractionWikipediaFr.py
 Author : Thierry Maillard (TMD)
-Date : 1/6/2015 - 2/6/2015
+Date : 1/6/2015 - 23/10/2015
 Role : Tests unitaires du projet FinancesLocales avec py.test
         not global : élimine les tests globaux très long
 Utilisation : python3 -m pytest -k "not global" .
@@ -64,7 +64,8 @@ def test_getPageWikipediaFr_PbNomville():
     ("Grenoble", "de l'Isère"),
     ("Strasbourg", "du Bas-Rhin"),
     ("Rochefourchat", "de la Drôme"),
-    ("Albas (Lot)", "du Lot")
+    ("Albas (Lot)", "du Lot"),
+    ("Achenheim", "du Bas-Rhin")
     ])
 def test_recupNomDepStr(nomArticleUrl, nomDepStrOK):
     """ Test récupération numéro de département dans l'infobox une page Wikipédia """
@@ -76,7 +77,8 @@ def test_recupNomDepStr(nomArticleUrl, nomDepStrOK):
 
 @pytest.mark.parametrize("nomArticle, nomOK, icomOK, depOK", [
     ("Issendolus", "Issendolus", "132", "046"),
-    ("Montfaucon (Lot)", "Montfaucon", "204", "046")
+    ("Montfaucon (Lot)", "Montfaucon", "204", "046"),
+    ("Bonifacio", "Bonifacio", "041", "02A")
     ])
 def test_recup1Ville(nomArticle, nomOK, icomOK, depOK):
     """ Test récupération infos d'une ville dans une page Wikipédia """
@@ -91,13 +93,13 @@ def test_recup1Ville(nomArticle, nomOK, icomOK, depOK):
     assert listeVilleDict[0]['dep'] == depOK
 
 @pytest.mark.parametrize("articleListe, nbvilleOk, nom1ereVille, depOk, icomOk", [
-    ('Liste des communes du Lot', 340, 'Albas', '046', '001'),
-    ('Liste des communes du Doubs', 593, 'Abbans-Dessous', '025', '001'),
-    ('Liste des communes de La Réunion', 24, 'Les Avirons', '097', '401'),
+    ('Liste des communes du Lot', 326, 'Albas', '046', '001'),
+    ('Liste des communes du Doubs', 583, 'Abbans-Dessous', '025', '001'),
+    ('Liste des communes de la Guadeloupe', 32, 'Les Abymes', '097', '101'),
     ('Liste des communes de la Corse-du-Sud', 124, 'Afa', '02A', '001'),
-    ('Liste des communes de la Haute-Corse', 236, 'Aghione', '02B', '002')
+    ('Liste des communes de la Haute-Corse', 236, 'Aghione', '02B', '002'),
     ])
-def test_recupVilles(articleListe, nbvilleOk, nom1ereVille, depOk, icomOk):
+def test_recupVillesWkp(articleListe, nbvilleOk, nom1ereVille, depOk, icomOk):
     """
     Test récupération infos de villes d'un département
     dans une page de liste de commune de Wikipédia
@@ -105,7 +107,7 @@ def test_recupVilles(articleListe, nbvilleOk, nom1ereVille, depOk, icomOk):
     config = configparser.RawConfigParser()
     config.read('FinancesLocales.properties')
 
-    listeVilleDict = extractionWikipediaFr.recupVilles(config, articleListe, True)
+    listeVilleDict = extractionWikipediaFr.recupVilles(config, articleListe, False)
     assert len(listeVilleDict) == nbvilleOk
     assert listeVilleDict[0]['nom'] == nom1ereVille
     assert listeVilleDict[0]['icom'] == icomOk
@@ -168,7 +170,7 @@ def test_recupScoreData1Ville(page, dicoOK):
     config = configparser.RawConfigParser()
     config.read('FinancesLocales.properties')
 
-    listeCriteres = extractionWikipediaFr.recupScoreData1Ville(config, page, True)
+    listeCriteres = extractionWikipediaFr.recupScoreData1Ville(config, page, "test", True)
     assert len(listeCriteres) == len(dicoOK)
     for critere in listeCriteres:
         assert critere['valeur'] == dicoOK[critere['cle']]
@@ -183,7 +185,7 @@ def test_recupScoreData1Ville_PbLabel():
     config.read('FinancesLocales.properties')
     page = "|avancement=NimporteNawak"
     with pytest.raises(ValueError) as e:
-        extractionWikipediaFr.recupScoreData1Ville(config, page, True)
+        extractionWikipediaFr.recupScoreData1Ville(config, page, "test", True)
     print(e)
     assert "NimporteNawak" in str(e)
 

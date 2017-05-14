@@ -1,0 +1,114 @@
+Thierry Maillard - 29/7/2015 - 19/8/2016
+
+=======================
+Installations de base :
+=======================
+
+Python3 :
+Ref : https://www.python.org
+https://www.python.org/downloads/
+Télécharger un paquet précompilé
+
+Pip :
+Ref : https://pypi.python.org/pypi/pip
+curl -O https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py
+su
+cd /Users/thierry/Documents/informatique/logiciels/python/python3
+python3 get-pip.py
+
+lxml :file:///Users/thierry/Downloads/python-3.5.0-macosx10.6.pkg
+ftp://xmlsoft.org/libxml2
+installer la libxml2-x.y.z et la libxslt-x.y.z
+Voir : note_install_libxml2.txt
+Installer lxml
+Ref : http://lxml.de/
+python3 -m pip install -U lxml
+Successfully installed lxml-x.y.z
+
+matplotlib : 19/10/2015
+su
+sudo python3 -m pip install matplotlib
+Successfully installed matplotlib-1.4.3 nose-1.3.7 numpy-1.10.1 pyparsing-2.0.3 python-dateutil-2.4.2 pytz-2015.6 six-1.10.0
+
+===============================
+Lancement programmes :
+===============================
+cd /Users/thierry/Documents/wikipedia/finances_locales_wkpfr/FinancesLocales_v2.4.2
+A - Extraction des données de la base Alize2
+A0 - Traiter les villes à problème :
+while read ville  
+do  
+	extractionWeb.py "$ville"
+done < ville_pb.txt
+A1 - Pour extraire les données de la base Alize pour une ville :
+	fournir un nom d'article Wikipédia :
+	extractionWeb.py Issendolus
+	extractionWeb.py 'Albas (Lot)'
+A2 - Pour les villes d'un département : fournir un nom d'article liste de Wikipédia :
+	extractionWeb.py 'Liste des communes de La Réunion'
+A3 - Pour utiliser une liste de ville prédéfinie dans le sous-repertoire :
+	Listes_villes_par_departement
+	Pour la liste Villes_département_01.txt
+	extractionWeb.py 01
+
+B- Génération du Wikicode pour les communes d'un département
+	ex. Lot (46)
+	La commande a exécuter apparait en fin de la sortie de extractionWeb.py
+	genWikiCode.py 46
+/Users/thierry/Documents/wikipedia/finances_locales_wkpfr/FinancesLocales_v2.4.2/doc_tec/notes_tmd.txt
+C - Préparation des paquets :
+	genPaquets.py
+
+===============================
+Problèmes et solution :
+===============================
+- Si plantage sur l’extraction de villes dans le traitement par liste A2 et A3 :
+	Ex. : 90/Beaucourt : manque 2009 dans BD Alize2
+	- Les commenter dans la liste A3,
+	- Les mettre dans le fichier ville_pb.txt
+	- Relancer l’extraction A0
+	- Relancer les étapes B et C
+
+- Erreur Détection nom de département
+	AssertionError: recupNomDepStr() nom de département vide dans article :
+		 Beaupréau
+	Il s’agit d’une commune fusionnée avec une autre, ici : Beaupréau-en-Mauges
+	La base Alize2 n’a pas basculé sur les nouvelles communes
+	Solution : ignorer les anciennes communes.
+		Les supprimer des listes
+	Ref : https://fr.wikipedia.org/wiki/Catégorie:Commune_disparue_au_XXIe_siècle
+	Mettre les nouvelles communes dans les listes
+
+===============================
+Outils de qualité logicielle
+===============================
+
+Py.test :
+Ref : https://pytest.org
+python3 -m pip install -U pytest
+Utilisation Py.test sous compte user : 168 tests en V1.2.0
+Jouer tous les tests unitaires : python3 -m pytest .
+Jouer tous les tests unitaires sauf globaux ou longs :
+	python3 -m pytest -k "not global" .
+Afficher stdout :  python3 -m pytest -s .
+Jouer un test unitaire spécifique : python3 -m pytest -k letestajouer .
+
+Evaluer la couverture de test globale :
+Analyse run Py.test : python3 -m coverage run -m pytest .
+Affichage résultats : python3 -m coverage report > qualite/couv_test_verbose.txt
+
+Pylint :
+Ref : http://www.pylint.org
+Install : python3 -m pip install pylint
+Usage : python3 -m pylint xxx.py
+Désactiver un message : invalid-name (C0103) et tout analyser :
+python3 -m pylint --disable=invalid-name *.py > qualite/resu_pylint.txt
+Ne marche plus sous OS X 10.11 :
+F:  1, 0: <class 'AttributeError'>: 'Call' object has no attribute 'starargs' (astroid-error)
+
+
+Pycoverage :
+Ref : http://nedbatchelder.com/code/coverage/
+Install : python3 -m pip install coverage
+
+

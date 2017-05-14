@@ -3,7 +3,7 @@
 """
 Name : test_utilitaires.py
 Author : Thierry Maillard (TMD)
-Date : 1/6/2015 - 2/6/2015
+Date : 1/6/2015 - 13/9/2015
 Role : Tests unitaires du projet FinancesLocales avec py.test
         not global : élimine les tests globaux très long
 Utilisation : python3 -m pytest -k "not global" .
@@ -49,7 +49,8 @@ import utilitaires
     ])
 def test_construitNomFic(repertoire, nomArticle, indicateur, ch):
     """ Test la génération d'un nom de fichier """
-    assert ch in utilitaires.construitNomFic(repertoire, nomArticle, indicateur)
+    assert ch in utilitaires.construitNomFic(repertoire, nomArticle,
+                                             indicateur, '.txt')
 
 @pytest.mark.parametrize(\
     "arrive, depart, attendu", [
@@ -83,29 +84,9 @@ def test_choixPicto(ratio, picto, alt):
     """ Test fonction de choix d'un picto en fonction de valeurs d'écart """
     config = configparser.RawConfigParser()
     config.read('FinancesLocales.properties')
-    pictoResu, altResu = utilitaires.choixPicto(config, ratio)
+    pictoResu, altResu = utilitaires.choixPicto(config, ratio, True)
     assert pictoResu == config.get('Picto', picto)
     assert altResu == config.get('Picto', alt)
-
-@pytest.mark.parametrize(\
-    "ratio,ch",
-    [
-        (0, "de moins d'un an"),
-        (1, "d'environ un an"),
-        (10, "10 an"),
-        (10, "d'environ"),
-        (22, "22 an"),
-        (22, "élevé"),
-        (50, "50 an"),
-        (50, "très élevé"),
-        (75, "75 an"),
-        (75, "très élevé")
-    ])
-def test_presentRatioDettesCAF(ratio, ch):
-    """ Test génération phrase décrivant un ratio """
-    config = configparser.RawConfigParser()
-    config.read('FinancesLocales.properties')
-    assert ch in utilitaires.presentRatioDettesCAF(config, ratio, True)
 
 @pytest.mark.parametrize(\
     "valeurN, valeurNM1, tendance",
@@ -224,12 +205,12 @@ def test_calculeTendanceSerieBase(nomValeur, dictAneeesValeur,
          {"2000":100, "2001":70, "2002":160, "2003":20, "2004":10},
          "Zorglub", "Zorglub"),
     ])
-def test_calculeTendanceSerieStr(nomValeur, dictAneeesValeur,
-                                 unite, strTendanceOK):
+def test_calculeTendanceSerieStr1(nomValeur, dictAneeesValeur,
+                                  unite, strTendanceOK):
     """ Test Génération phrase de qualification de l'évolution d'une série """
     strTendance = \
         utilitaires.calculeTendanceSerieStr(nomValeur, dictAneeesValeur,
-                                            unite, True)
+                                            unite, True, True)
     assert strTendanceOK in strTendance
 
 @pytest.mark.parametrize(\
@@ -242,16 +223,16 @@ def test_calculeTendanceSerieStr(nomValeur, dictAneeesValeur,
          {"2000":100, "2001":70, "2002":160, "2003":20, "2004":10},
          "", "2004", "5")
     ])
-def test_calculeTendanceSerieStr(nomValeur, dictAneeesValeur,
-                                 unite, strTendanceOK1,
-                                 strTendanceOK2):
+def test_calculeTendanceSerieStr2(nomValeur, dictAneeesValeur,
+                                  unite, strTendanceOK1,
+                                  strTendanceOK2):
     """
     Test Génération phrase de qualification de l'évolution d'une série
     v1.2.1 : Ajout suite utilisation random.choice()
     """
     strTendance = \
         utilitaires.calculeTendanceSerieStr(nomValeur, dictAneeesValeur,
-                                            unite, True)
+                                            unite, True, True)
     assert strTendanceOK1 in strTendance or strTendanceOK2 in strTendance
 
 
@@ -329,3 +310,38 @@ def test_traiteOptionStd(option, verboseOK, sortiePgmOK):
                                                      "Test", "Doc", [])
     assert verbose == verboseOK
     assert sortiePgm == sortiePgmOK
+
+# V1.3.0 : Wikicode + HTML
+@pytest.mark.parametrize(\
+    "valeur, isWikicode, resultOK",
+    [
+        ("5", True, "{{euro|5}}"),
+        ("5", False, "5&nbsp;€"),
+    ])
+def test_modeleEuro(valeur, isWikicode, resultOK):
+    """ Test fonction de formattage valeur Euro """
+    assert utilitaires.modeleEuro(valeur, isWikicode) == resultOK
+
+# V2.4.0 : Conversion caractères accentués ou interdits dans un nom de fichier
+@pytest.mark.parametrize(\
+    "valeur, resultOK",
+    [
+        ("àãáâa", "a"*5),
+        ("ÀÃÁÂA", "A"*5),
+        ("éèêëe", "e"*5),
+        ("ÉÈÊËE", "E"*5),
+        ("îïi", "i"*3),
+        ("ÎÏI", "I"*3),
+        ("ab/cd/AB", "ab/cd/AB"),
+        ("ùüû", "u"*3),
+        ("ÙÜÛ", "U"*3),
+        ("ôö", "o"*2),
+        ("ÔÖ", "O"*2),
+        ("œæç", "oeaec"),
+        ("ŒÆÇ", "OEAEC"),
+        ("(1)", "_1_"),
+    ])
+def test_convertLettresAccents(valeur, resultOK):
+    """ Test Conversion caractères accentués ou interdits """
+    assert utilitaires.convertLettresAccents(valeur) == resultOK
+

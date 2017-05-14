@@ -32,8 +32,11 @@ Copyright (c) 2015 - Thierry Maillard
    along with Finance Locales project.  If not, see <http://www.gnu.org/licenses/>.
 """
 import configparser
+import os.path
+import shutil
 import pytest
 import extractionWeb
+import genListeDep
 
 @pytest.mark.parametrize(\
     "listeVilleDict, nbVillesOk, toutesLesVilles",
@@ -87,3 +90,73 @@ def test_corrigeDepartement97(listeVilleDict, deptOk):
     extractionWeb.corrigeDepartement97(listeVilleDict, True)
     for ville in listeVilleDict:
         assert ville['dep'] == deptOk
+
+@pytest.mark.parametrize(\
+   "numDep, isOk",
+   [\
+        ('001', True),
+        ('009', True),
+        ('011', True),
+        ('019', True),
+        ('097', True),
+        ('090', True),
+        ('101', True),
+        ('104', True),
+        ('02A', True),
+        ('02B', True),
+        ('021', True),
+        ('000', False),
+        ('098', False),
+        ('200', False),
+        ('02C', False),
+        ('toto', False),
+        ('XXX', False),
+        ('1041', False)
+   ])
+def test_isnumDep(numDep, isOk):
+    """ Test fonction de test n°département """
+    assert extractionWeb.isnumDep(numDep) == isOk
+
+def test_recupVillesListe_global():
+    """
+    V2.2.0 : Test génération liste ville, relecture
+    """
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+
+    # Extration d'un département si nécessaire
+    numDep = config.get('Test', 'test.numDepDepartementExtraction')
+    repertoireBase = config.get('EntreesSorties', 'io.repertoireExtractions')
+    repertoireExtractions = os.path.normcase(repertoireBase + '_' + numDep)
+    if not os.path.isdir(repertoireExtractions):
+        depExtraction = config.get('Test', 'test.departementExtraction')
+        param = ['extractionWeb.py', depExtraction]
+        extractionWeb.main(param)
+    assert os.path.isdir(repertoireExtractions)
+    indicateurNomFicBd = config.get('EntreesSorties', 'io.indicateurNomFicBd')
+    listFicrepertoireExtractions = [fic for fic in os.listdir(repertoireExtractions)
+                                    if fic.endswith(indicateurNomFicBd + '.txt')]
+    nbFicDepartementExtractionOk = int(config.get('Test', 'test.nbFicDepartementExtraction'))
+    assert len(listFicrepertoireExtractions) == nbFicDepartementExtractionOk
+
+    # Génération listes pour les départements extraits
+    repertoireListeDep = config.get('EntreesSorties', 'io.repertoireListeDep')
+    shutil.rmtree(repertoireListeDep, ignore_errors=True)
+    param = ['genListeDep.py']
+    genListeDep.main(param)
+
+    # Test si liste pour le département de test présente
+    nomFicListeVille = config.get('EntreesSorties', 'io.nomFicListeVille')
+    nomFicListeVilleDep = nomFicListeVille + '_' + numDep + '.txt'
+    pathFicListeVilleDep = os.path.join(repertoireListeDep, nomFicListeVilleDep)
+    assert os.path.isfile(pathFicListeVilleDep)
+    shutil.rmtree(repertoireExtractions, ignore_errors=True)
+
+    # Lecture liste des villes produite et reextraction par extractionWeb
+    param = ['extractionWeb.py', '-v', numDep]
+    extractionWeb.main(param)
+    assert os.path.isdir(repertoireExtractions)
+    listFicrepertoireExtractions2 = [fic for fic in os.listdir(repertoireExtractions)
+                                     if fic.endswith(indicateurNomFicBd + '.txt')]
+    assert len(listFicrepertoireExtractions2) == nbFicDepartementExtractionOk
+

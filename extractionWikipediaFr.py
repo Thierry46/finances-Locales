@@ -3,7 +3,7 @@
 *********************************************************
 Module : extractionWikipediaFr.py
 Auteur : Thierry Maillard (TMD)
-Date : 24/5/2015 - 3/6/2015
+Date : 24/5/2015 -  7/11/2015
 
 Role : Récupère des informations sur les villes dans Wikipédia fr.
 ------------------------------------------------------------
@@ -36,7 +36,12 @@ def recupVilles(config, nomArticle, verbose):
     """
     Récupère les code Insee et departement des villes d'un département
     dans une page de liste de Wikipedia fr
-    Paramètre : nomArticle : nom de l'article qui contient la liste des villes
+    Paramètres :
+    - nomArticle : nom de l'article qui contient la liste des villes
+    Le format des listes de communes varient beaucoup et sont difficiles à analyser
+    Certain utilisent des modèles.
+    Pour cette raisons, la lecture de liste de commune générées par l'outil genListeDep.py
+    est préferable
     """
     if verbose:
         print("Entrée dans recupVilles")
@@ -46,6 +51,7 @@ def recupVilles(config, nomArticle, verbose):
     nomArticleUrl = urllib.request.pathname2url(nomArticle)
     page = getPageWikipediaFr(config, nomArticleUrl, verbose)
 
+    listeRegexp = dict()
     # V1.0.5 : 18/7/2015 : support de 2 formats pour le tableau de liste des villes
     # Remarque : le programme accepte un mix des deux formats.
     # Support num. dep. corse 2A et 2B
@@ -58,56 +64,133 @@ def recupVilles(config, nomArticle, verbose):
     # .*? : N'importe quel caractère, n'importe quel car jusqu'à atteindre le ] ou le | :
     #       ? -> non-greedy or minimal fashion
     # ^ : Début de ligne
+    # \s : caractère espace
     # $ : fin de ligne obligatoire
 
     # Extract Code Insee, lien ville sur une même ligne : schéma 1
     # Ligne du type :   | Code Insee || Code Postal || [[Lien commune]]
     #                   | 46324 || 46310 || [[Uzech]]
-    selectFmt1 = r'^[ ]*\|[ ]*(?P<Insee>\d[0-9AB]\d{3})[ ]*\|[ ]*\|[ ]*\d{5}[,0-9 ]*?' +\
-                 r'[\|]{2}[ ]*[\[]{2}(?P<Lien>.*?)[\]\|]'
-    regexpFmt1 = re.compile(selectFmt1)
+    listeRegexp['1'] = \
+        re.compile(r'^[ ]*\|[ ]*(?P<Insee>\d[0-9AB]\d{3})[ ]*\|[ ]*\|[ ]*\d{5}[,0-9 ]*?' +\
+                   r"[\|]{2}[ ']*[\[]{2}(?P<Lien>.*?)[\]\|]")
 
     # Extract Code Insee et lien ville sur deux lignes successives : schéma 2
     # Ligne du type :   | Code Insee || Code Postal
     #                   | [[Lien commune]]
     #                   | 97401 || 97425
     #                   | [[Les Avirons]]
-    selectFmt2a = r'^[ ]*\|[ ]*(?P<Insee>\d[0-9AB]\d{3})[ ]*\|[ ]*\|[ ]*\d{5}[ ]*$'
-    regexpFmt2a = re.compile(selectFmt2a)
-    selectFmt2b = r'^[ ]*\|[ ]*[\[]{2}(?P<Lien>.*?)[\]\|]'
-    regexpFmt2b = re.compile(selectFmt2b)
+    listeRegexp['2a'] = \
+        re.compile(r'^[ ]*\|[ ]*(?P<Insee>\d[0-9AB]\d{3})[ ]*\|[ ]*\|[ ]*\d{5}[ ]*$')
+    listeRegexp['2b'] = re.compile(r'^[ ]*\|[ ]*[\[]{2}(?P<Lien>.*?)[\]\|]')
 
-    toutsur1ligne = True
+    #  V2.3.0 : 31/10/2015 :
+    # Lecture ligne du type Val-de-Marne : ! scope=row | [[Alfortville]]
+    listeRegexp['b0'] = \
+    re.compile(r'^[ ]*![ ]*scope=row[ ]*\|[ ]*[\[]{2}(?P<Lien>.*?)[\]\|]')
+
+    # V2.2.0, V2.3.0 : 26/10/2015 - 28/10/2015 :
+    # Lecture ligne du type Gironde : | | [[Lien commune]] || Code Insee || Code Postal
+    listeRegexp['b1'] = \
+        re.compile(r'^[ ]*\|[ ]*\|[ ]*[\[]{2}(?P<Lien>.*?)[\]\|]' + \
+                   r'[^\d]*\d{5}[,0-9<br />]*?\|[ ]*\|.*?\|')
+    # Lecture ligne du type Essonne : | style="text-align: left" | [[Abbéville-la-Rivière]] || 91
+    listeRegexp['b2'] = \
+        re.compile(r'^[ ]*\|[ ]*style=.*?\|[ ]*[\[]{2}(?P<Lien>.*?)[\]\|]')
+
+    #  V2.3.0 : 29/10/2015 :
+    # Lecture ligne du type Vendée : | {{tri|Aiguillon-sur-Vie|[[L'Aiguillon-sur-Vie|L’Aiguillon-sur-Vie]]}}
+    listeRegexp['b3'] = \
+        re.compile(r'^[ ]*\|[ ]*{{tri\|.*?\|[ ]*[\[]{2}(?P<Lien>.*?)[\]\|]')
+
+    #  V2.3.0 : 29/10/2015 :
+    # Lecture ligne du type Var : | [[Les Adrets-de-l'Estérel]] || 83001 || 83600 ||
+    listeRegexp['b4'] = \
+        re.compile(r'^\|[ ]*[\[]{2}(?P<Lien>.*?)[\]\|].*?' +
+                   r'[\|]{2}[ ]*\d{5}[ ]*[\|]{2}[ ]*\d{5}[ ]*[\|]{2}')
+
+    # V2.2.0 : 26/10/2015 :
+    # Lecture ligne du type Aveyron : modèle {{Tableau Liste commune de France}}
+    listeRegexp['4'] = re.compile(r'^[ ]*\|[ ]*commune [0-9]+[ ]*=[ ]*(?P<Lien>.*?)[\s]*$')
+
+    #  V2.3.0 : 29/10/2015 :
+    # Lecture ligne du type Côte d'Or : | {{tri1|agencourt}} [[Agencourt]] || 21001 || 21700 ||
+    listeRegexp['5'] = \
+        re.compile(r'^[ ]*\|[ ]*{{tri1\|.*?}}[ ]*[\[]{2}(?P<Lien>.*?)[\]\|].*?' +
+                   r'[\|]{2}[ ]*(?P<Insee>\d{5})[ ]*[\|]{2}[ ]*\d{5}[ ]*[\|]{2}')
+
+    # Lecture ligne du type Aisne : | align="left" | [[Abbécourt]] || 02001 || 02300 ||
+    listeRegexp['6'] = \
+        re.compile(r'^[ ]*\|[ ]*align="left"[ ]*\|[ ]*[\[]{2}(?P<Lien>.*?)[\]\|].*?' +
+                   r'[\|]{2}[ ]*(?P<Insee>\d{5})[ ]*[\|]{2}[ ]*\d{5}[ ]*[\|]{2}')
+
+    #  V2.3.0 : 1/11/2015 :
+    # Lecture ligne du type Guadeloupe :
+    # |97102||<small>219711025</small>||align="left"|[[Anse-Bertrand]]||97121
+    listeRegexp['7'] = \
+        re.compile(r'^[ ]*\|[ ]*(?P<Insee>971\d{2})[ ]*[\|]{2}[ ]*' +
+                   r'<small>\d{9}</small>[ ]*\|{2}.*?\|' +
+                   r"[ ']*[\[]{2}(?P<Lien>.*?)[\]\|]")
+    attente1ereLigne = True
     numLigne = 0
+    ville = None
+    fmtPrev = None
     for line in page.splitlines():
+        # V2.3.0 : Si changement de section après avoir trouvé des communes : arrêt
+        if fmtPrev is not None and "==" in line:
+            break
+
         numLigne += 1
-        if toutsur1ligne:
-            m = regexpFmt1.search(line)
-            if m: # si les infos sont trouvées dans une même ligne : schéma 1
-                ville = dict()
-                ville['nomWkpFr'] = m.group('Lien')
-                setArticleLiens(ville, verbose)
-                setInseeDep(ville, m.group('Insee'), verbose)
-                listeVilleDict.append(dict(ville)) # dict() to avoid the copy of the reference only
-            else: # On tente le schéma 2 : le code Insee suivi du code postal (ignoré)
-                m = regexpFmt2a.search(line)
-                if m: # si le code Insee est suivi du code postal
-                    toutsur1ligne = False
+
+        # Vérif quelle expression s'applique à la ligne
+        match = None
+        if attente1ereLigne:
+            for fmt in ['1', '2a', 'b0', 'b1', 'b2', 'b3', 'b4', '4', '5', '6', '7']:
+                match = listeRegexp[fmt].search(line)
+                if match:
                     ville = dict()
-                    setInseeDep(ville, m.group('Insee'), verbose)
-            # Sinon la ligne est ignorée en silence
-        else: # Schéma 2 : on recherche un lien de ville dans cette ligne
-            m = regexpFmt2b.search(line)
-            if m: # si le lien de ville est trouvé sur cette ligne
-                toutsur1ligne = True # Pour retenté le schéma 1 ur la prochaine ligne
-                ville['nomWkpFr'] = m.group('Lien')
+                    # V2.3.0 : le format de la liste des communes doit être homogène.
+                    if fmtPrev is None:
+                        fmtPrev = fmt
+                    elif fmt != fmtPrev:
+                        break
+                    if fmt in ['1', '5', '6', '7']:
+                        ville['nomWkpFr'] = match.group('Lien')
+                        setArticleLiens(ville, verbose)
+                        setInseeDep(ville, match.group('Insee'), verbose)
+                        listeVilleDict.append(dict(ville)) # dict() to avoid the copy of the reference only
+                    elif fmt == '4' or fmt.startswith('b'):
+                        ville['nomWkpFr'] = match.group('Lien')
+                        if 'Aire urbaine' not in ville['nomWkpFr'] and \
+                           'ommunauté' not in ville['nomWkpFr'] and \
+                           'circonscription' not in ville['nomWkpFr'] and \
+                           'Arrondissement' not in ville['nomWkpFr'] and \
+                           'gglo' not in ville['nomWkpFr'] and \
+                           'Atlantique' not in ville['nomWkpFr'] and \
+                           'Canton' not in ville['nomWkpFr'] and \
+                           'urbaine' not in ville['nomWkpFr']:
+                            setArticleLiens(ville, verbose)
+                            # Recup Code Insee dans page wikipedia de la commune
+                            liste1ville = recup1Ville(config, ville['nomWkpFr'], verbose)
+                            ville['icom'] = liste1ville[0]['icom']
+                            ville['dep'] = liste1ville[0]['dep']
+                            listeVilleDict.append(dict(ville)) # dict() to avoid the copy of the reference only
+                    elif fmt == '2a': # cette ligne ne contient que le code Insee
+                        attente1ereLigne = False
+                        setInseeDep(ville, match.group('Insee'), verbose)
+                    break
+        else: # Ligne suivante au format 2b obligatoire (suite ligne 2a)
+            match = listeRegexp['2b'].search(line)
+            if match:
+                attente1ereLigne = True # Pour retenter le schéma 1 sur la prochaine ligne
+                ville['nomWkpFr'] = match.group('Lien')
                 setArticleLiens(ville, verbose)
                 listeVilleDict.append(dict(ville)) # dict() to avoid the copy of the reference only
             else: # C'est la loose totale : on attendait une deuxième ligne qui n'est pas arrivée.
                 msg = "Problème d'analyse de la page " + nomArticle + " en ligne " + \
                     str(numLigne) + " :\n" + \
-                    "Code insee trouvé sur ligne précédente (" + ville['icom'] + ") , " + \
-                    "mais nom de commune non trouvé ici !"
+                    "Code insee=" + ville['icom'] + " , " + \
+                    "departement=" + ville['dep'] +" trouvés sur ligne précédente\n" + \
+                    "mais nom de commune non trouvé sur ligne suivante !"
                 raise ValueError(msg)
 
     if verbose:
@@ -127,6 +210,8 @@ def recup1Ville(config, nomArticle, verbose):
         print("Entrée dans recup1Ville")
         print("\tnomArticle =", nomArticle)
 
+    assert nomArticle.strip() != "", "Erreur paramètre : nomArticle vide !"
+
     listeVilleDict = []
     ville = dict()
     ville['nomWkpFr'] = nomArticle.strip()
@@ -134,16 +219,20 @@ def recup1Ville(config, nomArticle, verbose):
     page = getPageWikipediaFr(config, ville['lien'], verbose)
 
     # Ligne du type : | insee = 46254
+    # V2.1.1 ou : | insee          = 2A041
     # \d : un chiffre
-    select = r'^[ ]*\|[ ]*insee[ ]*=[ ]*(?P<Insee>\d{5})'
+    select = r'^[ ]*\|[ ]*insee[ ]*=[ ]*(?P<Insee>\d[AB0-9]\d{3})'
     regexp = re.compile(select)
     # Extract Code Insee
+    trouveCodeInsee = False
     for line in page.splitlines():
         m = regexp.search(line)
         if m: # si l'expression régulière s'applique à la ligne
             setInseeDep(ville, m.group('Insee'), verbose)
+            trouveCodeInsee = True
             break
 
+    assert trouveCodeInsee, '| insee = CODE introuvable dans article ' + nomArticle
     # Ajout de la ville à la liste
     listeVilleDict.append(ville)
 
@@ -174,11 +263,12 @@ def recupNomDepStr(config, nomArticleUrl, verbose):
         m = regexp.search(line)
         if m: # si l'expression régulière s'applique à la ligne
             nomDepStr = m.group('NomDepStr')
-            msg = 'Nom de departement invalide : ' + nomDepStr +\
-                  " dans l'article  " +  nomArticleUrl
-            assert len(nomDepStr) > 4, msg
-            break
-    msg = "recupNomDepStr() nom de département vide dans article : " +  nomArticleUrl
+            # V2.1.1 : Un nom de département ne doit pas contenir commun
+            # Pb Achenheim (67) : [[Catégorie:Commune de la communauté de communes les Châteaux]]
+            if len(nomDepStr) > 4 and "commun" not in nomDepStr and "canton"  not in nomDepStr:
+                break
+    msg = "recupNomDepStr() nom de département vide dans article : " +  nomArticleUrl + \
+          ", verifiez si cette commune n'a pas été fusionnée."
     assert len(nomDepStr) > 0, msg
 
     if verbose:
@@ -205,7 +295,9 @@ def recupScoreDataVilles(config, listeVilleDict, verbose):
         'BA' : config.getint('Score', 'poids.BA'),
         'AdQ' : config.getint('Score', 'poids.AdQ'),
         'faible' : config.getint('Score', 'poids.Faible'),
+        'Faible' : config.getint('Score', 'poids.Faible'),
         'moyenne' : config.getint('Score', 'poids.Moyenne'),
+        'Moyenne' : config.getint('Score', 'poids.Moyenne'),
         'élevée' : config.getint('Score', 'poids.Elevee'),
         'maximum' : config.getint('Score', 'poids.Maximum'),
         'avancement' : config.getint('Score', 'coef.avancement'),
@@ -215,7 +307,6 @@ def recupScoreDataVilles(config, listeVilleDict, verbose):
         }
 
     for ville in listeVilleDict:
-        print('.', end='')
         sys.stdout.flush()
 
         # Construction du nom de la page de discussion pour cette ville
@@ -223,7 +314,7 @@ def recupScoreDataVilles(config, listeVilleDict, verbose):
 
         # Lecture de la page de discussion
         page = getPageWikipediaFr(config, nomArticlePDD, verbose)
-        listeCriteres = recupScoreData1Ville(config, page, verbose)
+        listeCriteres = recupScoreData1Ville(config, page, nomArticlePDD, verbose)
         for critere in listeCriteres:
             ville[critere['cle']] = critere['valeur']
 
@@ -236,17 +327,18 @@ def recupScoreDataVilles(config, listeVilleDict, verbose):
         except ValueError:
             print(("Problème dans PDD de " + ville['nom']))
             raise
-    print(" OK")
+    print("OK")
 
     if verbose:
         print("Sortie de recupScoreDataVilles")
 
-def recupScoreData1Ville(config, page, verbose):
+def recupScoreData1Ville(config, page, nomArticlePDD, verbose):
     """
     Récupération dans page de texte des données de score
     """
     if verbose:
         print("Entrée dans recupScoreData1Ville")
+        print("nomArticlePDD", nomArticlePDD)
 
     # V1.0.5 : Précision labels acceptés et paramétrage
     avancementsOk = config.get('Score', 'label.avancementsOk').split('|')
@@ -308,8 +400,9 @@ def recupScoreData1Ville(config, page, verbose):
                         critere['valeur'] = valeur
                 if not trouve:
                     msg = "Problème d'analyse du modèle Wikiprojet dans cette PDD : " + \
-                            "valeur " + valeur + " non autorisé pour le label " + \
-                            critere['nomLabel'] + "!"
+                          nomArticlePDD + ", valeur " + valeur + \
+                          " non autorisé pour le label " + \
+                          critere['nomLabel'] + "!"
                     raise ValueError(msg)
 
     if verbose:
@@ -323,8 +416,9 @@ def getPageWikipediaFr(config, nomArticleUrl, verbose):
     if verbose:
         print("Entrée dans getPageWikipediaFr")
         print("Recuperation de l'article :", nomArticleUrl)
+    print(nomArticleUrl) # Facilite debug
 
-    # Pour ressembler à un navigateur Mozilla/5.0
+# Pour ressembler à un navigateur Mozilla/5.0
     opener = urllib.request.build_opener()
     opener.addheaders = [('User-agent', 'Mozilla/5.0')]
 

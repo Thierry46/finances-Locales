@@ -71,7 +71,8 @@ def main():
 
     nomFic = config.get('Extraction', 'extraction.ficCleFi')
     hFic = open(nomFic, 'w')
-    json.dump(cleFi, hFic, indent=4, sort_keys=True)
+    # V2.4.0 : Correction problème encoding caractères accentués lors dump json : ensure_ascii=False
+    json.dump(cleFi, hFic, indent=4, sort_keys=True, ensure_ascii=False)
     hFic.close()
     print("OK :", nomFic)
 
@@ -120,7 +121,8 @@ def main():
 
     nomFic = config.get('Extraction', 'extraction.ficCleFiDetail')
     hFic = open(nomFic, 'w')
-    json.dump(cleFiDetail, hFic, indent=4, sort_keys=True)
+    # V2.4.0 : Correction problème encoding caractères accentués lors dump json : ensure_ascii=False
+    json.dump(cleFiDetail, hFic, indent=4, sort_keys=True, ensure_ascii=False)
     hFic.close()
     print("OK :", nomFic)
 
