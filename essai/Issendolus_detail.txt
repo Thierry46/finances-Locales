@@ -1,0 +1,1071 @@
+<!--------------------------------------------------------------------
+Copiez le texte ci-dessous dans l'article Finances de la commune d'Issendolus
+--------------------------------------------------------------------->
+
+<!-- !!! Contenu généré automatiquement par l'outil Finances Locales !!!
+    Généré le 22 juillet 2015 par le programme genWikiCode.py (complet)
+    version 1.0.5 : Yin Yang Zêta du 17/7/2015
+    et le modèle modele_1.0.5_detail.txt pour l'article Finances de la commune d'Issendolus.
+    En cas de problème, contactez-moi SVP : Utilisateur:Thierry46
+    Additionnons nos forces, partageons nos connaissances ! -->
+Cet article est consacré aux [[Finances locales en France|finances locales]] d'Issendolus de 2000 à 2013<ref group="Note">Cet article ''Finances de la commune d'Issendolus'' présente une synthèse des données du site [http://www.collectivites-locales.gouv.fr/comptes-des-communes-et-des-groupements-a-fiscalite-propre-donnees-individuelles-millesimes-2000-a alize2.finances.gouv.fr] du [[Ministère de l'Économie et des Finances (France)|ministère de l'Économie et des Finances]].
+Les données sont présentées de façon standardisée pour toutes les communes et ne concerne que le périmètre municipal.
+Elle ne prend pas en compte les finances des [[Établissement public de coopération intercommunale|EPCI]] à fiscalité propre.
+Pour constituer cette partie, l'outil Finances Locales version 1.0.5 : Yin Yang Zêta [[File:Finances locales logo.png|20px|alt=Logo de l'outil Finances Locales]][[File:Zeta_uc_lc.svg|20px|alt=Lettre grecque Zêta en majuscule et minuscule]] a effectué la synthèse des {{nobr|98 pages}} du site [http://www.collectivites-locales.gouv.fr/comptes-des-communes-et-des-groupements-a-fiscalite-propre-donnees-individuelles-millesimes-2000-a alize2.finances.gouv.fr] concernant Issendolus.
+Finances Locales est un [[logiciels libres|logiciel libre]] distribué en [[copyleft]] sous [[licence (juridique)|licence]] [[Licence publique générale GNU|GNU GPL version 3]].
+</ref>.
+
+{{Article général|Issendolus|Finances locales en France}}
+
+Les comparaisons des [[Fraction (mathématiques)|ratio]]s par habitant sont effectuées avec ceux des communes de {{unité/2|500|à=2000|habitants}} appartenant à un groupement fiscalisé ({{nobr|4 taxes}}), c'est à dire à la même {{page h'|Strate#En_sciences_sociales|strate}} fiscale.
+
+== Budget général ==
+Pour l'exercice 2013, le compte administratif du [[budget]] municipal d'Issendolus s'établit à  {{euro|321000}} en [[Dépenses publiques|dépenses]] et {{euro|366000}} en [[Recettes publiques|recettes]]<ref group="A2" name="Alize2_2013_0"/> :
+* les dépenses se répartissent en {{euro|207000}} de [[Charge (comptabilité)|charges]] de fonctionnement et {{euro|114000}} d'emplois d'[[investissement]] ;
+* les recettes proviennent des {{euro|299000}} de [[Produit (comptabilité)|produits]] de fonctionnement et de {{euro|67000}} de ressources d'investissement.
+
+=== Évolution du fonctionnement et de l'investissement de 2000 à 2013 ===
+{| class="wikitable centre" style="width:80%;"
+ |+G0a - Évolution de la section fonctionnement d'Issendolus<ref group="A2" name="Alize2_2013_0"/>
+ |------
+ | {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 2
+ | nb_abscisses = 14
+ | lb_x1 = 2000 | lb_x2 = 2001 | lb_x3 = 2002 | lb_x4 = 2003 | lb_x5 = 2004 | lb_x6 = 2005 | lb_x7 = 2006 | lb_x8 = 2007 | lb_x9 = 2008 | lb_x10 = 2009 | lb_x11 = 2010 | lb_x12 = 2011 | lb_x13 = 2012 | lb_x14 = 2013
+ | y_max =300 | y_min = 0
+ | pas_grille_principale = 50 | pas_grille_secondaire = 10
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = brightblue
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = red
+ | S01V01 = 137  | S02V01 = 84 
+ | S01V02 = 142  | S02V02 = 118 
+ | S01V03 = 165  | S02V03 = 123 
+ | S01V04 = 170  | S02V04 = 135 
+ | S01V05 = 193  | S02V05 = 139 
+ | S01V06 = 193  | S02V06 = 140 
+ | S01V07 = 206  | S02V07 = 149 
+ | S01V08 = 222  | S02V08 = 185 
+ | S01V09 = 234  | S02V09 = 171 
+ | S01V10 = 234  | S02V10 = 254 
+ | S01V11 = 249  | S02V11 = 241 
+ | S01V12 = 279  | S02V12 = 241 
+ | S01V13 = 259  | S02V13 = 210 
+ | S01V14 = 299  | S02V14 = 207 
+ | points = oui}}
+ |------
+ | Valeurs en milliers d'euros<br />Issendolus, valeur totale : [[fichier:Bb blue.jpg|10px|alt=Point bleu|link=]] Produits [[fichier:Red rectangle.svg|10px|alt=Point rouge|link=]] Charges 
+ |}
+{| class="wikitable centre" style="width:80%;"
+ |+G0b - Évolution de la section investissement d'Issendolus<ref group="A2" name="Alize2_2013_0"/>
+ |------
+ | {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 2
+ | nb_abscisses = 14
+ | lb_x1 = 2000 | lb_x2 = 2001 | lb_x3 = 2002 | lb_x4 = 2003 | lb_x5 = 2004 | lb_x6 = 2005 | lb_x7 = 2006 | lb_x8 = 2007 | lb_x9 = 2008 | lb_x10 = 2009 | lb_x11 = 2010 | lb_x12 = 2011 | lb_x13 = 2012 | lb_x14 = 2013
+ | y_max =500 | y_min = 0
+ | pas_grille_principale = 50 | pas_grille_secondaire = 10
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = teal
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = black
+ | S01V01 = 52  | S02V01 = 76 
+ | S01V02 = 57  | S02V02 = 76 
+ | S01V03 = 158  | S02V03 = 116 
+ | S01V04 = 160  | S02V04 = 133 
+ | S01V05 = 113  | S02V05 = 165 
+ | S01V06 = 185  | S02V06 = 189 
+ | S01V07 = 111  | S02V07 = 144 
+ | S01V08 = 113  | S02V08 = 166 
+ | S01V09 = 302  | S02V09 = 203 
+ | S01V10 = 206  | S02V10 = 429 
+ | S01V11 = 176  | S02V11 = 94 
+ | S01V12 = 233  | S02V12 = 102 
+ | S01V13 = 99  | S02V13 = 113 
+ | S01V14 = 114  | S02V14 = 67 
+ | points = oui}}
+ |------
+ | Valeurs en milliers d'euros<br />Issendolus, valeur totale : [[fichier:Flag of Beni.svg|10px|alt=Point vert|link=]] Emplois [[fichier:Black222.JPG|10px|alt=Point noir|link=]] Ressources 
+ |}
+
+=== Tableau des chiffres clés du budget de 2010 à 2013 ===
+{|class="wikitable centre"
+ |+T0v - Chiffres clés des finances d'Issendolus de 2010 à 2013<ref group="A2" name="Alize2_2013_0"/>
+ |------
+ |
+ ! id="PRINCIPAL2010" colspan="3" style="background-color: #ffffff" |2010
+ ! id="PRINCIPAL2011" colspan="3" style="background-color: #ffffff" |2011
+ ! id="PRINCIPAL2012" colspan="3" style="background-color: #ffffff" |2012
+ ! id="PRINCIPAL2013" colspan="3" style="background-color: #ffffff" |2013
+ |-
+ ! id="PRINCIPALh" style="background:#ffffff" | Chiffres clés
+ ! id="PRINCIPAL2010V" headers="PRINCIPAL2010" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="PRINCIPAL2010P" headers="PRINCIPAL2010" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ ! id="PRINCIPAL2010S" headers="PRINCIPAL2010" scope="col" style="background-color: #f0f0cc" | Strate (€)
+ ! id="PRINCIPAL2011V" headers="PRINCIPAL2011" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="PRINCIPAL2011P" headers="PRINCIPAL2011" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ ! id="PRINCIPAL2011S" headers="PRINCIPAL2011" scope="col" style="background-color: #f0f0cc" | Strate (€)
+ ! id="PRINCIPAL2012V" headers="PRINCIPAL2012" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="PRINCIPAL2012P" headers="PRINCIPAL2012" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ ! id="PRINCIPAL2012S" headers="PRINCIPAL2012" scope="col" style="background-color: #f0f0cc" | Strate (€)
+ ! id="PRINCIPAL2013V" headers="PRINCIPAL2013" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="PRINCIPAL2013P" headers="PRINCIPAL2013" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ ! id="PRINCIPAL2013S" headers="PRINCIPAL2013" scope="col" style="background-color: #f0f0cc" | Strate (€)
+ |-
+ ! headers="PRINCIPALh" scope="row" style="background-color: #ccfff2" | [[Recettes publiques|Produits de fonctionnement]]
+ | headers="PRINCIPAL2010 PRINCIPAL2010V" style="text-align:right;background-color: #ccfff2" | {{unité|249}}
+ | headers="PRINCIPAL2010 PRINCIPAL2010P" style="text-align:right;background-color: #ccfff2" | {{unité|463}}
+ | headers="PRINCIPAL2010 PRINCIPAL2010S" style="text-align:right;background-color: #f0f0cc" | {{unité|787}}
+ | headers="PRINCIPAL2011 PRINCIPAL2011V" style="text-align:right;background-color: #ccfff2" | {{unité|279}}
+ | headers="PRINCIPAL2011 PRINCIPAL2011P" style="text-align:right;background-color: #ccfff2" | {{unité|511}}
+ | headers="PRINCIPAL2011 PRINCIPAL2011S" style="text-align:right;background-color: #f0f0cc" | {{unité|813}}
+ | headers="PRINCIPAL2012 PRINCIPAL2012V" style="text-align:right;background-color: #ccfff2" | {{unité|259}}
+ | headers="PRINCIPAL2012 PRINCIPAL2012P" style="text-align:right;background-color: #ccfff2" | {{unité|481}}
+ | headers="PRINCIPAL2012 PRINCIPAL2012S" style="text-align:right;background-color: #f0f0cc" | {{unité|834}}
+ | headers="PRINCIPAL2013 PRINCIPAL2013V" style="text-align:right;background-color: #ccfff2" | {{unité|299}}
+ | headers="PRINCIPAL2013 PRINCIPAL2013P" style="text-align:right;background-color: #ccfff2" | {{unité|556}}
+ | headers="PRINCIPAL2013 PRINCIPAL2013S" style="text-align:right;background-color: #f0f0cc" | {{unité|850}}
+ |-
+ ! headers="PRINCIPALh" scope="row" style="background-color: #ffd9ff" | [[Dépenses publiques|Charges de fonctionnement]]
+ | headers="PRINCIPAL2010 PRINCIPAL2010V" style="text-align:right;background-color: #ffd9ff" | {{unité|241}}
+ | headers="PRINCIPAL2010 PRINCIPAL2010P" style="text-align:right;background-color: #ffd9ff" | {{unité|448}}
+ | headers="PRINCIPAL2010 PRINCIPAL2010S" style="text-align:right;background-color: #f0f0cc" | {{unité|620}}
+ | headers="PRINCIPAL2011 PRINCIPAL2011V" style="text-align:right;background-color: #ffd9ff" | {{unité|241}}
+ | headers="PRINCIPAL2011 PRINCIPAL2011P" style="text-align:right;background-color: #ffd9ff" | {{unité|442}}
+ | headers="PRINCIPAL2011 PRINCIPAL2011S" style="text-align:right;background-color: #f0f0cc" | {{unité|627}}
+ | headers="PRINCIPAL2012 PRINCIPAL2012V" style="text-align:right;background-color: #ffd9ff" | {{unité|210}}
+ | headers="PRINCIPAL2012 PRINCIPAL2012P" style="text-align:right;background-color: #ffd9ff" | {{unité|390}}
+ | headers="PRINCIPAL2012 PRINCIPAL2012S" style="text-align:right;background-color: #f0f0cc" | {{unité|648}}
+ | headers="PRINCIPAL2013 PRINCIPAL2013V" style="text-align:right;background-color: #ffd9ff" | {{unité|207}}
+ | headers="PRINCIPAL2013 PRINCIPAL2013P" style="text-align:right;background-color: #ffd9ff" | {{unité|386}}
+ | headers="PRINCIPAL2013 PRINCIPAL2013S" style="text-align:right;background-color: #f0f0cc" | {{unité|673}}
+ |-
+ ! headers="PRINCIPALh" scope="row" style="background-color: #ffffff" | [[Résultat fiscal en France|Solde de la section de fonctionnement]]
+ | headers="PRINCIPAL2010 PRINCIPAL2010V" style="text-align:right;background-color: #ffffff" | {{unité|8}}
+ | headers="PRINCIPAL2010 PRINCIPAL2010P" style="text-align:right;background-color: #ffffff" | {{unité|14}}
+ | headers="PRINCIPAL2010 PRINCIPAL2010S" style="text-align:right;background-color: #f0f0cc" | {{unité|166}}
+ | headers="PRINCIPAL2011 PRINCIPAL2011V" style="text-align:right;background-color: #ffffff" | {{unité|38}}
+ | headers="PRINCIPAL2011 PRINCIPAL2011P" style="text-align:right;background-color: #ffffff" | {{unité|69}}
+ | headers="PRINCIPAL2011 PRINCIPAL2011S" style="text-align:right;background-color: #f0f0cc" | {{unité|186}}
+ | headers="PRINCIPAL2012 PRINCIPAL2012V" style="text-align:right;background-color: #ffffff" | {{unité|49}}
+ | headers="PRINCIPAL2012 PRINCIPAL2012P" style="text-align:right;background-color: #ffffff" | {{unité|91}}
+ | headers="PRINCIPAL2012 PRINCIPAL2012S" style="text-align:right;background-color: #f0f0cc" | {{unité|186}}
+ | headers="PRINCIPAL2013 PRINCIPAL2013V" style="text-align:right;background-color: #ffffff" | {{unité|91}}
+ | headers="PRINCIPAL2013 PRINCIPAL2013P" style="text-align:right;background-color: #ffffff" | {{unité|170}}
+ | headers="PRINCIPAL2013 PRINCIPAL2013S" style="text-align:right;background-color: #f0f0cc" | {{unité|177}}
+ |-
+ ! headers="PRINCIPALh" scope="row" style="background-color: #d9ffd9" | [[Investissement|Emplois d'investissement]]
+ | headers="PRINCIPAL2010 PRINCIPAL2010V" style="text-align:right;background-color: #d9ffd9" | {{unité|176}}
+ | headers="PRINCIPAL2010 PRINCIPAL2010P" style="text-align:right;background-color: #d9ffd9" | {{unité|329}}
+ | headers="PRINCIPAL2010 PRINCIPAL2010S" style="text-align:right;background-color: #f0f0cc" | {{unité|433}}
+ | headers="PRINCIPAL2011 PRINCIPAL2011V" style="text-align:right;background-color: #d9ffd9" | {{unité|233}}
+ | headers="PRINCIPAL2011 PRINCIPAL2011P" style="text-align:right;background-color: #d9ffd9" | {{unité|426}}
+ | headers="PRINCIPAL2011 PRINCIPAL2011S" style="text-align:right;background-color: #f0f0cc" | {{unité|430}}
+ | headers="PRINCIPAL2012 PRINCIPAL2012V" style="text-align:right;background-color: #d9ffd9" | {{unité|99}}
+ | headers="PRINCIPAL2012 PRINCIPAL2012P" style="text-align:right;background-color: #d9ffd9" | {{unité|183}}
+ | headers="PRINCIPAL2012 PRINCIPAL2012S" style="text-align:right;background-color: #f0f0cc" | {{unité|422}}
+ | headers="PRINCIPAL2013 PRINCIPAL2013V" style="text-align:right;background-color: #d9ffd9" | {{unité|114}}
+ | headers="PRINCIPAL2013 PRINCIPAL2013P" style="text-align:right;background-color: #d9ffd9" | {{unité|212}}
+ | headers="PRINCIPAL2013 PRINCIPAL2013S" style="text-align:right;background-color: #f0f0cc" | {{unité|461}}
+ |-
+ ! headers="PRINCIPALh" scope="row" style="background-color: #ffd9d9" | [[Investissement|Ressources d'investissement]]
+ | headers="PRINCIPAL2010 PRINCIPAL2010V" style="text-align:right;background-color: #ffd9d9" | {{unité|94}}
+ | headers="PRINCIPAL2010 PRINCIPAL2010P" style="text-align:right;background-color: #ffd9d9" | {{unité|175}}
+ | headers="PRINCIPAL2010 PRINCIPAL2010S" style="text-align:right;background-color: #f0f0cc" | {{unité|443}}
+ | headers="PRINCIPAL2011 PRINCIPAL2011V" style="text-align:right;background-color: #ffd9d9" | {{unité|102}}
+ | headers="PRINCIPAL2011 PRINCIPAL2011P" style="text-align:right;background-color: #ffd9d9" | {{unité|187}}
+ | headers="PRINCIPAL2011 PRINCIPAL2011S" style="text-align:right;background-color: #f0f0cc" | {{unité|431}}
+ | headers="PRINCIPAL2012 PRINCIPAL2012V" style="text-align:right;background-color: #ffd9d9" | {{unité|113}}
+ | headers="PRINCIPAL2012 PRINCIPAL2012P" style="text-align:right;background-color: #ffd9d9" | {{unité|209}}
+ | headers="PRINCIPAL2012 PRINCIPAL2012S" style="text-align:right;background-color: #f0f0cc" | {{unité|439}}
+ | headers="PRINCIPAL2013 PRINCIPAL2013V" style="text-align:right;background-color: #ffd9d9" | {{unité|67}}
+ | headers="PRINCIPAL2013 PRINCIPAL2013P" style="text-align:right;background-color: #ffd9d9" | {{unité|125}}
+ | headers="PRINCIPAL2013 PRINCIPAL2013S" style="text-align:right;background-color: #f0f0cc" | {{unité|446}}
+ |-
+ ! headers="PRINCIPALh" scope="row" style="background-color: #ffffff" | [[Résultat fiscal en France|Solde de la section d'investissement]]
+ | headers="PRINCIPAL2010 PRINCIPAL2010V" style="text-align:right;background-color: #ffffff" | {{unité|83}}
+ | headers="PRINCIPAL2010 PRINCIPAL2010P" style="text-align:right;background-color: #ffffff" | {{unité|154}}
+ | headers="PRINCIPAL2010 PRINCIPAL2010S" style="text-align:right;background-color: #f0f0cc" | {{unité|-10}}
+ | headers="PRINCIPAL2011 PRINCIPAL2011V" style="text-align:right;background-color: #ffffff" | {{unité|130}}
+ | headers="PRINCIPAL2011 PRINCIPAL2011P" style="text-align:right;background-color: #ffffff" | {{unité|239}}
+ | headers="PRINCIPAL2011 PRINCIPAL2011S" style="text-align:right;background-color: #f0f0cc" | {{unité|0}}
+ | headers="PRINCIPAL2012 PRINCIPAL2012V" style="text-align:right;background-color: #ffffff" | {{unité|-14}}
+ | headers="PRINCIPAL2012 PRINCIPAL2012P" style="text-align:right;background-color: #ffffff" | {{unité|-26}}
+ | headers="PRINCIPAL2012 PRINCIPAL2012S" style="text-align:right;background-color: #f0f0cc" | {{unité|-17}}
+ | headers="PRINCIPAL2013 PRINCIPAL2013V" style="text-align:right;background-color: #ffffff" | {{unité|46}}
+ | headers="PRINCIPAL2013 PRINCIPAL2013P" style="text-align:right;background-color: #ffffff" | {{unité|86}}
+ | headers="PRINCIPAL2013 PRINCIPAL2013S" style="text-align:right;background-color: #f0f0cc" | {{unité|16}}
+ |-
+ ! colspan="13" style="background-color: #ffffff" | Les valeurs sont arrondies au millier d'euros (k€) le plus proche.
+ |-
+ |}
+{{Clr}}
+
+== Fonctionnement ==
+{|class="wikitable right"
+ |+T1p - Section de fonctionnement d'Issendolus en 2013<ref group="A2" name="Alize2_2013_1"/>
+ |----
+ ! !! scope="col" | Issendolus<br/>(€/hab.) !! scope="col" | Strate<br/>(€/hab.)
+  |----
+ ! scope="row" style="background-color: #ffffff" | Résultat comptable
+ | style="text-align:right;background-color: #ffffff" | {{euro|170}}
+ | style="text-align:right;background-color: #ffffff" | {{euro|177}}
+ | style="text-align:right;background-color:#ffffff " | [[fichier:Button-White.svg|10px|alt=Picto disque blanc : écart nul|link=]]
+ |----
+ ! scope="row" style="background-color: #ffd9ff" | Achats et charges ext.
+ | style="text-align:right;background-color: #ffd9ff" | {{euro|165}}
+ | style="text-align:right;background-color: #ffd9ff" | {{euro|212}}
+ | style="text-align:right;background-color:#ffd9ff " | [[fichier:Map-circle-grey.svg|10px|alt=Picto cercle bleu : écart moyen|link=]]
+ |----
+ ! scope="row" style="background-color: #ffd9ff" | Charges de personnels
+ | style="text-align:right;background-color: #ffd9ff" | {{euro|135}}
+ | style="text-align:right;background-color: #ffd9ff" | {{euro|255}}
+ | style="text-align:right;background-color:#ffd9ff " | [[fichier:Button-Blue.svg|10px|alt=Picto disque bleu : écart fort|link=]]
+ |----
+ ! scope="row" style="background-color: #ffd9ff" | Charges financières
+ | style="text-align:right;background-color: #ffd9ff" | {{euro|25}}
+ | style="text-align:right;background-color: #ffd9ff" | {{euro|26}}
+ | style="text-align:right;background-color:#ffd9ff " | [[fichier:Button-White.svg|10px|alt=Picto disque blanc : écart nul|link=]]
+ |----
+ ! scope="row" style="background-color: #ffd9ff" | Subventions versées
+ | style="text-align:right;background-color: #ffd9ff" | {{euro|3}}
+ | style="text-align:right;background-color: #ffd9ff" | {{euro|38}}
+ | style="text-align:right;background-color:#ffd9ff " | [[fichier:Button-Blue.svg|10px|alt=Picto disque bleu : écart fort|link=]]
+ |----
+ ! scope="row" style="background-color: #ffd9ff" | Contingents
+ | style="text-align:right;background-color: #ffd9ff" | {{euro|0}}
+ | style="text-align:right;background-color: #ffd9ff" | {{euro|56}}
+ | style="text-align:right;background-color:#ffd9ff " | [[fichier:Button-Blue.svg|10px|alt=Picto disque bleu : écart fort|link=]]
+ |----
+ ! scope="row" style="background-color: #ccfff2" | Dotation globale de fonctionnement
+ | style="text-align:right;background-color: #ccfff2" | {{euro|241}}
+ | style="text-align:right;background-color: #ccfff2" | {{euro|216}}
+ | style="text-align:right;background-color:#ccfff2 " | [[fichier:Map-circle-grey.svg|10px|alt=Picto cercle bleu : écart moyen|link=]]
+ |----
+ ! scope="row" style="background-color: #ccfff2" | Impôts locaux
+ | style="text-align:right;background-color: #ccfff2" | {{euro|129}}
+ | style="text-align:right;background-color: #ccfff2" | {{euro|366}}
+ | style="text-align:right;background-color:#ccfff2 " | [[fichier:Button-Blue.svg|10px|alt=Picto disque bleu : écart fort|link=]]
+ |----
+ ! scope="row" style="background-color: #ccfff2" | Autres impôts
+ | style="text-align:right;background-color: #ccfff2" | {{euro|45}}
+ | style="text-align:right;background-color: #ccfff2" | {{euro|41}}
+ | style="text-align:right;background-color:#ccfff2 " | [[fichier:Button-White.svg|10px|alt=Picto disque blanc : écart nul|link=]]
+
+ |------
+ | colspan="4" |Écart par rapport à la moyenne de la strate :<br/>[[fichier:Button-White.svg|10px|alt=Picto disque blanc : écart nul|link=]] de 0 à 10 % ; [[fichier:Map-circle-grey.svg|10px|alt=Picto cercle bleu : écart moyen|link=]] de 10 à 30 % ; [[fichier:Button-Blue.svg|10px|alt=Picto disque bleu : écart fort|link=]] supérieur à 30 %
+ |}
+Pour Issendolus en 2013, la section de fonctionnement<ref group="Note">La  « section de fonctionnement » est constituée des [[Dépenses publiques|dépense]]s courantes et récurrentes nécessaires au bon fonctionnement des services municipaux et à la mise en œuvre des actions décidées par les élus, mais sans influence sur la consistance du [[Patrimoine (droit)|patrimoine]] de la commune. Y figure aussi le [[Plan de remboursement|remboursement]] des [[Intérêt (finance)|intérêt]]s des [[Emprunt (finance)|emprunt]]s. Elle enregistre également les [[Recettes publiques|recettes]] fiscales, les [[Dotation publique|dotation]]s et participations de l’État ainsi que les recettes d’exploitation des services municipaux.</ref> se répartit en {{euro|207000}}  de charges ({{euro|386}} par habitant) pour {{euro|299000}} de produits ({{euro|556}} par habitant), soit un solde de la section de fonctionnement de {{euro|91000}} ({{euro|170}} par habitant)<ref group="A2" name="Alize2_2013_0">
+{{Lien web
+ |titre=Les comptes des communes - Issendolus
+ |sous-titre=chiffres clés
+ |url=http://alize2.finances.gouv.fr/communes/eneuro/tableau.php?dep=046&type=BPS&icom=132&param=0&exercice=2013
+ |consulté le=22 juillet 2015
+}}.</ref>{{,}}<ref group="A2" name="Alize2_2013_1">
+{{Lien web
+ |titre=Les comptes des communes - Issendolus
+ |sous-titre=opérations de fonctionnement
+ |url=http://alize2.finances.gouv.fr/communes/eneuro/tableau.php?dep=046&type=BPS&icom=132&param=1&exercice=2013
+ |consulté le=22 juillet 2015
+}}.</ref> :
+
+* le principal pôle de [[Dépenses publiques|dépenses]] de fonctionnement est celui des [[achats]] et charges externes<ref group="Note">Le poste « achats et charges externes » regroupe les achats non stockés de matières et fournitures ([[Eau potable|eau]], [[énergie]]...), le petit matériel, les achats de [[Crédit-bail|crédits-bails]], les [[location]]s, [[Prime d'assurance|primes d'assurances]]...</ref> pour {{euro|89000}} (43 %), soit {{euro|165}} par habitant, ratio inférieur de 22 % à la valeur moyenne pour les communes de la même strate ({{euro|212}} par habitant). Sur une période de {{nobr|5 années}}, ce ratio fluctue et présente un minimum de {{euro|130}} par habitant en 2010 et un maximum de {{euro|213}} par habitant en 2009. Viennent ensuite les groupes des [[Charge (comptabilité)|charge]]s de personnels<ref group="Note">Les « charges de personnel » regroupent les frais de [[rémunération]] des employés par la commune.</ref> pour 35 %, des charges financières<ref group="Note">Les « charges financières » correspondent à la rémunération des ressources d'[[Emprunt (finance)|emprunt]].</ref> pour 6 %, des [[subvention]]s versées<ref group="Note"> Les « subventions versées » rassemblent l'ensemble des [[subvention]]s à des associations votées par le [[Conseil municipal (France)|conseil municipal]].</ref> pour des sommes négligeables et finalement celui des contingents<ref group="Note">Les « contingents » représentent des participations obligatoires d'une commune au financement de services départementaux, notamment aux [[Pompier|sapeurs-pompiers]] du département.</ref> pour des sommes négligeables ;
+* la plus grande part des [[Recettes publiques|recettes]] est constituée de la [[dotation globale de fonctionnement]] (DGF)<ref group="Note">Les « [[Finances locales en France#Dotations et subventions de l'État|dotations globales de fonctionnement]] » désignent, en [[France]], des concours financiers de l'[[État]] au [[budget]] des [[Collectivité territoriale|collectivités territoriales]].</ref> pour {{euro|130000}} (43 %), soit {{euro|241}} par habitant, ratio supérieur de 12 % à la valeur moyenne pour les communes de la même strate ({{euro|216}} par habitant). Sur une période de {{nobr|5 années}}, ce ratio augmente de façon continue de {{euro|216}} à {{euro|241}} par habitant. Viennent ensuite des [[Impôts locaux en France|impôts locaux]]<ref group="Note">Les « [[Impôts locaux en France|impôts locaux]] » désignent les [[impôt]]s prélevés par les [[Collectivité territoriale|collectivités territoriales]]  comme les communes pour alimenter leur budget. Ils regroupent les [[Taxe foncière|impôts fonciers]], la [[taxe d'habitation]] ou encore, pour les [[entreprise]]s, les [[Cotisation foncière des entreprises|cotisations foncières]] ou sur la [[valeur ajoutée]].</ref> pour 23 % et des [[Impôts locaux en France|autres impôts]]<ref group="Note">Les « autres impôts » couvrent certains impôts et [[taxe]]s autres que les [[Impôts locaux en France|impôts locaux]].</ref> pour 6 %.
+
+La dotation globale de fonctionnement est quasiment sans variation à celle versée en 2012.
+
+=== Évolution des produits et charges de fonctionnement de 2000 à 2013 ===
+{| class="wikitable centre" style="width:80%;"
+ |+G1a - Évolution des produits de fonctionnement pour Issendolus<ref group="A2" name="Alize2_2013_1"/>
+ |------
+ | {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 3
+ | nb_abscisses = 14
+ | lb_x1 = 2000 | lb_x2 = 2001 | lb_x3 = 2002 | lb_x4 = 2003 | lb_x5 = 2004 | lb_x6 = 2005 | lb_x7 = 2006 | lb_x8 = 2007 | lb_x9 = 2008 | lb_x10 = 2009 | lb_x11 = 2010 | lb_x12 = 2011 | lb_x13 = 2012 | lb_x14 = 2013
+ | y_max =200 | y_min = 0
+ | pas_grille_principale = 50 | pas_grille_secondaire = 10
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = brightblue
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = red
+ | epaisseur_serie3 = 0.9  | coul_serie_3 = black
+ | S01V01 = 38  | S02V01 = 4  | S03V01 = 64 
+ | S01V02 = 40  | S02V02 = 4  | S03V02 = 71 
+ | S01V03 = 42  | S02V03 = 5  | S03V03 = 74 
+ | S01V04 = 48  | S02V04 = 7  | S03V04 = 75 
+ | S01V05 = 52  | S02V05 = 7  | S03V05 = 97 
+ | S01V06 = 57  | S02V06 = 9  | S03V06 = 99 
+ | S01V07 = 62  | S02V07 = 9  | S03V07 = 100 
+ | S01V08 = 64  | S02V08 = 15  | S03V08 = 102 
+ | S01V09 = 66  | S02V09 = 21  | S03V09 = 103 
+ | S01V10 = 54  | S02V10 = 11  | S03V10 = 114 
+ | S01V11 = 60  | S02V11 = 9  | S03V11 = 118 
+ | S01V12 = 59  | S02V12 = 10  | S03V12 = 126 
+ | S01V13 = 62  | S02V13 = 2  | S03V13 = 125 
+ | S01V14 = 69  | S02V14 = 24  | S03V14 = 130 
+ | points = oui}}
+ |------
+ | Valeurs en milliers d'euros<br />Issendolus, valeur totale : [[fichier:Bb blue.jpg|10px|alt=Point bleu|link=]] Impôts Locaux [[fichier:Red rectangle.svg|10px|alt=Point rouge|link=]] Autres impôts et taxes [[fichier:Black222.JPG|10px|alt=Point noir|link=]] Dotation globale de fonctionnement 
+ |}
+
+{| class="wikitable centre" style="width:80%;"
+ |+G1b1 - Évolution des charges de personnel et externes pour Issendolus<ref group="A2" name="Alize2_2013_1"/>
+ |------
+ | {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 2
+ | nb_abscisses = 14
+ | lb_x1 = 2000 | lb_x2 = 2001 | lb_x3 = 2002 | lb_x4 = 2003 | lb_x5 = 2004 | lb_x6 = 2005 | lb_x7 = 2006 | lb_x8 = 2007 | lb_x9 = 2008 | lb_x10 = 2009 | lb_x11 = 2010 | lb_x12 = 2011 | lb_x13 = 2012 | lb_x14 = 2013
+ | y_max =120 | y_min = 20
+ | pas_grille_principale = 20 | pas_grille_secondaire = 10
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = brightblue
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = red
+ | S01V01 = 22  | S02V01 = 28 
+ | S01V02 = 27  | S02V02 = 53 
+ | S01V03 = 31  | S02V03 = 50 
+ | S01V04 = 33  | S02V04 = 59 
+ | S01V05 = 34  | S02V05 = 74 
+ | S01V06 = 35  | S02V06 = 76 
+ | S01V07 = 41  | S02V07 = 77 
+ | S01V08 = 59  | S02V08 = 84 
+ | S01V09 = 64  | S02V09 = 58 
+ | S01V10 = 71  | S02V10 = 112 
+ | S01V11 = 79  | S02V11 = 70 
+ | S01V12 = 79  | S02V12 = 84 
+ | S01V13 = 68  | S02V13 = 89 
+ | S01V14 = 73  | S02V14 = 89 
+ | points = oui}}
+ |------
+ | Valeurs en milliers d'euros<br />Issendolus, valeur totale : [[fichier:Bb blue.jpg|10px|alt=Point bleu|link=]] Charges de personnel [[fichier:Red rectangle.svg|10px|alt=Point rouge|link=]] Achats et charges externes<br /> 
+ |}
+{| class="wikitable centre" style="width:80%;"
+ |+G1b2 - Évolution des charges financières et des subventions versées pour Issendolus<ref group="A2" name="Alize2_2013_1"/>
+ |------
+ | {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 2
+ | nb_abscisses = 14
+ | lb_x1 = 2000 | lb_x2 = 2001 | lb_x3 = 2002 | lb_x4 = 2003 | lb_x5 = 2004 | lb_x6 = 2005 | lb_x7 = 2006 | lb_x8 = 2007 | lb_x9 = 2008 | lb_x10 = 2009 | lb_x11 = 2010 | lb_x12 = 2011 | lb_x13 = 2012 | lb_x14 = 2013
+ | y_max =20 | y_min = 0
+ | pas_grille_principale = 5 | pas_grille_secondaire = 1
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = teal
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = black
+ | S01V01 = 5  | S02V01 = 1 
+ | S01V02 = 4  | S02V02 = 2 
+ | S01V03 = 4  | S02V03 = 1 
+ | S01V04 = 5  | S02V04 = 2 
+ | S01V05 = 5  | S02V05 = 1 
+ | S01V06 = 5  | S02V06 = 1 
+ | S01V07 = 7  | S02V07 = 1 
+ | S01V08 = 8  | S02V08 = 1 
+ | S01V09 = 8  | S02V09 = 3 
+ | S01V10 = 6  | S02V10 = 1 
+ | S01V11 = 16  | S02V11 = 9 
+ | S01V12 = 15  | S02V12 = 10 
+ | S01V13 = 14  | S02V13 = 2 
+ | S01V14 = 13  | S02V14 = 2 
+ | points = oui}}
+ |------
+ | Valeurs en milliers d'euros<br />Issendolus, valeur totale : [[fichier:Flag of Beni.svg|10px|alt=Point vert|link=]] Charges financières [[fichier:Black222.JPG|10px|alt=Point noir|link=]] Subventions versées 
+ |}
+{{Clr}}
+
+=== Tableau des valeurs pour les produits et charges de 2010 à 2013 ===
+{|class="wikitable centre"
+ |+T1v - Produits et charges de fonctionnement d'Issendolus de 2010 à 2013<ref group="A2" name="Alize2_2013_1"/>
+ |------
+ |
+ ! id="PRODUITS_CHARGES2010" colspan="3" style="background-color: #ffffff" |2010
+ ! id="PRODUITS_CHARGES2011" colspan="3" style="background-color: #ffffff" |2011
+ ! id="PRODUITS_CHARGES2012" colspan="3" style="background-color: #ffffff" |2012
+ ! id="PRODUITS_CHARGES2013" colspan="3" style="background-color: #ffffff" |2013
+ |-
+ ! id="PRODUITS_CHARGESh" style="background:#ffffff" | Chiffres clés
+ ! id="PRODUITS_CHARGES2010V" headers="PRODUITS_CHARGES2010" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="PRODUITS_CHARGES2010P" headers="PRODUITS_CHARGES2010" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ ! id="PRODUITS_CHARGES2010S" headers="PRODUITS_CHARGES2010" scope="col" style="background-color: #f0f0cc" | Strate (€)
+ ! id="PRODUITS_CHARGES2011V" headers="PRODUITS_CHARGES2011" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="PRODUITS_CHARGES2011P" headers="PRODUITS_CHARGES2011" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ ! id="PRODUITS_CHARGES2011S" headers="PRODUITS_CHARGES2011" scope="col" style="background-color: #f0f0cc" | Strate (€)
+ ! id="PRODUITS_CHARGES2012V" headers="PRODUITS_CHARGES2012" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="PRODUITS_CHARGES2012P" headers="PRODUITS_CHARGES2012" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ ! id="PRODUITS_CHARGES2012S" headers="PRODUITS_CHARGES2012" scope="col" style="background-color: #f0f0cc" | Strate (€)
+ ! id="PRODUITS_CHARGES2013V" headers="PRODUITS_CHARGES2013" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="PRODUITS_CHARGES2013P" headers="PRODUITS_CHARGES2013" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ ! id="PRODUITS_CHARGES2013S" headers="PRODUITS_CHARGES2013" scope="col" style="background-color: #f0f0cc" | Strate (€)
+ |-
+ ! headers="PRODUITS_CHARGESh" scope="row" style="background-color: #ccfff2" | Impôts Locaux
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010V" style="text-align:right;background-color: #ccfff2" | {{unité|60}}
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010P" style="text-align:right;background-color: #ccfff2" | {{unité|111}}
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010S" style="text-align:right;background-color: #f0f0cc" | {{unité|321}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011V" style="text-align:right;background-color: #ccfff2" | {{unité|59}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011P" style="text-align:right;background-color: #ccfff2" | {{unité|107}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011S" style="text-align:right;background-color: #f0f0cc" | {{unité|333}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012V" style="text-align:right;background-color: #ccfff2" | {{unité|62}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012P" style="text-align:right;background-color: #ccfff2" | {{unité|115}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012S" style="text-align:right;background-color: #f0f0cc" | {{unité|345}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013V" style="text-align:right;background-color: #ccfff2" | {{unité|69}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013P" style="text-align:right;background-color: #ccfff2" | {{unité|129}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013S" style="text-align:right;background-color: #f0f0cc" | {{unité|366}}
+ |-
+ ! headers="PRODUITS_CHARGESh" scope="row" style="background-color: #ccfff2" | Autres impôts et taxes
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010V" style="text-align:right;background-color: #ccfff2" | {{unité|9}}
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010P" style="text-align:right;background-color: #ccfff2" | {{unité|18}}
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010S" style="text-align:right;background-color: #f0f0cc" | {{unité|36}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011V" style="text-align:right;background-color: #ccfff2" | {{unité|10}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011P" style="text-align:right;background-color: #ccfff2" | {{unité|19}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011S" style="text-align:right;background-color: #f0f0cc" | {{unité|37}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012V" style="text-align:right;background-color: #ccfff2" | {{unité|2}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012P" style="text-align:right;background-color: #ccfff2" | {{unité|3}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012S" style="text-align:right;background-color: #f0f0cc" | {{unité|40}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013V" style="text-align:right;background-color: #ccfff2" | {{unité|24}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013P" style="text-align:right;background-color: #ccfff2" | {{unité|45}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013S" style="text-align:right;background-color: #f0f0cc" | {{unité|41}}
+ |-
+ ! headers="PRODUITS_CHARGESh" scope="row" style="background-color: #ccfff2" | DGF
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010V" style="text-align:right;background-color: #ccfff2" | {{unité|118}}
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010P" style="text-align:right;background-color: #ccfff2" | {{unité|220}}
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010S" style="text-align:right;background-color: #f0f0cc" | {{unité|212}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011V" style="text-align:right;background-color: #ccfff2" | {{unité|126}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011P" style="text-align:right;background-color: #ccfff2" | {{unité|230}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011S" style="text-align:right;background-color: #f0f0cc" | {{unité|212}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012V" style="text-align:right;background-color: #ccfff2" | {{unité|125}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012P" style="text-align:right;background-color: #ccfff2" | {{unité|232}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012S" style="text-align:right;background-color: #f0f0cc" | {{unité|214}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013V" style="text-align:right;background-color: #ccfff2" | {{unité|130}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013P" style="text-align:right;background-color: #ccfff2" | {{unité|241}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013S" style="text-align:right;background-color: #f0f0cc" | {{unité|216}}
+ |-
+ ! headers="PRODUITS_CHARGESh" scope="row" style="background-color: #ffd9ff" | Charges de personnel
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010V" style="text-align:right;background-color: #ffd9ff" | {{unité|79}}
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010P" style="text-align:right;background-color: #ffd9ff" | {{unité|147}}
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010S" style="text-align:right;background-color: #f0f0cc" | {{unité|237}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011V" style="text-align:right;background-color: #ffd9ff" | {{unité|79}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011P" style="text-align:right;background-color: #ffd9ff" | {{unité|144}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011S" style="text-align:right;background-color: #f0f0cc" | {{unité|241}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012V" style="text-align:right;background-color: #ffd9ff" | {{unité|68}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012P" style="text-align:right;background-color: #ffd9ff" | {{unité|126}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012S" style="text-align:right;background-color: #f0f0cc" | {{unité|247}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013V" style="text-align:right;background-color: #ffd9ff" | {{unité|73}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013P" style="text-align:right;background-color: #ffd9ff" | {{unité|135}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013S" style="text-align:right;background-color: #f0f0cc" | {{unité|255}}
+ |-
+ ! headers="PRODUITS_CHARGESh" scope="row" style="background-color: #ffd9ff" | Achats et charges externes
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010V" style="text-align:right;background-color: #ffd9ff" | {{unité|70}}
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010P" style="text-align:right;background-color: #ffd9ff" | {{unité|130}}
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010S" style="text-align:right;background-color: #f0f0cc" | {{unité|188}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011V" style="text-align:right;background-color: #ffd9ff" | {{unité|84}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011P" style="text-align:right;background-color: #ffd9ff" | {{unité|153}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011S" style="text-align:right;background-color: #f0f0cc" | {{unité|192}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012V" style="text-align:right;background-color: #ffd9ff" | {{unité|89}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012P" style="text-align:right;background-color: #ffd9ff" | {{unité|166}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012S" style="text-align:right;background-color: #f0f0cc" | {{unité|198}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013V" style="text-align:right;background-color: #ffd9ff" | {{unité|89}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013P" style="text-align:right;background-color: #ffd9ff" | {{unité|165}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013S" style="text-align:right;background-color: #f0f0cc" | {{unité|212}}
+ |-
+ ! headers="PRODUITS_CHARGESh" scope="row" style="background-color: #ffd9ff" | Charges financières
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010V" style="text-align:right;background-color: #ffd9ff" | {{unité|16}}
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010P" style="text-align:right;background-color: #ffd9ff" | {{unité|30}}
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010S" style="text-align:right;background-color: #f0f0cc" | {{unité|24}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011V" style="text-align:right;background-color: #ffd9ff" | {{unité|15}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011P" style="text-align:right;background-color: #ffd9ff" | {{unité|27}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011S" style="text-align:right;background-color: #f0f0cc" | {{unité|25}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012V" style="text-align:right;background-color: #ffd9ff" | {{unité|14}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012P" style="text-align:right;background-color: #ffd9ff" | {{unité|26}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012S" style="text-align:right;background-color: #f0f0cc" | {{unité|26}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013V" style="text-align:right;background-color: #ffd9ff" | {{unité|13}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013P" style="text-align:right;background-color: #ffd9ff" | {{unité|25}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013S" style="text-align:right;background-color: #f0f0cc" | {{unité|26}}
+ |-
+ ! headers="PRODUITS_CHARGESh" scope="row" style="background-color: #ffd9ff" | Subventions versées
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010V" style="text-align:right;background-color: #ffd9ff" | {{unité|9}}
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010P" style="text-align:right;background-color: #ffd9ff" | {{unité|17}}
+ | headers="PRODUITS_CHARGES2010 PRODUITS_CHARGES2010S" style="text-align:right;background-color: #f0f0cc" | {{unité|35}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011V" style="text-align:right;background-color: #ffd9ff" | {{unité|10}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011P" style="text-align:right;background-color: #ffd9ff" | {{unité|18}}
+ | headers="PRODUITS_CHARGES2011 PRODUITS_CHARGES2011S" style="text-align:right;background-color: #f0f0cc" | {{unité|35}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012V" style="text-align:right;background-color: #ffd9ff" | {{unité|2}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012P" style="text-align:right;background-color: #ffd9ff" | {{unité|3}}
+ | headers="PRODUITS_CHARGES2012 PRODUITS_CHARGES2012S" style="text-align:right;background-color: #f0f0cc" | {{unité|36}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013V" style="text-align:right;background-color: #ffd9ff" | {{unité|2}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013P" style="text-align:right;background-color: #ffd9ff" | {{unité|3}}
+ | headers="PRODUITS_CHARGES2013 PRODUITS_CHARGES2013S" style="text-align:right;background-color: #f0f0cc" | {{unité|38}}
+ |-
+ ! colspan="13" style="background-color: #ffffff" | Les valeurs sont arrondies au millier d'euros (k€) le plus proche.
+ |-
+ |}
+{{Clr}}
+
+== Fiscalité locale ==
+{|class="wikitable right"
+ |+T2p - Fiscalité d'Issendolus en 2013<ref group="A2" name="Alize2_2013_Detail"/>
+ |----
+ ! !! scope="col" | Issendolus<br/>(%) !! scope="col" | Strate<br/>(%)
+  |----
+ ! scope="row" style="background-color: #ccfff2" | Taxe d'habitation
+ | style="text-align:right;background-color: #ccfff2" | {{unité|8.98}}
+ | style="text-align:right;background-color: #ccfff2" | {{unité|15.74}}
+ | style="text-align:right;background-color:#ccfff2 " | [[fichier:Button-Blue.svg|10px|alt=Picto disque bleu : écart fort|link=]]
+ |----
+ ! scope="row" style="background-color: #ccfff2" | Taxe foncière sur le bâti
+ | style="text-align:right;background-color: #ccfff2" | {{unité|8.27}}
+ | style="text-align:right;background-color: #ccfff2" | {{unité|13.47}}
+ | style="text-align:right;background-color:#ccfff2 " | [[fichier:Button-Blue.svg|10px|alt=Picto disque bleu : écart fort|link=]]
+ |----
+ ! scope="row" style="background-color: #ccfff2" | Taxe foncière sur le non bâti
+ | style="text-align:right;background-color: #ccfff2" | {{unité|77.47}}
+ | style="text-align:right;background-color: #ccfff2" | {{unité|35.69}}
+ | style="text-align:right;background-color:#ccfff2 " | [[fichier:Button-Blue.svg|10px|alt=Picto disque bleu : écart fort|link=]]
+
+ |------
+ | colspan="4" |Écart par rapport à la moyenne de la strate :<br/>[[fichier:Button-White.svg|10px|alt=Picto disque blanc : écart nul|link=]] de 0 à 10 % ; [[fichier:Map-circle-grey.svg|10px|alt=Picto cercle bleu : écart moyen|link=]] de 10 à 30 % ; [[fichier:Button-Blue.svg|10px|alt=Picto disque bleu : écart fort|link=]] supérieur à 30 %
+ |}
+Le tableau T2p compare les [[taux d'imposition]] locaux à ceux des autres communes de la même {{page h'|Strate#En_sciences_sociales|strate}} fiscale.
+
+Les taux des [[taxe]]s ci-dessous sont votés par la municipalité d'Issendolus. Ils ont varié de la façon suivante par rapport à 2012<ref group="A2" name="Alize2_2013_Detail"/> :
+* la [[taxe d'habitation]] sans variation 8,98 % ;
+* la [[Taxe foncière|taxe foncière sur le bâti]] constante 8,27 % ;
+* celle sur le [[Taxe foncière|le non bâti]] constante 77,47 %.
+{{Clr}}
+
+=== Évolution des taux des différentes taxes de 2000 à 2013 ===
+{| class="wikitable centre" style="width:80%;"
+ |+G2a - Évolution de la taxe d'habitation et foncière sur le bâti pour Issendolus<ref group="A2" name="Alize2_2013_Detail">
+{{Lien web
+ |titre=Les comptes des communes - Issendolus
+ |sous-titre=fiche détaillée
+ |url=http://alize2.finances.gouv.fr/communes/eneuro/detail.php?dep=046&type=BPS&icom=132&param=0&exercice=2013
+ |consulté le=22 juillet 2015
+}}.</ref>
+ |------
+ | {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 4
+ | nb_abscisses = 14
+ | lb_x1 = 2000 | lb_x2 = 2001 | lb_x3 = 2002 | lb_x4 = 2003 | lb_x5 = 2004 | lb_x6 = 2005 | lb_x7 = 2006 | lb_x8 = 2007 | lb_x9 = 2008 | lb_x10 = 2009 | lb_x11 = 2010 | lb_x12 = 2011 | lb_x13 = 2012 | lb_x14 = 2013
+ | y_max =20 | y_min = 0
+ | pas_grille_principale = 5 | pas_grille_secondaire = 1
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = brightblue
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = red
+ | epaisseur_serie3 = 0.9  | coul_serie_3 = teal
+ | epaisseur_serie4 = 0.9  | coul_serie_4 = black
+ | S01V01 = 4.02  | S02V01 = 6.86  | S03V01 = 7.47  | S04V01 = 10.84 
+ | S01V02 = 4.02  | S02V02 = 6.86  | S03V02 = 7.30  | S04V02 = 10.45 
+ | S01V03 = 4.17  | S02V03 = 7.12  | S03V03 = 7.36  | S04V03 = 10.55 
+ | S01V04 = 4.44  | S02V04 = 7.59  | S03V04 = 7.40  | S04V04 = 10.77 
+ | S01V05 = 4.54  | S02V05 = 7.94  | S03V05 = 7.45  | S04V05 = 10.84 
+ | S01V06 = 4.63  | S02V06 = 8.10  | S03V06 = 7.51  | S04V06 = 10.88 
+ | S01V07 = 4.82  | S02V07 = 8.44  | S03V07 = 7.58  | S04V07 = 10.89 
+ | S01V08 = 4.92  | S02V08 = 8.61  | S03V08 = 7.60  | S04V08 = 10.97 
+ | S01V09 = 4.92  | S02V09 = 8.61  | S03V09 = 7.65  | S04V09 = 11.05 
+ | S01V10 = 4.12  | S02V10 = 7.20  | S03V10 = 8.83  | S04V10 = 12.98 
+ | S01V11 = 4.33  | S02V11 = 7.57  | S03V11 = 8.95  | S04V11 = 13.32 
+ | S01V12 = 8.87  | S02V12 = 7.83  | S03V12 = 15.67  | S04V12 = 13.42 
+ | S01V13 = 8.98  | S02V13 = 8.27  | S03V13 = 15.76  | S04V13 = 13.59 
+ | S01V14 = 8.98  | S02V14 = 8.27  | S03V14 = 15.74  | S04V14 = 13.47 
+ | points = oui}}
+ |------
+ | Valeurs en %<br />Issendolus, taux : [[fichier:Bb blue.jpg|10px|alt=Point bleu|link=]] Taux taxe d'habitation [[fichier:Red rectangle.svg|10px|alt=Point rouge|link=]] Taux foncier bâti <br />Taux moyen pour la strate : [[fichier:Flag of Beni.svg|10px|alt=Point vert|link=]] Taux taxe d'habitation [[fichier:Black222.JPG|10px|alt=Point noir|link=]] Taux foncier bâti 
+ |}
+
+{| class="wikitable centre" style="width:80%;"
+ |+G2b - Évolution de la taxe foncière sur le non bâti pour Issendolus<ref group="A2" name="Alize2_2013_Detail"/>
+ |------
+ | {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 2
+ | nb_abscisses = 14
+ | lb_x1 = 2000 | lb_x2 = 2001 | lb_x3 = 2002 | lb_x4 = 2003 | lb_x5 = 2004 | lb_x6 = 2005 | lb_x7 = 2006 | lb_x8 = 2007 | lb_x9 = 2008 | lb_x10 = 2009 | lb_x11 = 2010 | lb_x12 = 2011 | lb_x13 = 2012 | lb_x14 = 2013
+ | y_max =90 | y_min = 20
+ | pas_grille_principale = 5 | pas_grille_secondaire = 1
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = red
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = black
+ | S01V01 = 66.97  | S02V01 = 31.21 
+ | S01V02 = 66.97  | S02V02 = 28.99 
+ | S01V03 = 69.49  | S02V03 = 28.59 
+ | S01V04 = 74.06  | S02V04 = 28.67 
+ | S01V05 = 74.04  | S02V05 = 28.64 
+ | S01V06 = 75.52  | S02V06 = 28.72 
+ | S01V07 = 78.69  | S02V07 = 28.90 
+ | S01V08 = 80.26  | S02V08 = 28.87 
+ | S01V09 = 80.26  | S02V09 = 28.87 
+ | S01V10 = 67.14  | S02V10 = 34.15 
+ | S01V11 = 70.58  | S02V11 = 34.11 
+ | S01V12 = 76.52  | S02V12 = 35.75 
+ | S01V13 = 77.47  | S02V13 = 35.89 
+ | S01V14 = 77.47  | S02V14 = 35.69 
+ | points = oui}}
+ |------
+ | Valeurs en %<br />Issendolus, taux : [[fichier:Red rectangle.svg|10px|alt=Point rouge|link=]] Taux foncier non bâti <br />Taux moyen pour la strate : [[fichier:Black222.JPG|10px|alt=Point noir|link=]] Taux foncier non bâti 
+ |}
+
+=== Tableau des taux des impôts et taxes de 2008 à 2013 ===
+{|class="wikitable centre"
+ |+T2v - Taux des impôts et taxes pour Issendolus de 2008 à 2013<ref group="A2" name="Alize2_2013_Detail"/>
+ |------
+ |
+ ! id="TAXES2008" colspan="2" style="background-color: #ffffff" |2008
+ ! id="TAXES2009" colspan="2" style="background-color: #ffffff" |2009
+ ! id="TAXES2010" colspan="2" style="background-color: #ffffff" |2010
+ ! id="TAXES2011" colspan="2" style="background-color: #ffffff" |2011
+ ! id="TAXES2012" colspan="2" style="background-color: #ffffff" |2012
+ ! id="TAXES2013" colspan="2" style="background-color: #ffffff" |2013
+ |-
+ ! id="TAXESh" style="background:#ffffff" | Chiffres clés
+ ! id="TAXES2008TV" headers="TAXES2008" scope="col" style="background-color: #ffffff" | Taux voté %
+ ! id="TAXES2008TM" headers="TAXES2008" scope="col" style="background-color: #f0f0cc" | Taux moyen de la strate %
+ ! id="TAXES2009TV" headers="TAXES2009" scope="col" style="background-color: #ffffff" | Taux voté %
+ ! id="TAXES2009TM" headers="TAXES2009" scope="col" style="background-color: #f0f0cc" | Taux moyen de la strate %
+ ! id="TAXES2010TV" headers="TAXES2010" scope="col" style="background-color: #ffffff" | Taux voté %
+ ! id="TAXES2010TM" headers="TAXES2010" scope="col" style="background-color: #f0f0cc" | Taux moyen de la strate %
+ ! id="TAXES2011TV" headers="TAXES2011" scope="col" style="background-color: #ffffff" | Taux voté %
+ ! id="TAXES2011TM" headers="TAXES2011" scope="col" style="background-color: #f0f0cc" | Taux moyen de la strate %
+ ! id="TAXES2012TV" headers="TAXES2012" scope="col" style="background-color: #ffffff" | Taux voté %
+ ! id="TAXES2012TM" headers="TAXES2012" scope="col" style="background-color: #f0f0cc" | Taux moyen de la strate %
+ ! id="TAXES2013TV" headers="TAXES2013" scope="col" style="background-color: #ffffff" | Taux voté %
+ ! id="TAXES2013TM" headers="TAXES2013" scope="col" style="background-color: #f0f0cc" | Taux moyen de la strate %
+ |-
+ ! headers="TAXESh" scope="row" style="background-color: #ffd9ff" | Taux taxe d'habitation
+ | headers="TAXES2008 TAXES2008TV" style="text-align:right;background-color: #ffd9ff" | {{unité|4.92}}
+ | headers="TAXES2008 TAXES2008TS" style="text-align:right;background-color: #f0f0cc" | {{unité|7.65}}
+ | headers="TAXES2009 TAXES2009TV" style="text-align:right;background-color: #ffd9ff" | {{unité|4.12}}
+ | headers="TAXES2009 TAXES2009TS" style="text-align:right;background-color: #f0f0cc" | {{unité|8.83}}
+ | headers="TAXES2010 TAXES2010TV" style="text-align:right;background-color: #ffd9ff" | {{unité|4.33}}
+ | headers="TAXES2010 TAXES2010TS" style="text-align:right;background-color: #f0f0cc" | {{unité|8.95}}
+ | headers="TAXES2011 TAXES2011TV" style="text-align:right;background-color: #ffd9ff" | {{unité|8.87}}
+ | headers="TAXES2011 TAXES2011TS" style="text-align:right;background-color: #f0f0cc" | {{unité|15.67}}
+ | headers="TAXES2012 TAXES2012TV" style="text-align:right;background-color: #ffd9ff" | {{unité|8.98}}
+ | headers="TAXES2012 TAXES2012TS" style="text-align:right;background-color: #f0f0cc" | {{unité|15.76}}
+ | headers="TAXES2013 TAXES2013TV" style="text-align:right;background-color: #ffd9ff" | {{unité|8.98}}
+ | headers="TAXES2013 TAXES2013TS" style="text-align:right;background-color: #f0f0cc" | {{unité|15.74}}
+ |-
+ ! headers="TAXESh" scope="row" style="background-color: #FFCFB2" | Taux foncier bâti
+ | headers="TAXES2008 TAXES2008TV" style="text-align:right;background-color: #FFCFB2" | {{unité|8.61}}
+ | headers="TAXES2008 TAXES2008TS" style="text-align:right;background-color: #f0f0cc" | {{unité|11.05}}
+ | headers="TAXES2009 TAXES2009TV" style="text-align:right;background-color: #FFCFB2" | {{unité|7.20}}
+ | headers="TAXES2009 TAXES2009TS" style="text-align:right;background-color: #f0f0cc" | {{unité|12.98}}
+ | headers="TAXES2010 TAXES2010TV" style="text-align:right;background-color: #FFCFB2" | {{unité|7.57}}
+ | headers="TAXES2010 TAXES2010TS" style="text-align:right;background-color: #f0f0cc" | {{unité|13.32}}
+ | headers="TAXES2011 TAXES2011TV" style="text-align:right;background-color: #FFCFB2" | {{unité|7.83}}
+ | headers="TAXES2011 TAXES2011TS" style="text-align:right;background-color: #f0f0cc" | {{unité|13.42}}
+ | headers="TAXES2012 TAXES2012TV" style="text-align:right;background-color: #FFCFB2" | {{unité|8.27}}
+ | headers="TAXES2012 TAXES2012TS" style="text-align:right;background-color: #f0f0cc" | {{unité|13.59}}
+ | headers="TAXES2013 TAXES2013TV" style="text-align:right;background-color: #FFCFB2" | {{unité|8.27}}
+ | headers="TAXES2013 TAXES2013TS" style="text-align:right;background-color: #f0f0cc" | {{unité|13.47}}
+ |-
+ ! headers="TAXESh" scope="row" style="background-color: #d9ffd9" | Taux foncier non bâti
+ | headers="TAXES2008 TAXES2008TV" style="text-align:right;background-color: #d9ffd9" | {{unité|80.26}}
+ | headers="TAXES2008 TAXES2008TS" style="text-align:right;background-color: #f0f0cc" | {{unité|28.87}}
+ | headers="TAXES2009 TAXES2009TV" style="text-align:right;background-color: #d9ffd9" | {{unité|67.14}}
+ | headers="TAXES2009 TAXES2009TS" style="text-align:right;background-color: #f0f0cc" | {{unité|34.15}}
+ | headers="TAXES2010 TAXES2010TV" style="text-align:right;background-color: #d9ffd9" | {{unité|70.58}}
+ | headers="TAXES2010 TAXES2010TS" style="text-align:right;background-color: #f0f0cc" | {{unité|34.11}}
+ | headers="TAXES2011 TAXES2011TV" style="text-align:right;background-color: #d9ffd9" | {{unité|76.52}}
+ | headers="TAXES2011 TAXES2011TS" style="text-align:right;background-color: #f0f0cc" | {{unité|35.75}}
+ | headers="TAXES2012 TAXES2012TV" style="text-align:right;background-color: #d9ffd9" | {{unité|77.47}}
+ | headers="TAXES2012 TAXES2012TS" style="text-align:right;background-color: #f0f0cc" | {{unité|35.89}}
+ | headers="TAXES2013 TAXES2013TV" style="text-align:right;background-color: #d9ffd9" | {{unité|77.47}}
+ | headers="TAXES2013 TAXES2013TS" style="text-align:right;background-color: #f0f0cc" | {{unité|35.69}}
+ |-
+ |}
+{{Clr}}
+
+== Investissement ==
+{|class="wikitable right"
+ |+T3p - Investissement d'Issendolus en 2013<ref group="A2" name="Alize2_2013_2"/>
+ |----
+ ! !! scope="col" | Issendolus<br/>(€/hab.) !! scope="col" | Strate<br/>(€/hab.)
+  |----
+ ! scope="row" style="background-color: #d9ffd9" | Dépenses d'équipement
+ | style="text-align:right;background-color: #d9ffd9" | {{euro|138}}
+ | style="text-align:right;background-color: #d9ffd9" | {{euro|370}}
+ | style="text-align:right;background-color:#d9ffd9 " | [[fichier:Button-Blue.svg|10px|alt=Picto disque bleu : écart fort|link=]]
+ |----
+ ! scope="row" style="background-color: #d9ffd9" | Remboursements emprunts
+ | style="text-align:right;background-color: #d9ffd9" | {{euro|49}}
+ | style="text-align:right;background-color: #d9ffd9" | {{euro|70}}
+ | style="text-align:right;background-color:#d9ffd9 " | [[fichier:Button-Blue.svg|10px|alt=Picto disque bleu : écart fort|link=]]
+ |----
+ ! scope="row" style="background-color: #ffd9d9" | FCTVA
+ | style="text-align:right;background-color: #ffd9d9" | {{euro|12}}
+ | style="text-align:right;background-color: #ffd9d9" | {{euro|39}}
+ | style="text-align:right;background-color:#ffd9d9 " | [[fichier:Button-Blue.svg|10px|alt=Picto disque bleu : écart fort|link=]]
+ |----
+ ! scope="row" style="background-color: #ffd9d9" | Subventions reçues
+ | style="text-align:right;background-color: #ffd9d9" | {{euro|12}}
+ | style="text-align:right;background-color: #ffd9d9" | {{euro|79}}
+ | style="text-align:right;background-color:#ffd9d9 " | [[fichier:Button-Blue.svg|10px|alt=Picto disque bleu : écart fort|link=]]
+ |----
+ ! scope="row" style="background-color: #ffd9d9" | Nouvelles dettes
+ | style="text-align:right;background-color: #ffd9d9" | {{euro|0}}
+ | style="text-align:right;background-color: #ffd9d9" | {{euro|87}}
+ | style="text-align:right;background-color:#ffd9d9 " | [[fichier:Button-Blue.svg|10px|alt=Picto disque bleu : écart fort|link=]]
+
+ |------
+ | colspan="4" |Écart par rapport à la moyenne de la strate :<br/>[[fichier:Button-White.svg|10px|alt=Picto disque blanc : écart nul|link=]] de 0 à 10 % ; [[fichier:Map-circle-grey.svg|10px|alt=Picto cercle bleu : écart moyen|link=]] de 10 à 30 % ; [[fichier:Button-Blue.svg|10px|alt=Picto disque bleu : écart fort|link=]] supérieur à 30 %
+ |}
+Cette section détaille les [[investissement]]s<ref group="Note">La section « [[investissement]] » concerne essentiellement les opérations visant à [[Achat|acquérir]] des équipements d’envergure et aussi au [[Plan de remboursement|remboursement]] du capital de la [[Dette publique|dette]].</ref> réalisés par la commune d'Issendolus.
+
+Les emplois d'investissement en 2013 comprenaient par ordre d'importance<ref group="A2" name="Alize2_2013_2">{{Lien web
+ |titre=Les comptes des communes - Issendolus
+ |sous-titre=opérations d'investissement
+ |url=http://alize2.finances.gouv.fr/communes/eneuro/tableau.php?dep=046&type=BPS&icom=132&param=2&exercice=2013
+ |consulté le=22 juillet 2015
+}}.</ref> :
+* des dépenses d'équipement<ref group="Note">Les « dépenses d’équipement » servent à financer des projets d’envergure ayant pour objet d’augmenter la valeur du [[Patrimoine (finance)|patrimoine]] de la commune et d’améliorer la qualité des équipements municipaux, voire d’en créer de nouveaux.</ref> pour un montant de {{euro|74000}} (65 %), soit {{euro|138}} par habitant, ratio inférieur de 63 % à la valeur moyenne pour les communes de la même strate ({{euro|370}} par habitant). Sur une période de {{nobr|5 années}}, ce ratio fluctue et présente un minimum de {{euro|128}} par habitant en 2012 et un maximum de {{euro|369}} par habitant en 2011 ;
+* des [[Plan de remboursement|remboursement]]s d'emprunts<ref group="Note">Les « [[Plan de remboursement|remboursement]]s d'emprunts » représentent les sommes affectées par la commune au remboursement du capital de la dette.</ref> pour un montant de {{euro|26000}} (23 %), soit {{euro|49}} par habitant, ratio inférieur de 30 % à la valeur moyenne pour les communes de la même strate ({{euro|70}} par habitant).
+
+Les ressources en investissement d'Issendolus se répartissent principalement en<ref group="A2" name="Alize2_2013_2"/> :
+* [[Fonds de Compensation pour la TVA|fonds de Compensation pour la TVA]] pour un montant de {{euro|7000}} (10 %), soit {{euro|12}} par habitant, ratio inférieur de 69 % à la valeur moyenne pour les communes de la même strate ({{euro|39}} par habitant). Sur une période de {{nobr|5 années}}, ce ratio fluctue et présente un minimum de {{euro|6}} par habitant en 2010 et un maximum de {{euro|91}} par habitant en 2009 ;
+* [[subventions]] reçues pour {{euro|6000}} (9 %), soit {{euro|12}} par habitant, ratio inférieur de 85 % à la valeur moyenne pour les communes de la même strate ({{euro|79}} par habitant) ;
+
+=== Évolution de l'investissement de 2000 à 2013 ===
+{| class="wikitable centre" style="width:80%;"
+ |+G3a - Évolution des emplois d'investissement pour Issendolus<ref group="A2" name="Alize2_2013_2"/>
+ |------
+| {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 2
+ | nb_abscisses = 14
+ | lb_x1 = 2000 | lb_x2 = 2001 | lb_x3 = 2002 | lb_x4 = 2003 | lb_x5 = 2004 | lb_x6 = 2005 | lb_x7 = 2006 | lb_x8 = 2007 | lb_x9 = 2008 | lb_x10 = 2009 | lb_x11 = 2010 | lb_x12 = 2011 | lb_x13 = 2012 | lb_x14 = 2013
+ | y_max =300 | y_min = 0
+ | pas_grille_principale = 50 | pas_grille_secondaire = 10
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = brightblue
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = teal
+ | S01V01 = 31  | S02V01 = 12 
+ | S01V02 = 37  | S02V02 = 11 
+ | S01V03 = 136  | S02V03 = 12 
+ | S01V04 = 139  | S02V04 = 14 
+ | S01V05 = 54  | S02V05 = 12 
+ | S01V06 = 165  | S02V06 = 13 
+ | S01V07 = 90  | S02V07 = 14 
+ | S01V08 = 85  | S02V08 = 16 
+ | S01V09 = 275  | S02V09 = 17 
+ | S01V10 = 177  | S02V10 = 15 
+ | S01V11 = 141  | S02V11 = 19 
+ | S01V12 = 202  | S02V12 = 18 
+ | S01V13 = 69  | S02V13 = 26 
+ | S01V14 = 74  | S02V14 = 26 
+ | points = oui}}
+ |------
+ | Valeurs en milliers d'euros<br />Issendolus, valeur totale : [[fichier:Bb blue.jpg|10px|alt=Point bleu|link=]] [[Dépenses publiques|Dépenses]] d'équipement [[fichier:Flag of Beni.svg|10px|alt=Point vert|link=]] [[Plan de remboursement|Remboursement]]s [[Emprunt (finance)|emprunt]]s 
+ |}
+{| class="wikitable centre" style="width:80%;"
+ |+G3b - Évolution des ressources d'investissement pour Issendolus<ref group="A2" name="Alize2_2013_2"/>
+ |------
+| {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 3
+ | nb_abscisses = 14
+ | lb_x1 = 2000 | lb_x2 = 2001 | lb_x3 = 2002 | lb_x4 = 2003 | lb_x5 = 2004 | lb_x6 = 2005 | lb_x7 = 2006 | lb_x8 = 2007 | lb_x9 = 2008 | lb_x10 = 2009 | lb_x11 = 2010 | lb_x12 = 2011 | lb_x13 = 2012 | lb_x14 = 2013
+ | y_max =300 | y_min = 0
+ | pas_grille_principale = 50 | pas_grille_secondaire = 10
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = red
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = brightblue
+ | epaisseur_serie3 = 0.9  | coul_serie_3 = teal
+ | S01V01 = 0  | S02V01 = 17  | S03V01 = 4 
+ | S01V02 = 0  | S02V02 = 30  | S03V02 = 4 
+ | S01V03 = 38  | S02V03 = 50  | S03V03 = 3 
+ | S01V04 = 46  | S02V04 = 21  | S03V04 = 3 
+ | S01V05 = 0  | S02V05 = 41  | S03V05 = 18 
+ | S01V06 = 0  | S02V06 = 5  | S03V06 = 19 
+ | S01V07 = 120  | S02V07 = 7  | S03V07 = 3 
+ | S01V08 = 0  | S02V08 = 30  | S03V08 = 6 
+ | S01V09 = 0  | S02V09 = 146  | S03V09 = 4 
+ | S01V10 = 230  | S02V10 = 3  | S03V10 = 48 
+ | S01V11 = 0  | S02V11 = 11  | S03V11 = 3 
+ | S01V12 = 0  | S02V12 = 63  | S03V12 = 11 
+ | S01V13 = 27  | S02V13 = 35  | S03V13 = 23 
+ | S01V14 = 0  | S02V14 = 6  | S03V14 = 7 
+ | points = oui}}
+ |------
+ | Valeurs en milliers d'euros<br />Issendolus, valeur totale : [[fichier:Red rectangle.svg|10px|alt=Point rouge|link=]] Nouvelles [[Emprunt (finance)|dette]]s [[fichier:Bb blue.jpg|10px|alt=Point bleu|link=]] [[Subventions]] reçues [[fichier:Flag of Beni.svg|10px|alt=Point vert|link=]] [[Fonds de Compensation pour la TVA|FCTVA]] 
+ |}
+{{Clr}}
+
+=== Tableau des valeurs d'investissement de 2010 à 2013 ===
+{|class="wikitable centre"
+ |+T3v - Investissement d'Issendolus de 2010 à 2013<ref group="A2" name="Alize2_2013_1"/>
+ |------
+ |
+ ! id="INVEST2010" colspan="3" style="background-color: #ffffff" |2010
+ ! id="INVEST2011" colspan="3" style="background-color: #ffffff" |2011
+ ! id="INVEST2012" colspan="3" style="background-color: #ffffff" |2012
+ ! id="INVEST2013" colspan="3" style="background-color: #ffffff" |2013
+ |-
+ ! id="INVESTh" style="background:#ffffff" | Chiffres clés
+ ! id="INVEST2010V" headers="INVEST2010" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="INVEST2010P" headers="INVEST2010" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ ! id="INVEST2010S" headers="INVEST2010" scope="col" style="background-color: #f0f0cc" | Strate (€)
+ ! id="INVEST2011V" headers="INVEST2011" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="INVEST2011P" headers="INVEST2011" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ ! id="INVEST2011S" headers="INVEST2011" scope="col" style="background-color: #f0f0cc" | Strate (€)
+ ! id="INVEST2012V" headers="INVEST2012" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="INVEST2012P" headers="INVEST2012" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ ! id="INVEST2012S" headers="INVEST2012" scope="col" style="background-color: #f0f0cc" | Strate (€)
+ ! id="INVEST2013V" headers="INVEST2013" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="INVEST2013P" headers="INVEST2013" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ ! id="INVEST2013S" headers="INVEST2013" scope="col" style="background-color: #f0f0cc" | Strate (€)
+ |-
+ ! headers="INVESTh" scope="row" style="background-color: #ccfff2" | [[Dépenses publiques|Dépenses]] d'équipement
+ | headers="INVEST2010 INVEST2010V" style="text-align:right;background-color: #ccfff2" | {{unité|141}}
+ | headers="INVEST2010 INVEST2010P" style="text-align:right;background-color: #ccfff2" | {{unité|262}}
+ | headers="INVEST2010 INVEST2010S" style="text-align:right;background-color: #f0f0cc" | {{unité|341}}
+ | headers="INVEST2011 INVEST2011V" style="text-align:right;background-color: #ccfff2" | {{unité|202}}
+ | headers="INVEST2011 INVEST2011P" style="text-align:right;background-color: #ccfff2" | {{unité|369}}
+ | headers="INVEST2011 INVEST2011S" style="text-align:right;background-color: #f0f0cc" | {{unité|340}}
+ | headers="INVEST2012 INVEST2012V" style="text-align:right;background-color: #ccfff2" | {{unité|69}}
+ | headers="INVEST2012 INVEST2012P" style="text-align:right;background-color: #ccfff2" | {{unité|128}}
+ | headers="INVEST2012 INVEST2012S" style="text-align:right;background-color: #f0f0cc" | {{unité|335}}
+ | headers="INVEST2013 INVEST2013V" style="text-align:right;background-color: #ccfff2" | {{unité|74}}
+ | headers="INVEST2013 INVEST2013P" style="text-align:right;background-color: #ccfff2" | {{unité|138}}
+ | headers="INVEST2013 INVEST2013S" style="text-align:right;background-color: #f0f0cc" | {{unité|370}}
+ |-
+ ! headers="INVESTh" scope="row" style="background-color: #ccfff2" | [[Plan de remboursement|Remboursement]]s [[Emprunt (finance)|emprunt]]s
+ | headers="INVEST2010 INVEST2010V" style="text-align:right;background-color: #ccfff2" | {{unité|19}}
+ | headers="INVEST2010 INVEST2010P" style="text-align:right;background-color: #ccfff2" | {{unité|35}}
+ | headers="INVEST2010 INVEST2010S" style="text-align:right;background-color: #f0f0cc" | {{unité|67}}
+ | headers="INVEST2011 INVEST2011V" style="text-align:right;background-color: #ccfff2" | {{unité|18}}
+ | headers="INVEST2011 INVEST2011P" style="text-align:right;background-color: #ccfff2" | {{unité|33}}
+ | headers="INVEST2011 INVEST2011S" style="text-align:right;background-color: #f0f0cc" | {{unité|67}}
+ | headers="INVEST2012 INVEST2012V" style="text-align:right;background-color: #ccfff2" | {{unité|26}}
+ | headers="INVEST2012 INVEST2012P" style="text-align:right;background-color: #ccfff2" | {{unité|47}}
+ | headers="INVEST2012 INVEST2012S" style="text-align:right;background-color: #f0f0cc" | {{unité|66}}
+ | headers="INVEST2013 INVEST2013V" style="text-align:right;background-color: #ccfff2" | {{unité|26}}
+ | headers="INVEST2013 INVEST2013P" style="text-align:right;background-color: #ccfff2" | {{unité|49}}
+ | headers="INVEST2013 INVEST2013S" style="text-align:right;background-color: #f0f0cc" | {{unité|70}}
+ |-
+ ! headers="INVESTh" scope="row" style="background-color: #ffd9ff" | Nouvelles [[Emprunt (finance)|dette]]s
+ | headers="INVEST2010 INVEST2010V" style="text-align:right;background-color: #ffd9ff" | {{unité|0}}
+ | headers="INVEST2010 INVEST2010P" style="text-align:right;background-color: #ffd9ff" | {{unité|0}}
+ | headers="INVEST2010 INVEST2010S" style="text-align:right;background-color: #f0f0cc" | {{unité|89}}
+ | headers="INVEST2011 INVEST2011V" style="text-align:right;background-color: #ffd9ff" | {{unité|0}}
+ | headers="INVEST2011 INVEST2011P" style="text-align:right;background-color: #ffd9ff" | {{unité|0}}
+ | headers="INVEST2011 INVEST2011S" style="text-align:right;background-color: #f0f0cc" | {{unité|90}}
+ | headers="INVEST2012 INVEST2012V" style="text-align:right;background-color: #ffd9ff" | {{unité|27}}
+ | headers="INVEST2012 INVEST2012P" style="text-align:right;background-color: #ffd9ff" | {{unité|50}}
+ | headers="INVEST2012 INVEST2012S" style="text-align:right;background-color: #f0f0cc" | {{unité|88}}
+ | headers="INVEST2013 INVEST2013V" style="text-align:right;background-color: #ffd9ff" | {{unité|0}}
+ | headers="INVEST2013 INVEST2013P" style="text-align:right;background-color: #ffd9ff" | {{unité|0}}
+ | headers="INVEST2013 INVEST2013S" style="text-align:right;background-color: #f0f0cc" | {{unité|87}}
+ |-
+ ! colspan="13" style="background-color: #ffffff" | Les valeurs sont arrondies au millier d'euros (k€) le plus proche.
+ |-
+ |}
+{{Clr}}
+
+== Endettement ==
+{|class="wikitable right"
+ |+T4p - Endettement et capacité d'autofinancement d'Issendolus en 2013<ref group="A2" name="Alize2_2013_4"/>{{,}}<ref group="A2" name="Alize2_2013_5"/>
+ |----
+ ! !! scope="col" | Issendolus<br/>(€/hab.) !! scope="col" | Strate<br/>(€/hab.)
+  |----
+ ! scope="row" style="background-color: #ffcfb2" | Encours de la dette
+ | style="text-align:right;background-color: #ffcfb2" | {{euro|717}}
+ | style="text-align:right;background-color: #ffcfb2" | {{euro|682}}
+ | style="text-align:right;background-color:#ffcfb2 " | [[fichier:Button-White.svg|10px|alt=Picto disque blanc : écart nul|link=]]
+ |----
+ ! scope="row" style="background-color: #ffcfb2" | Annuité de la dette
+ | style="text-align:right;background-color: #ffcfb2" | {{euro|74}}
+ | style="text-align:right;background-color: #ffcfb2" | {{euro|95}}
+ | style="text-align:right;background-color:#ffcfb2 " | [[fichier:Map-circle-grey.svg|10px|alt=Picto cercle bleu : écart moyen|link=]]
+ |----
+ ! scope="row" style="background-color: #ccfff2" | Capacité d'autofinancement
+ | style="text-align:right;background-color: #ccfff2" | {{euro|158}}
+ | style="text-align:right;background-color: #ccfff2" | {{euro|187}}
+ | style="text-align:right;background-color:#ccfff2 " | [[fichier:Map-circle-grey.svg|10px|alt=Picto cercle bleu : écart moyen|link=]]
+
+ |------
+ | colspan="4" |Écart par rapport à la moyenne de la strate :<br/>[[fichier:Button-White.svg|10px|alt=Picto disque blanc : écart nul|link=]] de 0 à 10 % ; [[fichier:Map-circle-grey.svg|10px|alt=Picto cercle bleu : écart moyen|link=]] de 10 à 30 % ; [[fichier:Button-Blue.svg|10px|alt=Picto disque bleu : écart fort|link=]] supérieur à 30 %
+ |}
+L'[[Emprunt (finance)|endettement]] d'Issendolus au {{Date-|31|décembre|2013}} peut s'évaluer à partir de trois critères : l'encours de la dette<ref group="Note">L'« [[encours]] de la dette » représente la somme que la commune doit aux [[banque]]s au {{Date-|31/12}} de l'année considérée</ref>, l'annuité de la dette<ref group="Note">L'« annuité de la [[Emprunt (finance)|dette]] » équivaut à la somme des intérêts d'emprunts de la commune et du montant de remboursement du capital au cours de l'année</ref> et sa capacité de désendettement<ref group="Note">La « capacité de [[Dette publique|désendettement]] » est basée sur le ratio suivant défini par la formule : {{Formule|§=ratio = {{fraction|encours de la dette|capacité d'autofinancement}}}}. Ce ratio montre, à un instant donné, le nombre d'années qui seraient nécessaires au remboursement des dettes en considérant les ressources d'Issendolus.</ref>.
+* l'encours de la dette est  de {{euro|385000}} ({{euro|717}} par habitant), ratio voisin de la valeur moyenne de la strate. Sur une période de {{nobr|5 années}}, ce ratio fluctue et présente un minimum de {{euro|717}} par habitant en 2013 et un maximum de {{euro|881}} par habitant en 2009<ref group="A2" name="Alize2_2013_5">
+{{Lien web
+ |titre=Les comptes des communes - Issendolus
+ |sous-titre=endettement
+ |url=http://alize2.finances.gouv.fr/communes/eneuro/tableau.php?dep=046&type=BPS&icom=132&param=5&exercice=2013
+ |consulté le=22 juillet 2015
+}}.</ref> ;
+* l'annuité de la dette se monte à {{euro|40000}} ({{euro|74}} par habitant), ratio inférieur de 22 % à la valeur moyenne pour les communes de la même strate ({{euro|95}} par habitant). Sur une période de {{nobr|5 années}}, ce ratio augmente de façon continue de {{euro|40}} à {{euro|74}} par habitant<ref group="A2" name="Alize2_2013_5"/> ;
+* la capacité d'autofinancement (CAF) de la commune est de  {{euro|85000}} ({{euro|158}} par habitant), ratio inférieur de 16 % à la valeur moyenne pour les communes de la même strate ({{euro|187}} par habitant). Sur une période de {{nobr|5 années}}, ce ratio augmente de façon continue de {{euro|4}} à {{euro|158}} par habitant<ref group="A2" name="Alize2_2013_4">
+{{Lien web
+ |titre=Les comptes des communes - Issendolus
+ |sous-titre=autofinancement
+ |url=http://alize2.finances.gouv.fr/communes/eneuro/tableau.php?dep=046&type=BPS&icom=132&param=4&exercice=2013
+ |consulté le=22 juillet 2015
+}}.</ref>. La capacité de [[Dette publique|désendettement]] est d'environ {{nobr|4 années}} en 2013. Sur une période de {{nobr|14 années}}, ce ratio présente un minimum d'environ un an en 2005 et un maximum très élevé, de plus de {{nobr|50 années}} en 2009.
+{{Clr}}
+
+=== Évolution de la capacité d'autofinancement (CAF) et de l'encours de la dette de 2000 à 2013 ===
+Les courbes G4a et G4b présentent l'historique des [[Dette publique|dette]]s d'Issendolus.
+{| class="wikitable centre" style="width:80%;"
+ |+G4a - Capacité d'autofinancement et encours total de la dette d'Issendolus<ref group="A2" name="Alize2_2013_4"/>{{,}}<ref group="A2" name="Alize2_2013_5"/>
+ |------
+| {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 4
+ | nb_abscisses = 14
+ | lb_x1 = 2000 | lb_x2 = 2001 | lb_x3 = 2002 | lb_x4 = 2003 | lb_x5 = 2004 | lb_x6 = 2005 | lb_x7 = 2006 | lb_x8 = 2007 | lb_x9 = 2008 | lb_x10 = 2009 | lb_x11 = 2010 | lb_x12 = 2011 | lb_x13 = 2012 | lb_x14 = 2013
+ | y_max =900 | y_min = 0
+ | pas_grille_principale = 200 | pas_grille_secondaire = 100
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = brightblue
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = red
+ | epaisseur_serie3 = 0.9  | coul_serie_3 = teal
+ | epaisseur_serie4 = 0.9  | coul_serie_4 = black
+ | S01V01 = 114  | S02V01 = 142  | S03V01 = 129  | S04V01 = 369 
+ | S01V02 = 52  | S02V02 = 118  | S03V02 = 134  | S04V02 = 389 
+ | S01V03 = 90  | S02V03 = 174  | S03V03 = 127  | S04V03 = 379 
+ | S01V04 = 75  | S02V04 = 243  | S03V04 = 130  | S04V04 = 390 
+ | S01V05 = 117  | S02V05 = 217  | S03V05 = 138  | S04V05 = 396 
+ | S01V06 = 122  | S02V06 = 237  | S03V06 = 148  | S04V06 = 415 
+ | S01V07 = 130  | S02V07 = 454  | S03V07 = 160  | S04V07 = 443 
+ | S01V08 = 96  | S02V08 = 407  | S03V08 = 168  | S04V08 = 462 
+ | S01V09 = 168  | S02V09 = 359  | S03V09 = 170  | S04V09 = 487 
+ | S01V10 = 4  | S02V10 = 881  | S03V10 = 162  | S04V10 = 599 
+ | S01V11 = 53  | S02V11 = 820  | S03V11 = 173  | S04V11 = 628 
+ | S01V12 = 98  | S02V12 = 767  | S03V12 = 194  | S04V12 = 644 
+ | S01V13 = 106  | S02V13 = 771  | S03V13 = 194  | S04V13 = 659 
+ | S01V14 = 158  | S02V14 = 717  | S03V14 = 187  | S04V14 = 682 
+ | points = oui}}
+ |------
+ | Valeurs en euros<br />Issendolus, par habitant : [[fichier:Bb blue.jpg|10px|alt=Point bleu|link=]] CAF [[fichier:Red rectangle.svg|10px|alt=Point rouge|link=]] Encours total de la dette <br />En moyenne pour la strate : [[fichier:Flag of Beni.svg|10px|alt=Point vert|link=]] CAF [[fichier:Black222.JPG|10px|alt=Point noir|link=]] Encours total de la dette 
+ |}
+
+{| class="wikitable centre" style="width:80%;"
+ |+G4b - Nombre d'années pour rembourser la dette en fonction de la [[capacité d'autofinancement|CAF]] d'Issendolus<ref group="A2" name="Alize2_2013_4"/>{{,}}<ref group="A2" name="Alize2_2013_5"/>
+ |------
+ | {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 1
+ | nb_abscisses = 14
+ | lb_x1 = 2000 | lb_x2 = 2001 | lb_x3 = 2002 | lb_x4 = 2003 | lb_x5 = 2004 | lb_x6 = 2005 | lb_x7 = 2006 | lb_x8 = 2007 | lb_x9 = 2008 | lb_x10 = 2009 | lb_x11 = 2010 | lb_x12 = 2011 | lb_x13 = 2012 | lb_x14 = 2013
+ | y_max =60 | y_min = 0
+ | pas_grille_principale = 5 | pas_grille_secondaire = 1
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = brightblue
+ | S01V01 = 1 
+ | S01V02 = 2 
+ | S01V03 = 1 
+ | S01V04 = 3 
+ | S01V05 = 1 
+ | S01V06 = 1 
+ | S01V07 = 3 
+ | S01V08 = 4 
+ | S01V09 = 2 
+ | S01V10 = 50 
+ | S01V11 = 15 
+ | S01V12 = 7 
+ | S01V13 = 7 
+ | S01V14 = 4 
+ | points = oui}}
+ |------
+ | Valeurs en années<br />Issendolus,  : [[fichier:Bb blue.jpg|10px|alt=Point bleu|link=]] Ratio = Encours de la dette / CAF 
+ |}
+{{Clr}}
+
+=== Tableau des valeurs d'endettement de 2010 à 2013 ===
+{|class="wikitable centre"
+ |+T4v - Encours de la dette et capacité d'autofinancement d'Issendolus de 2010 à 2013<ref group="A2" name="Alize2_2013_4"/>{{,}}<ref group="A2" name="Alize2_2013_5"/>
+ |------
+ |
+ ! id="DETTE_CAF2010" colspan="3" style="background-color: #ffffff" |2010
+ ! id="DETTE_CAF2011" colspan="3" style="background-color: #ffffff" |2011
+ ! id="DETTE_CAF2012" colspan="3" style="background-color: #ffffff" |2012
+ ! id="DETTE_CAF2013" colspan="3" style="background-color: #ffffff" |2013
+ |-
+ ! id="DETTE_CAFh" style="background:#ffffff" | Chiffres clés
+ ! id="DETTE_CAF2010V" headers="DETTE_CAF2010" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="DETTE_CAF2010P" headers="DETTE_CAF2010" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ ! id="DETTE_CAF2010S" headers="DETTE_CAF2010" scope="col" style="background-color: #f0f0cc" | Strate (€)
+ ! id="DETTE_CAF2011V" headers="DETTE_CAF2011" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="DETTE_CAF2011P" headers="DETTE_CAF2011" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ ! id="DETTE_CAF2011S" headers="DETTE_CAF2011" scope="col" style="background-color: #f0f0cc" | Strate (€)
+ ! id="DETTE_CAF2012V" headers="DETTE_CAF2012" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="DETTE_CAF2012P" headers="DETTE_CAF2012" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ ! id="DETTE_CAF2012S" headers="DETTE_CAF2012" scope="col" style="background-color: #f0f0cc" | Strate (€)
+ ! id="DETTE_CAF2013V" headers="DETTE_CAF2013" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="DETTE_CAF2013P" headers="DETTE_CAF2013" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ ! id="DETTE_CAF2013S" headers="DETTE_CAF2013" scope="col" style="background-color: #f0f0cc" | Strate (€)
+ |-
+ ! headers="DETTE_CAFh" scope="row" style="background-color: #ffcfb2" | [[Encours]] de la [[Emprunt (finance)|dette]] au 31 décembre de l'année
+ | headers="DETTE_CAF2010 DETTE_CAF2010V" style="text-align:right;background-color: #ffcfb2" | {{unité|440}}
+ | headers="DETTE_CAF2010 DETTE_CAF2010P" style="text-align:right;background-color: #ffcfb2" | {{unité|820}}
+ | headers="DETTE_CAF2010 DETTE_CAF2010S" style="text-align:right;background-color: #f0f0cc" | {{unité|628}}
+ | headers="DETTE_CAF2011 DETTE_CAF2011V" style="text-align:right;background-color: #ffcfb2" | {{unité|419}}
+ | headers="DETTE_CAF2011 DETTE_CAF2011P" style="text-align:right;background-color: #ffcfb2" | {{unité|767}}
+ | headers="DETTE_CAF2011 DETTE_CAF2011S" style="text-align:right;background-color: #f0f0cc" | {{unité|644}}
+ | headers="DETTE_CAF2012 DETTE_CAF2012V" style="text-align:right;background-color: #ffcfb2" | {{unité|416}}
+ | headers="DETTE_CAF2012 DETTE_CAF2012P" style="text-align:right;background-color: #ffcfb2" | {{unité|771}}
+ | headers="DETTE_CAF2012 DETTE_CAF2012S" style="text-align:right;background-color: #f0f0cc" | {{unité|659}}
+ | headers="DETTE_CAF2013 DETTE_CAF2013V" style="text-align:right;background-color: #ffcfb2" | {{unité|385}}
+ | headers="DETTE_CAF2013 DETTE_CAF2013P" style="text-align:right;background-color: #ffcfb2" | {{unité|717}}
+ | headers="DETTE_CAF2013 DETTE_CAF2013S" style="text-align:right;background-color: #f0f0cc" | {{unité|682}}
+ |-
+ ! headers="DETTE_CAFh" scope="row" style="background-color: #ffcfb2" | [[Capacité d'autofinancement]] (CAF)
+ | headers="DETTE_CAF2010 DETTE_CAF2010V" style="text-align:right;background-color: #ffcfb2" | {{unité|29}}
+ | headers="DETTE_CAF2010 DETTE_CAF2010P" style="text-align:right;background-color: #ffcfb2" | {{unité|53}}
+ | headers="DETTE_CAF2010 DETTE_CAF2010S" style="text-align:right;background-color: #f0f0cc" | {{unité|173}}
+ | headers="DETTE_CAF2011 DETTE_CAF2011V" style="text-align:right;background-color: #ffcfb2" | {{unité|54}}
+ | headers="DETTE_CAF2011 DETTE_CAF2011P" style="text-align:right;background-color: #ffcfb2" | {{unité|98}}
+ | headers="DETTE_CAF2011 DETTE_CAF2011S" style="text-align:right;background-color: #f0f0cc" | {{unité|194}}
+ | headers="DETTE_CAF2012 DETTE_CAF2012V" style="text-align:right;background-color: #ffcfb2" | {{unité|57}}
+ | headers="DETTE_CAF2012 DETTE_CAF2012P" style="text-align:right;background-color: #ffcfb2" | {{unité|106}}
+ | headers="DETTE_CAF2012 DETTE_CAF2012S" style="text-align:right;background-color: #f0f0cc" | {{unité|194}}
+ | headers="DETTE_CAF2013 DETTE_CAF2013V" style="text-align:right;background-color: #ffcfb2" | {{unité|85}}
+ | headers="DETTE_CAF2013 DETTE_CAF2013P" style="text-align:right;background-color: #ffcfb2" | {{unité|158}}
+ | headers="DETTE_CAF2013 DETTE_CAF2013S" style="text-align:right;background-color: #f0f0cc" | {{unité|187}}
+ |-
+ ! colspan="13" style="background-color: #ffffff" | Les valeurs sont arrondies au millier d'euros (k€) le plus proche.
+ |-
+ |}
+{{Clr}}
+
+== Faits en rapport avec les finances locales ==
+{{...}}
+
+== Références ==
+=== Notes ===
+{{Références|groupe=Note|colonnes=2}}
+
+=== Base de données du ministère du Budget, relative aux comptes des communes ===
+{{Références|groupe=A2|colonnes=2}}
+
+=== Autres références ===
+{{Références|colonnes=2}}
+
+[[Catégorie:Finances des villes du département du Lot|Issendolus]]
+[[Catégorie:Issendolus]]
+<!-- Fin de la section générée le 22 juillet 2015
+    par le programme genWikiCode.py complet version 1.0.5 : Yin Yang Zêta 
+    et le modèle modele_1.0.5_detail.txt pour l'article Finances de la commune d'Issendolus.
+    En cas de problème, contactez-moi SVP : Utilisateur:Thierry46 -->

@@ -1,0 +1,106 @@
+[
+    [
+        "0",
+        "RESULTAT COMPTABLE"
+    ],
+    [
+        "0",
+        "TOTAL DES PRODUITS DE FONCTIONNEMENT"
+    ],
+    [
+        "0",
+        "TOTAL DES CHARGES DE FONCTIONNEMENT"
+    ],
+    [
+        "0",
+        "TOTAL DES RESSOURCES D'INVESTISSEMENT"
+    ],
+    [
+        "0",
+        "Besoin ou capacit\u00e9 de financement de la section d'investissement"
+    ],
+    [
+        "0",
+        "TOTAL DES EMPLOIS D'INVESTISSEMENT"
+    ],
+    [
+        "1",
+        "dont : Charges de personnel"
+    ],
+    [
+        "1",
+        "Achats et charges externes"
+    ],
+    [
+        "1",
+        "dont : Imp\u00f4ts Locaux"
+    ],
+    [
+        "1",
+        "Autres imp\u00f4ts et taxes"
+    ],
+    [
+        "1",
+        "Dotation globale de fonctionnement"
+    ],
+    [
+        "1",
+        "Charges financi\u00e8res"
+    ],
+    [
+        "1",
+        "Subventions vers\u00e9es"
+    ],
+    [
+        "1",
+        "Contingents"
+    ],
+    [
+        "2",
+        "TOTAL DES EMPLOIS D'INVESTISSEMENT"
+    ],
+    [
+        "2",
+        "Subventions re\u00e7ues"
+    ],
+    [
+        "2",
+        "FCTVA"
+    ],
+    [
+        "2",
+        "dont : D\u00e9penses d'\u00e9quipement"
+    ],
+    [
+        "2",
+        "Remboursement d'emprunts et dettes assimil\u00e9es"
+    ],
+    [
+        "2",
+        "dont : Emprunts bancaires et dettes assimil\u00e9es"
+    ],
+    [
+        "3",
+        "Taxe d'habitation (y compris THLV)"
+    ],
+    [
+        "3",
+        "Foncier b\u00e2ti"
+    ],
+    [
+        "3",
+        "Foncier non b\u00e2ti"
+    ],
+    [
+        "4",
+        "Capacit\u00e9 d'autofinancement = CAF"
+    ],
+    [
+        "5",
+        "Encours de la dette au 31/12/N"
+    ],
+    [
+        "5",
+        "Annuit\u00e9 de la dette"
+    ]
+]

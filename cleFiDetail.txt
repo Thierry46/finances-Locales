@@ -1,0 +1,35 @@
+[
+    {
+        "alias": "Taux Taxe d'habitation",
+        "libelles": [
+            "Taxe d'habitation (y compris THLV)",
+            "Produits taxe d'habitation"
+        ],
+        "titres": [
+            "Les taux et les produits de la fiscalit\u00e9 directe locale",
+            "Potentiel fiscal"
+        ]
+    },
+    {
+        "alias": "Taux Taxe fonci\u00e8re b\u00e2ti",
+        "libelles": [
+            "Taxe fonci\u00e8re sur les propri\u00e9t\u00e9s b\u00e2ties",
+            "Produits foncier b\u00e2ti"
+        ],
+        "titres": [
+            "Les taux et les produits de la fiscalit\u00e9 directe locale",
+            "Produits taxe d'habitation"
+        ]
+    },
+    {
+        "alias": "Taux Taxe fonci\u00e8re non b\u00e2ti",
+        "libelles": [
+            "Taxe fonci\u00e8re sur les propri\u00e9t\u00e9s non b\u00e2ties",
+            "Produits foncier non b\u00e2ti"
+        ],
+        "titres": [
+            "Les taux et les produits de la fiscalit\u00e9 directe locale",
+            "Produits taxe d'habitation"
+        ]
+    }
+]

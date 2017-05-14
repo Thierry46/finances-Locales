@@ -1,0 +1,45 @@
+------------------------------------
+Evolutions du projet FinancesLocales
+------------------------------------
+
+* v0.5 à v1.0.x :
+    - Voir : https://fr.wikipedia.org/wiki/Utilisateur:Thierry46/Finances_Locales#.C3.89volutions
+* v0.4 : 3/6/2015 :
+    - Correction problèmes d'affichage des graphiques
+    - Gestion des données manquantes sur le site du ministère des finances
+    - Recuperation des erreurs d'exécution et écriture dans un fichier
+        des informations précises pour correction.
+    - Correction problémes de caractères accentués dans paramètre
+        lors de sa conversion en URL
+    - Séparation extraction et traitement des donnees
+        2 programmes indépendants : extractionMinFi.py et genWikiCode.py
+        
+* v0.3 : 30/5/2015 : Codage des graphiques en Wikicode
+
+* v0.2 : 28/5/2015 :
+        - Paramètre -c pour sortie minimum ou complète dans le tableau affiché
+        - Si toutes les valeurs sont supérieures au millon d'Euros,
+            arrondi au million d'Euro inférieur
+
+* v0.1 : 27/5/2015 : Version avec extraction et génération des textes opérationelle
+
+------------------------------------------------------------
+Licence : GPLv3 (en français dans le fichier gpl-3.0.fr.txt)
+Copyright (c) 2015 - Thierry Maillard
+------------------------------------------------------------
+
+    This file is part of FinancesLocales project.
+
+    FinancesLocales project is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    FinancesLocales project is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with FinancesLocales project. 
+    If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.

@@ -1,0 +1,280 @@
+************* Module extractionMinFi
+R: 38, 0: Too many arguments (8/5) (too-many-arguments)
+R: 38, 0: Too many local variables (22/15) (too-many-locals)
+R: 38, 0: Too many branches (14/12) (too-many-branches)
+R: 38, 0: Too many statements (53/50) (too-many-statements)
+R:229, 0: Too many arguments (6/5) (too-many-arguments)
+R:263, 0: Too many arguments (7/5) (too-many-arguments)
+R:263, 0: Too many local variables (20/15) (too-many-locals)
+R:318, 0: Too many arguments (7/5) (too-many-arguments)
+R:342, 0: Too many arguments (6/5) (too-many-arguments)
+************* Module extractionWeb
+R: 65, 0: Too many local variables (31/15) (too-many-locals)
+W:100,16: Unused variable 'arg' (unused-variable)
+R: 65, 0: Too many branches (21/12) (too-many-branches)
+R: 65, 0: Too many statements (93/50) (too-many-statements)
+************* Module extractionWikipediaFr
+R: 35, 0: Too many local variables (18/15) (too-many-locals)
+R:244, 0: Too many local variables (17/15) (too-many-locals)
+************* Module genHTML
+R:232, 0: Too many local variables (19/15) (too-many-locals)
+************* Module genPaquets
+R: 57, 0: Too many local variables (17/15) (too-many-locals)
+W: 88,16: Unused variable 'arg' (unused-variable)
+************* Module genWikiCode
+R: 64, 0: Too many local variables (28/15) (too-many-locals)
+W: 94,16: Unused variable 'arg' (unused-variable)
+R: 64, 0: Too many branches (16/12) (too-many-branches)
+R: 64, 0: Too many statements (69/50) (too-many-statements)
+R:235, 0: Too many arguments (6/5) (too-many-arguments)
+R:235, 0: Too many local variables (17/15) (too-many-locals)
+R:316, 0: Too many local variables (18/15) (too-many-locals)
+R:316, 0: Too many branches (20/12) (too-many-branches)
+R:316, 0: Too many statements (61/50) (too-many-statements)
+************* Module genWikiCodeGraphiques
+R: 37, 0: Too many arguments (6/5) (too-many-arguments)
+R: 37, 0: Too many local variables (26/15) (too-many-locals)
+R:412, 0: Too many arguments (7/5) (too-many-arguments)
+R:412, 0: Too many local variables (33/15) (too-many-locals)
+R:412, 0: Too many branches (31/12) (too-many-branches)
+R:412, 0: Too many statements (117/50) (too-many-statements)
+R:633, 0: Too many local variables (24/15) (too-many-locals)
+************* Module genWikiCodeTableaux
+R: 37, 0: Too many arguments (6/5) (too-many-arguments)
+R: 37, 0: Too many local variables (26/15) (too-many-locals)
+R:198, 0: Too many arguments (9/5) (too-many-arguments)
+R:198, 0: Too many local variables (19/15) (too-many-locals)
+R:198, 0: Too many branches (14/12) (too-many-branches)
+R:284, 0: Too many arguments (9/5) (too-many-arguments)
+R:347, 0: Too many arguments (6/5) (too-many-arguments)
+R:347, 0: Too many local variables (49/15) (too-many-locals)
+R:347, 0: Too many branches (15/12) (too-many-branches)
+R:347, 0: Too many statements (99/50) (too-many-statements)
+R:749, 0: Too many branches (13/12) (too-many-branches)
+************* Module genWikiCodeTexte
+R: 38, 0: Too many arguments (7/5) (too-many-arguments)
+R: 38, 0: Too many local variables (29/15) (too-many-locals)
+R: 38, 0: Too many statements (69/50) (too-many-statements)
+************* Module test_utilitaires
+R:156, 0: Too many arguments (7/5) (too-many-arguments)
+************* Module utilitaires
+R:233, 0: Too many branches (14/12) (too-many-branches)
+R:287, 0: Too many local variables (18/15) (too-many-locals)
+W:346, 4: Using the global statement (global-statement)
+R:  1, 0: Similar lines in 2 files
+==genPaquets:60
+==genWikiCode:66
+    verbose = False
+
+    # Lecture du fichier de propriétés
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+
+    #############################
+    # Analyse des arguments reçus
+    #############################
+    if argv is None:
+        argv = sys.argv
+
+    nomProg = os.path.basename(argv[0])
+
+    # parse command line options
+    try:
+        opts, args = getopt.getopt(
+            argv[1:],
+            "huvV",
+            ["help", "usage", "version", "verbose"]
+            )
+    except getopt.error as msg:
+        print(msg)
+        print("To get help use --help ou -h")
+        sys.exit(1)
+
+    # process options
+    for option, arg in opts:
+        verboseOpt, sortiePgm = \
+            utilitaires.traiteOptionStd(config, option, nomProg, __doc__, [])
+        verbose = verbose or verboseOpt
+        if sortiePgm:
+            sys.exit(0)
+
+    utilitaires.checkPythonVersion(verbose)
+ (duplicate-code)
+R:  1, 0: Similar lines in 3 files
+==extractionWeb:81
+==genPaquets:69
+==genWikiCode:75
+    if argv is None:
+        argv = sys.argv
+
+    nomProg = os.path.basename(argv[0])
+
+    # parse command line options
+    try:
+        opts, args = getopt.getopt(
+            argv[1:], (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==genPaquets:147
+==genWikiCode:404
+if __name__ == "__main__":
+    # Contournement OS X invalide locale
+    if platform.system() == 'Darwin':
+        locale.setlocale(locale.LC_ALL, os.getenv('LANG'))
+    main()
+    sys.exit(0) (duplicate-code)
+R:  1, 0: Similar lines in 2 files
+==extractionWeb:47
+==genPaquets:41
+import sys
+import getopt
+import os
+import os.path
+import platform (duplicate-code)
+
+
+Report
+======
+2511 statements analysed.
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |20     |20         |=          |100.00      |85.00    |
++---------+-------+-----------+-----------+------------+---------+
+|class    |0      |0          |=          |0           |0        |
++---------+-------+-----------+-----------+------------+---------+
+|method   |0      |0          |=          |0           |0        |
++---------+-------+-----------+-----------+------------+---------+
+|function |117    |117        |=          |100.00      |94.02    |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+External dependencies
+---------------------
+::
+
+    extractionMinFi (extractionWeb,test_extractionMinFi)
+    extractionWeb (test_global,test_extractionWeb)
+    extractionWikipediaFr (extractionWeb,test_extractionWikipediaFr)
+    genCleFi (test_global)
+    genHTML (test_genHTML,genPaquets,genWikiCode)
+    genPaquets (test_global)
+    genWikiCode (test_global,test_genWikicode)
+    genWikiCodeGraphiques (genWikiCode)
+    genWikiCodeTableaux (genWikiCode,test_genWikiCodeTableaux)
+    genWikiCodeTexte (genWikiCode,test_genWikicodeTexte)
+    lxml 
+      \-html (extractionMinFi)
+    pytest (test_genHTML,test_extractionWikipediaFr,test_genWikiCodeTableaux,test_genWikicodeTexte,test_genWikicode,test_extractionWeb,test_utilitaires,test_extractionMinFi)
+
+
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |3390   |63.35 |3390     |=          |
++----------+-------+------+---------+-----------+
+|docstring |1510   |28.22 |1510     |=          |
++----------+-------+------+---------+-----------+
+|comment   |320    |5.98  |320      |=          |
++----------+-------+------+---------+-----------+
+|empty     |131    |2.45  |130      |+1.00      |
++----------+-------+------+---------+-----------+
+
+
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |65    |65       |=          |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |1.125 |1.125    |-0.00      |
++-------------------------+------+---------+-----------+
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |0      |2        |-2.00      |
++-----------+-------+---------+-----------+
+|refactor   |52     |52       |=          |
++-----------+-------+---------+-----------+
+|warning    |4      |4        |=          |
++-----------+-------+---------+-----------+
+|error      |0      |0        |=          |
++-----------+-------+---------+-----------+
+
+
+
+% errors / warnings by module
+-----------------------------
+
++----------------------+------+--------+---------+-----------+
+|module                |error |warning |refactor |convention |
++======================+======+========+=========+===========+
+|genWikiCode           |0.00  |25.00   |15.38    |0.00       |
++----------------------+------+--------+---------+-----------+
+|utilitaires           |0.00  |25.00   |11.54    |0.00       |
++----------------------+------+--------+---------+-----------+
+|extractionWeb         |0.00  |25.00   |5.77     |0.00       |
++----------------------+------+--------+---------+-----------+
+|genPaquets            |0.00  |25.00   |1.92     |0.00       |
++----------------------+------+--------+---------+-----------+
+|genWikiCodeTableaux   |0.00  |0.00    |21.15    |0.00       |
++----------------------+------+--------+---------+-----------+
+|extractionMinFi       |0.00  |0.00    |17.31    |0.00       |
++----------------------+------+--------+---------+-----------+
+|genWikiCodeGraphiques |0.00  |0.00    |13.46    |0.00       |
++----------------------+------+--------+---------+-----------+
+|genWikiCodeTexte      |0.00  |0.00    |5.77     |0.00       |
++----------------------+------+--------+---------+-----------+
+|extractionWikipediaFr |0.00  |0.00    |3.85     |0.00       |
++----------------------+------+--------+---------+-----------+
+|test_utilitaires      |0.00  |0.00    |1.92     |0.00       |
++----------------------+------+--------+---------+-----------+
+|genHTML               |0.00  |0.00    |1.92     |0.00       |
++----------------------+------+--------+---------+-----------+
+
+
+
+Messages
+--------
+
++--------------------+------------+
+|message id          |occurrences |
++====================+============+
+|too-many-locals     |18          |
++--------------------+------------+
+|too-many-arguments  |14          |
++--------------------+------------+
+|too-many-branches   |9           |
++--------------------+------------+
+|too-many-statements |7           |
++--------------------+------------+
+|duplicate-code      |4           |
++--------------------+------------+
+|unused-variable     |3           |
++--------------------+------------+
+|global-statement    |1           |
++--------------------+------------+
+
+
+
+Global evaluation
+-----------------
+Your code has been rated at 9.78/10 (previous run: 9.77/10, +0.01)
+
