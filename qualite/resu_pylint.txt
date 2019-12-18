@@ -1,173 +1,59 @@
-************* Module extractionMinFi
-R: 38, 0: Too many arguments (8/5) (too-many-arguments)
-R: 38, 0: Too many local variables (23/15) (too-many-locals)
-R: 38, 0: Too many branches (14/12) (too-many-branches)
-R: 38, 0: Too many statements (54/50) (too-many-statements)
-R:233, 0: Too many arguments (6/5) (too-many-arguments)
-R:267, 0: Too many arguments (7/5) (too-many-arguments)
-R:267, 0: Too many local variables (20/15) (too-many-locals)
-R:322, 0: Too many arguments (7/5) (too-many-arguments)
-R:346, 0: Too many arguments (6/5) (too-many-arguments)
-************* Module extractionWeb
-R: 69, 0: Too many local variables (33/15) (too-many-locals)
-W:104,16: Unused variable 'arg' (unused-variable)
-R: 69, 0: Too many branches (24/12) (too-many-branches)
-R: 69, 0: Too many statements (103/50) (too-many-statements)
-C:315, 0: Missing function docstring (missing-docstring)
-************* Module extractionWikipediaFr
-C:101, 0: Line too long (108/100) (line-too-long)
-C:160, 0: Line too long (107/100) (line-too-long)
-C:178, 0: Line too long (111/100) (line-too-long)
-W:182, 0: Unnecessary semicolon (unnecessary-semicolon)
-R: 35, 0: Too many local variables (16/15) (too-many-locals)
-R: 35, 0: Too many branches (17/12) (too-many-branches)
-R: 35, 0: Too many statements (67/50) (too-many-statements)
-R:336, 0: Too many local variables (18/15) (too-many-locals)
-************* Module genCode
-C:188, 0: Wrong continued indentation.
-                                                          sousCle, verbose)
-                                                          ^   | (bad-continuation)
-C:204, 0: Wrong continued indentation.
-                                                 indicateur, extensionFic)
-                                                 ^   | (bad-continuation)
-R: 65, 0: Too many local variables (32/15) (too-many-locals)
-W: 95,16: Unused variable 'arg' (unused-variable)
-R: 65, 0: Too many branches (24/12) (too-many-branches)
-R: 65, 0: Too many statements (95/50) (too-many-statements)
-R:224, 0: Too many arguments (8/5) (too-many-arguments)
-R:224, 0: Too many local variables (16/15) (too-many-locals)
-************* Module genCodeCSV
-R: 42, 0: Too many local variables (16/15) (too-many-locals)
-R: 42, 0: Too many branches (15/12) (too-many-branches)
 ************* Module genCodeGraphiques
-R: 36, 0: Too many arguments (9/5) (too-many-arguments)
-R: 36, 0: Too many local variables (32/15) (too-many-locals)
-R: 36, 0: Too many statements (54/50) (too-many-statements)
+genCodeGraphiques.py:36:0: R0913: Too many arguments (10/5) (too-many-arguments)
+genCodeGraphiques.py:36:0: R0914: Too many local variables (37/15) (too-many-locals)
+genCodeGraphiques.py:36:0: R0915: Too many statements (64/50) (too-many-statements)
 ************* Module genCodeTableaux
-R: 39, 0: Too many arguments (7/5) (too-many-arguments)
-R: 39, 0: Too many local variables (27/15) (too-many-locals)
-R:260, 0: Too many arguments (7/5) (too-many-arguments)
-R:260, 0: Too many local variables (50/15) (too-many-locals)
-R:260, 0: Too many branches (18/12) (too-many-branches)
-R:260, 0: Too many statements (99/50) (too-many-statements)
-R:699, 0: Too many arguments (6/5) (too-many-arguments)
-R:699, 0: Too many local variables (17/15) (too-many-locals)
-R:699, 0: Too many branches (15/12) (too-many-branches)
-R:785, 0: Too many arguments (6/5) (too-many-arguments)
-R:785, 0: Too many branches (15/12) (too-many-branches)
+genCodeTableaux.py:39:0: R0913: Too many arguments (8/5) (too-many-arguments)
+genCodeTableaux.py:39:0: R0914: Too many local variables (28/15) (too-many-locals)
+genCodeTableaux.py:271:0: R0913: Too many arguments (7/5) (too-many-arguments)
+genCodeTableaux.py:271:0: R0914: Too many local variables (52/15) (too-many-locals)
+genCodeTableaux.py:271:0: R0912: Too many branches (19/12) (too-many-branches)
+genCodeTableaux.py:271:0: R0915: Too many statements (106/50) (too-many-statements)
+genCodeTableaux.py:735:0: R0913: Too many arguments (6/5) (too-many-arguments)
+genCodeTableaux.py:735:0: R0914: Too many local variables (17/15) (too-many-locals)
+genCodeTableaux.py:735:0: R0912: Too many branches (15/12) (too-many-branches)
+genCodeTableaux.py:821:0: R0913: Too many arguments (6/5) (too-many-arguments)
+genCodeTableaux.py:821:0: R0912: Too many branches (15/12) (too-many-branches)
 ************* Module genCodeTexte
-R: 39, 0: Too many arguments (8/5) (too-many-arguments)
-R: 39, 0: Too many local variables (30/15) (too-many-locals)
-R: 39, 0: Too many statements (77/50) (too-many-statements)
+genCodeTexte.py:37:0: R0913: Too many arguments (9/5) (too-many-arguments)
+genCodeTexte.py:37:0: R0914: Too many local variables (35/15) (too-many-locals)
+genCodeTexte.py:37:0: R0915: Too many statements (85/50) (too-many-statements)
 ************* Module genHTMLCodeGraphiques
-C: 88, 0: Trailing whitespace (trailing-whitespace)
-R: 51, 0: Too many arguments (9/5) (too-many-arguments)
-R: 51, 0: Too many local variables (26/15) (too-many-locals)
-R: 51, 0: Too many branches (15/12) (too-many-branches)
-R: 51, 0: Too many statements (53/50) (too-many-statements)
+genHTMLCodeGraphiques.py:51:0: R0913: Too many arguments (10/5) (too-many-arguments)
+genHTMLCodeGraphiques.py:51:0: R0914: Too many local variables (28/15) (too-many-locals)
+genHTMLCodeGraphiques.py:51:0: R0912: Too many branches (14/12) (too-many-branches)
+genHTMLCodeGraphiques.py:51:0: R0915: Too many statements (51/50) (too-many-statements)
 ************* Module genHTMLCodeTableaux
-R: 34, 0: Too many arguments (8/5) (too-many-arguments)
-R: 34, 0: Too many local variables (18/15) (too-many-locals)
-R: 34, 0: Too many branches (14/12) (too-many-branches)
-R:119, 0: Too many arguments (8/5) (too-many-arguments)
-************* Module genListeDep
-C: 78, 0: Wrong continued indentation.
-                                   )
-                                  |^ (bad-continuation)
-R: 56, 0: Too many local variables (25/15) (too-many-locals)
-W: 85,16: Unused variable 'arg' (unused-variable)
-R: 56, 0: Too many statements (56/50) (too-many-statements)
-************* Module genSiteWeb
-R: 58, 0: Too many local variables (18/15) (too-many-locals)
-W: 89,16: Unused variable 'arg' (unused-variable)
-************* Module genWikiCodeGraphiques
-R: 35, 0: Too many arguments (8/5) (too-many-arguments)
-R: 35, 0: Too many local variables (30/15) (too-many-locals)
-R: 35, 0: Too many branches (22/12) (too-many-branches)
-R: 35, 0: Too many statements (87/50) (too-many-statements)
-R:173, 0: Too many local variables (24/15) (too-many-locals)
-************* Module genWikiCodeTableaux
-R: 34, 0: Too many arguments (9/5) (too-many-arguments)
-R: 34, 0: Too many local variables (19/15) (too-many-locals)
-R: 34, 0: Too many branches (14/12) (too-many-branches)
-R:120, 0: Too many arguments (9/5) (too-many-arguments)
-************* Module test_extractionWeb
-C: 97, 0: Wrong hanging indentation.
-        ('001', True),
-       |^ (bad-continuation)
-C: 98, 0: Wrong hanging indentation.
-        ('009', True),
-       |^ (bad-continuation)
-C: 99, 0: Wrong hanging indentation.
-        ('011', True),
-       |^ (bad-continuation)
-C:100, 0: Wrong hanging indentation.
-        ('019', True),
-       |^ (bad-continuation)
-C:101, 0: Wrong hanging indentation.
-        ('097', True),
-       |^ (bad-continuation)
-C:102, 0: Wrong hanging indentation.
-        ('090', True),
-       |^ (bad-continuation)
-C:103, 0: Wrong hanging indentation.
-        ('101', True),
-       |^ (bad-continuation)
-C:104, 0: Wrong hanging indentation.
-        ('104', True),
-       |^ (bad-continuation)
-C:105, 0: Wrong hanging indentation.
-        ('02A', True),
-       |^ (bad-continuation)
-C:106, 0: Wrong hanging indentation.
-        ('02B', True),
-       |^ (bad-continuation)
-C:107, 0: Wrong hanging indentation.
-        ('000', False),
-       |^ (bad-continuation)
-C:108, 0: Wrong hanging indentation.
-        ('098', False),
-       |^ (bad-continuation)
-C:109, 0: Wrong hanging indentation.
-        ('200', False),
-       |^ (bad-continuation)
-C:110, 0: Wrong hanging indentation.
-        ('02C', False),
-       |^ (bad-continuation)
-C:111, 0: Wrong hanging indentation.
-        ('toto', False),
-       |^ (bad-continuation)
-C:112, 0: Wrong hanging indentation.
-        ('XXX', False),
-       |^ (bad-continuation)
-C:113, 0: Wrong hanging indentation.
-        ('1041', False)
-       |^ (bad-continuation)
-************* Module test_genHTML
-R:168, 0: Too many local variables (17/15) (too-many-locals)
-************* Module test_global
-R:102, 0: Too many local variables (16/15) (too-many-locals)
-************* Module test_utilitaires
-R:137, 0: Too many arguments (7/5) (too-many-arguments)
-************* Module utilCode
-R:137, 0: Too many local variables (19/15) (too-many-locals)
-R:137, 0: Too many branches (28/12) (too-many-branches)
-R:137, 0: Too many statements (86/50) (too-many-statements)
+genHTMLCodeTableaux.py:34:0: R0913: Too many arguments (10/5) (too-many-arguments)
+genHTMLCodeTableaux.py:34:0: R0914: Too many local variables (22/15) (too-many-locals)
+genHTMLCodeTableaux.py:116:0: R0913: Too many arguments (10/5) (too-many-arguments)
+genHTMLCodeTableaux.py:116:0: R0914: Too many local variables (16/15) (too-many-locals)
+************* Module ratioTendance
+ratioTendance.py:72:0: R0912: Too many branches (20/12) (too-many-branches)
+ratioTendance.py:72:0: R0915: Too many statements (63/50) (too-many-statements)
+************* Module updateDataMinFi
+updateDataMinFi.py:55:0: R0914: Too many local variables (26/15) (too-many-locals)
+updateDataMinFi.py:86:16: W0612: Unused variable 'arg' (unused-variable)
+updateDataMinFi.py:55:0: R0915: Too many statements (55/50) (too-many-statements)
+************* Module updateScoreWikipedia
+updateScoreWikipedia.py:54:0: R0914: Too many local variables (16/15) (too-many-locals)
+updateScoreWikipedia.py:84:16: W0612: Unused variable 'arg' (unused-variable)
+updateScoreWikipedia.py:192:0: R0914: Too many local variables (18/15) (too-many-locals)
 ************* Module utilitaires
-C:429, 0: No space allowed after bracket
-    accents = { 'a': ['à', 'ã', 'á', 'â'],
-              ^ (bad-whitespace)
-R:210, 0: Too many branches (14/12) (too-many-branches)
-R:264, 0: Too many local variables (19/15) (too-many-locals)
-W:329, 4: Using the global statement (global-statement)
-R:  1, 0: Similar lines in 2 files
-==genCode:67
-==genSiteWeb:61
+utilitaires.py:158:0: R0912: Too many branches (14/12) (too-many-branches)
+utilitaires.py:212:0: R0914: Too many local variables (19/15) (too-many-locals)
+utilitaires.py:277:4: W0603: Using the global statement (global-statement)
+utilitaires.py:323:8: C0415: Import outside toplevel (matplotlib) (import-outside-toplevel)
+utilitaires.py:323:8: W0611: Unused import matplotlib (unused-import)
+utilitaires.py:1:0: R0801: Similar lines in 2 files
+==updateDataMinFi:60
+==updateScoreWikipedia:58
     verbose = False
 
     # Lecture du fichier de propriétés
     config = configparser.RawConfigParser()
-    config.read('FinancesLocales.properties')
+    ficProperties = 'FinancesLocales.properties'
+    config.read(ficProperties)
 
     #############################
     # Analyse des arguments reçus
@@ -179,377 +65,33 @@ R:  1, 0: Similar lines in 2 files
 
     # parse command line options
     try:
-        opts, args = getopt.getopt(
-            argv[1:],
-            "huvV",
-            ["help", "usage", "version", "verbose"]
-            )
+        opts, args = getopt.getopt(argv[1:], "huvV",
+                                   ["help", "usage", "version", "verbose"])
     except getopt.error as msg:
         print(msg)
-        print("To get help use --help ou -h")
+        print("Pour avoir de l'aide : --help ou -h", file=sys.stderr)
         sys.exit(1)
 
     # process options
     for option, arg in opts:
         verboseOpt, sortiePgm = \
-            utilitaires.traiteOptionStd(config, option, nomProg, __doc__, [])
-        verbose = verbose or verboseOpt
-        if sortiePgm:
-            sys.exit(0)
-
-    utilitaires.checkPythonVersion(config, verbose) (duplicate-code)
-R:  1, 0: Similar lines in 2 files
-==genHTMLCodeTableaux:34
-==genWikiCodeTableaux:34
-                  listeValeurs, couleurTitres, couleurStrate,
-                  isComplet, verbose):
-    """ Génère le Wikicode pour un tableau historique sur N années """
-    if verbose:
-        print("Entrée dans GenereTableau")
-        print('ville=', ville['nom'])
-        print("isComplet :", str(isComplet))
-
-    # Détermination de l'arrondi à utiliser :
-    # Arrondi en million sauf si une des valeurs à afficher est < 1000000
-    arrondi = 2
-    arrondiStr = 'M€'
-    arrondiStrAffiche = "million d'euros (M€)"
-    for valeur in listeValeurs:
-        for annee in sorted(listAnnees[:nbAnneesTableau]):
-            valeurData = utilitaires.getValeur(ville, valeur[0], annee, "Valeur totale")
-            if int(valeurData) < 1000000:
-                arrondi = 1
-                arrondiStr = 'k€'
-                arrondiStrAffiche = "millier d'euros (k€)"
-    if verbose:
-        print("arrondi =", arrondi, ", arrondiStr = ", arrondiStr)
-        print("arrondiStrAffiche = ", arrondiStrAffiche)
-
-    # Titres
-    ligne = "" (duplicate-code)
-R:  1, 0: Similar lines in 2 files
-==genListeDep:75
-==genSiteWeb:79
-            "huvV",
-            ["help", "usage", "version", "verbose"]
-            )
-    except getopt.error as msg:
-        print(msg)
-        print("To get help use --help ou -h")
+            utilitaires.traiteOptionStd(config, option, nomProg, __doc__, (duplicate-code)
+utilitaires.py:1:0: R0801: Similar lines in 2 files
+==updateDataMinFi:99
+==updateScoreWikipedia:97
+                "\nau lieu de : " + str(len(args))
+        print(msg, file=sys.stderr)
         sys.exit(1)
 
-    # process options
-    for option, arg in opts:
-        verboseOpt, sortiePgm = \
-            utilitaires.traiteOptionStd(config, option, nomProg, __doc__, [])
-        verbose = verbose or verboseOpt
-        if sortiePgm:
-            sys.exit(0)
-
-    utilitaires.checkPythonVersion(config, verbose)
-
-    if len(args) != 0: (duplicate-code)
-R:  1, 0: Similar lines in 2 files
-==genCode:64
-==genListeDep:55
-def main(argv=None):
-    """ Génère le Wikicode et du HTML pour les villes d'un département """
-    # Valeur par défaut des options
-    verbose = False
-
-    # Lecture du fichier de propriétés
-    config = configparser.RawConfigParser()
-    config.read('FinancesLocales.properties')
-
-    #############################
-    # Analyse des arguments reçus
-    #############################
-    if argv is None:
-        argv = sys.argv
-
-    nomProg = os.path.basename(argv[0])
-
-    # parse command line options
-    try: (duplicate-code)
-R:  1, 0: Similar lines in 2 files
-==genCode:85
-==genListeDep:75
-            "huvV",
-            ["help", "usage", "version", "verbose"]
-            )
-    except getopt.error as msg:
-        print(msg)
-        print("To get help use --help ou -h")
-        sys.exit(1)
-
-    # process options
-    for option, arg in opts:
-        verboseOpt, sortiePgm = \
-            utilitaires.traiteOptionStd(config, option, nomProg, __doc__, [])
-        verbose = verbose or verboseOpt
-        if sortiePgm:
-            sys.exit(0)
-
-    utilitaires.checkPythonVersion(config, verbose) (duplicate-code)
-R:  1, 0: Similar lines in 2 files
-==genListeDep:58
-==genSiteWeb:61
-    verbose = False
-
-    # Lecture du fichier de propriétés
-    config = configparser.RawConfigParser()
-    config.read('FinancesLocales.properties')
-
-    #############################
-    # Analyse des arguments reçus
-    #############################
-    if argv is None:
-        argv = sys.argv
-
-    nomProg = os.path.basename(argv[0])
-
-    # parse command line options
-    try: (duplicate-code)
-R:  1, 0: Similar lines in 2 files
-==genHTMLCodeTableaux:124
-==genWikiCodeTableaux:125
-        print('ville=', ville['nom'])
-        print("isComplet :", str(isComplet))
-
-    # v1.0.0 : pour cas particulier Paris : Recherche années ou les taux sont disponibles
-    anneesOK = [annee for annee in sorted(listAnnees[:nbAnneesTableau])
-                if ville['data'][listeValeurs[0][0]][str(annee)] is not None]
-    if verbose:
-        print('anneesOK=', anneesOK)
-
-    # Titres
-    ligne = "" (duplicate-code)
-R:  1, 0: Similar lines in 3 files
-==extractionWeb:85
-==genCode:76
-==genSiteWeb:70
-    if argv is None:
-        argv = sys.argv
-
-    nomProg = os.path.basename(argv[0])
-
-    # parse command line options
-    try:
-        opts, args = getopt.getopt(
-            argv[1:], (duplicate-code)
-R:  1, 0: Similar lines in 2 files
-==extractionWeb:358
-==extractionWikipediaFr:197
-    if verbose:
-        print("listeVilleDict[:5] : ")
-        for ville in listeVilleDict[:5]:
-            print(ville)
-        print("Sortie de recupVilles")
-
-    return listeVilleDict
+    # Vérifie et récupère le nom de la base à mettre à jour
+    databasePath = args[0]
+    if not databasePath.endswith(".db"):
+        msg = __doc__ + "Erreur : Le nom de la base de donnée doit se terminer par .db :\n" + \
+                databasePath
+        print(msg, file=sys.stderr)
+        sys.exit(2)
  (duplicate-code)
-R:  1, 0: Similar lines in 2 files
-==genCode:285
-==genSiteWeb:142
-if __name__ == "__main__":
-    # Contournement OS X invalide locale
-    if platform.system() == 'Darwin':
-        locale.setlocale(locale.LC_ALL, os.getenv('LANG'))
-    main()
-    sys.exit(0) (duplicate-code)
-R:  1, 0: Similar lines in 3 files
-==extractionWeb:51
-==genCode:44
-==genSiteWeb:42
-import sys
-import getopt
-import os
-import os.path
-import platform (duplicate-code)
 
-
-Report
-======
-3108 statements analysed.
-
-Statistics by type
-------------------
-
-+---------+-------+-----------+-----------+------------+---------+
-|type     |number |old number |difference |%documented |%badname |
-+=========+=======+===========+===========+============+=========+
-|module   |27     |27         |=          |100.00      |88.89    |
-+---------+-------+-----------+-----------+------------+---------+
-|class    |0      |0          |=          |0           |0        |
-+---------+-------+-----------+-----------+------------+---------+
-|method   |0      |0          |=          |0           |0        |
-+---------+-------+-----------+-----------+------------+---------+
-|function |138    |136        |+2.00      |99.28       |94.20    |
-+---------+-------+-----------+-----------+------------+---------+
-
-
-
-External dependencies
----------------------
-::
-
-    extractionMinFi (test_extractionMinFi,extractionWeb)
-    extractionWeb (test_global,test_extractionWeb)
-    extractionWikipediaFr (test_extractionWikipediaFr,extractionWeb)
-    genCleFi (test_global)
-    genCode (test_global)
-    genCodeCSV (genCode)
-    genCodeGraphiques (genCode)
-    genCodeTableaux (genCode,test_genCodeTableaux)
-    genCodeTexte (genCode,test_genCodeTexte)
-    genHTML (genCode,test_genHTML,genSiteWeb)
-    genHTMLCodeGraphiques (genCodeGraphiques)
-    genHTMLCodeTableaux (genCodeTableaux)
-    genListeDep (test_extractionWeb)
-    genSiteWeb (test_global)
-    genWikiCodeGraphiques (genCodeGraphiques)
-    genWikiCodeTableaux (genCodeTableaux)
-    lxml 
-      \-html (extractionMinFi)
-    matplotlib (genHTMLCodeGraphiques)
-      \-pyplot (genHTMLCodeGraphiques)
-    pytest (test_utilCode,test_extractionMinFi,test_extractionWikipediaFr,test_genHTML,test_genCodeTableaux,test_extractionWeb,test_utilitaires,test_genCodeTexte)
-    utilCode (genCode,genListeDep,test_utilCode,genCodeTexte)
-
-
-
-Raw metrics
------------
-
-+----------+-------+------+---------+-----------+
-|type      |number |%     |previous |difference |
-+==========+=======+======+=========+===========+
-|code      |4254   |63.16 |4200     |+54.00     |
-+----------+-------+------+---------+-----------+
-|docstring |1908   |28.33 |1867     |+41.00     |
-+----------+-------+------+---------+-----------+
-|comment   |398    |5.91  |378      |+20.00     |
-+----------+-------+------+---------+-----------+
-|empty     |175    |2.60  |171      |+4.00      |
-+----------+-------+------+---------+-----------+
-
-
-
-Duplication
------------
-
-+-------------------------+------+---------+-----------+
-|                         |now   |previous |difference |
-+=========================+======+=========+===========+
-|nb duplicated lines      |185   |198      |-13.00     |
-+-------------------------+------+---------+-----------+
-|percent duplicated lines |2.555 |2.784    |-0.23      |
-+-------------------------+------+---------+-----------+
-
-
-
-Messages by category
---------------------
-
-+-----------+-------+---------+-----------+
-|type       |number |previous |difference |
-+===========+=======+=========+===========+
-|convention |26     |37       |-11.00     |
-+-----------+-------+---------+-----------+
-|refactor   |79     |76       |+3.00      |
-+-----------+-------+---------+-----------+
-|warning    |6      |7        |-1.00      |
-+-----------+-------+---------+-----------+
-|error      |0      |0        |=          |
-+-----------+-------+---------+-----------+
-
-
-
-% errors / warnings by module
------------------------------
-
-+----------------------+------+--------+---------+-----------+
-|module                |error |warning |refactor |convention |
-+======================+======+========+=========+===========+
-|utilitaires           |0.00  |16.67   |16.46    |3.85       |
-+----------------------+------+--------+---------+-----------+
-|genCode               |0.00  |16.67   |6.33     |7.69       |
-+----------------------+------+--------+---------+-----------+
-|extractionWikipediaFr |0.00  |16.67   |5.06     |11.54      |
-+----------------------+------+--------+---------+-----------+
-|extractionWeb         |0.00  |16.67   |3.80     |3.85       |
-+----------------------+------+--------+---------+-----------+
-|genListeDep           |0.00  |16.67   |2.53     |3.85       |
-+----------------------+------+--------+---------+-----------+
-|genSiteWeb            |0.00  |16.67   |1.27     |0.00       |
-+----------------------+------+--------+---------+-----------+
-|genCodeTableaux       |0.00  |0.00    |13.92    |0.00       |
-+----------------------+------+--------+---------+-----------+
-|extractionMinFi       |0.00  |0.00    |11.39    |0.00       |
-+----------------------+------+--------+---------+-----------+
-|genWikiCodeGraphiques |0.00  |0.00    |6.33     |0.00       |
-+----------------------+------+--------+---------+-----------+
-|genHTMLCodeGraphiques |0.00  |0.00    |5.06     |3.85       |
-+----------------------+------+--------+---------+-----------+
-|genWikiCodeTableaux   |0.00  |0.00    |5.06     |0.00       |
-+----------------------+------+--------+---------+-----------+
-|genHTMLCodeTableaux   |0.00  |0.00    |5.06     |0.00       |
-+----------------------+------+--------+---------+-----------+
-|utilCode              |0.00  |0.00    |3.80     |0.00       |
-+----------------------+------+--------+---------+-----------+
-|genCodeTexte          |0.00  |0.00    |3.80     |0.00       |
-+----------------------+------+--------+---------+-----------+
-|genCodeGraphiques     |0.00  |0.00    |3.80     |0.00       |
-+----------------------+------+--------+---------+-----------+
-|genCodeCSV            |0.00  |0.00    |2.53     |0.00       |
-+----------------------+------+--------+---------+-----------+
-|test_utilitaires      |0.00  |0.00    |1.27     |0.00       |
-+----------------------+------+--------+---------+-----------+
-|test_global           |0.00  |0.00    |1.27     |0.00       |
-+----------------------+------+--------+---------+-----------+
-|test_genHTML          |0.00  |0.00    |1.27     |0.00       |
-+----------------------+------+--------+---------+-----------+
-|test_extractionWeb    |0.00  |0.00    |0.00     |65.38      |
-+----------------------+------+--------+---------+-----------+
-
-
-
-Messages
---------
-
-+----------------------+------------+
-|message id            |occurrences |
-+======================+============+
-|too-many-locals       |24          |
-+----------------------+------------+
-|bad-continuation      |20          |
-+----------------------+------------+
-|too-many-arguments    |19          |
-+----------------------+------------+
-|too-many-branches     |14          |
-+----------------------+------------+
-|too-many-statements   |11          |
-+----------------------+------------+
-|duplicate-code        |11          |
-+----------------------+------------+
-|unused-variable       |4           |
-+----------------------+------------+
-|line-too-long         |3           |
-+----------------------+------------+
-|unnecessary-semicolon |1           |
-+----------------------+------------+
-|trailing-whitespace   |1           |
-+----------------------+------------+
-|missing-docstring     |1           |
-+----------------------+------------+
-|global-statement      |1           |
-+----------------------+------------+
-|bad-whitespace        |1           |
-+----------------------+------------+
-
-
-
-Global evaluation
------------------
-Your code has been rated at 9.64/10 (previous run: 9.61/10, +0.03)
+------------------------------------------------------------------
+Your code has been rated at 9.77/10 (previous run: 9.82/10, -0.05)
 

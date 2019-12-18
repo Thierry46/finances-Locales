@@ -3,13 +3,13 @@
 *********************************************************
 Module : genWikiCodeTableaux.py
 Auteur : Thierry Maillard (TMD)
-Date : 24/5/2015 - 3/6/2015
+Date : 24/5/2015 - 11/9/2019
 
 Role : Transforme les donnees traitées par extractionMinFi.py
         en wikicode pour les parties tableaux.
 ------------------------------------------------------------
 Licence : GPLv3 (en français dans le fichier gpl-3.0.fr.txt)
-Copyright (c) 2015 - Thierry Maillard
+Copyright (c) 2015 - 2019 - Thierry Maillard
 ------------------------------------------------------------
 
     This file is part of FinancesLocales project.
@@ -31,30 +31,24 @@ Copyright (c) 2015 - Thierry Maillard
 """
 import utilitaires
 
-def GenereTableau(nomTableau, ville, listAnnees, nbAnneesTableau,
-                  listeValeurs, couleurTitres, couleurStrate,
+def genereTableau(nomTableau, ville,
+                  listAnnees, nbAnneesTableau,
+                  listeGrandeurs,
+                  dictAllGrandeur,
+                  couleurTitres, couleurStrate,
                   isComplet, verbose):
     """ Génère le Wikicode pour un tableau historique sur N années """
     if verbose:
-        print("Entrée dans GenereTableau")
-        print('ville=', ville['nom'])
-        print("isComplet :", str(isComplet))
+        print("Entrée dans genereTableau (Wikicode)")
+        print('ville=', ville)
+        print('listAnnees=', listAnnees)
+        print('nbAnneesTableau=', nbAnneesTableau)
+        print('dictAllGrandeur=', dictAllGrandeur)
+        print("isComplet :", isComplet)
 
-    # Détermination de l'arrondi à utiliser :
-    # Arrondi en million sauf si une des valeurs à afficher est < 1000000
-    arrondi = 2
-    arrondiStr = 'M€'
-    arrondiStrAffiche = "million d'euros (M€)"
-    for valeur in listeValeurs:
-        for annee in sorted(listAnnees[:nbAnneesTableau]):
-            valeurData = utilitaires.getValeur(ville, valeur[0], annee, "Valeur totale")
-            if int(valeurData) < 1000000:
-                arrondi = 1
-                arrondiStr = 'k€'
-                arrondiStrAffiche = "millier d'euros (k€)"
-    if verbose:
-        print("arrondi =", arrondi, ", arrondiStr = ", arrondiStr)
-        print("arrondiStrAffiche = ", arrondiStrAffiche)
+    arrondi, arrondiStr, arrondiStrAffiche = \
+             utilitaires.setArrondi(dictAllGrandeur["Valeur totale"], listAnnees,
+                                    1000.0, None, verbose)
 
     # Titres
     ligne = ""
@@ -82,28 +76,28 @@ def GenereTableau(nomTableau, ville, listAnnees, nbAnneesTableau,
                      couleurStrate + '" | Strate (€)\n'
     ligne += ' |-\n'
 
-    for valeur in listeValeurs:
+    for grandeur in listeGrandeurs:
+        nomGrandeur = grandeur[0]
         ligne += ' ! headers="'+ nomTableau + 'h" scope="row" style="background-color: ' + \
-                 valeur[2] + '" | ' + valeur[1] + '\n'
+                 grandeur[2] + '" | ' + grandeur[1] + '\n'
         for annee in sorted(listAnnees[:nbAnneesTableau]):
             ligne += ' | headers="'+ nomTableau + str(annee) + ' ' + nomTableau + \
                      str(annee) + 'V"' + ' style="text-align:right;background-color: ' + \
-                     valeur[2] + '" | {{unité|' + \
-                     utilitaires.getValeur(ville, valeur[0], annee,
-                                           "Valeur totale", arrondi) + \
+                     grandeur[2] + '" | {{unité|' + \
+                     str(round(dictAllGrandeur["Valeur totale"][nomGrandeur][annee] * arrondi)) + \
                      '}}\n'
+            valFloat = dictAllGrandeur["Par habitant"][nomGrandeur + " par habitant"][annee]
             ligne += ' | headers="'+ nomTableau + str(annee) + ' ' + nomTableau + \
                      str(annee) + 'P"' + ' style="text-align:right;background-color: ' + \
-                     valeur[2] + '" | {{unité|' + \
-                     utilitaires.getValeur(ville, valeur[0], annee, "Par habitant") + \
-                     '}}\n'
+                     grandeur[2] + '" | {{unité|' + \
+                     str(round(valFloat)) + '}}\n'
             if isComplet:
+                ngm = nomGrandeur + " moyen"
+                valFloat = dictAllGrandeur["En moyenne pour la strate"][ngm][annee]
                 ligne += ' | headers="'+ nomTableau + str(annee) + ' ' + nomTableau + \
                          str(annee) + 'S"' + ' style="text-align:right;background-color: ' + \
                          couleurStrate + '" | {{unité|' + \
-                         utilitaires.getValeur(ville, valeur[0], annee,
-                                               "En moyenne pour la strate") + \
-                         '}}\n'
+                         str(round(valFloat)) + '}}\n'
         ligne += ' |-\n'
     arrondiLigne = "Les valeurs sont arrondies au " + arrondiStrAffiche + " le plus proche."
     colspanlegende = str(1 + int(colspanAnnee) * nbAnneesTableau)
@@ -113,24 +107,25 @@ def GenereTableau(nomTableau, ville, listAnnees, nbAnneesTableau,
     ligne += ' |-\n'
 
     if verbose:
-        print("Sortie de GenereTableau")
+        print("ligne=", ligne)
+        print("Sortie de genereTableau (Wikicode)")
 
     return ligne.strip()
 
-def GenereTableauTaux(nomTableau, ville, listAnnees, nbAnneesTableau,
-                      listeValeurs, couleurTitres, couleurStrate,
+def genereTableauTaux(nomTableau, ville,
+                      listAnnees, nbAnneesTableau,
+                      listeGrandeurs,
+                      dictAllGrandeur,
+                      couleurTitres, couleurStrate,
                       isComplet, verbose):
     """ Genere le wikicode pour un tableau de taux de fiscalité """
     if verbose:
-        print("Entrée dans GenereTableauTaux")
-        print('ville=', ville['nom'])
+        print("Entrée dans genereTableautaux (Wikicode)")
+        print('ville=', ville)
+        print('listAnnees=', listAnnees)
+        print('nbAnneesTableau=', nbAnneesTableau)
+        print('dictAllGrandeur=', dictAllGrandeur)
         print("isComplet :", str(isComplet))
-
-    # v1.0.0 : pour cas particulier Paris : Recherche années ou les taux sont disponibles
-    anneesOK = [annee for annee in sorted(listAnnees[:nbAnneesTableau])
-                if ville['data'][listeValeurs[0][0]][str(annee)] is not None]
-    if verbose:
-        print('anneesOK=', anneesOK)
 
     # Titres
     ligne = ""
@@ -139,43 +134,44 @@ def GenereTableauTaux(nomTableau, ville, listAnnees, nbAnneesTableau,
         colspanAnnee = '2'
     else:
         colspanAnnee = '1'
-    for annee in anneesOK:
+
+    for annee in sorted(listAnnees[:nbAnneesTableau]):
         ligne += ' ! id="' + nomTableau + str(annee) + '" colspan="'+ colspanAnnee + \
                  '" style="background-color: ' + couleurTitres + '" |' + str(annee) +'\n'
     ligne += ' |-\n'
     ligne += ' ! id="' + nomTableau + 'h" style="background:' + couleurTitres + \
              '" | Chiffres clés\n'
-    for annee in anneesOK:
+    for annee in sorted(listAnnees[:nbAnneesTableau]):
         ligne += ' ! id="' + nomTableau + str(annee) + 'TV" headers="'+ nomTableau + \
                  str(annee) + '" scope="col" style="background-color: ' + \
-                 couleurTitres + '" | Taux voté %\n'
+                 couleurTitres + '" | taux voté %\n'
         if isComplet:
             ligne += ' ! id="' + nomTableau + str(annee) + 'TM" headers="'+ \
                      nomTableau + str(annee) + \
                     '" scope="col" style="background-color: ' + couleurStrate + \
-                    '" | ' + "Taux moyen de la strate %\n"
+                    '" | ' + "taux moyen de la strate %\n"
     ligne += ' |-\n'
 
-    for valeur in listeValeurs:
+    for grandeur in listeGrandeurs:
+        nomGrandeur = grandeur[0]
         ligne += ' ! headers="'+ nomTableau + 'h" scope="row" style="background-color: ' + \
-                 valeur[2] + '" | ' + valeur[1] + '\n'
-        for annee in anneesOK:
+                 grandeur[2] + '" | ' + grandeur[1] + '\n'
+        for annee in sorted(listAnnees[:nbAnneesTableau]):
             ligne += ' | headers="'+ nomTableau + str(annee) + ' ' + nomTableau + \
                      str(annee) + 'TV"' + ' style="text-align:right;background-color: ' + \
-                     valeur[2] + '" | {{unité|' + \
-                     utilitaires.getValeurFloat(ville, valeur[0], annee, "Taux", verbose) + \
+                     grandeur[2] + '" | {{unité|' + \
+                     str(round(dictAllGrandeur["Taux"][nomGrandeur][annee])) + \
                      '}}\n'
             if isComplet:
+                ngm = nomGrandeur + " moyen"
+                valFloat = dictAllGrandeur["taux moyen pour la strate"][ngm][annee]
                 ligne += ' | headers="'+ nomTableau + str(annee) + ' ' + nomTableau + \
                          str(annee) + 'TS"' + \
                          ' style="text-align:right;background-color: ' + couleurStrate + \
-                         '" | {{unité|' + \
-                         utilitaires.getValeurFloat(ville, valeur[0], annee,
-                                                    "Taux moyen pour la strate") + \
-                         '}}\n'
+                         '" | {{unité|' + str(round(valFloat)) + '}}\n'
         ligne += ' |-\n'
 
     if verbose:
-        print("Sortie de GenereTableauTaux")
+        print("Sortie de genereTableautaux (Wikicode)")
 
     return ligne.strip()

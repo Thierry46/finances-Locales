@@ -3,7 +3,7 @@
 *********************************************************
 Module : genCodeGraphiques.py
 Auteur : Thierry Maillard (TMD)
-Date : 24/5/2015 - 7/10/2015
+Date : 24/5/2015 - 30/11/2019
 
 Role : Transforme les donnees traitées par extractionMinFi.py
         en wikicode ou en png pour les parties graphiques.
@@ -33,7 +33,8 @@ import genWikiCodeGraphiques
 import genHTMLCodeGraphiques
 import utilitaires
 
-def genCodeGraphiques(config, repVille, textSection, ville,
+def genCodeGraphiques(config, repVille, dictAllGrandeur,
+                      textSection, ville,
                       listAnnees, isComplet,
                       isWikicode, isMatplotlibOk,
                       verbose):
@@ -76,14 +77,14 @@ def genCodeGraphiques(config, repVille, textSection, ville,
             'courbes' :
                 [
                     {
-                        'cle' : 'TOTAL DES PRODUITS DE FONCTIONNEMENT',
+                        'cle' : 'total des produits de fonctionnement',
                         'sousCle' : "Valeur totale",
                         'libelle' : 'Produits',
                         'couleur' : bleuFonce,
                         'couleurMPL' : 'turquoise'
                     },
                     {
-                        'cle' : 'TOTAL DES CHARGES DE FONCTIONNEMENT',
+                        'cle' : 'total des charges de fonctionnement',
                         'sousCle' : "Valeur totale",
                         'libelle' : 'Charges',
                         'couleur' : rougeFonce,
@@ -102,14 +103,14 @@ def genCodeGraphiques(config, repVille, textSection, ville,
             'courbes' :
                 [
                     {
-                        'cle' : "TOTAL DES EMPLOIS D'INVESTISSEMENT",
+                        'cle' : "total des emplois investissement",
                         'sousCle' : "Valeur totale",
                         'libelle' : "Emplois",
                         'couleur' : vertFonce,
                         'couleurMPL' : 'chartreuse'
                     },
                     {
-                        'cle' : "TOTAL DES RESSOURCES D'INVESTISSEMENT",
+                        'cle' : "total des ressources d'investissement",
                         'sousCle' : "Valeur totale",
                         'libelle' : "Ressources",
                         'couleur' : noir,
@@ -129,23 +130,23 @@ def genCodeGraphiques(config, repVille, textSection, ville,
             'courbes' :
                 [
                     {
-                        'cle' : "dont : Impôts Locaux",
+                        'cle' : "dont impôts locaux",
                         'sousCle' : "Valeur totale",
                         'libelle' : 'Impôts Locaux',
                         'couleur' : bleuFonce,
                         'couleurMPL' : 'turquoise'
                     },
                     {
-                        'cle' : "Autres impôts et taxes",
+                        'cle' : "autres impôts et taxes",
                         'sousCle' : "Valeur totale",
-                        'libelle' : 'Autres impôts et taxes',
+                        'libelle' : 'autres impôts et taxes',
                         'couleur' : rougeFonce,
                         'couleurMPL' : 'salmon'
                     },
                     {
-                        'cle' : "Dotation globale de fonctionnement",
+                        'cle' : "dotation globale de fonctionnement",
                         'sousCle' : "Valeur totale",
-                        'libelle' : 'Dotation globale de fonctionnement',
+                        'libelle' : 'dotation globale de fonctionnement',
                         'couleur' : noir,
                         'couleurMPL' : 'dimgray'
                     }
@@ -161,16 +162,16 @@ def genCodeGraphiques(config, repVille, textSection, ville,
             'courbes' :
                 [
                     {
-                        'cle' : "dont : Charges de personnel",
+                        'cle' : "dont charges de personnel",
                         'sousCle' : "Valeur totale",
                         'libelle' : "Charges de personnel",
                         'couleur' : bleuFonce,
                         'couleurMPL' : 'turquoise'
                     },
                     {
-                        'cle' : "Achats et charges externes",
+                        'cle' : "achats et charges externes",
                         'sousCle' : "Valeur totale",
-                        'libelle' : "Achats et charges externes",
+                        'libelle' : "achats et charges externes",
                         'couleur' : rougeFonce,
                         'couleurMPL' : 'salmon'
                     },
@@ -180,22 +181,22 @@ def genCodeGraphiques(config, repVille, textSection, ville,
     courbesChargesPersonnelsExternes = \
         {
             'nomGraphique' : "CHARGES_FINANCIERES_SUBVENTIONS_VERSEES",
-            'titreGrahique' : "G1b2 - Charges financières et des subventions versées",
+            'titreGrahique' : "G1b2 - charges financières et des subventions versées",
             'largeur' : 'graph.largeurPage',
             'unite' : 'euros',
             'courbes' :
                 [
                     {
-                        'cle' : "Charges financières",
+                        'cle' : "charges financières",
                         'sousCle' : "Valeur totale",
-                        'libelle' : "Charges financières",
+                        'libelle' : "charges financières",
                         'couleur' : vertFonce,
                         'couleurMPL' : 'chartreuse'
                     },
                     {
-                        'cle' : "Subventions versées",
+                        'cle' : "subventions versées",
                         'sousCle' : "Valeur totale",
-                        'libelle' : "Subventions versées",
+                        'libelle' : "subventions versées",
                         'couleur' : noir,
                         'couleurMPL' : 'dimgray'
                     }
@@ -212,14 +213,14 @@ def genCodeGraphiques(config, repVille, textSection, ville,
             'courbes' :
                 [
                     {
-                        'cle' : "Capacité d'autofinancement = CAF",
+                        'cle' : "capacité autofinancement caf par habitant",
                         'sousCle' : "Par habitant",
                         'libelle' : 'CAF',
                         'couleur' : bleuFonce,
                         'couleurMPL' : 'turquoise'
                     },
                     {
-                        'cle' : 'Encours de la dette au 31/12/N',
+                        'cle' : 'encours de la dette au 31 12 n par habitant',
                         'sousCle' : "Par habitant",
                         'libelle' : 'Encours total de la dette',
                         'couleur' : rougeFonce,
@@ -227,24 +228,6 @@ def genCodeGraphiques(config, repVille, textSection, ville,
                     }
                 ]
             }
-    if isComplet:
-        courbesDetteCAF['courbes'].extend(
-            [
-                {
-                    'cle' : "Capacité d'autofinancement = CAF",
-                    'sousCle' : "En moyenne pour la strate",
-                    'libelle' : 'CAF',
-                    'couleur' : vertFonce,
-                    'couleurMPL' : 'chartreuse'
-                },
-                {
-                    'cle' : 'Encours de la dette au 31/12/N',
-                    'sousCle' : "En moyenne pour la strate",
-                    'libelle' : 'Encours total de la dette',
-                    'couleur' : noir,
-                    'couleurMPL' : 'dimgray'
-                }
-            ])
     listeGraphiques.append(courbesDetteCAF)
 
     # V1.0.2 : Ajout courbes investissement
@@ -258,14 +241,14 @@ def genCodeGraphiques(config, repVille, textSection, ville,
             'courbes' :
                 [
                     {
-                        'cle' : "dont : Dépenses d'équipement",
+                        'cle' : "dont dépenses équipement",
                         'sousCle' : "Valeur totale",
                         'libelle' : "Dépenses d'équipement",
                         'couleur' : bleuFonce,
                         'couleurMPL' : 'turquoise'
                     },
                     {
-                        'cle' : "Remboursement d'emprunts et dettes assimilées",
+                        'cle' : "remboursement emprunts et dettes assimilées",
                         'sousCle' : "Valeur totale",
                         'libelle' : "Remboursements d'emprunts",
                         'couleur' : vertFonce,
@@ -283,21 +266,21 @@ def genCodeGraphiques(config, repVille, textSection, ville,
             'courbes' :
                 [
                     {
-                        'cle' : "dont : Emprunts bancaires et dettes assimilées",
+                        'cle' : "dont emprunts bancaires et dettes assimilées",
                         'sousCle' : "Valeur totale",
                         'libelle' : 'Nouvelles dettes',
                         'couleur' : rougeFonce,
                         'couleurMPL' : 'salmon'
                     },
                     {
-                        'cle' : "Subventions reçues",
+                        'cle' : "subventions reçues",
                         'sousCle' : "Valeur totale",
-                        'libelle' : 'Subventions reçues',
+                        'libelle' : 'subventions reçues',
                         'couleur' : bleuFonce,
                         'couleurMPL' : 'turquoise'
                     },
                     {
-                        'cle' : "FCTVA",
+                        'cle' : "fctva",
                         'sousCle' : "Valeur totale",
                         'libelle' : 'Fonds de compensation pour la TVA',
                         'couleur' : vertFonce,
@@ -317,7 +300,7 @@ def genCodeGraphiques(config, repVille, textSection, ville,
             'courbes' :
                 [
                     {
-                        'cle' : 'ratioCAFDette',
+                        'cle' : 'ratio dette / caf',
                         'sousCle' : "",
                         'libelle' : 'Ratio = Encours de la dette / CAF',
                         'couleur' : bleuFonce,
@@ -336,16 +319,16 @@ def genCodeGraphiques(config, repVille, textSection, ville,
             'courbes' :
                 [
                     {
-                        'cle' : "Taux Taxe d'habitation",
+                        'cle' : "taux taxe habitation",
                         'sousCle' : "Taux",
-                        'libelle' : "Taux taxe d'habitation",
+                        'libelle' : "taux taxe habitation",
                         'couleur' : bleuFonce,
                         'couleurMPL' : 'turquoise'
                     },
                     {
-                        'cle' : 'Taux Taxe foncière bâti',
+                        'cle' : 'taux taxe foncière bâti',
                         'sousCle' : "Taux",
-                        'libelle' : 'Taux foncier bâti',
+                        'libelle' : 'taux foncier bâti',
                         'couleur' : rougeFonce,
                         'couleurMPL' : 'salmon'
                     }
@@ -355,16 +338,16 @@ def genCodeGraphiques(config, repVille, textSection, ville,
         courbesTaxes['courbes'].extend(
             [
                 {
-                    'cle' : "Taux Taxe d'habitation",
-                    'sousCle' : "Taux moyen pour la strate",
-                    'libelle' : "Taux taxe d'habitation",
+                    'cle' : "taux taxe habitation moyen",
+                    'sousCle' : "taux moyen pour la strate",
+                    'libelle' : "taux taxe habitation",
                     'couleur' : vertFonce,
                     'couleurMPL' : 'chartreuse'
                 },
                 {
-                    'cle' : 'Taux Taxe foncière bâti',
-                    'sousCle' : "Taux moyen pour la strate",
-                    'libelle' : 'Taux foncier bâti',
+                    'cle' : 'taux taxe foncière bâti moyen',
+                    'sousCle' : "taux moyen pour la strate",
+                    'libelle' : 'taux foncier bâti',
                     'couleur' : noir,
                     'couleurMPL' : 'dimgray'
                 }
@@ -380,9 +363,9 @@ def genCodeGraphiques(config, repVille, textSection, ville,
             'courbes' :
                 [
                     {
-                        'cle' : "Taux Taxe foncière non bâti",
+                        'cle' : "taux taxe foncière non bâti",
                         'sousCle' : "Taux",
-                        'libelle' : 'Taux foncier non bâti',
+                        'libelle' : 'taux foncier non bâti',
                         'couleur' : rougeFonce,
                         'couleurMPL' : 'salmon'
                     }
@@ -392,9 +375,9 @@ def genCodeGraphiques(config, repVille, textSection, ville,
         courbesTaxesNB['courbes'].extend(
             [
                 {
-                    'cle' : "Taux Taxe foncière non bâti",
-                    'sousCle' : "Taux moyen pour la strate",
-                    'libelle' : 'Taux foncier non bâti',
+                    'cle' : "taux taxe foncière non bâti moyen",
+                    'sousCle' : "taux moyen pour la strate",
+                    'libelle' : 'taux foncier non bâti',
                     'couleur' : noir,
                     'couleurMPL' : 'dimgray'
                 }
@@ -408,43 +391,63 @@ def genCodeGraphiques(config, repVille, textSection, ville,
             print("Graphe :", graphique['nomGraphique'])
             print("************************************")
 
-        # Elimination des courbes vides et des années non présentes dans toutes les autres
-        anneesOK = controleSeries(ville, graphique['courbes'],
-                                  listAnnees, verbose)
-        arrondi, arrondiStrAffiche = \
-            setArrondi(ville, anneesOK, graphique['courbes'],
-                       graphique['unite'], verbose)
+        controleSousCle(graphique, verbose)
 
-        if isWikicode:
-            graphiqueWiki, legendeVille, legendeStrate = \
-            genWikiCodeGraphiques.genGraphique(config,
-                                               ville, anneesOK,
-                                               graphique['courbes'],
-                                               graphique['largeur'],
-                                               arrondi,
-                                               arrondiStrAffiche,
-                                               verbose)
+        # Elimination des courbes vides et
+        # des années non présentes dans toutes les autres
+        try:
+            anneesOK = controleSeries(dictAllGrandeur, graphique['courbes'],
+                                      listAnnees, verbose)
+            # Détermination de l'arrondi à utiliser et à afficher
+            listeCles = [courbe['cle']
+                         for courbe in graphique['courbes']
+                         if courbe['sousCle'] == "Valeur totale"]
+            if listeCles:
+                arrondi, arrondiStr, arrondiStrAffiche = \
+                    utilitaires.setArrondi(dictAllGrandeur["Valeur totale"], anneesOK,
+                                           1000.0, listeCles, verbose)
+            else:
+                arrondi = 1.0
+                arrondiStr = graphique['unite']
+                arrondiStrAffiche = arrondiStr
+
+            # Generation des graphiques
+            if isWikicode:
+                graphiqueWiki, legendeVille, legendeStrate = \
+                genWikiCodeGraphiques.genGraphique(config, dictAllGrandeur,
+                                                   ville[1], anneesOK,
+                                                   graphique['courbes'],
+                                                   graphique['largeur'],
+                                                   arrondi,
+                                                   arrondiStrAffiche,
+                                                   verbose)
+                textSection = textSection.replace("<GRAPHIQUE_" + graphique['nomGraphique'] + ">",
+                                                  graphiqueWiki)
+                textSection = textSection.replace("<LEGENDE_" + graphique['nomGraphique'] + ">",
+                                                  legendeVille)
+                tag = "<LEGENDE_STRATE_" + graphique['nomGraphique'] + ">"
+                textSection = textSection.replace(tag, legendeStrate)
+            elif isMatplotlibOk:
+                textLien = genHTMLCodeGraphiques.genGraphique(repVille, dictAllGrandeur,
+                                                              graphique['nomGraphique'],
+                                                              graphique['titreGrahique'],
+                                                              ville[1], anneesOK,
+                                                              graphique['courbes'],
+                                                              arrondi,
+                                                              arrondiStrAffiche,
+                                                              verbose)
+                textSection = textSection.replace("<GRAPHIQUE_" + graphique['nomGraphique'] + ">",
+                                                  textLien)
+            else:
+                textSection = textSection.replace("<GRAPHIQUE_" + graphique['nomGraphique'] + ">",
+                                                  "Graphique non disponible, " +\
+                                                  " installez matplotlib !<br/>")
+        except ValueError as exc:
+            print(str(exc) + "\n pour la ville " + ville[1] +
+                  " et graphique " + graphique['nomGraphique'])
             textSection = textSection.replace("<GRAPHIQUE_" + graphique['nomGraphique'] + ">",
-                                              graphiqueWiki)
-            textSection = textSection.replace("<LEGENDE_" + graphique['nomGraphique'] + ">",
-                                              legendeVille)
-            textSection = textSection.replace("<LEGENDE_STRATE_" + graphique['nomGraphique'] + ">",
-                                              legendeStrate)
-        elif isMatplotlibOk:
-            textLien = genHTMLCodeGraphiques.genGraphique(repVille,
-                                                          graphique['nomGraphique'],
-                                                          graphique['titreGrahique'],
-                                                          ville, anneesOK,
-                                                          graphique['courbes'],
-                                                          arrondi,
-                                                          arrondiStrAffiche,
-                                                          verbose)
-            textSection = textSection.replace("<GRAPHIQUE_" + graphique['nomGraphique'] + ">",
-                                              textLien)
-        else:
-            textSection = textSection.replace("<GRAPHIQUE_" + graphique['nomGraphique'] + ">",
-                                              "Graphique non disponible, " +\
-                                              " installez matplotlib !<br/>")
+                                              "Graphique non disponible, " + \
+                                              " problème de données !<br/>")
 
     if verbose:
         print("Sortie de genCodeGraphiques")
@@ -452,37 +455,58 @@ def genCodeGraphiques(config, repVille, textSection, ville,
     return textSection
 
 
-def controleSeries(ville, courbes, listAnnees, verbose):
+def controleSeries(dictAllGrandeur, courbes, listAnnees, verbose):
     """
     Contrôle des series pour eliminer les series vides
     et ne tracer que les séries restantes qui ont des annees communes
     """
     if verbose:
         print("\nEntree dans controleSeries")
-        print('ville=', ville['nom'])
+        print('dictAllGrandeur=', dictAllGrandeur)
+        print('courbes=', courbes)
         print("Nombre de courbes :", len(courbes))
         print("listAnnees :", listAnnees)
 
-    setCle = {courbe['cle'] for courbe in courbes}
+    assert courbes, "Erreur appel controleSeries() : Aucune courbe à controler !"
 
     # Recupération liste des années valides pour chaque clé
     # et conservation des seules clés qui ont au moins une année valide
     anneesOKParCle = dict()
-    for cle in setCle:
-        anneesOK1serie = set(annee for annee in listAnnees
-                             if ville['data'][cle][str(annee)] is not None)
+    setCles = {courbe['sousCle'] + ":" + courbe['cle'] for courbe in courbes}
+    for cleAll in setCles:
+        sousCle, cle = cleAll.split(":")
+        # Pour le ratio dette/caf, la sous-clé n'est pas définie
+        if sousCle != '':
+            anneesOK1serie = set(annee for annee in listAnnees
+                                 if sousCle in dictAllGrandeur and
+                                 cle in dictAllGrandeur[sousCle] and
+                                 annee in dictAllGrandeur[sousCle][cle])
+        else:
+            anneesOK1serie = set(annee
+                                 for annee in listAnnees
+                                 if cle in dictAllGrandeur and
+                                 annee in dictAllGrandeur[cle])
+
         if len(anneesOK1serie) > 0:
             anneesOKParCle[cle] = anneesOK1serie
 
     # Détermination des annees communes aux clés restantes
     anneesOK = set(listAnnees)
-    for cle in list(anneesOKParCle.keys()):
+    for cle in anneesOKParCle:
         anneesOK &= anneesOKParCle[cle]
 
-    # Conservation des seules series qui ont des annees communes
-    for courbe in courbes:
-        if courbe['cle'] not in list(anneesOKParCle.keys()):
-            courbes.remove(courbe)
+    # Conservation des seules series (courbes) qui ont des annees communes
+    # By assigning to the slice courbes[:], we mutate the existing list
+    # to contain only the correct items:
+    # This approach is needed because there are other references to courbes
+    # that need to reflect the changes
+    # Ref : stackoverflow.com/questions/1207406/how-to-remove-items-from-a-list-while-iterating
+    courbes[:] = [courbe for courbe in courbes
+                  if courbe['cle'] in anneesOKParCle]
+
+    # Un graphique sans courbe doit être considéré comme une erreur
+    if not courbes:
+        raise ValueError("Erreur : pas de courbe pour le graphique")
 
     if verbose:
         print("Sortie de controleSeries")
@@ -493,40 +517,42 @@ def controleSeries(ville, courbes, listAnnees, verbose):
     # Le tri des chaines de caractere est ici acceptable pour des annees sur 4 chiffres
     return sorted(list(anneesOK))
 
-def setArrondi(ville, anneesOK, courbes, unite, verbose):
+def controleSousCle(graphique, verbose):
     """
-    Détermination de l'arrondi à utiliser :
-    Arrondi en million sauf si une des valeurs à afficher est < 1000000
-    V0.5 : TMD : 7/6/2015 :seuils des arrondis relevés relevé à 2ME et 2kE
+    Les sous-clés des courbes du graphique doivent être compatibles :
+    les taux et valeurs par habitant ne doivent pas être mélangé dans
+    une même courbe avec d'autres sous-clé
     """
-    if verbose:
-        print("setArrondi : Determination de l'arrondi...")
-    arrondi = 0
-    arrondiStrAffiche = ""
-    if not courbes[0]['cle'].startswith('Taux'):
-        arrondi = 2
-        arrondiStrAffiche = "millions d'"
-        for annee in anneesOK:
-            for courbe in courbes:
-                if courbe['sousCle'] == "":
-                    valeurData = int(ville['data'][courbe['cle']][str(annee)])
-                else:
-                    valeurData = int(utilitaires.getValeur(ville, courbe['cle'],
-                                                           annee, courbe['sousCle']))
-                if valeurData < 2000000 and arrondi > 1:
-                    arrondi = 1
-                    arrondiStrAffiche = "milliers d'"
-                # V0.8 : Contournement pb multiple pour valeur de grande amplitude avec 0 inclu :
-                # arrondi mini = 1 : on ne descend pas au dessous du kEuro
-                #   si sous-clé = "Valeur totale"
-                # Pas de perte d'info par arrondi car en kEuros dans base MinFi
-                if valeurData < 2000 and arrondi > 0 and \
-                   courbe['sousCle'] != "Valeur totale":
-                    arrondi = 0
-                    arrondiStrAffiche = ""
-    arrondiStrAffiche += unite
 
     if verbose:
-        print("arrondi =", arrondi,)
-        print("arrondiStrAffiche = ", arrondiStrAffiche)
-    return arrondi, arrondiStrAffiche
+        print("\nEntree dans controleSousCle")
+        print('graphique=', graphique)
+        print("Nombre de courbes du graphique :", len(graphique))
+
+    sousCleUnique = list({courbe['sousCle'] for courbe in graphique['courbes']})
+    if not sousCleUnique:
+        raise ValueError("Aucune sous clé pour la courbe " +
+                         graphique['nomGraphique'])
+    nbSousCleTaux = 0
+    nbSousCleAutre = 0
+    for sousCle in sousCleUnique:
+        if sousCle.lower().startswith("taux"):
+            nbSousCleTaux += 1
+        else:
+            nbSousCleAutre += 1
+    if nbSousCleTaux != 0 and nbSousCleAutre != 0:
+        raise ValueError("Les sous clé commençant par taux ne doivent " +
+                         "pas être combinées à d'autres dans la courbe " +
+                         graphique['nomGraphique'])
+
+    nbSousCleParHabitant = 0
+    for sousCle in sousCleUnique:
+        if sousCle == "Par habitant":
+            nbSousCleParHabitant += 1
+    if nbSousCleParHabitant != 0 and len(sousCleUnique) != 1:
+        raise ValueError("Les sous clé Par habitant " +
+                         "pas être combinées à d'autres dans la courbe " +
+                         graphique['nomGraphique'])
+
+    if verbose:
+        print("Sortie de controleSousCle : OK")

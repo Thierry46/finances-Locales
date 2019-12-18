@@ -3,13 +3,13 @@
 *********************************************************
 Module : genCodeTableaux.py
 Auteur : Thierry Maillard (TMD)
-Date : 24/5/2015 - 20/12/2016
+Date : 24/5/2015 - 5/12/2019
 
 Role : Transforme les donnees traitées par extractionMinFi.py
         en code pour les parties tableaux.
 ------------------------------------------------------------
 Licence : GPLv3 (en français dans le fichier gpl-3.0.fr.txt)
-Copyright (c) 2015 - Thierry Maillard
+Copyright (c) 2015 - 2019 - Thierry Maillard
 ------------------------------------------------------------
 
     This file is part of FinancesLocales project.
@@ -27,9 +27,6 @@ Copyright (c) 2015 - Thierry Maillard
     You should have received a copy of the GNU General Public License
     along with FinancesLocales project.
     If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
-    
-Modif :
-- 20/12/2016 : Manque une espace avant "par habitant, ratio"
 *********************************************************
 """
 import operator
@@ -39,7 +36,8 @@ import genWikiCodeTableaux
 import genHTMLCodeTableaux
 import utilitaires
 
-def genCodeTableaux(config, textSection, ville,
+def genCodeTableaux(config, dictAllGrandeur,
+                    textSection, ville,
                     listAnnees, isComplet,
                     isWikicode, verbose):
     """ Génère le code pour les tableaux historiques sur N années """
@@ -70,28 +68,29 @@ def genCodeTableaux(config, textSection, ville,
             'nomTableau' : "PRINCIPAL",
             'listLigne' :
                 [
-                    ["TOTAL DES PRODUITS DE FONCTIONNEMENT",
+                    ["total des produits de fonctionnement",
                      genLien(config, ["Recettes publiques", "Produits de fonctionnement"],
                              isWikicode, verbose),
                      couleurRecettes],
-                    ["TOTAL DES CHARGES DE FONCTIONNEMENT",
+
+                    ["total des charges de fonctionnement",
                      genLien(config, ["Dépenses publiques", "Charges de fonctionnement"],
                              isWikicode, verbose),
                      couleurCharges],
-                    ["RESULTAT COMPTABLE",
+                    ["resultat comptable",
                      genLien(config, ["Résultat fiscal en France",
                                       "Solde de la section de fonctionnement"],
                              isWikicode, verbose),
                      couleurSolde],
-                    ["TOTAL DES EMPLOIS D'INVESTISSEMENT",
+                    ["total des emplois investissement",
                      genLien(config, ["Investissement", "Emplois d'investissement"],
                              isWikicode, verbose),
                      couleurEmploisInvest],
-                    ["TOTAL DES RESSOURCES D'INVESTISSEMENT",
+                    ["total des ressources d'investissement",
                      genLien(config, ["Investissement", "Ressources d'investissement"],
                              isWikicode, verbose),
                      couleurRessourcesInvest],
-                    ["Besoin ou capacité de financement de la section d'investissement",
+                    ["besoin ou capacité de financement de la section investissement",
                      genLien(config, ["Résultat fiscal en France",
                                       "Solde de la section d'investissement"],
                              isWikicode, verbose),
@@ -105,13 +104,13 @@ def genCodeTableaux(config, textSection, ville,
             'nomTableau' : "DETTE_CAF",
             'listLigne' :
                 [
-                    ["Encours de la dette au 31/12/N",
+                    ["encours de la dette au 31 12 n",
                      genLien(config, ["Encours"], isWikicode, verbose) + \
                      " de la " + genLien(config, ["Emprunt (finance)", "dette"],
                                          isWikicode, verbose) + \
                      " au 31 décembre de l'année",
                      couleurDettesCAF],
-                    ["Capacité d'autofinancement = CAF",
+                    ["capacité autofinancement caf",
                      genLien(config, ["Capacité d'autofinancement"], isWikicode, verbose) + \
                      " (CAF)",
                      couleurDettesCAF]
@@ -124,26 +123,26 @@ def genCodeTableaux(config, textSection, ville,
             'nomTableau' : "PRODUITS_CHARGES",
             'listLigne' :
                 [
-                    ["dont : Impôts Locaux",
+                    ["dont impôts locaux",
                      "Impôts Locaux",
                      couleurRecettes],
-                    ["Autres impôts et taxes",
-                     "Autres impôts et taxes",
+                    ["autres impôts et taxes",
+                     "autres impôts et taxes",
                      couleurRecettes],
-                    ["Dotation globale de fonctionnement",
+                    ["dotation globale de fonctionnement",
                      "DGF",
                      couleurRecettes],
-                    ["dont : Charges de personnel",
+                    ["dont charges de personnel",
                      "Charges de personnel",
                      couleurCharges],
-                    ["Achats et charges externes",
-                     "Achats et charges externes",
+                    ["achats et charges externes",
+                     "achats et charges externes",
                      couleurCharges],
-                    ["Charges financières",
-                     "Charges financières",
+                    ["charges financières",
+                     "charges financières",
                      couleurCharges],
-                    ["Subventions versées",
-                     "Subventions versées",
+                    ["subventions versées",
+                     "subventions versées",
                      couleurCharges]
                 ]
         }
@@ -154,17 +153,17 @@ def genCodeTableaux(config, textSection, ville,
             'nomTableau' : "INVEST",
             'listLigne' :
                 [
-                    ["dont : Dépenses d'équipement",
+                    ["dont dépenses équipement",
                      genLien(config, ["Dépenses publiques", "Dépenses"],
                              isWikicode, verbose) + " d'équipement",
                      couleurRecettes],
-                    ["Remboursement d'emprunts et dettes assimilées",
+                    ["remboursement emprunts et dettes assimilées",
                      genLien(config, ["Plan de remboursement", "Remboursements"],
                              isWikicode, verbose) + \
                      " " + genLien(config, ["Emprunt (finance)", "emprunts"],
                                    isWikicode, verbose),
                      couleurRecettes],
-                    ["dont : Emprunts bancaires et dettes assimilées",
+                    ["dont emprunts bancaires et dettes assimilées",
                      "Nouvelles " + genLien(config, ["Emprunt (finance)", "dettes"],
                                             isWikicode, verbose),
                      couleurCharges],
@@ -178,21 +177,27 @@ def genCodeTableaux(config, textSection, ville,
             print("\n************************************")
             print("tableau :", tableau['nomTableau'])
             print("************************************")
+
         if isWikicode:
             tableauWiki = \
-                genWikiCodeTableaux.GenereTableau(tableau['nomTableau'],
+                genWikiCodeTableaux.genereTableau(tableau['nomTableau'],
                                                   ville, listAnnees, nbAnneesTableau,
-                                                  tableau['listLigne'], couleurTitres,
-                                                  couleurStrate, isComplet, verbose)
+                                                  tableau['listLigne'],
+                                                  dictAllGrandeur,
+                                                  couleurTitres, couleurStrate,
+                                                  isComplet, verbose)
         else:
             tableauWiki = \
-                genHTMLCodeTableaux.GenereTableau(ville, listAnnees, nbAnneesTableau,
-                                                  tableau['listLigne'], couleurTitres,
-                                                  couleurStrate, isComplet, verbose)
+                genHTMLCodeTableaux.genereTableau(tableau['nomTableau'],
+                                                  ville, listAnnees, nbAnneesTableau,
+                                                  tableau['listLigne'],
+                                                  dictAllGrandeur,
+                                                  couleurTitres, couleurStrate,
+                                                  isComplet, verbose)
         textSection = textSection.replace("<TABLEAU_" + tableau['nomTableau'] + ">",
                                           tableauWiki)
 
-    # Generation du tableau des taxes
+    # Generation du tableau des taux des taxes
     nbAnneesTableau = min(int(config.get('GenWIkiCode', 'gen.nbLignesTableauxTaux')),
                           len(listAnnees))
     textSection = textSection.replace("<ANNEE-N_TAUX>", str(listAnnees[nbAnneesTableau-1]))
@@ -201,14 +206,14 @@ def genCodeTableaux(config, textSection, ville,
             'nomTableau' : "TAXES",
             'listLigne' :
                 [
-                    ["Taux Taxe d'habitation",
-                     "Taux taxe d'habitation",
+                    ["taux taxe habitation",
+                     "taux taxe d'habitation",
                      couleurTaxeHabitation],
-                    ["Taux Taxe foncière bâti",
-                     "Taux foncier bâti",
+                    ["taux taxe foncière bâti",
+                     "taux foncier bâti",
                      couleurTaxeFonciereBati],
-                    ["Taux Taxe foncière non bâti",
-                     "Taux foncier non bâti",
+                    ["taux taxe foncière non bâti",
+                     "taux foncier non bâti",
                      couleurTaxeFonciereNonBati],
                 ]
         }
@@ -219,15 +224,18 @@ def genCodeTableaux(config, textSection, ville,
 
     if isWikicode:
         tableauWiki = \
-                genWikiCodeTableaux.GenereTableauTaux(tableauTaxes['nomTableau'],
+                genWikiCodeTableaux.genereTableauTaux(tableauTaxes['nomTableau'],
                                                       ville, listAnnees, nbAnneesTableau,
                                                       tableauTaxes['listLigne'],
+                                                      dictAllGrandeur,
                                                       couleurTitres, couleurStrate,
                                                       isComplet, verbose)
     else:
         tableauWiki = \
-                genHTMLCodeTableaux.GenereTableauTaux(ville, listAnnees, nbAnneesTableau,
+                genHTMLCodeTableaux.genereTableauTaux(tableauTaxes['nomTableau'],
+                                                      ville, listAnnees, nbAnneesTableau,
                                                       tableauTaxes['listLigne'],
+                                                      dictAllGrandeur,
                                                       couleurTitres, couleurStrate,
                                                       isComplet, verbose)
     textSection = textSection.replace("<TABLEAU_" + tableauTaxes['nomTableau'] + ">",
@@ -252,7 +260,7 @@ def genLien(config, defLien, isWikicode, verbose):
         lien += ']]'
     else:
         alias = defLien[-1]
-        lien = '<a href="' + config.get('Extraction', 'extraction.wikipediafrBaseUrl') + \
+        lien = '<a href="' + config.get('Extraction', 'wikipediaFr.baseUrl') + \
                defLien[0] + '" target="_blank">' + alias + '</a>'
 
     if verbose:
@@ -260,14 +268,16 @@ def genLien(config, defLien, isWikicode, verbose):
         print("Sortie de genLien")
     return lien
 
-def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
-                         isWikicode, verbose):
+def genCodeTableauxPicto(config, dictAllGrandeur,
+                         textSection, listAnnees,
+                         isComplet, isWikicode, verbose):
     """
     Génère le Wikicode pour un tableau de pitogramme de comparaison
     année N et N-1
     """
     if verbose:
-        print("Entrée dans genWikiCodeTableauxPicto")
+        print("Entrée dans genCodeTableauxPicto")
+        print("dictAllGrandeur=", dictAllGrandeur)
 
     couleurSolde = config.get('Tableaux', 'tableaux.couleurSolde')
     couleurRecettes = config.get('Tableaux', 'tableaux.couleurRecettes')
@@ -278,14 +288,14 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
     couleurRessourcesInvest = config.get('Tableaux', 'tableaux.couleurRessourcesInvest')
     couleurTaxes = config.get('Tableaux', 'tableaux.couleurTaxes')
 
-    chargesF = int(utilitaires.getValeur(ville, 'TOTAL DES CHARGES DE FONCTIONNEMENT',
-                                         listAnnees[0], "Valeur totale"))
-    emploisI = int(utilitaires.getValeur(ville, "TOTAL DES EMPLOIS D'INVESTISSEMENT",
-                                         listAnnees[0], "Valeur totale"))
-    produitsF = int(utilitaires.getValeur(ville, 'TOTAL DES PRODUITS DE FONCTIONNEMENT',
-                                          listAnnees[0], "Valeur totale"))
-    ressourcesI = int(utilitaires.getValeur(ville, "TOTAL DES RESSOURCES D'INVESTISSEMENT",
-                                            listAnnees[0], "Valeur totale"))
+    codeCle = "total des charges de fonctionnement"
+    chargesF = dictAllGrandeur["Valeur totale"][codeCle][listAnnees[0]] * 1e3
+    codeCle = "total des emplois investissement"
+    emploisI = dictAllGrandeur["Valeur totale"][codeCle][listAnnees[0]] * 1e3
+    codeCle = "total des produits de fonctionnement"
+    produitsF = dictAllGrandeur["Valeur totale"][codeCle][listAnnees[0]] * 1e3
+    codeCle = "total des ressources d'investissement"
+    ressourcesI = dictAllGrandeur["Valeur totale"][codeCle][listAnnees[0]] * 1e3
 
     # Pour comparaison valeur par habitant / Strate des données de l'année la plus récente
     grandeursAnalyse = []
@@ -295,7 +305,7 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
                          isWikicode, verbose) + ' de personnels' :
         {
             'libellePicto' : 'Charges de personnels',
-            'cle' : "dont : Charges de personnel",
+            'cle' : "dont charges de personnel",
             'note' : "Les « charges de personnel » regroupent les frais " + \
                      "de [[rémunération]] des employés par la commune.",
             'noteHtml' : "7",
@@ -306,7 +316,7 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
         ' et charges externes' :
         {
             'libellePicto' : 'Achats et charges ext.',
-            'cle' : "Achats et charges externes",
+            'cle' : "achats et charges externes",
             'note' : "Le poste « achats et charges externes » regroupe " + \
                      "les achats non stockés de matières et fournitures " + \
                      "([[Eau potable|eau]], [[énergie]]...), le petit matériel, " +\
@@ -318,8 +328,8 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
         },
         'des charges financières' :
         {
-            'libellePicto' : 'Charges financières',
-            'cle' : "Charges financières",
+            'libellePicto' : 'charges financières',
+            'cle' : "charges financières",
             'note' : "Les « charges financières » correspondent à la rémunération " + \
                          "des ressources d'[[Emprunt (finance)|emprunt]].",
             'noteHtml' : "9",
@@ -328,8 +338,8 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
         'des ' + genLien(config, ["subventions"], isWikicode, verbose) + \
         ' versées' :
         {
-            'libellePicto' : 'Subventions versées',
-            'cle' : "Subventions versées",
+            'libellePicto' : 'subventions versées',
+            'cle' : "subventions versées",
             'note' : "Les « subventions versées » rassemblent l'ensemble " + \
                      "des [[subvention]]s à des associations votées par le " + \
                      "[[Conseil municipal (France)|conseil municipal]].",
@@ -339,8 +349,8 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
         },
         'des contingents' :
         {
-            'libellePicto' : 'Contingents',
-            'cle' : "Contingents",
+            'libellePicto' : 'contingents',
+            'cle' : "contingents",
             'note' : "Les « contingents » représentent des participations " + \
                      "obligatoires d'une commune au financement de services " + \
                      "départementaux, notamment aux [[Pompier|sapeurs-pompiers]] " + \
@@ -356,7 +366,7 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
         "l'encours de la dette" :
         {
             'libellePicto' : 'Encours de la dette',
-            'cle' : 'Encours de la dette au 31/12/N',
+            'cle' : 'encours de la dette au 31 12 n',
             'note' : "",
             'noteHtml' : '',
             'nul' : "pas d'encours pour la dette"
@@ -368,8 +378,8 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
     {
         "l'annuité de la dette" :
         {
-            'libellePicto' : 'Annuité de la dette',
-            'cle' : "Annuité de la dette",
+            'libellePicto' : 'annuité de la dette',
+            'cle' : "annuité de la dette",
             'note' : "",
             'noteHtml' : '',
             'nul' : 'aucune annuité pour la dette'
@@ -377,14 +387,14 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
     }
     grandeursAnalyse.append([dictAnnuiteDette, 0, "ANNUITE_DETTE", couleurDettesCAF])
 
-    #Recettes
+    # Recettes
     dictRecettes = \
     {
         'des ' + genLien(config, ["Impôts locaux en France", "impôts locaux"],
                          isWikicode, verbose) :
         {
             'libellePicto' : 'Impôts locaux',
-            'cle' : "dont : Impôts Locaux",
+            'cle' : "dont impôts locaux",
             'note' : "Les « [[Impôts locaux en France|impôts locaux]] » " +\
                     "désignent les [[impôt]]s prélevés par les " + \
                     "[[Collectivité territoriale|collectivités territoriales]] " + \
@@ -400,8 +410,8 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
         "de la " + genLien(config, ["dotation globale de fonctionnement"],
                            isWikicode, verbose) + " (DGF)" :
         {
-            'libellePicto' : 'Dotation globale de fonctionnement',
-            'cle' : 'Dotation globale de fonctionnement',
+            'libellePicto' : 'dotation globale de fonctionnement',
+            'cle' : 'dotation globale de fonctionnement',
             'note' : "Les « [[Finances locales en France#Dotations et subventions de " + \
                      "l'État|dotations globales de fonctionnement]] » désignent, en " + \
                      "[[France]], des concours financiers de l'[[État]] au [[budget]] " + \
@@ -413,7 +423,7 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
                          isWikicode, verbose) :
         {
             'libellePicto' : 'Autres impôts',
-            'cle' : "Autres impôts et taxes",
+            'cle' : "autres impôts et taxes",
             'note' : "Les « autres impôts » couvrent certains impôts et [[taxe]]s " + \
                      "autres que les [[Impôts locaux en France|impôts locaux]].",
             'noteHtml' : "14",
@@ -428,7 +438,7 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
         'Solde de la section de fonctionnement' :
         {
             'libellePicto' : 'Résultat comptable',
-            'cle' : "RESULTAT COMPTABLE",
+            'cle' : "resultat comptable",
             'note' : "Le « solde de la section de fonctionnement » résulte de la " + \
                      "différence entre les [[Recettes publiques|recettes]] et les " + \
                      "[[Dépenses publiques|charges]] de fonctionnement.",
@@ -443,7 +453,7 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
         "des dépenses d'équipement" :
         {
             'libellePicto' : "Dépenses d'équipement",
-            'cle' : "dont : Dépenses d'équipement",
+            'cle' : "dont dépenses équipement",
             'note' : "Les « dépenses d’équipement » servent à financer des projets " + \
                      "d’envergure ayant pour objet d’augmenter la valeur du " + \
                      "[[Patrimoine (finance)|patrimoine]] de la commune et d’améliorer " + \
@@ -455,7 +465,7 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
                          isWikicode, verbose) + " d'emprunts" :
         {
             'libellePicto' : "Remboursements d'emprunts",
-            'cle' : "Remboursement d'emprunts et dettes assimilées",
+            'cle' : "remboursement emprunts et dettes assimilées",
             'note' : "Les « [[Plan de remboursement|remboursement]]s d'emprunts » " + \
                      "représentent les sommes affectées par la commune au " + \
                      "remboursement du capital de la dette.",
@@ -473,7 +483,7 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
                 isWikicode, verbose) :
         {
             'libellePicto' : 'Nouvelles dettes',
-            'cle' : "dont : Emprunts bancaires et dettes assimilées",
+            'cle' : "dont emprunts bancaires et dettes assimilées",
             'note' : "",
             'noteHtml' : '',
             'nul' : "aucune " + genLien(config, ["Emprunt (finance)", "nouvelles dettes"],
@@ -481,8 +491,8 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
         },
         genLien(config, ["subventions"], isWikicode, verbose) + " reçues" :
         {
-            'libellePicto' : 'Subventions reçues',
-            'cle' : "Subventions reçues",
+            'libellePicto' : 'subventions reçues',
+            'cle' : "subventions reçues",
             'note' : "",
             'noteHtml' : '',
             'nul' : "aucune " + genLien(config, ["subventions", "subvention"],
@@ -490,8 +500,8 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
         },
         genLien(config, ["fonds de Compensation pour la TVA"], isWikicode, verbose) :
         {
-            'libellePicto' : 'FCTVA',
-            'cle' : "FCTVA",
+            'libellePicto' : 'fctva',
+            'cle' : "fctva",
             'note' : "",
             'noteHtml' : '',
             'nul' : "aucune somme au titre des " + \
@@ -508,7 +518,7 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
         " (CAF)" :
         {
             'libellePicto' : "Capacité d'autofinancement",
-            'cle' : "Capacité d'autofinancement = CAF",
+            'cle' : "capacité autofinancement caf",
             'note' : "",
             'noteHtml' : '',
             'nul' : "aucune " + genLien(config, ["capacité d'autofinancement"],
@@ -530,18 +540,29 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
         textSection = textSection.replace("<GEN_LIGNES_TABLEAU_PICTO_" + grandeurs[2] + ">",
                                           "".join(lignes))
 
-    # Recherche des valeurs, calcul des ratio et remplacement des mots clés
+    # Recherche des valeurs, calcul des ratios et remplacement des mots clés
+    nbAnneesTendance = int(config.get('GenWIkiCode', 'gen.nbAnneesTendance'))
+    listeAnneesTendance = sorted(listAnnees[:nbAnneesTendance])
+
+    # Extraction des valeurs de la base
+    listeNomsgrandeurs = [grandeurs[0][key]['cle']
+                          for grandeurs in grandeursAnalyse
+                          for key in grandeurs[0]]
+
+    if verbose:
+        print("listeNomsgrandeurs=", listeNomsgrandeurs)
+
     for grandeurs in grandeursAnalyse:
-        nbAnneesTendance = int(config.get('GenWIkiCode', 'gen.nbAnneesTendance'))
-        listeAnneesTendance = sorted(listAnnees[:nbAnneesTendance])
-        getValeursDict(listeAnneesTendance, ville, listAnnees[0], grandeurs[0], verbose)
+        getValeursDict(dictAllGrandeur,
+                       listeAnneesTendance,
+                       listAnnees[0], grandeurs[0],
+                       verbose)
         cleTriee = triPourCent(config, grandeurs[1], grandeurs[0], True, isWikicode, verbose)
-        for numValeur in range(len(cleTriee)):
-            text = cleTriee[numValeur]
+        for numValeur, text in enumerate(cleTriee):
             textSection = textSection.replace("<LIBELLE_" + grandeurs[2] + str(numValeur+1) + ">",
                                               text)
             textSection = textSection.replace("<VALEUR_" + grandeurs[2] + str(numValeur+1) +">",
-                                              str(grandeurs[0][text]["Valeur totale"]))
+                                              str(int(grandeurs[0][text]["Valeur totale"]*1e3)))
             textSection = textSection.replace("<VALEUR_" + grandeurs[2] + "_PC" + \
                                               str(numValeur+1) +">",
                                               grandeurs[0][text]['ratioValeurStr'])
@@ -577,7 +598,7 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
                                               str(numValeur+1) + ">",
                                               grandeurs[0][text]['libellePicto'])
             # V1.2.1 : Phrase complête pour éviter les problèmes en cas de valeur nulle
-            if grandeurs[0][text]["Valeur totale"] == 0:
+            if grandeurs[0][text]["Valeur totale"] <= 0.0:
                 phrase = grandeurs[0][text]["nul"]
             else:
                 phrase = text
@@ -587,11 +608,11 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
                 phrase += '<sup><a href="../../notice.html#Note_' + \
                           grandeurs[0][text]["noteHtml"] + \
                           '">Note ' + grandeurs[0][text]["noteHtml"] + '</a></sup>'
-            if grandeurs[0][text]["Valeur totale"] != 0:
+            if grandeurs[0][text]["Valeur totale"] > 0.0:
                 phrase += " pour " + random.choice(["un montant de", "une somme de", "",
                                                     "une valeur totale de",
                                                     "une valeur de"]) + " " + \
-                           utilitaires.modeleEuro(str(grandeurs[0][text]["Valeur totale"]),
+                           utilitaires.modeleEuro(str(int(grandeurs[0][text]["Valeur totale"]*1e3)),
                                                   isWikicode)
 
                 # Si la somme total des valeurs du groupe est valide, on affiche le pourcentage
@@ -599,7 +620,7 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
                     phrase += " (" +  grandeurs[0][text]['ratioValeurStr'] + ")"
                 if grandeurs[0][text]["Par habitant"] > 0:
                     phrase += ", soit " + \
-                              utilitaires.modeleEuro(str(grandeurs[0][text]["Par habitant"]),
+                              utilitaires.modeleEuro(str(int(grandeurs[0][text]["Par habitant"])),
                                                      isWikicode)
                     phrase += " par habitant, ratio "
                 else:
@@ -615,17 +636,17 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
         {
             "libelle" : "Taxe d'habitation",
             "tag" : "TAUX_TAXE_HABITATION",
-            "cle" : "Taux Taxe d'habitation"
+            "cle" : "taux taxe habitation"
         },
         {
             "libelle" : "Taxe foncière sur le bâti",
             "tag" : "TAUX_FONCIER_BATI",
-            "cle" : "Taux Taxe foncière bâti"
+            "cle" : "taux taxe foncière bâti"
         },
         {
             "libelle" : "Taxe foncière sur le non bâti",
             "tag" : "FONCIER_NON_BATI",
-            "cle" : "Taux Taxe foncière non bâti"
+            "cle" : "taux taxe foncière non bâti"
         }
     ]
 
@@ -643,18 +664,16 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
         tag = dictTaxe["tag"]
         textSection = textSection.replace("<LIBELLE_PICTO_" + tag + "1>",
                                           dictTaxe["libelle"])
-        tauxTaxeVille = utilitaires.getValeurFloat(ville, cle, listAnnees[0], "Taux")
+        tauxTaxeVille = dictAllGrandeur["Taux"][cle][listAnnees[0]]
         textSection = textSection.replace("<VALEUR_" + tag + "_PAR_HABITANT1>",
-                                          tauxTaxeVille)
-        tauxTaxeVilleNM1 = utilitaires.getValeurFloat(ville, cle, listAnnees[1],
-                                                      "Taux")
+                                          f'{tauxTaxeVille:2.2f}')
+        tauxTaxeVilleNM1 = dictAllGrandeur["Taux"][cle][listAnnees[1]]
         # V1.0.4 :pas d'utilisation du modèle unité avec les pourcentages
         textSection = textSection.replace("<VALEUR_" + tag + "_PAR_HABITANT1_NM1>",
-                                          tauxTaxeVilleNM1.replace('.', ','))
-        tauxTaxeStrate = utilitaires.getValeurFloat(ville, cle, listAnnees[0],
-                                                    "Taux moyen pour la strate")
+                                          f'{tauxTaxeVilleNM1:2.2f}'.replace('.', ','))
+        tauxTaxeStrate = dictAllGrandeur["taux moyen pour la strate"][cle + " moyen"][listAnnees[0]]
         textSection = textSection.replace("<VALEUR_" + tag + "_STRATE1>",
-                                          tauxTaxeStrate)
+                                          f'{tauxTaxeStrate:2.2f}')
         ratioTaxe = utilitaires.calculAugmentation(config,
                                                    float(tauxTaxeVille),
                                                    float(tauxTaxeStrate))
@@ -676,26 +695,40 @@ def genCodeTableauxPicto(config, textSection, ville, listAnnees, isComplet,
         print("Sortie de genWikiCodeTableauxPicto")
     return textSection.strip()
 
-def getValeursDict(listeAnneesTendance, ville, annee, dictValeurs, verbose):
-    """ V0.8 : Recuperation groupe de valeurs pour certaines années """
+def getValeursDict(dictAllGrandeur,
+                   listeAnneesTendance, annee,
+                   dictValeurs,
+                   verbose):
+    """
+    V0.8 : Recuperation groupe de valeurs pour certaines années
+    Résultats placés dans dictValeurs
+    """
     if verbose:
         print("\nEntrée dans getValeursDict")
+        print("dictValeurs=", dictValeurs)
+
     # Recupération des valeurs pour les clés
-    for defValeur in list(dictValeurs.keys()):
+    for defValeur in dictValeurs:
+        cle = dictValeurs[defValeur]['cle']
         for sousCle in ["Valeur totale", "Par habitant", "En moyenne pour la strate"]:
+            if sousCle == "Par habitant":
+                cle = dictValeurs[defValeur]['cle'] + " par habitant"
+            if sousCle == "En moyenne pour la strate":
+                cle = dictValeurs[defValeur]['cle'] + " moyen"
+
             dictValeurs[defValeur][sousCle] = \
-                int(utilitaires.getValeur(ville, dictValeurs[defValeur]['cle'],
-                                          annee, sousCle))
+                    round(dictAllGrandeur[sousCle][cle][annee])
 
         # V1.0.0 : Preparation données pour calcul tendance
-        dictAneeesValeur = dict()
-        for annee in listeAnneesTendance:
-            dictAneeesValeur[str(annee)] = \
-                int(utilitaires.getValeur(ville, dictValeurs[defValeur]['cle'],
-                                          annee, "Par habitant"))
-        dictValeurs[defValeur]['dictAneeesValeur'] = dictAneeesValeur
+        cle = dictValeurs[defValeur]['cle'] + " par habitant"
+        dictAnneesValeur = dict()
+        for anneeTendance in listeAnneesTendance:
+            dictAnneesValeur[anneeTendance] = \
+                    dictAllGrandeur["Par habitant"][cle][anneeTendance]
+        dictValeurs[defValeur]['dictAnneesValeur'] = dictAnneesValeur
+
     if verbose:
-        print("dictAneeesValeur =", dictAneeesValeur)
+        print("dictValeurs =", dictValeurs)
         print("\nSortie de getValeursDict")
 
 # V0.8 : Classemement de grandeurs et stat
@@ -722,9 +755,9 @@ def triPourCent(config, sommeValeurTotal, dictValeurs, avecTendance, isWikicode,
     else:
         espacePc = '&nbsp;'
 
-    for defValeur in list(dictValeurs.keys()):
+    for defValeur in dictValeurs:
         dictValeurs[defValeur]['ratioValeur'] = \
-            (float(dictValeurs[defValeur]["Valeur totale"]) * 100.0) / \
+            (float(dictValeurs[defValeur]["Valeur totale"]*1e3) * 100.0) / \
              float(sommeValeurTotal)
         if dictValeurs[defValeur]['ratioValeur'] < 1.0:
             faibleStr = random.choice(["inférieures à 1"+ espacePc + "%",
@@ -760,9 +793,9 @@ def triPourCent(config, sommeValeurTotal, dictValeurs, avecTendance, isWikicode,
 
         # v1.0.0 : tendance des séries sur les derniéres années
         if avecTendance:
-            dictAneeesValeur = dictValeurs[defValeur]['dictAneeesValeur']
+            dictAnneesValeur = dictValeurs[defValeur]['dictAnneesValeur']
             dictValeurs[defValeur]['ratioTendanceStr'] = \
-                utilitaires.calculeTendanceSerieStr('ce ratio', dictAneeesValeur,
+                utilitaires.calculeTendanceSerieStr('ce ratio', dictAnneesValeur,
                                                     'par habitant',
                                                     isWikicode, verbose)
 
@@ -772,8 +805,8 @@ def triPourCent(config, sommeValeurTotal, dictValeurs, avecTendance, isWikicode,
 
     # tri des cles par importance decroissante
     dictCleValeur = dict()
-    for defValeur in list(dictValeurs.keys()):
-        dictCleValeur[defValeur] = dictValeurs[defValeur]["Valeur totale"]
+    for defValeur in dictValeurs:
+        dictCleValeur[defValeur] = dictValeurs[defValeur]["Valeur totale"]*1e3
     cleTriee = [e[0] for e in sorted(list(dictCleValeur.items()),
                                      key=operator.itemgetter(1), reverse=True)]
 

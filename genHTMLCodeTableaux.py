@@ -3,7 +3,7 @@
 *********************************************************
 Module : genHTMLCodeTableaux.py
 Auteur : Thierry Maillard (TMD)
-Date : 24/5/2015 - 3/6/2015
+Date : 24/5/2015 - 11/9/2019
 
 Role : Transforme les donnees traitées par extractionMinFi.py
         en HTML pour les parties tableaux.
@@ -31,30 +31,25 @@ Copyright (c) 2015 - Thierry Maillard
 """
 import utilitaires
 
-def GenereTableau(ville, listAnnees, nbAnneesTableau,
-                  listeValeurs, couleurTitres, couleurStrate,
+def genereTableau(nomTableau, ville,
+                  listAnnees, nbAnneesTableau,
+                  listeGrandeurs,
+                  dictAllGrandeur,
+                  couleurTitres, couleurStrate,
                   isComplet, verbose):
     """ Génère le code HTML pour un tableau historique sur N années """
     if verbose:
-        print("Entrée dans GenereTableau")
-        print('ville=', ville['nom'])
-        print("isComplet :", str(isComplet))
+        print("Entrée dans genereTableau (HTML)")
+        print("nomTableau=", nomTableau)
+        print('ville=', ville)
+        print('listAnnees=', listAnnees)
+        print('nbAnneesTableau=', nbAnneesTableau)
+        print('dictAllGrandeur=', dictAllGrandeur)
+        print("isComplet :", isComplet)
 
-    # Détermination de l'arrondi à utiliser :
-    # Arrondi en million sauf si une des valeurs à afficher est < 1000000
-    arrondi = 2
-    arrondiStr = 'M€'
-    arrondiStrAffiche = "million d'euros (M€)"
-    for valeur in listeValeurs:
-        for annee in sorted(listAnnees[:nbAnneesTableau]):
-            valeurData = utilitaires.getValeur(ville, valeur[0], annee, "Valeur totale")
-            if int(valeurData) < 1000000:
-                arrondi = 1
-                arrondiStr = 'k€'
-                arrondiStrAffiche = "millier d'euros (k€)"
-    if verbose:
-        print("arrondi =", arrondi, ", arrondiStr = ", arrondiStr)
-        print("arrondiStrAffiche = ", arrondiStrAffiche)
+    arrondi, arrondiStr, arrondiStrAffiche = \
+             utilitaires.setArrondi(dictAllGrandeur["Valeur totale"], listAnnees,
+                                    1000.0, None, verbose)
 
     # Titres
     ligne = ""
@@ -85,21 +80,23 @@ def GenereTableau(ville, listAnnees, nbAnneesTableau,
                      'Strate (€)</th>\n'
     ligne += '      </tr>\n'
 
-    for valeur in listeValeurs:
+    for grandeur in listeGrandeurs:
+        nomGrandeur = grandeur[0]
         ligne += '      <tr>\n'
-        ligne += '         <th bgcolor="' + valeur[2] + '">' + \
-                 valeur[1] + '</th>\n'
+        ligne += '         <th bgcolor="' + grandeur[2] + '">' + \
+                 grandeur[1] + '</th>\n'
         for annee in sorted(listAnnees[:nbAnneesTableau]):
-            ligne += '         <td align="right" bgcolor="' + valeur[2] + '">' + \
-                     utilitaires.getValeur(ville, valeur[0], annee, "Valeur totale", arrondi) + \
+            ligne += '         <td align="right" bgcolor="' + grandeur[2] + '">' + \
+                     str(round(dictAllGrandeur["Valeur totale"][nomGrandeur][annee] * arrondi)) + \
                      '</td>\n'
-            ligne += '         <td align="right" bgcolor="' + valeur[2] + '">' + \
-                     utilitaires.getValeur(ville, valeur[0], annee, "Par habitant") + \
+            ngph = nomGrandeur + " par habitant"
+            ligne += '         <td align="right" bgcolor="' + grandeur[2] + '">' + \
+                     str(round(dictAllGrandeur["Par habitant"][ngph][annee])) + \
                      '</td>\n'
             if isComplet:
+                ngm = nomGrandeur + " moyen"
                 ligne += '         <td align="right" bgcolor="' + couleurStrate + '">' + \
-                         utilitaires.getValeur(ville, valeur[0], annee,
-                                               "En moyenne pour la strate") + \
+                         str(round(dictAllGrandeur["En moyenne pour la strate"][ngm][annee])) + \
                          '</td>\n'
         ligne += '      </tr>\n'
 
@@ -113,23 +110,24 @@ def GenereTableau(ville, listAnnees, nbAnneesTableau,
     ligne += '<table>\n'
 
     if verbose:
-        print("Sortie de GenereTableau")
+        print("Sortie de genereTableau (HTML)")
     return ligne.strip()
 
-def GenereTableauTaux(ville, listAnnees, nbAnneesTableau,
-                      listeValeurs, couleurTitres, couleurStrate,
+def genereTableauTaux(nomTableau, ville,
+                      listAnnees, nbAnneesTableau,
+                      listeGrandeurs,
+                      dictAllGrandeur,
+                      couleurTitres, couleurStrate,
                       isComplet, verbose):
     """ Genere le code HTML pour un tableau de taux de fiscalité """
     if verbose:
-        print("Entrée dans GenereTableauTaux (HTML)")
-        print('ville=', ville['nom'])
+        print("Entrée dans genereTableautaux (HTML)")
+        print("nomTableau=", nomTableau)
+        print('ville=', ville)
+        print('listAnnees=', listAnnees)
+        print('nbAnneesTableau=', nbAnneesTableau)
+        print('listeGrandeurs=', listeGrandeurs)
         print("isComplet :", str(isComplet))
-
-    # v1.0.0 : pour cas particulier Paris : Recherche années ou les taux sont disponibles
-    anneesOK = [annee for annee in sorted(listAnnees[:nbAnneesTableau])
-                if ville['data'][listeValeurs[0][0]][str(annee)] is not None]
-    if verbose:
-        print('anneesOK=', anneesOK)
 
     # Titres
     ligne = ""
@@ -141,7 +139,7 @@ def GenereTableauTaux(ville, listAnnees, nbAnneesTableau,
         colspanAnnee = '1'
     ligne += '      <tr>\n'
     ligne += '         <th></th>\n'
-    for annee in anneesOK:
+    for annee in sorted(listAnnees[:nbAnneesTableau]):
         ligne += '         <th colspan="'+ colspanAnnee + \
                  ' bgcolor="' + couleurTitres + '">' + \
                  str(annee) +'</th>\n'
@@ -149,26 +147,27 @@ def GenereTableauTaux(ville, listAnnees, nbAnneesTableau,
     ligne += '      <tr>\n'
     ligne += '         <th bgcolor="' + couleurTitres + '">' + \
              'Valeurs en %</th>\n'
-    for annee in anneesOK:
+    for annee in sorted(listAnnees[:nbAnneesTableau]):
         ligne += '         <th bgcolor="' + couleurTitres + '">' + \
-                 'Taux voté</th>\n'
+                 'taux voté</th>\n'
         if isComplet:
             ligne += '         <th bgcolor="' + couleurStrate + '">' + \
-                     'Taux moyen de la strate</th>\n'
+                     'taux moyen de la strate</th>\n'
     ligne += '      </tr>\n'
 
-    for valeur in listeValeurs:
+    for grandeur in listeGrandeurs:
+        nomGrandeur = grandeur[0]
         ligne += '      <tr>\n'
-        ligne += '         <th bgcolor="' + valeur[2] + '">' + \
-                 valeur[1] + '</th>\n'
-        for annee in anneesOK:
-            ligne += '         <td align="right" bgcolor="' + valeur[2] + '">' + \
-                     utilitaires.getValeurFloat(ville, valeur[0], annee, "Taux", verbose) + \
+        ligne += '         <th bgcolor="' + grandeur[2] + '">' + \
+                 grandeur[1] + '</th>\n'
+        for annee in sorted(listAnnees[:nbAnneesTableau]):
+            ligne += '         <td align="right" bgcolor="' + grandeur[2] + '">' + \
+                     str(round(dictAllGrandeur["Taux"][nomGrandeur][annee])) + \
                      '</td>\n'
             if isComplet:
+                ngm = nomGrandeur + " moyen"
                 ligne += '         <td align="right" bgcolor="' + couleurStrate + '">' + \
-                         utilitaires.getValeurFloat(ville, valeur[0], annee,
-                                                    "Taux moyen pour la strate") + \
+                         str(round(dictAllGrandeur["taux moyen pour la strate"][ngm][annee])) + \
                          '</td>\n'
         ligne += '      </tr>\n'
 
@@ -176,6 +175,6 @@ def GenereTableauTaux(ville, listAnnees, nbAnneesTableau,
     ligne += '<table>\n'
 
     if verbose:
-        print("Sortie de GenereTableauTaux (HTML)")
+        print("Sortie de genereTableautaux (HTML)")
 
     return ligne.strip()

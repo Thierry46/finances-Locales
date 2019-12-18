@@ -3,13 +3,13 @@
 *********************************************************
 Module : genCodeTexte.py
 Auteur : Thierry Maillard (TMD)
-Date : 24/5/2015 - 4/11/2015
+Date : 24/5/2015 - 8/12/2019
 
 Role : Transforme les donnees traitées par extractionMinFi.py
         en wikicode pour les partie textuelles.
 ------------------------------------------------------------
 Licence : GPLv3 (en français dans le fichier gpl-3.0.fr.txt)
-Copyright (c) 2015 - Thierry Maillard
+Copyright (c) 2015 - 2019 - Thierry Maillard
 ------------------------------------------------------------
 
     This file is part of FinancesLocales project.
@@ -29,27 +29,31 @@ Copyright (c) 2015 - Thierry Maillard
     If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
 *********************************************************
 """
-import urllib.parse
 import time
 import re
 
 import utilitaires
-import utilCode
 
-def genCodeTexte(config, modele, textSection, ville,
-                 listAnnees, nomProg, isWikicode, verbose):
-    """ Génère tout le wikicode des parties texte pour une ville """
+def genTexte(config, dictAllGrandeur, modele, textSection, ville,
+             listAnnees, nomProg, isWikicode, verbose):
+    """
+        Expanse les tags concernant du txte simple pour une ville donnée,
+        dictAllGrandeur contient toutes les donnes pour cette ville
+        les mot clé de type textuels du modèle.
+        Le texte du modèle en entrée est fourni dans la chaine textSection.
+        Le type de sortie peut être du Wikicode ou du HTML.
+        Le texte résultat est retourné à l'appelant.
+    """
 
     if verbose:
-        print("Entree dans genCodeTexte")
-        print('ville=', ville['nom'])
+        print("Entree dans genTexte")
+        print('ville=', ville)
         print("modele :", modele)
         print("isWikicode =", isWikicode)
 
     textSection = textSection.replace("<ANNEE>", str(listAnnees[0]))
     textSection = textSection.replace("<ANNEE-1>", str(listAnnees[1]))
     textSection = textSection.replace("<ANNEE0>", str(listAnnees[-1]))
-    textSection = textSection.replace("<NB_ANNEE_TOTAL>", str(len(listAnnees)))
 
     # Commentaire de traçabilité
     outilNom = config.get('Version', 'version.appName')
@@ -72,100 +76,76 @@ def genCodeTexte(config, modele, textSection, ville,
 
     # Tags pour la ville
     articleVille = "de "
-    if ville['nom'][0] in "AEIOUYH":
+    if ville[1][0] in "AEIOUYH":
         articleVille = "d'"
     textSection = textSection.replace("<ARTICLE_VILLE>", articleVille)
-    textSection = textSection.replace("<VILLE>", ville['nom'])
-    textSection = textSection.replace("<VILLE_LIEN>", ville['nomWkpFr'])
+    textSection = textSection.replace("<VILLE>", ville[1])
+    textSection = textSection.replace("<VILLE_LIEN>", ville[2])
     nomArticleDetail = config.get('GenCode', 'gen.prefixePagedetail') + \
-                       " " + articleVille + ville['nom']
+                       " " + articleVille + ville[1]
     textSection = textSection.replace("<NOM_ARTICLE_DETAIL>", nomArticleDetail)
+    # Construction du nom de département avec article
+    article = ville[3]
+    if not article.endswith("'"):
+        article += " "
+    nomDepartement = ville[4]
     categorieArticle = config.get('GenCode', 'gen.prefixeCategorieArticle') + \
-                       " " + ville['nomDepStr']
+                       " " + article + nomDepartement
     textSection = textSection.replace("<CATEGORIE_ARTICLE>", categorieArticle)
 
     # Budget général
-    chargesF = utilitaires.getValeurIntTotale(ville,
-                                              'TOTAL DES CHARGES DE FONCTIONNEMENT',
-                                              listAnnees[0])
-    emploisI = utilitaires.getValeurIntTotale(ville,
-                                              "TOTAL DES EMPLOIS D'INVESTISSEMENT",
-                                              listAnnees[0])
+    codeCle = "total des charges de fonctionnement"
+    chargesF = dictAllGrandeur["Valeur totale"][codeCle][listAnnees[0]] * 1e3
+    codeCle = "total des emplois investissement"
+    emploisI = dictAllGrandeur["Valeur totale"][codeCle][listAnnees[0]] * 1e3
     depensesTotal = chargesF + emploisI
-    textSection = textSection.replace("<DEPENSES_TOTAL>", str(depensesTotal))
-    textSection = textSection.replace("<CHARGES_FONCTIONNEMENT>", str(chargesF))
-    textSection = textSection.replace("<EMPLOIS_INVEST>", str(emploisI))
+    textSection = textSection.replace("<DEPENSES_TOTAL>", f"{depensesTotal:.0f}")
+    textSection = textSection.replace("<CHARGES_FONCTIONNEMENT>", f"{chargesF:.0f}")
+    textSection = textSection.replace("<EMPLOIS_INVEST>", f"{emploisI:.0f}")
 
-    produitsF = utilitaires.getValeurIntTotale(ville,
-                                               'TOTAL DES PRODUITS DE FONCTIONNEMENT',
-                                               listAnnees[0])
-    ressourcesI = utilitaires.getValeurIntTotale(ville,
-                                                 "TOTAL DES RESSOURCES D'INVESTISSEMENT",
-                                                 listAnnees[0])
+    codeCle = "total des produits de fonctionnement"
+    produitsF = dictAllGrandeur["Valeur totale"][codeCle][listAnnees[0]] * 1e3
+    codeCle = "total des ressources d'investissement"
+    ressourcesI = dictAllGrandeur["Valeur totale"][codeCle][listAnnees[0]] * 1e3
     recettesTotal = produitsF + ressourcesI
-    textSection = textSection.replace("<RECETTES_TOTAL>", str(recettesTotal))
-    textSection = textSection.replace("<PRODUITS_FONCTIONNEMENT>", str(produitsF))
-    textSection = textSection.replace("<RESSOURCES_INVEST>", str(ressourcesI))
+    textSection = textSection.replace("<RECETTES_TOTAL>", f"{recettesTotal:.0f}")
+    textSection = textSection.replace("<PRODUITS_FONCTIONNEMENT>", f"{produitsF:.0f}")
+    textSection = textSection.replace("<RESSOURCES_INVEST>", f"{ressourcesI:.0f}")
 
     # Fonctionnement
-    textSection = textSection.replace("<RESULTAT_COMPTABLE>",
-                                      utilitaires.getValeur(ville, 'RESULTAT COMPTABLE',
-                                                            listAnnees[0], "Valeur totale"))
-    textSection = textSection.replace("<RESULTAT_COMPTABLE_PAR_HAB>",
-                                      utilitaires.getValeur(ville, 'RESULTAT COMPTABLE',
-                                                            listAnnees[0], "Par habitant"))
-    textSection = \
-        textSection.replace("<CHARGES_FONCTIONNEMENT_PAR_HAB>",
-                            utilitaires.getValeur(ville,
-                                                  'TOTAL DES CHARGES DE FONCTIONNEMENT',
-                                                  listAnnees[0], "Par habitant"))
-    textSection = \
-        textSection.replace("<PRODUITS_FONCTIONNEMENT_PAR_HAB>",
-                            utilitaires.getValeur(ville,
-                                                  'TOTAL DES PRODUITS DE FONCTIONNEMENT',
-                                                  listAnnees[0], "Par habitant"))
+    codeCle = "resultat comptable"
+    resultatC = dictAllGrandeur["Valeur totale"][codeCle][listAnnees[0]] * 1e3
+    textSection = textSection.replace("<RESULTAT_COMPTABLE>", f"{resultatC:.0f}")
+    codeCle = "resultat comptable par habitant"
+    resultatCpH = dictAllGrandeur["Par habitant"][codeCle][listAnnees[0]]
+    textSection = textSection.replace("<RESULTAT_COMPTABLE_PAR_HAB>", f"{resultatCpH:.0f}")
+    codeCle = "total des charges de fonctionnement par habitant"
+    ChargesFpH = dictAllGrandeur["Par habitant"][codeCle][listAnnees[0]]
+    textSection = textSection.replace("<CHARGES_FONCTIONNEMENT_PAR_HAB>", f"{ChargesFpH:.0f}")
+    codeCle = "total des produits de fonctionnement par habitant"
+    ProduitsFpH = dictAllGrandeur["Par habitant"][codeCle][listAnnees[0]]
+    textSection = textSection.replace("<PRODUITS_FONCTIONNEMENT_PAR_HAB>", f"{ProduitsFpH:.0f}")
 
     # Variation DGF
-    dgf = float(utilitaires.getValeur(ville, 'Dotation globale de fonctionnement',
-                                      listAnnees[0], "Valeur totale"))
-    dgfm1 = float(utilitaires.getValeur(ville, 'Dotation globale de fonctionnement',
-                                        listAnnees[1], "Valeur totale"))
+    codeCle = "dotation globale de fonctionnement"
+    dgf = dictAllGrandeur["Valeur totale"][codeCle][listAnnees[0]] * 1e3
+    dgfm1 = dictAllGrandeur["Valeur totale"][codeCle][listAnnees[1]] * 1e3
     tendanceDGFstr = utilitaires.calculeTendance(config, dgf, dgfm1)
     textSection = textSection.replace("<TENDANCE_DGF>", tendanceDGFstr)
 
     # ratio Dette / CAF
-    ratioCAFDette = ville['data']['ratioCAFDette'][str(listAnnees[0])]
-    textSection = textSection.replace("<RATIO_N>",
-                                      utilCode.presentRatioDettesCAF(config,
-                                                                     ratioCAFDette,
-                                                                     isWikicode, verbose))
+    textSection = textSection.replace("<RATIO_N>", dictAllGrandeur["ratio n"])
     textSection = textSection.replace("<TENDANCE_RATIO_DETTE_CAF>",
-                                      ville['data']['tendanceRatio'])
+                                      dictAllGrandeur["tendance ratio"])
 
     # Réferences
-    urlMinFi = config.get('Extraction', 'extraction.urlMinFi')
-    textSection = textSection.replace("<URL_BASE>",
-                                      "[" + config.get('GenCode', 'gen.siteAlize2') + \
-                                      " " + urllib.parse.urlparse(urlMinFi).netloc + "]")
-    nbPages = len(listAnnees) * 7
-    textSection = textSection.replace("<NB_PAGES_MINFI>", str(nbPages))
-    for numTab in list(ville['ref'].keys()):
-        textSection = textSection.replace("<REF_NAME"+str(numTab)+">",
-                                          ville['ref'][numTab]['refName'])
-        textSection = textSection.replace("<URL_TAB"+str(numTab)+">",
-                                          ville['ref'][numTab]['url'])
-        textSection = textSection.replace("<URL_NOMPAGE"+str(numTab)+">",
-                                          ville['ref'][numTab]['nomPage'].lower())
-    textSection = textSection.replace("<REF_NAME_DETAIL>", ville['refDetail']['refName'])
-    textSection = textSection.replace("<URL_TAB_DETAIL>", ville['refDetail']['url'])
-    textSection = textSection.replace("<URL_NOMPAGE_DETAIL>",
-                                      ville['refDetail']['nomPage'].lower())
+    urlMinFi = config.get('Extraction', 'dataGouvFr.Comptes')
+    textSection = textSection.replace("<URL_BASE>", urlMinFi)
     textSection = textSection.replace("<DATE>", time.strftime("%d %B %G"))
-    # V2.1.0 : Date d'extraction des données du MinFi
-    textSection = textSection.replace("<DATE_EXTRACTION>", ville['dateExtraction'])
 
     # Commentaire definition strate
-    defStrate = ville['defStrate'].replace('Strate :', 'La strate regroupe les')
+    defStrate = ville[5] + ' ' + ville[6]
+    defStrate = defStrate.replace('Strate :', 'La strate regroupe les')
     if isWikicode:
         strateWikif = wikifieStrate(defStrate, verbose)
     else:
@@ -173,7 +153,8 @@ def genCodeTexte(config, modele, textSection, ville,
     textSection = textSection.replace("<DEF_STRATE>", strateWikif)
 
     if verbose:
-        print("Sortie de genCodeTexte")
+        print("textSection resultat =\n", textSection)
+        print("Sortie de genTexte")
 
     return textSection
 
@@ -219,4 +200,3 @@ def wikifieStrate(defStrate, verbose):
         print("strateWikif=", strateWikif)
         print("Sortie de wikifieStrate")
     return strateWikif
-

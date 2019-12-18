@@ -1,6 +1,20 @@
 ------------------------------------
 Evolutions du projet FinancesLocales
 ------------------------------------
+* V3.0.0 : nom de code : Yin Yang Sigma - 8/12/2019
+	9396 lignes au total : 5298 lignes de cade + 4098 lignes de test
+- Adaptation motif des données du Ministère des Finances :
+	pages WEB PHP -> https://www.data.gouv.fr/fr/datasets/comptes-individuels-des-communes-fichier-global
+- Stockage des données dans une base sqlite au lieu de fichiers texte
+- Séparation et renforcement des tests unitaires dans répertoire unittest
+- Réorganisation totale des programmes
+- clés du ministère des finances dans fichier de properties
+- Suppression des recopies de données lors de la création du site WEB résultat.
+
+* V2.4.3 : 20/12/2016
+	7256 lignes au total : 5522 lignes de cade + 1734 lignes de test
+
+* V2.4.2 : 19/8/2016
 * V2.4.1 : nom de code : Yin Yang Rhô - 7/11/2015
 - Correction remarques Pylint
 - extractionWikipediaFr.py/recupVilles() : Suppr. cas particuliers 'Guéret' et 'Bommiers'

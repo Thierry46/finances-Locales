@@ -28,18 +28,21 @@ Copyright (c) 2015 - Thierry Maillard
     If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
 *********************************************************
 """
-import utilitaires
 import sys
 import math
 
-def genGraphique(config, ville, anneesOK, courbes, largeur,
+def genGraphique(config, dictAllGrandeur,
+                 nomVille, anneesOK,
+                 courbes, largeur,
                  arrondi, arrondiStrAffiche,
                  verbose):
     """ Génère le Wikicode pour un graphique """
     if verbose:
         print("\n**********************")
         print("Entree dans genGraphique (Wiki)")
-        print('ville=', ville['nom'])
+        print("dictAllGrandeur=", dictAllGrandeur)
+        print("anneesOK=", anneesOK)
+        print('nomVille=', nomVille)
         print("Nombre de courbes :", len(courbes))
         print("clé =", [courbe['cle'] for courbe in courbes])
 
@@ -49,7 +52,6 @@ def genGraphique(config, ville, anneesOK, courbes, largeur,
     if verbose:
         print("nbSeries Ville=", nbSeriesVille)
         print("nbSeries Ville + Strate =", nbSeries)
-        print("anneesOK =", anneesOK)
 
     ligne = "| {{Graphique polygonal\n"
     ligne += " | coul_fond = white\n"
@@ -74,8 +76,8 @@ def genGraphique(config, ville, anneesOK, courbes, largeur,
 
     # Generation dates abscisses
     # V1.0.5 : Correction bug si annee manquante
-    for indice in range(len(anneesOK)):
-        ligne += " | lb_x" + str(indice+1) + " = " + str(anneesOK[indice])
+    for indice, anneeI in enumerate(anneesOK):
+        ligne += " | lb_x" + str(indice+1) + " = " + str(anneeI)
     ligne += "\n"
 
     # Détermination min, max des valeurs
@@ -85,12 +87,12 @@ def genGraphique(config, ville, anneesOK, courbes, largeur,
         for courbe in courbes:
             if courbe['cle'].startswith('Taux'):
                 valeurData = \
-                    int(ville['data'][courbe['cle']][str(annee)][courbe['sousCle']])
+                    round(dictAllGrandeur['Taux'][courbe['cle']][annee])
             elif courbe['sousCle'] == "":
-                valeurData = int(ville['data'][courbe['cle']][str(annee)])
+                valeurData = round(dictAllGrandeur[courbe['cle']][annee])
             else:
-                valeurData = int(utilitaires.getValeur(ville, courbe['cle'],
-                                                       annee, courbe['sousCle'], arrondi))
+                valFloat = dictAllGrandeur[courbe['sousCle']][courbe['cle']][annee]
+                valeurData = round(valFloat * arrondi)
             maxVal = max(maxVal, valeurData)
             minVal = min(minVal, valeurData)
     if verbose:
@@ -124,14 +126,11 @@ def genGraphique(config, ville, anneesOK, courbes, largeur,
         numSerie = 1
         for courbe in courbes:
             serie = '%02d'%numSerie
-            if courbe['cle'].startswith('Taux'):
-                valeurData = utilitaires.getValeurFloat(ville, courbe['cle'],
-                                                        annee, courbe['sousCle'])
-            elif courbe['sousCle'] == "":
-                valeurData = str(ville['data'][courbe['cle']][str(annee)])
+            if courbe['sousCle'] == "":
+                valeurData = str(round(dictAllGrandeur[courbe['cle']][annee]))
             else:
-                valeurData = utilitaires.getValeur(ville, courbe['cle'],
-                                                   annee, courbe['sousCle'], arrondi)
+                valFloat = dictAllGrandeur[courbe['sousCle']][courbe['cle']][annee]
+                valeurData = str(round(valFloat * arrondi))
             ligne += " | S" + serie + "V" + valeur + " = " + valeurData + " "
             numSerie += 1
         ligne += "\n"
@@ -150,12 +149,12 @@ def genGraphique(config, ville, anneesOK, courbes, largeur,
     for courbe in courbes:
         if 'strate' not in courbe['sousCle']:
             if ecritLegendeVille:
-                legendeVille += (ville["nom"] + ', ' + courbe['sousCle'].lower() + ' : ')
+                legendeVille += (nomVille + ', ' + courbe['sousCle'] + ' : ')
                 ecritLegendeVille = False
             legendeVille += "[[fichier:" + courbe['couleur'][0] + "|10px|alt=" + \
                             courbe['couleur'][2] + "|link=]] " + \
                             courbe['libelle'] + " "
-        if 'strate' in courbe['sousCle']:
+        else:
             if ecritLegendeStrate:
                 legendeStrate += '<br />' + courbe['sousCle'] + ' : '
                 ecritLegendeStrate = False
@@ -164,6 +163,7 @@ def genGraphique(config, ville, anneesOK, courbes, largeur,
                              courbe['libelle'] + " "
 
     if verbose:
+        print("ligne=", ligne)
         print("legendeVille=", legendeVille)
         print("legendeStrate =", legendeStrate)
         print("Sortie de genGraphique (Wiki)")

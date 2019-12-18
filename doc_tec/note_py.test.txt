@@ -37,7 +37,7 @@ def test_presentRatio(ratio, ch):
 Problèmes possibles :
 ============
 1 Import impossible : ne trouve pas votre module à tester
-	Votre module doit etre importable : nom sans .
+	Votre module doit être importable : nom sans .
 	tester sous la console python
 
 2 Pb encoding :

@@ -3,12 +3,12 @@
 *********************************************************
 Module : genHTML.py
 Auteur : Thierry Maillard (TMD)
-Date : 15/7/2015
+Date : 15/7/2015 - 3/11/2019
 
 Role : Routines de génération du code HTML de déploiement.
 ------------------------------------------------------------
 Licence : GPLv3 (en français dans le fichier gpl-3.0.fr.txt)
-Copyright (c) 2015 - Thierry Maillard
+Copyright (c) 2015 - 2019 - Thierry Maillard
 ------------------------------------------------------------
 
     This file is part of FinancesLocales project.
@@ -30,30 +30,42 @@ Copyright (c) 2015 - Thierry Maillard
 """
 import os
 import os.path
-import shutil
 import time
 
-def genIndexHTML(config, numDep, listeVilleDict, verbose):
-    """Génération de l'index des viles d'un département"""
-    msg = "genIndexHTML : Aucune ville à traiter !"
-    assert len(listeVilleDict) > 0, msg
+import utilitaires
+
+def genIndexHTML(config, repertoireDepBase, listVilles, verbose):
+    """
+    Génération de l'index des viles d'un département
+    listVilles : liste des villes traitées
+        Format d'une ville :
+        [codeCommune, nom, nomWkpFr, article, nomDepartement,
+         typeGroupement, nomStrate, score, population, numDepartement]
+    """
+    assert len(listVilles) > 0, "genIndexHTML : Aucune ville à traiter !"
 
     if verbose:
-        print("Entree dans genNoticeHTML")
-        print(listeVilleDict[0])
+        print("Entree dans genIndexHTML")
+        print("repertoireDepBase=", repertoireDepBase)
+        print("listVilles =", listVilles)
 
     # Lecture du modèle
     ficModelHTML = config.get('EntreesSorties', 'io.nomModeleIndexHTML')
     htmlText = litModeleHTML(ficModelHTML, verbose)
 
     # Remplacement des variables texte
-    htmlText = replaceTags(config, htmlText, listeVilleDict[0]['nomDepStr'], verbose)
+    nomDepStr = listVilles[0][3]
+    if not listVilles[0][3].endswith("'"):
+        nomDepStr += ' '
+    nomDepStr += listVilles[0][4]
+    htmlText = replaceTags(config, htmlText, nomDepStr, verbose)
 
     # Insertion des lignes de tableau les villes traitées
-    htmlText = insertVillesTableau(htmlText, listeVilleDict, verbose)
+    htmlText = insertVillesTableau(config, htmlText, listVilles, verbose)
 
     # Enregistrement du fichier
-    enregistreIndexHTML(config, numDep, htmlText, verbose)
+    enregistreIndexHTML(config, repertoireDepBase,
+                        listVilles[0][9], htmlText, verbose)
 
     if verbose:
         print("Sortie de genIndexHTML")
@@ -91,41 +103,37 @@ def replaceTags(config, htmlText, nomDepStr, verbose):
 
 # V1.0.5 : Pas de selection de ville ici :
 #           c'est lors de l'extraction de la base du MinFi que se fait la sélectio
-def insertVillesTableau(htmlText, listeVilleDict, verbose):
-    """ Insere les villes dans le texte passé en paramètre """
+def insertVillesTableau(config, htmlText, listVilles, verbose):
+    """
+    Insere les villes dans le texte passé en paramètre
+    listVilles : liste des villes traitées
+        Format d'une ville :
+        [codeCommune, nom, nomWkpFr, article, nomDepartement,
+         typeGroupement, nomStrate, score, population]
+
+    """
     if verbose:
         print("Entree dans InsertVillesTableau")
-        print("Nombre de ville :", len(listeVilleDict))
+        print("Nombre de ville :", len(listVilles))
 
     lignes = ""
-    for ville in listeVilleDict:
+    for ville in listVilles:
+        dictNomsVille = utilitaires.getNomsVille(config, ville[1],
+                                                 "", verbose)
         lignes += '<tr>\n'
 
         # Lien article Finances locales
-        lignes += '<td><a href="' + ville['html'] + '" target="_blank">'
-        lignes += ville['nom'] + ' (HTML)</a></td>\n'
+        lignes += '<td><a href="' + dictNomsVille['villeHtml'] + \
+                  '" target="_blank">'
+        lignes += ville[1] + ' (HTML)</a></td>\n'
 
         # Lien Wikicode
-        lignes += '<td><a href="' + ville['wikicode'] +  \
+        lignes += '<td><a href="' + dictNomsVille['villeWikicode'] +  \
                   '" target="_blank">Wiki</a></td>\n'
 
-        # Liens CSV
-        lignes += '<td><a href="' + ville['csv'] +  \
-                  '_Valeur_totale.csv' + \
-                  '" target="_blank">Valeur totale (CSV)</a></td>\n'
-        lignes += '<td><a href="' + ville['csv'] +  \
-                  '_Par_habitant.csv' + \
-                  '" target="_blank">Par habitant (CSV)</a></td>\n'
-        lignes += '<td><a href="' + ville['csv'] +  \
-                  '_En_moyenne_pour_la_strate.csv' + \
-                  '" target="_blank">strate (CSV)</a></td>\n'
-
         # Info score Wikipédia
-        lignes += '<td>' + str(ville['Score']) + '</td>\n'
-        lignes += '<td>' + ville['avancement'] + '</td>\n'
-        lignes += '<td>' + ville['importanceCDF'] + '</td>\n'
-        lignes += '<td>' + ville['importanceVDM'] + '</td>\n'
-        lignes += '<td>' + ville['popularite'] + '</td>\n'
+        lignes += '<td>' + str(ville[7]) + '</td>\n'
+        lignes += '<td>' + ville[8] + '</td>\n'
         lignes += '</tr>\n'
 
     htmlText = htmlText.replace("++LIGNES_VILLES++", lignes)
@@ -135,24 +143,25 @@ def insertVillesTableau(htmlText, listeVilleDict, verbose):
         print("Sortie de InsertVillesTableau")
     return htmlText
 
-def enregistreIndexHTML(config, numDep, htmlText, verbose):
+def enregistreIndexHTML(config, repertoireDepBase, numDep,
+                        htmlText, verbose):
     """ Enregistre la notice HTML """
     if verbose:
         print("Entree dans enregistreIndexHTML")
+        print("repertoireDepBase =", repertoireDepBase)
         print("numDep =", numDep)
 
-    # Création du répertoire de préparation des paquets
-    repertoireBase = config.get('EntreesSorties', 'io.repertoireBase')
-    repertoire = repertoireBase + '_' + numDep
+    # Le répertoire qui accueillera les fichiers du département doit exister
+    repertoire = repertoireDepBase
+    assert os.path.isdir(os.path.normcase(repertoire)),\
+           "Le répertoire " + repertoire + " n'existe pas !"
 
-    msg = "Le répertoire " + repertoire + " n'existe pas !"
-    assert os.path.isdir(os.path.normcase(repertoire)), msg
-
-    ficResu = config.get('EntreesSorties', 'io.nomFicIndexHTML')
-    pathFileHTML = os.path.normcase(os.path.join(repertoire, ficResu))
+    nomFicIndexHTML = config.get('EntreesSorties', 'io.nomFicIndexHTML')
+    pathFileHTML = os.path.normcase(os.path.join(repertoire, nomFicIndexHTML))
     enregistreFicHTML(pathFileHTML, htmlText, verbose)
 
     if verbose:
+        print("Fichier index écrit dans : ", pathFileHTML)
         print("Sortie de enregistreIndexHTML")
 
 def enregistreFicHTML(pathFileHTML, htmlText, verbose):
@@ -164,7 +173,7 @@ def enregistreFicHTML(pathFileHTML, htmlText, verbose):
     if verbose:
         print("Ouverture de :", pathFileHTML)
     ficNotice = open(pathFileHTML, 'w')
-    print("Ecriture de :", os.path.basename(pathFileHTML))
+    print("Ecriture de :", pathFileHTML)
     ficNotice.write(htmlText)
     if verbose:
         print("Fermeture de :", pathFileHTML)
@@ -172,23 +181,6 @@ def enregistreFicHTML(pathFileHTML, htmlText, verbose):
 
     if verbose:
         print("Sortie de enregistreFicHTML")
-
-def copieRepertoire(repertoireSource, repertoireDest, verbose):
-    """Copie d'un répertoire"""
-    if verbose:
-        print("Entree dans copieRepertoire")
-
-    msg = "Le répertoire " + repertoireDest + " n'existe pas !"
-    assert os.path.isdir(repertoireDest), msg
-    repertoireDestTotal = os.path.normcase(os.path.join(repertoireDest, repertoireSource))
-    if os.path.isdir(repertoireDestTotal):
-        if verbose:
-            print("effacement ancien", repertoireDestTotal)
-        shutil.rmtree(repertoireDestTotal)
-    shutil.copytree(repertoireSource, repertoireDestTotal)
-    if verbose:
-        print(repertoireSource + " copié dans", repertoireDest)
-        print("Sortie de copieRepertoire")
 
 def convertWikicode2Html(config, pathVille, verbose):
     """Conversion d'un fichier wikicode en HTML"""
@@ -224,12 +216,14 @@ def convertWikicode2Html(config, pathVille, verbose):
     if verbose:
         print("Sortie de convertWikicode2Html")
 
-def genIndexDepartement(config, verbose):
-    """Genere l'index des déparetements disponibles"""
+def genIndexDepartement(config, repTransfertWeb, verbose):
+    """
+    Genere l'index des déparetements disponibles
+    repTransfertWeb : repertoire où écrire les résultats
+    """
 
     # Récupère la liste des departements disponibles + tri
     repertoireBase = config.get('EntreesSorties', 'io.repertoireBase')
-    repTransfertWeb = config.get('EntreesSorties', 'io.repTransfertWeb')
     assert os.path.isdir(repTransfertWeb)
     listeDept = [dept for dept in os.listdir(repTransfertWeb)
                  if os.path.isdir(os.path.join(repTransfertWeb, dept)) and

@@ -4,7 +4,7 @@
 *********************************************************
 Programme : utilitaires.py
 Auteur : Thierry Maillard (TMD)
-Date : 24/5/2015 - 3/6/2015
+Date : 24/5/2015 - 8/12/2019
 Role : Fonctions communes
 ------------------------------------------------------------
 Licence : GPLv3 (en français dans le fichier gpl-3.0.fr.txt)
@@ -31,14 +31,63 @@ Copyright (c) 2015 - Thierry Maillard
 import os
 import os.path
 import math
-import json # To write ville dictionary in files
 import random
 import time
 import platform
 import sys
-import imp # To test if a module is available
+import unicodedata
 
 __TPREC__ = 0.0
+
+def merge2Dict(dict1, dict2, verbose):
+    """
+        Fusionne deux dictionnaires (année : valeur) sur leurs années commune
+        les liste d'entrée doivent être triées de façon indentique.
+        Retourne un dictionnaire {année : [valeurListe1, valeurListe2]}
+    """
+    if verbose:
+        print("Entree dans merge2Dict")
+        print("dict1 =", dict1)
+        print("dict2 =", dict2)
+
+    # Fusionne les 2 dictionnaires sur leurs années communes
+    anneesCafEtDette = set(dict1.keys()) & set(dict2.keys())
+    if verbose:
+        print("anneesCafEtDette =", anneesCafEtDette)
+
+    dictDetteCaf = {cle : [dict1[cle], dict2[cle]] for cle in anneesCafEtDette}
+
+    if verbose:
+        print("dictDetteCaf=", dictDetteCaf)
+        print("Sortie de merge2Dict")
+
+    return dictDetteCaf
+
+def lectureFiltreModele(modele, isComplet, verbose):
+    """ Lecture du fichier modèle
+        et adaptation du modèle en fonction du type de sortie souhaitée """
+
+    if verbose:
+        print("Entree dans lectureFiltreModele")
+        print("modele =", modele)
+        print("isComplet =", str(isComplet))
+
+    modelefile = open(modele, 'r')
+    htmlPage = ""
+    ecrit = True
+    for ligne in modelefile.read().splitlines():
+        if ligne.startswith("<STOP_COMPLET>"):
+            ecrit = True
+        elif ligne.startswith("<COMPLET>"):
+            ecrit = False
+        elif isComplet or ecrit:
+            htmlPage += ligne + '\n'
+    modelefile.close()
+
+    if verbose:
+        print("Sortie de lectureFiltreModele")
+
+    return htmlPage
 
 def construitNomFic(repertoire, nomArticle, indicateur, extFic):
     """ Construit le nom d'un fichier de sortie """
@@ -82,107 +131,6 @@ def choixPicto(config, ratio, isWikicode):
         picto = config.get('Picto', prefix + '.ecartFort')
         alt = config.get('Picto', 'picto.ecartFortAlt')
     return picto, alt
-
-def getValeur(ville, cle, annee, sousCle, arrondi=0):
-    """ Arrondit les valeur et les renvoie les valeurs sous forme de chaine """
-    valeur = ville['data'][cle][str(annee)][sousCle]
-    if arrondi == 1:
-        # Les chiffres d'origine du MinFi sont déjà arrondi en kEuros et
-        # multipliés par 1000 à l'extraction
-        valeur = int(float(valeur) / 1000)
-    if arrondi == 2:
-        valeur = int(float(valeur) / 1000000)
-    return str(valeur)
-
-def getValeurFloat(ville, cle, annee, sousCle, verbose=False):
-    """ Renvoie les valeurs float sous forme de chaine avec 2 décimales """
-    if verbose:
-        print("\nEntrée dans getValeurFloat")
-        print("cle =", cle)
-        print("annee =", annee)
-        print("sousCle =", sousCle)
-    valeur = float(getValeur(ville, cle, annee, sousCle))
-    valeurStr = "%.2f"%valeur
-    if verbose:
-        print("valeur =", valeur, "valeurStr =", valeurStr)
-        print("\nSortie de getValeurFloat")
-    return valeurStr
-
-# V1.2.0 : Ajout fonction
-def getValeurIntTotale(ville, cle, annee, verbose=False):
-    """ Renvoie les valeurs int pour une donnée de valeur totale d'une ville """
-    if verbose:
-        print("\nEntrée dans getValeurIntTotale")
-        print("cle =", cle)
-        print("annee =", annee)
-    valeur = int(getValeur(ville, cle, annee, "Valeur totale"))
-    if verbose:
-        print("valeur totale =", valeur)
-        print("\nSortie de getValeurIntTotale")
-    return valeur
-
-def ecritVilleDict(config, ville, verbose):
-    """ Ecrit une ville dans le fichier résultat d'extraction """
-    if verbose:
-        print("Entrée dans ecritVilleDict")
-        print("Ville a traiter :", ville['nom'])
-
-    # Constantes pour l'extraction des données
-    repertoireBase = config.get('EntreesSorties', 'io.repertoireExtractions')
-    indicateurNomFicBd = config.get('EntreesSorties', 'io.indicateurNomFicBd')
-
-    # Cree le repertoire départemental si necessaire
-    numDep = ville['dep']
-    if numDep[0] == '0':
-        numDep = numDep[1:]
-    repertoire = repertoireBase + "_" + numDep
-    if not os.path.isdir(repertoire):
-        if verbose:
-            print("Création repertoire de resultats :", repertoire)
-        os.mkdir(repertoire)
-
-    # Ecrit les données de la ville dans un fichier texte
-    nomFic = construitNomFic(repertoire, ville['nom'],
-                             indicateurNomFicBd, '.txt')
-    msg = "Ecriture de : " + nomFic
-    print(msg)
-    hFic = open(nomFic, 'w')
-    # V2.4.0 : Correction problème encoding caractères accentués lors dump json : ensure_ascii=False
-    json.dump(ville, hFic, indent=4, sort_keys=False, ensure_ascii=False)
-    hFic.close()
-
-    if verbose:
-        print("Sortie de EcritListeVilleDict")
-
-def isCommuneDejaExtraite(config, ville, verbose):
-    """
-    Retourne True si la commune a déjà été extraite :
-    Si un fichier d'extraction correspondant à la ville existe sur le disque.
-    V1.0.5 : On n'extrait pas deux fois un même fichier
-    """
-    if verbose:
-        print("Entrée dans isCommuneDejaExtraite")
-        print("Ville a traiter :", ville['nom'])
-
-    dejaExtraite = False
-
-    # Constantes pour l'extraction des données
-    repertoireBase = config.get('EntreesSorties', 'io.repertoireExtractions')
-    indicateurNomFicBd = config.get('EntreesSorties', 'io.indicateurNomFicBd')
-
-    # Vérifie si le repertoire départemental existe
-    numDep = ville['dep']
-    if numDep[0] == '0':
-        numDep = numDep[1:]
-    repertoire = repertoireBase + "_" + numDep
-    nomFic = construitNomFic(repertoire, ville['nom'],
-                             indicateurNomFicBd, '.txt')
-    dejaExtraite = os.path.isfile(nomFic)
-
-    if verbose:
-        print("dejaExtraite=", dejaExtraite)
-        print("Sortie de isCommuneDejaExtraite")
-    return dejaExtraite
 
 def calculeTendance(config, valeurN, valeurNM1):
     """
@@ -295,25 +243,25 @@ def calculeTendanceSerieStr(nomValeur, dictAneeesValeur, unite,
     if constante:
         if isWikicode:
             strTendance += "est constant et proche de " + \
-                           modeleEuro(str(dictAneeesValeur[minAnnee]), isWikicode) + \
+                           modeleEuro(str(int(dictAneeesValeur[minAnnee])), isWikicode) + \
                            " " + unite
     elif croissante:
         strTendance += "augmente de façon continue de "+ \
-                       modeleEuro(str(dictAneeesValeur[minAnnee]), isWikicode) + \
-                       " à " + modeleEuro(str(dictAneeesValeur[maxAnnee]), isWikicode) + \
+                       modeleEuro(str(int(dictAneeesValeur[minAnnee])), isWikicode) + \
+                       " à " + modeleEuro(str(int(dictAneeesValeur[maxAnnee])), isWikicode) + \
                        " " + unite
     elif decroissante:
         strTendance += "diminue de façon continue de " + \
-                       modeleEuro(str(dictAneeesValeur[maxAnnee]), isWikicode) + \
-                       " à " +  modeleEuro(str(dictAneeesValeur[minAnnee]), isWikicode) + \
+                       modeleEuro(str(int(dictAneeesValeur[maxAnnee])), isWikicode) + \
+                       " à " +  modeleEuro(str(int(dictAneeesValeur[minAnnee])), isWikicode) + \
                        " " + unite
     else:
         strTendance += "fluctue et présente un minimum de "+ \
-                       modeleEuro(str(dictAneeesValeur[minAnnee]), isWikicode) + \
+                       modeleEuro(str(int(dictAneeesValeur[minAnnee])), isWikicode) + \
                        " " + unite + \
-                       " en " + minAnnee + " et un maximum de " + \
-                       modeleEuro(str(dictAneeesValeur[maxAnnee]), isWikicode) + \
-                       " " + unite + " en " + maxAnnee
+                       " en " + str(minAnnee) + " et un maximum de " + \
+                       modeleEuro(str(int(dictAneeesValeur[maxAnnee])), isWikicode) + \
+                       " " + unite + " en " + str(maxAnnee)
 
     if verbose:
         print("strTendance=", strTendance)
@@ -341,7 +289,6 @@ def wait2requete(config, verbose):
     if verbose:
         print("__TPREC__ =", __TPREC__)
         print("Sortie de wait2requete")
-    return
 
 def getVersion(config):
     """ Renvoie une chaine de caractère correspondant à la version du code """
@@ -373,10 +320,10 @@ def checkPythonVersion(config, verbose):
 def checkMatplolibOK():
     """ Vérifie que le module matplotlib est installé """
     try:
-        imp.find_module('matplotlib')
+        import matplotlib
         print("Module matplotlib : trouvé")
         isMatplotlibOk = True
-    except ImportError as exc:
+    except ModuleNotFoundError as exc:
         print("Warning : module matplotlib non disponible !")
         print(str(exc))
         print("Pour générer des graphiques, téléchargez et installez le module :")
@@ -444,8 +391,89 @@ def convertLettresAccents(ligne):
                'C': ['Ç'],
                '_': ['(', ')']}
 
-    for char in accents.keys():
+    for char in accents:
         for accented_char in accents[char]:
             ligne = ligne.replace(accented_char, char)
     return ligne
 
+def setArrondi(dictAllGrandeurAnneeValeur, listAnneesOK,
+               seuilkEuros, listeCles,
+               verbose=False):
+    """
+    Détermination de l'arrondi à utiliser :
+    Les valeurs sont prises pour les années définies par listAnneesOK
+    Les sommes du MinFi sont en kEuros
+    pour toutes les grandeurs si listeCles=None, sinon pour les clés de listeCles
+    Si toutes les valeurs sont supérieures à seuilkEuros,
+    demande l'affichage de milions
+    Arrondi en kEuros si au moins une des valeurs à afficher est < seuilkEuros
+    """
+
+    if verbose:
+        print("Entrée dans setArrondi")
+        print('dictAllGrandeurAnneeValeur=', dictAllGrandeurAnneeValeur)
+        print("seuilkEuros=", seuilkEuros)
+        print("listeCles=", listeCles)
+
+    if not dictAllGrandeurAnneeValeur:
+        raise ValueError("Erreur : arrondi impossible car pas de valeurs à arrondir")
+
+    if not listAnneesOK:
+        raise ValueError("Erreur : arrondi impossible car aucune année de sélection des données")
+
+    arrondi = 1e-3
+    arrondiStr = 'M€'
+    arrondiStrAffiche = "million d'euros (M€)"
+
+    if not listeCles:
+        listeCles = dictAllGrandeurAnneeValeur.keys()
+
+    for grandeur in listeCles:
+        for annee in listAnneesOK:
+            try:
+                if dictAllGrandeurAnneeValeur[grandeur][annee] < seuilkEuros:
+                    arrondi = 1.0
+                    arrondiStr = 'k€'
+                    arrondiStrAffiche = "millier d'euros (k€)"
+            except TypeError:
+                raise ValueError("Erreur : Impossible d'arrondir : " +
+                                 "grandeur=" + grandeur + ", annee=" + str(annee) +
+                                 ", valeur=" +
+                                 str(dictAllGrandeurAnneeValeur[grandeur][annee]))
+
+    if verbose:
+        print("arrondi =", arrondi, ", arrondiStr = ", arrondiStr,
+              ", arrondiStrAffiche = ", arrondiStrAffiche)
+        print("Sortie de setArrondi")
+
+    return arrondi, arrondiStr, arrondiStrAffiche
+
+def getNomsVille(config, nomVille, repertoireDepBase, verbose):
+    """
+    Retourne les noms des fichiers et répertoire qui stockeront les
+    données de la ville.
+    """
+
+    if verbose:
+        print("Entrée dans getNomsVille")
+        print('nomVille=', nomVille)
+
+    dictNomsVille = dict()
+    dictNomsVille['nom'] = nomVille
+    dictNomsVille['villeNomDisque'] = convertLettresAccents(
+        unicodedata.normalize('NFC', nomVille))
+    dictNomsVille['nomRelatifIndexVille'] = \
+                os.path.join(dictNomsVille['villeNomDisque'],
+                             dictNomsVille['villeNomDisque'])
+    indicateur = config.get('GenCode', 'gen.idFicDetail')
+    dictNomsVille['villeWikicode'] = dictNomsVille['nomRelatifIndexVille'] + \
+                                     '_' +  indicateur + '.html'
+    dictNomsVille['villeHtml'] = dictNomsVille['nomRelatifIndexVille'] + '.html'
+    dictNomsVille['repVille'] = os.path.join(repertoireDepBase,
+                                             dictNomsVille['villeNomDisque'])
+
+    if verbose:
+        print("dictNomsVille=", dictNomsVille)
+        print("Sortie de getNomsVille")
+
+    return dictNomsVille

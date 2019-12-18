@@ -1,9 +1,20 @@
 Finances-Locales project
 
-Finances-Locales is group of Python script used to extract data from french finance database  alize2.finances.gouv.fr and adapt them to be used in fr.wikipedia or on a WEB site.
+Finances-Locales is group of Python script used to extract data from french finance web site :
+https://www.data.gouv.fr/fr/datasets/comptes-individuels-des-communes-fichier-global
+They adapt data to be used in fr.wikipedia or on a WEB site.
 
 For a description : https://fr.wikipedia.org/wiki/Utilisateur:Thierry46/Finances_Locales
 
 To see results : http://marielaure.monde.free.fr/Finances_Locales_Web/Finances_Locales.html
 
 Author : Thierry Maillard
+
+Usage :
+cd /Users/thierry/Documents/wikipedia/finances_locales_wkpfr/FinancesLocales_v3.0.0
+./initBdFomListeDep.py ../database/bd_minfi.db ../Listes_villes_par_departement
+utilisez Browser for SQLite pour vérifier
+./updateDataMinFi.py ../database/bd_minfi.db ../recup_data_gouv_fr
+./updateScoreWikipedia.py ../database/bd_minfi.db
+./genCode.py ../database/bd_minfi.db ../resultats
+./genIndexSite.py ../resultats

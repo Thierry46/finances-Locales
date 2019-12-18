@@ -3,10 +3,10 @@
 *********************************************************
 Module : genHTMLCodeGraphiques.py
 Auteur : Thierry Maillard (TMD)
-Date : 10/10/2015 - 22/10/2015
+Date : 10/10/2015 - 2/11/2019
 
 Role : Génère les graphiques SVG pour les données traitées
-        par extractionMinFi.py.
+        par updateDataMinFi.py.
 ------------------------------------------------------------
 Licence : GPLv3 (en français dans le fichier gpl-3.0.fr.txt)
 Copyright (c) 2015 - Thierry Maillard
@@ -29,26 +29,27 @@ Copyright (c) 2015 - Thierry Maillard
     If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
 *********************************************************
 """
+import os
+import os.path
+
+import matplotlib
+import matplotlib.pyplot as plt
+
 # Le rendu des graphiques est très lent avec le backend MacOSX
 # La fenetre X11 s'affiche.
 # Affichage backend courant : matplotlib.get_backend()
 # Affichage tous les backends :
 #   import matplotlib.rcsetup as rc
 #   print (rc.all_backends)
-# Perf (time) bacends pour produire les graphiques de 2 villes : 2*10 png
+# Perf (time) backends pour produire les graphiques de 2 villes : 2*10 png
 # MacOSX : 12.12 (raster png)
 # agg : 11,52s (raster png)
 # Choisi : svg : 9.906s (vectoriel)
-
-import matplotlib
 # Changement de backend : svg : rapide et vectoriel
 matplotlib.use('svg')
-import matplotlib.pyplot as plt
-import utilitaires
-import os
-import os.path
 
-def genGraphique(repVille, nomGraphique, titreGrahique, ville,
+def genGraphique(repVille, dictAllGrandeur,
+                 nomGraphique, titreGrahique, nomVille,
                  anneesOK, courbes,
                  arrondi, arrondiStrAffiche,
                  verbose):
@@ -66,7 +67,7 @@ def genGraphique(repVille, nomGraphique, titreGrahique, ville,
     largeurBarre = 1./(float(nbSeries) + 1.)
 
     fig, ax = plt.subplots(facecolor='white')
-    ax.set_title(ville["nom"] + ' - ' + titreGrahique)
+    ax.set_title(nomVille + ' - ' + titreGrahique)
 
     # Graduation en années de l'axe des abscisses
     positionsAbsisses = [float(x + float(nbSeries) * largeurBarre / 2.0)
@@ -98,15 +99,11 @@ def genGraphique(repVille, nomGraphique, titreGrahique, ville,
     for courbe in courbes:
         valeurs = []
         for annee in anneesOK:
-            if courbe['cle'].startswith('Taux'):
-                valeurData = float(utilitaires.getValeurFloat(ville, courbe['cle'],
-                                                              annee, courbe['sousCle']))
-            elif courbe['sousCle'] == "":
-                valeurData = ville['data'][courbe['cle']][str(annee)]
+            if courbe['sousCle'] == "":
+                valeurData = round(dictAllGrandeur[courbe['cle']][annee])
             else:
-                valeurData = int(utilitaires.getValeur(ville, courbe['cle'],
-                                                       annee, courbe['sousCle'],
-                                                       arrondi))
+                valFloat = dictAllGrandeur[courbe['sousCle']][courbe['cle']][annee]
+                valeurData = round(valFloat * arrondi)
             valeurs.append(valeurData)
         positionsAbsisses = [float(x + (float(numCourbe) * largeurBarre))
                              for x in range(len(anneesOK))]
@@ -117,7 +114,7 @@ def genGraphique(repVille, nomGraphique, titreGrahique, ville,
             if 'strate' in courbe['sousCle']:
                 labelSerie += 'strate : '
             elif isStrateInCourbes:
-                labelSerie += ville["nom"] + ' : '
+                labelSerie += nomVille + ' : '
         labelSerie += courbe['libelle']
         labelSerie = labelSerie.replace("Taux", "")
         ax.bar(positionsAbsisses, valeurs, largeurBarre,
@@ -128,7 +125,6 @@ def genGraphique(repVille, nomGraphique, titreGrahique, ville,
     plt.legend(loc='best', prop={'size':10})
     plt.grid()
 
-    print("Ecriture de", cheminImage)
     fig.savefig(cheminImage)
     plt.close() # sinon rien n'est généré
 
