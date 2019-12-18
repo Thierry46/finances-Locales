@@ -1,0 +1,18 @@
+#codeInsee (3 chiffres); nom commune ; nom article Wikipédia
+001;Agen;Agen
+007;Allons;Allons (Lot-et-Garonne)
+025;Beauville;Beauville (Lot-et-Garonne)
+032;Bon-Encontre;Bon-Encontre
+043;Buzet-sur-Baïse;Buzet-sur-Baïse
+100;Foulayronnes;Foulayronnes
+106;Fumel;Fumel
+107;Galapian;Galapian
+134;Lannes;Lannes (Lot-et-Garonne)
+135;Laparade;Laparade
+159;Le Mas-d'Agenais;Le Mas-d'Agenais
+201;Le Passage;Le Passage (Lot-et-Garonne)
+154;Lusignan-Petit;Lusignan-Petit
+155;Madaillan;Madaillan
+195;Nérac;Nérac
+310;Tonneins;Tonneins
+323;Villeneuve-sur-Lot;Villeneuve-sur-Lot

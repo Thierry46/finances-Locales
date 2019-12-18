@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html dir="ltr" lang="fr">
+<!-- !!! Contenu généré automatiquement par l'outil <OUTIL_NOM> !!!
+    Généré le <DATE> par le programme <NOM_PROG> (<OPTIONS>)
+    version <VERSION> du <VERSION_DATE>
+    et le modèle <NOM_MODELE> pour l'article <NOM_ARTICLE_DETAIL>.
+    En cas de problème, contactez-moi SVP : Thierry.Maillard500(at)orange.fr
+    Additionnons nos forces, partageons nos connaissances ! -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Finances locales <ARTICLE_VILLE><VILLE></title>
+  <meta content="Finances locales <ARTICLE_VILLE><VILLE>" name="description">
+  <meta name="keywords" content="Finances locales, <VILLE>, budget, département, taxes, taux, ratio, dépenses publiques, coûts">
+</head>
+  
+<body>
+
+<h2><A NAME="Fonctionnement"></A>Fonctionnement</h2>
+<h3>T1p - Section de fonctionnement <ARTICLE_VILLE><VILLE> en <ANNEE></h3>
+<table border="1" cellpadding="2" cellspacing="2" height="68">
+  <tbody>
+    <tr>
+      <th align="left" bgcolor="#ccffff"></th>
+      <th align="left" bgcolor="#ccffff"> <VILLE><br/>(€/hab.)</th>
+      <th align="left" bgcolor="#ccffff">Strate<br/>(€/hab.)</th>
+      <th align="left" bgcolor="#ccffff"></th>
+    </tr>
+<GEN_LIGNES_TABLEAU_PICTO_SOLDE_FONCT>
+<GEN_LIGNES_TABLEAU_PICTO_CHARGE>
+<GEN_LIGNES_TABLEAU_PICTO_RECETTE>
+<LEGENDE_ECART_TABLEAU_PICTO>
+  </tbody>
+</table>
+
+</body>

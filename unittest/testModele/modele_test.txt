@@ -1,0 +1,5 @@
+Ligne début
+<COMPLET>
+Ligne complet
+<STOP_COMPLET>
+Ligne fin

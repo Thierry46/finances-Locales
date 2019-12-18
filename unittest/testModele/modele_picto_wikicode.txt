@@ -1,0 +1,10 @@
+== Fonctionnement ==
+{|class="wikitable right"
+ |+T1p - Section de fonctionnement <ARTICLE_VILLE><VILLE> en <ANNEE><ref group="A2" name="<REF_NAME1>"/>
+ |----
+ ! !! scope="col" | <VILLE><br/>(€/hab.) !! scope="col" | Strate<br/>(€/hab.)
+ <GEN_LIGNES_TABLEAU_PICTO_SOLDE_FONCT><GEN_LIGNES_TABLEAU_PICTO_CHARGE><GEN_LIGNES_TABLEAU_PICTO_RECETTE>
+ |------
+ | colspan="4" |Écart par rapport à la moyenne de la strate :<br/><LEGENDE_ECART_TABLEAU_PICTO>
+ |}
+

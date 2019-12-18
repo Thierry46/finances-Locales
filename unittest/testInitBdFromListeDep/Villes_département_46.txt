@@ -1,0 +1,27 @@
+#codeInsee (3 chiffres); nom commune ; nom article Wikipédia
+003;Alvignac;Alvignac
+009;Assier;Assier
+042;Cahors;Cahors
+058;Carennac;Carennac
+067;Cazillac;Cazillac
+074;Condat;Condat (Lot)
+094;Espédaillac;Espédaillac
+102;Figeac;Figeac
+104;Flaujac-Gare;Flaujac-Gare
+127;Gourdon;Gourdon (Lot)
+128;Gramat;Gramat
+132;Issendolus;Issendolus
+143;Lacapelle-Marival;Lacapelle-Marival
+232;Les Quatre-Routes-du-Lot;Les Quatre-Routes-du-Lot
+170;Leyme;Leyme
+181;Lunegarde;Lunegarde
+185;Martel;Martel (Lot)
+201;Montcuq;Montcuq
+204;Montfaucon;Montfaucon (Lot)
+228;Prudhomat;Prudhomat
+235;Reilhac;Reilhac (Lot)
+240;Rocamadour;Rocamadour
+283;Saint-Michel-de-Bannières;Saint-Michel-de-Bannières
+306;Sonac;Sonac
+312;Strenquels;Strenquels
+318;Thémines;Thémines
