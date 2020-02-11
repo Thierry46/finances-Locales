@@ -468,10 +468,22 @@ def test_getListeCodeCommuneNomWkp_2_rec():
                         ('046123', 'Biars')))
     connDB.commit()
 
-    # Test getListeCodeCommuneNomWkp
-    listCodeCommuneNomWkp = database.getListeCodeCommuneNomWkp(connDB, True)
+    # Test getListeCodeCommuneNomWkp pour toutes les villes
+    isFast = False
+    listCodeCommuneNomWkp = database.getListeCodeCommuneNomWkp(connDB, isFast, True)
+    assert len(listCodeCommuneNomWkp) == 2
     assert listCodeCommuneNomWkp[0] == ('001007', 'Trifouilly-les Oies (Ain)')
     assert listCodeCommuneNomWkp[1] == ('046123', 'Biars')
+
+    # Renseignement d'un score pour Biars
+    connDB.execute("""UPDATE villes SET score=25  WHERE codeCommune='046123'""")
+    connDB.commit()
+    
+    # Test getListeCodeCommuneNomWkp pour les villes de score NULL
+    isFast = True
+    listCodeCommuneNomWkp = database.getListeCodeCommuneNomWkp(connDB, isFast, True)
+    assert len(listCodeCommuneNomWkp) == 1
+    assert listCodeCommuneNomWkp[0] == ('001007', 'Trifouilly-les Oies (Ain)')
 
     # Fermeture base
     database.closeDatabase(connDB, True)
