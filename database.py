@@ -3,7 +3,7 @@
 ************************************************************************************
 Programme  : Database
 Author : Thierry Maillard (TMD)
-Date  : 19/6/2019 - 15/12/2019
+Date  : 19/6/2019 - 10/2/2020
 
 Role : Gestion de la base des données de Finances Locale.
 
@@ -338,7 +338,9 @@ def enregistreVilleWKP(config, databasePath, listeVilles4Bd, verbose):
 
     # Récupère la liste des codes communes des villes existantes
     listeCodeCommuneExistBD = [villes[0]
-                               for villes in getListeCodeCommuneNomWkp(connDB, verbose)]
+                               for villes in getListeCodeCommuneNomWkp(connDB,
+                                                                       False,
+                                                                       verbose)]
     if verbose:
         print("listeCodeCommuneExistBD=", listeCodeCommuneExistBD)
 
@@ -409,22 +411,31 @@ def getDictCodeCommuneAnnees(connDB, verbose):
         print("dictCodeCommuneAnnees =", dictCodeCommuneAnnees)
     return dictCodeCommuneAnnees
 
-def getListeCodeCommuneNomWkp(connDB, verbose):
+def getListeCodeCommuneNomWkp(connDB, isFast, verbose):
     """
         Retourne la liste des villes présentes dans la base
         et leur nom Wikipedia.
+        si isFast est Vrai, seule les communes avec un score NULL
+        est récupéré.
         Retourne une liste de tupples (codeCommune, nomWkpFr)
     """
     if verbose:
         print("Entree dans getListeCodeCommuneNomWkp")
+        print("isFast=", isFast)
 
     cursor = connDB.cursor()
     listCodeCommuneNomWkp = {}
 
     # Insertion de toutes les villes de la base dans les clés du dictionnaire sans annees
-    cursor.execute("""SELECT codeCommune, nomWkpFr
-                        FROM villes
-                        ORDER BY codeCommune""")
+    if isFast:
+        cursor.execute("""SELECT codeCommune, nomWkpFr
+                            FROM villes
+                            WHERE score is NULL
+                            ORDER BY codeCommune""")
+    else:
+        cursor.execute("""SELECT codeCommune, nomWkpFr
+                            FROM villes
+                            ORDER BY codeCommune""")
     listCodeCommuneNomWkp = cursor.fetchall()
     cursor.close()
     if verbose:

@@ -4,10 +4,19 @@
 *********************************************************
 Module : updateScoreWikipedia.py
 Auteur : Thierry Maillard (TMD)
-Date : 27/7/2019 - 29/7/2019
+Date : 27/7/2019 - 10/2/2020
 
-Role : Met à jour dans la base les scores de chaque ville à partir
-        des pages de discussion Wikipedia FR.
+Role : Met à jour dans la base les scores de chaque ville
+    à partir des pages de discussion Wikipedia FR.
+
+Options :
+    -h ou --help : Affiche ce message d'aide.
+    -u ou --usage : Affice des exemples de ligne lancement
+    -V ou --version : Affiche la version du programme
+    -v ou --verbose : Rend le programme bavard (mode debug).
+    -f ou --fast : Ne lance des requetes dans Wikipedia
+        que pour les seules villes dont les scores
+        Wikipédia ne sont pas renseignés
 
 Paramètre :
     - chemin du fichier base de données sqlite3 d'extension .db
@@ -57,6 +66,7 @@ def main(argv=None):
     """
     # Valeur par défaut des options
     verbose = False
+    isFast = False
 
     # Lecture du fichier de propriétés
     config = configparser.RawConfigParser()
@@ -73,8 +83,9 @@ def main(argv=None):
 
     # parse command line options
     try:
-        opts, args = getopt.getopt(argv[1:], "huvV",
-                                   ["help", "usage", "version", "verbose"])
+        opts, args = getopt.getopt(argv[1:], "huvVf",
+                                   ["help", "usage", "version", "verbose",
+                                    "fast"])
     except getopt.error as msg:
         print(msg)
         print("Pour avoir de l'aide : --help ou -h", file=sys.stderr)
@@ -88,6 +99,10 @@ def main(argv=None):
         verbose = verbose or verboseOpt
         if sortiePgm:
             sys.exit(0)
+
+        if option in ("-f", "--fast"):
+            print("mode fast : ne traite que les villes de scores inconnus")
+            isFast = True
 
     utilitaires.checkPythonVersion(config, verbose)
 
@@ -113,7 +128,9 @@ def main(argv=None):
     connDB = database.createDatabase(config, databasePath, verbose)
 
     # Récupère la liste des villes et des années présentes dans la base
-    listeCodeCommuneNomWkp = database.getListeCodeCommuneNomWkp(connDB, verbose)
+    listeCodeCommuneNomWkp = database.getListeCodeCommuneNomWkp(connDB,
+                                                                isFast,
+                                                                verbose)
     if not listeCodeCommuneNomWkp:
         msg = "Erreur : La base de données :\n" + databasePath + \
                 "\n ne contient aucune ville à extraire, lancer extractionWikipediaFr"

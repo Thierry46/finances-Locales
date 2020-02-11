@@ -11,10 +11,13 @@ To see results : http://marielaure.monde.free.fr/Finances_Locales_Web/Finances_L
 Author : Thierry Maillard
 
 Usage :
-cd /Users/thierry/Documents/wikipedia/finances_locales_wkpfr/FinancesLocales_v3.0.0
+cd /Users/thierry/Documents/wikipedia/finances_locales_wkpfr/FinancesLocales_v3.1.0
 ./initBdFomListeDep.py ../database/bd_minfi.db ../Listes_villes_par_departement
 utilisez Browser for SQLite pour vérifier
 ./updateDataMinFi.py ../database/bd_minfi.db ../recup_data_gouv_fr
-./updateScoreWikipedia.py ../database/bd_minfi.db
+
+../updateScoreWikipedia.py ./database/bd_minfi.db
+utiliser l'option -f pour ne traiter que les nouvelles villes ajoutées
+
 ./genCode.py ../database/bd_minfi.db ../resultats
 ./genIndexSite.py ../resultats
