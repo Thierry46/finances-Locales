@@ -1,6 +1,10 @@
 ------------------------------------
 Evolutions du projet FinancesLocales
 ------------------------------------
+* v3.1.0 : nom de code : Yin Yang Sigma - 11/2/2020
+	Ajout option -f -fast a updateScoreWikipedia.py
+	pour ne traiter que les villes nouvellement ajoutées
+
 * V3.0.0 : nom de code : Yin Yang Sigma - 8/12/2019
 	9396 lignes au total : 5298 lignes de cade + 4098 lignes de test
 - Adaptation motif des données du Ministère des Finances :
