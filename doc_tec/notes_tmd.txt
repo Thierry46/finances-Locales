@@ -86,7 +86,8 @@ python3 -m pylint --disable=invalid-name genCode.py
 python3 -m pylint --disable=invalid-name genCode?*.py genH*.py database.py ratioTendance.py u*.py  > qualite/resu_pylint.txt
 
 Pycoverage :
-Ref : http://nedbatchelder.com/code/coverage/
+Ref : https://coverage.readthedocs.io/en/latest/
 Install : python3 -m pip install coverage
-
+coverage run -m pytest  unittest
+coverage report -m > qualite/couv_test_verbose.txt
 
