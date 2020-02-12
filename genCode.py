@@ -231,7 +231,6 @@ def genereCode1Ville(config, connDB, repVille, ville,
         print('isMatplotlibOk', isMatplotlibOk)
 
     nomBaseModele = config.get('Modele', 'modele.nomBaseModele')
-    numVersion = config.get('Version', 'version.number')
     if typeCode == "wikiArticle":
         cle = 'gen.idFicDetail'
         isWikicode = True
@@ -242,7 +241,7 @@ def genereCode1Ville(config, connDB, repVille, ville,
         cle = 'gen.idFicHTML'
         isWikicode = False
     typeSortie = config.get('GenCode', cle)
-    modele = nomBaseModele + '_' + numVersion + '_' + typeSortie + '.txt'
+    modele = nomBaseModele + '_' + typeSortie + '.txt'
 
     # v2.1.0 : pour cas particulier Paris : Strate = Ville -> pas de strate dans les sorties
     if ville[1] == 'Paris':

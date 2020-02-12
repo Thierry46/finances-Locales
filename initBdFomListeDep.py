@@ -4,7 +4,7 @@
     *********************************************************
     Programme : initBdFomListeDep.py
     Auteur : Thierry Maillard (TMD)
-    Date : 21/7/2019 - 24/11/2019
+    Date : 21/7/2019 - 12/2/2020
 
     Role : Ajoute dans la base de données fournie en parametre
     les villes à extraire désignées par les fichier par département
@@ -147,7 +147,7 @@ def main(argv=None):
                 numDep = f"0{numDep}"
             if isnumDep(numDep):
                 print(f"Récupère les villes pour le département {numDep}")
-                listeVilles4Bd = recupVillesListe(config, numDep, verbose)
+                listeVilles4Bd = recupVillesListe(config, listeVillesPath, numDep, verbose)
                 database.enregistreVilleWKP(config, databasePath, listeVilles4Bd, verbose)
             else:
                 raise ValueError(f"Numéro de département invalide : {numDep}")
@@ -173,7 +173,7 @@ def isnumDep(numDep):
          (numDep[0] == "0" and numDep[1] not in "29" and numDep[2].isnumeric()) or \
          (numDep[0] == "1" and numDep[1] == "0" and numDep[2] in '1234'))
 
-def recupVillesListe(config, numDep, verbose):
+def recupVillesListe(config, listeVillesPath, numDep, verbose):
     """
         Récupère les villes du fichier texte
     """
@@ -182,14 +182,13 @@ def recupVillesListe(config, numDep, verbose):
         print("\tnumDep =", numDep)
 
     # Construit le nom du fichier liste
-    repertoireListeDep = config.get('EntreesSorties', 'io.repertoireListeDep')
     nomFicListeVille = config.get('EntreesSorties', 'io.nomFicListeVille')
     # Modif v2.4.2 : Suppr 0 devant nombre nomdep
     numDep1 = numDep
     if len(numDep1) == 3 and numDep1.startswith('0'):
         numDep1 = numDep1[1:]
     nomFicListeVilleDep = nomFicListeVille + '_' + numDep1 + '.txt'
-    pathFicListeVilleDep = os.path.join(repertoireListeDep, nomFicListeVilleDep)
+    pathFicListeVilleDep = os.path.join(listeVillesPath, nomFicListeVilleDep)
     print("Lecture de", pathFicListeVilleDep)
 
     listeVilles4Bd = []

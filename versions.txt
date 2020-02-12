@@ -1,12 +1,19 @@
 ------------------------------------
 Evolutions du projet FinancesLocales
 ------------------------------------
+* v3.1.1 : nom de code : Yin Yang Sigma - 12/2/2020
+	9460 lignes au total : 5319 lignes de code + 4141 lignes de test
+	pycoverage : TOTAL 3867    155    96%
+	pylint : Your code has been rated at 9.77/10 (previous run: 9.77/10, -0.00)
+	- Correction bug initBdFomListeDep : repertoire des villes par départements fixe
+	- Suppression de la dependance des modèles avec la version du code
+
 * v3.1.0 : nom de code : Yin Yang Sigma - 11/2/2020
 	Ajout option -f -fast a updateScoreWikipedia.py
 	pour ne traiter que les villes nouvellement ajoutées
 
 * V3.0.0 : nom de code : Yin Yang Sigma - 8/12/2019
-	9396 lignes au total : 5298 lignes de cade + 4098 lignes de test
+	9396 lignes au total : 5298 lignes de code + 4098 lignes de test
 - Adaptation motif des données du Ministère des Finances :
 	pages WEB PHP -> https://www.data.gouv.fr/fr/datasets/comptes-individuels-des-communes-fichier-global
 - Stockage des données dans une base sqlite au lieu de fichiers texte
@@ -16,7 +23,7 @@ Evolutions du projet FinancesLocales
 - Suppression des recopies de données lors de la création du site WEB résultat.
 
 * V2.4.3 : 20/12/2016
-	7256 lignes au total : 5522 lignes de cade + 1734 lignes de test
+	7256 lignes au total : 5522 lignes de code + 1734 lignes de test
 
 * V2.4.2 : 19/8/2016
 * V2.4.1 : nom de code : Yin Yang Rhô - 7/11/2015
