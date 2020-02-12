@@ -316,9 +316,8 @@ def test_genCodeGraphiques_OK(isComplet, isWikicode):
 
     # Lecture du modèle
     nomBaseModele = config.get('Modele', 'modele.nomBaseModele')
-    numVersion = config.get('Version', 'version.number')
     typeSortie = config.get('GenCode', 'gen.idFicDetail')
-    modele = nomBaseModele + '_' + numVersion + '_' + typeSortie + '.txt'
+    modele = nomBaseModele + '_' + typeSortie + '.txt'
     textSection = utilitaires.lectureFiltreModele(modele, isComplet, False)
 
     # Generation des graphiques pour une ville

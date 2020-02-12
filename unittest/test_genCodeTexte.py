@@ -113,7 +113,7 @@ def test_genCodeTexte_func(typeCode):
         cle = 'gen.idFicHTML'
         isWikicode = False
     typeSortie = config.get('GenCode', cle)
-    modele = nomBaseModele + '_' + numVersion + '_' + typeSortie + '.txt'
+    modele = nomBaseModele + '_' + typeSortie + '.txt'
     isComplet = (config.get('Modele', 'modele.type') == 'complet')
     textSection = utilitaires.lectureFiltreModele(modele, isComplet, False)
 

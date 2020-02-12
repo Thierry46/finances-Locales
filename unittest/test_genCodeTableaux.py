@@ -290,9 +290,8 @@ def test_genCodeTableauxWikicode(isComplet):
 
     # Lecture du modèle
     nomBaseModele = config.get('Modele', 'modele.nomBaseModele')
-    numVersion = config.get('Version', 'version.number')
     typeSortie = config.get('GenCode', 'gen.idFicDetail')
-    modele = nomBaseModele + '_' + numVersion + '_' + typeSortie + '.txt'
+    modele = nomBaseModele + '_' + typeSortie + '.txt'
     textSection = utilitaires.lectureFiltreModele(modele, isComplet, verbose)
 
     textSection = genCodeTableaux.genCodeTableaux(config, dictAllGrandeur,
@@ -373,9 +372,8 @@ def test_genCodeTableauxHtml(isComplet):
 
     # Lecture du modèle
     nomBaseModele = config.get('Modele', 'modele.nomBaseModele')
-    numVersion = config.get('Version', 'version.number')
     typeSortie = config.get('GenCode', 'gen.idFicDetail')
-    modele = nomBaseModele + '_' + numVersion + '_' + typeSortie + '.txt'
+    modele = nomBaseModele + '_' + typeSortie + '.txt'
     textSection = utilitaires.lectureFiltreModele(modele, isComplet, verbose)
 
     textSection = genCodeTableaux.genCodeTableaux(config, dictAllGrandeur,

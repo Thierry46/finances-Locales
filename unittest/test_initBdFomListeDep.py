@@ -3,7 +3,7 @@
 """
     Name : test_initBdFomListeDep.py
     Author : Thierry Maillard (TMD)
-    Date : 21/7/2019 - 25/11/2019
+    Date : 21/7/2019 - 12/2/2020
     Role : Tests unitaires du projet FinancesLocales avec py.test
     not global : élimine les tests globaux très long
     Utilisation : python3 -m pytest -k "not global" .
@@ -94,8 +94,11 @@ def test_recupVillesListe():
     """ Test fonction de récupération des villes dans une liste """
     config = configparser.RawConfigParser()
     config.read('FinancesLocales.properties')
-    listeVilles4Bd = initBdFomListeDep.recupVillesListe(config, "075", False)
-    assert len(listeVilles4Bd) == 1
+    listeVillesPath = config.get('Test', 'test.testInitBdFromListeDep')
+    listeVilles4Bd = initBdFomListeDep.recupVillesListe(config,
+                                                        listeVillesPath,
+                                                        "046", False)
+    assert len(listeVilles4Bd) == 26
 
 def test_initBdFomListeDep():
     """
