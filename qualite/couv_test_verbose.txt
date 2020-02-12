@@ -1,33 +1,33 @@
-Name                                     Stmts   Miss  Cover
-------------------------------------------------------------
-database.py                                257      5    98%
-genCode.py                                 148     18    88%
-genCodeGraphiques.py                       121      4    97%
-genCodeTableaux.py                         308      2    99%
-genCodeTexte.py                            112      1    99%
+Name                                     Stmts   Miss  Cover   Missing
+----------------------------------------------------------------------
+database.py                                267      9    97%   48-49, 93-94, 260, 570-573
+genCode.py                                 147     18    88%   82, 93-96, 105, 111-114, 118, 120, 178, 238-239, 248, 315-318
+genCodeGraphiques.py                       121      4    97%   442-448
+genCodeTableaux.py                         308      2    99%   602, 627
+genCodeTexte.py                            112      1    99%   80
 genHTML.py                                 142      0   100%
-genHTMLCodeGraphiques.py                    60      1    98%
+genHTMLCodeGraphiques.py                    60      1    98%   86
 genHTMLCodeTableaux.py                      93      0   100%
-genWikiCodeGraphiques.py                   145      3    98%
+genWikiCodeGraphiques.py                   145      3    98%   89, 213, 218
 genWikiCodeTableaux.py                      81      0   100%
-initBdFomListeDep.py                       121     32    74%
-ratioTendance.py                           126      9    93%
-unittest/test_database.py                  382     15    96%
-unittest/test_genCode.py                   100      1    99%
-unittest/test_genCodeGraphiques.py         122      1    99%
-unittest/test_genCodeTableaux.py           245      0   100%
+initBdFomListeDep.py                       120     32    73%   78, 89-92, 96-102, 106-110, 115-119, 124-128, 133-137, 153-157, 181-182, 205-206, 250-251
+ratioTendance.py                           126      9    93%   49, 60, 129-135
+unittest/test_database.py                  390     15    96%   74, 125, 198, 243, 267, 302, 349, 399, 430, 459, 502, 539, 563, 621, 665
+unittest/test_genCode.py                   100      1    99%   121
+unittest/test_genCodeGraphiques.py         121      1    99%   278
+unittest/test_genCodeTableaux.py           243      0   100%
 unittest/test_genCodeTexte.py               54      0   100%
-unittest/test_genHTML.py                   138      1    99%
-unittest/test_genHTMLCodeGraphiques.py      50      1    98%
-unittest/test_genWikiCodeGraphiques.py      52      1    98%
+unittest/test_genHTML.py                   138      1    99%   150
+unittest/test_genHTMLCodeGraphiques.py      50      1    98%   106
+unittest/test_genWikiCodeGraphiques.py      52      1    98%   161
 unittest/test_genWikiHTMLTableaux.py        84      0   100%
-unittest/test_initBdFomListeDep.py          40      0   100%
-unittest/test_ratioTendance.py              53      1    98%
-unittest/test_updateDataMinFi.py           110      2    98%
+unittest/test_initBdFomListeDep.py          41      0   100%
+unittest/test_ratioTendance.py              53      1    98%   143
+unittest/test_updateDataMinFi.py           110      2    98%   66-67
 unittest/test_updateScoreWikipedia.py       67      0   100%
 unittest/test_utilitaires.py                93      0   100%
-updateDataMinFi.py                         138     25    82%
-updateScoreWikipedia.py                    128     16    88%
-utilitaires.py                             279     10    96%
-------------------------------------------------------------
-TOTAL                                     3849    149    96%
+updateDataMinFi.py                         138     25    82%   72, 80-83, 87-92, 98-102, 107-110, 117-124, 134-136, 153, 277, 295-296
+updateScoreWikipedia.py                    132     18    86%   80, 89-92, 101, 104-105, 111-115, 120-123, 135-137, 321-322
+utilitaires.py                             279     10    96%   311-313, 326-331, 347
+----------------------------------------------------------------------
+TOTAL                                     3867    155    96%

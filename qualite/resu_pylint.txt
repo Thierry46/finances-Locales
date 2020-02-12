@@ -36,9 +36,9 @@ updateDataMinFi.py:55:0: R0914: Too many local variables (26/15) (too-many-local
 updateDataMinFi.py:86:16: W0612: Unused variable 'arg' (unused-variable)
 updateDataMinFi.py:55:0: R0915: Too many statements (55/50) (too-many-statements)
 ************* Module updateScoreWikipedia
-updateScoreWikipedia.py:54:0: R0914: Too many local variables (16/15) (too-many-locals)
-updateScoreWikipedia.py:84:16: W0612: Unused variable 'arg' (unused-variable)
-updateScoreWikipedia.py:192:0: R0914: Too many local variables (18/15) (too-many-locals)
+updateScoreWikipedia.py:63:0: R0914: Too many local variables (17/15) (too-many-locals)
+updateScoreWikipedia.py:95:16: W0612: Unused variable 'arg' (unused-variable)
+updateScoreWikipedia.py:209:0: R0914: Too many local variables (18/15) (too-many-locals)
 ************* Module utilitaires
 utilitaires.py:158:0: R0912: Too many branches (14/12) (too-many-branches)
 utilitaires.py:212:0: R0914: Too many local variables (19/15) (too-many-locals)
@@ -46,11 +46,8 @@ utilitaires.py:277:4: W0603: Using the global statement (global-statement)
 utilitaires.py:323:8: C0415: Import outside toplevel (matplotlib) (import-outside-toplevel)
 utilitaires.py:323:8: W0611: Unused import matplotlib (unused-import)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
-==updateDataMinFi:60
-==updateScoreWikipedia:58
-    verbose = False
-
-    # Lecture du fichier de propriétés
+==updateDataMinFi:63
+==updateScoreWikipedia:71
     config = configparser.RawConfigParser()
     ficProperties = 'FinancesLocales.properties'
     config.read(ficProperties)
@@ -64,21 +61,10 @@ utilitaires.py:1:0: R0801: Similar lines in 2 files
     nomProg = os.path.basename(argv[0])
 
     # parse command line options
-    try:
-        opts, args = getopt.getopt(argv[1:], "huvV",
-                                   ["help", "usage", "version", "verbose"])
-    except getopt.error as msg:
-        print(msg)
-        print("Pour avoir de l'aide : --help ou -h", file=sys.stderr)
-        sys.exit(1)
-
-    # process options
-    for option, arg in opts:
-        verboseOpt, sortiePgm = \
-            utilitaires.traiteOptionStd(config, option, nomProg, __doc__, (duplicate-code)
+    try: (duplicate-code)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==updateDataMinFi:99
-==updateScoreWikipedia:97
+==updateScoreWikipedia:112
                 "\nau lieu de : " + str(len(args))
         print(msg, file=sys.stderr)
         sys.exit(1)
@@ -91,7 +77,19 @@ utilitaires.py:1:0: R0801: Similar lines in 2 files
         print(msg, file=sys.stderr)
         sys.exit(2)
  (duplicate-code)
+utilitaires.py:1:0: R0801: Similar lines in 2 files
+==updateDataMinFi:79
+==updateScoreWikipedia:88
+    except getopt.error as msg:
+        print(msg)
+        print("Pour avoir de l'aide : --help ou -h", file=sys.stderr)
+        sys.exit(1)
+
+    # process options
+    for option, arg in opts:
+        verboseOpt, sortiePgm = \
+            utilitaires.traiteOptionStd(config, option, nomProg, __doc__, (duplicate-code)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.77/10 (previous run: 9.82/10, -0.05)
+Your code has been rated at 9.77/10 (previous run: 9.77/10, -0.00)
 
