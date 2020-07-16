@@ -3,7 +3,7 @@
 """
 Name : test_utilitaires.py
 Author : Thierry Maillard (TMD)
-Date : 1/6/2015 - 12/11/2019
+Date : 1/6/2015 - 2/7/2020
 Role : Tests unitaires du projet FinancesLocales avec py.test
 Utilisation : python3 -m pytest .
  options :
@@ -33,10 +33,12 @@ prerequis : pip install pytest
 import os
 import os.path
 import shutil
-
 import configparser
 import time
+import urllib.error
+
 import pytest
+
 import utilitaires
 
 @pytest.mark.parametrize(\
@@ -277,7 +279,7 @@ def test_modeleEuro(valeur, isWikicode, resultOK):
         ("ÉÈÊËE", "E"*5),
         ("îïi", "i"*3),
         ("ÎÏI", "I"*3),
-        ("ab/cd/AB", "ab/cd/AB"),
+        ("ab/cd/AB", "ab_cd_AB"),
         ("ùüû", "u"*3),
         ("ÙÜÛ", "U"*3),
         ("ôö", "o"*2),
@@ -384,3 +386,75 @@ def test_getNomsVille(nomVille, repertoireDepBase, dictOK):
                                     nomVille,
                                     repertoireDepBase,
                                     True)  == dictOK
+
+@pytest.mark.parametrize("nomArticleUrl", [
+    "Issendolus",
+    "Toulouse",
+    "Montfaucon_(Lot)",
+    ])
+def test_getPageWikipediaFr(nomArticleUrl):
+    """ Test récupération d'une page Wikipédia """
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+
+    page = utilitaires.getPageWikipediaFr(config, nomArticleUrl, True)
+    assert len(page) > 0
+    assert nomArticleUrl.split("_")[0] in page
+    assert '[[Catégorie:'  in page
+
+def test_getPageWikipediaFr_PbNomville():
+    """ Test cas erreur : récupération d'une page Wikipédia """
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+    with pytest.raises(urllib.error.HTTPError):
+        utilitaires.getPageWikipediaFr(config, 'PetitCocoVille', True)
+
+@pytest.mark.parametrize("nomArticle, nomArticleFinalOk, wordInPage",
+    [
+    ("Issendolus", "Issendolus", "Issendolus"),
+    ("Communauté de communes Grand-Figeac - Haut-Ségala - Balaguier d'Olt",
+     "Communauté de communes Grand-Figeac (nouvelle)",
+     "communauté de communes")
+    ])
+def test_jumpRedirGetPageWikipediaFr(nomArticle, nomArticleFinalOk, wordInPage):
+    """ Test cas erreur : récupération d'une page Wikipédia avec redirections """
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+    nomArticleFinal, page = \
+        utilitaires.jumpRedirGetPageWikipediaFr(config, nomArticle, True)
+    assert nomArticleFinalOk == nomArticleFinal
+    assert wordInPage in page
+
+def test_jumpRedirGetPageWikipediaFr_Pb():
+    """ Test cas erreur : récupération d'une page Wikipédia """
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+    with pytest.raises(ValueError, match="Not Found"):
+        utilitaires.jumpRedirGetPageWikipediaFr(config, 'PetitCocoVille', True)
+
+
+@pytest.mark.parametrize("valeurStr, valeurStrOK",
+    [
+    (r"bli <br /> bla", "bli bla"),
+    ("patati {{nobr|bla bla}}-patata", "patati bla bla-patata"),
+    ("Texte en '''gras''' ici", "Texte en gras ici"),
+    ("Texte en ''italique'' ici", "Texte en italique ici"),
+    ("patati <!-- commentaire HTML -->- patata", "patati - patata"),
+    (r"'''patati''' <!--comment.-->- ''patata'' {{nobr|glou glou}}<br/>patatu",
+     "patati - patata glou glou patatu"),
+    (r"CC Miribel|Plateau logo 2018.svg", "Plateau logo 2018.svg"),
+    ("[[lien|alias]]", "lien"),
+    ("[[lien]]", "lien"),
+    (r"[[Hautes-Alpes]]<br />[[Alpes-de-Haute-Provence]]", "Hautes-Alpes Alpes-de-Haute-Provence"),
+    (r"{{drapeau|Auvergne-Rhône-Alpes}} [[Auvergne-Rhône-Alpes]]<br />[[File:Flag of the region Bourgogne-Franche-Comté.svg|20px]] [[Bourgogne-Franche-Comté]]",
+     "Auvergne-Rhône-Alpes Bourgogne-Franche-Comté"),
+    (r'[http://www.cc-serreponconvaldavance.com/ cc-serreponconvaldavance.com]',
+     "http://www.cc-serreponconvaldavance.com"),
+    (r'[http://www.cc-serreponconvaldavance.com ]',
+     "http://www.cc-serreponconvaldavance.com"),
+    ('<small>BLA</small>BLI','BLABLI'),
+    ('BLA&nbsp;BLI','BLA BLI')
+    ])
+def test_removeFormatWikipedia(valeurStr, valeurStrOK):
+    """ Test retrait formattage  Wikipédia """
+    assert utilitaires.removeFormatWikipedia(valeurStr) == valeurStrOK

@@ -20,7 +20,7 @@ paramètres :
 
 ------------------------------------------------------------
 Licence : GPLv3 (en français dans le fichier gpl-3.0.fr.txt)
-Copyright (c) 2015 - 2019 - Thierry Maillard
+Copyright (c) 2015 - 2020 - Thierry Maillard
 ------------------------------------------------------------
 
     This file is part of FinancesLocales project.

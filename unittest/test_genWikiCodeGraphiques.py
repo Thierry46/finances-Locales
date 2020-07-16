@@ -1,7 +1,7 @@
 """
 Name : test_genWikiCodeGraphiques.py
 Author : Thierry Maillard (TMD)
-Date : 23/10/2019
+Date : 23/10/2019 - 14/4/2020
 Role : Tests unitaires du projet FinancesLocales avec py.test
 Utilisation : python3 -m pytest [-k "nomTest"] .
 options :
@@ -36,6 +36,7 @@ import pytest
 import genCodeGraphiques
 import genWikiCodeGraphiques
 import genCode
+import genCodeCommon
 import updateDataMinFi
 import database
 import utilitaires
@@ -116,11 +117,13 @@ def test_genGraphique(courbesTest):
     ville = listeVilleWalheim[0]
 
     # Recup des annees de données fiscales por WALHEIN
-    dictAllGrandeur = database.getAllValeurs4Ville(connDB, ville[0], False)
-    listAnnees = database.getListeAnnees4Ville(connDB, ville[0], False)
+    dictAllGrandeur = database.getAllValeursDataMinFi4Entite(connDB, 'V',
+                                                             ville[0], False)
+    listAnnees = database.getListeAnneesDataMinFi4Entite(connDB, 'V',
+                                                         ville[0], False)
     assert len(listAnnees) == 3
     # Agglomère certaines grandeurs et complète dictAllGrandeur
-    genCode.calculeGrandeur(config, dictAllGrandeur,
+    genCodeCommon.calculeGrandeur(config, dictAllGrandeur,
                             listAnnees, True, False)
 
     # Test calcul des valeurs

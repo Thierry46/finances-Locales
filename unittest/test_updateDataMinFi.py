@@ -3,7 +3,7 @@
 """
 Name : test_updateDataMinFi.py
 Author : Thierry Maillard (TMD)
-Date : 1/7/2019 - 11/12/2019
+Date : 1/7/2019 - 7/4/2020
 Role : Tests unitaires du projet FinancesLocales avec py.test
 Utilisation :
     Pour jouer tous les test not global : élimine les tests globaux très long :
@@ -43,6 +43,7 @@ import sqlite3
 import pytest
 
 import updateDataMinFi
+import updateDataMinFiCommon
 import database
 
 
@@ -86,59 +87,6 @@ def test_checkPathCSVDataGouvFrPb(pathCSVDataGouvFr, msgOk):
     with pytest.raises(ValueError, match=msgOk):
         updateDataMinFi.checkPathCSVDataGouvFr(config, testPathCSVDataGouvFr, True)
 
-@pytest.mark.parametrize("headerTest, dictKeyOk, missingKey",
-                         [
-                          ('prod;fprod;mprod;tmth' , {"prod":0, "tmth":3}, "res1"),
-                          ('an;dep;icom;inom;reg;pop1;nomsst2;prod;fprod;mprod;impo1;fimpo1;mimpo1;rimpo1;rmimpo1;impo2;fimpo2;mimpo2;rmimpo2;dgf;fdgf;mdgf;rdgf;rmdgf;charge;fcharge;mcharge;perso;fperso;mperso;rperso;rmperso;achat;fachat;machat;rachat;rmachat;fin;ffin;mfin;rfin;rmfin;cont;fcont;mcont;rcont;rmcont;subv;fsubv;msubv;rsubv;rmsubv;res1;fres1;mres1;pth;fpth;mpth;tth;tmth;pfb;fpfb;mpfb;tfb;tmfb;pfnb;fpfnb;mpfnb;tfnb;tmfnb;ttp;tmtp;recinv;frecinv;mrecinv;emp;femp;memp;remp;rmemp;subr;fsubr;msubr;rsubr;rmsubr;fctva;ffctva;mfctva;rfctva;rmfctva;raff;fraff;mraff;rraff;rmraff;depinv;fdepinv;mdepinv;equip;fequip;mequip;requip;rmequip;remb;fremb;mremb;rremb;rmremb;repart;frepart;mrepart;rrepart;rmrepart;daff;fdaff;mdaff;rdaff;rmdaff;bf1;fbf1;mbf1;solde;fsolde;msolde;bf2;fbf2;mbf2;res2;fres2;mres2;ebf;febf;mebf;rebf;rmebf;caf;fcaf;mcaf;rcaf;rmcaf;cafn;fcafn;mcafn;rcafn;rmcafn;dette;fdette;mdette;rdette;rmdette;annu;fannu;mannu;rannu;rmannu;fdr;ffdr;mfdr;bth;fbth;mbth;bthexod;fbthexod;mbthexod;bfb;fbfb;mbfb;bfbexod;fbfbexod;mbfbexod;bfnb;fbfnb;mbfnb;bfnbexod;fbfnbexod;mbfnbexod;btafnb;fbtafnb;mbtafnb;btp;fbtp;mbtp;btpexod;fbtpexod;mbtpexod;ptafnb;fptafnb;mptafnb;tafnb;mtmtafnb;pcfe;fpcfe;mpcfe;cvaec;fcvaec;mcvaec;iferc;fiferc;miferc;tascomc;ftascomc;mtascomc;nomsst1;encdbr;fencdbr;rencdbr;mencdbr;rmencdbr;pfcaf;fpfcaf;mpfcaf;cfcaf;fcfcaf;mcfcaf;det2cal;fdet2cal;rdet2cal;mdet2cal;rmdet2cal',
-                           {"prod":7, "tmth":59}, ""),
-                          ('an;dep;icom;inom;reg;pop1;nomsst2;prod;fprod;mprod;impo1;fimpo1;mimpo1;rimpo1;rmimpo1;impo2;fimpo2;mimpo2;rmimpo2;dgf;fdgf;mdgf;rdgf;rmdgf;charge;fcharge;mcharge;perso;fperso;mperso;rperso;rmperso;achat;fachat;machat;rachat;rmachat;fin;ffin;mfin;rfin;rmfin;cont;fcont;mcont;rcont;rmcont;subv;fsubv;msubv;rsubv;rmsubv;res1;fres1;mres1;pth;fpth;mpth;tth;tmth;pfb;fpfb;mpfb;tfb;tmfb;pfnb;fpfnb;mpfnb;tfnb;tmfnb;ttp;tmtp;recinv;frecinv;mrecinv;emp;femp;memp;remp;rmemp;subr;fsubr;msubr;rsubr;rmsubr;fctva;ffctva;mfctva;rfctva;rmfctva;raff;fraff;mraff;rraff;rmraff;depinv;fdepinv;mdepinv;equip;fequip;mequip;requip;rmequip;remb;fremb;mremb;rremb;rmremb;repart;frepart;mrepart;rrepart;rmrepart;daff;fdaff;mdaff;rdaff;rmdaff;bf1;fbf1;mbf1;solde;fsolde;msolde;bf2;fbf2;mbf2;res2;fres2;mres2;ebf;febf;mebf;rebf;rmebf;caf;fcaf;mcaf;rcaf;rmcaf;cafn;fcafn;mcafn;rcafn;rmcafn;dette;fdette;mdette;rdette;rmdette;annu;fannu;mannu;rannu;rmannu;fdr;ffdr;mfdr;bth;fbth;mbth;bthexod;fbthexod;mbthexod;bfb;fbfb;mbfb;bfbexod;fbfbexod;mbfbexod;bfnb;fbfnb;mbfnb;bfnbexod;fbfnbexod;mbfnbexod;btafnb;fbtafnb;mbtafnb;btp;fbtp;mbtp;btpexod;fbtpexod;mbtpexod;ptafnb;fptafnb;mptafnb;tafnb;mtmtafnb;pcfe;fpcfe;mpcfe;cvaec;fcvaec;mcvaec;iferc;fiferc;miferc;tascomc;ftascomc;mtascomc;nomsst1;encdbr;fencdbr;rencdbr;mencdbr;rmencdbr;pfcaf;fpfcaf;mpfcaf;cfcaf;fcfcaf;mcfcaf;det2cal;fdet2cal;rdet2cal;mdet2cal;rmdet2cal;dfctva;fdfctva;rdfctva;mdfctva;rmdfctva;dpserdom;fpserdom;rpserdom;mpserdom;rmpserdom',
-                           {"prod":7, "tmth":59}, "")
-                          ])
-def test_getColumnPosition(headerTest, dictKeyOk, missingKey):
-    """ Récupération position des mots clés de la table dans l'entête de test """
-    config = configparser.RawConfigParser()
-    config.read('FinancesLocales.properties')
-
-    # Recup chemin base de test
-    databasePathDir = config.get('Test', 'database.testDir')
-    databasePath = os.path.join(databasePathDir, config.get('Test', 'database.testName'))
-    # Création base
-    connDB = database.createDatabase(config, databasePath, True)
-
-    dictPositionColumns, listMissingKeys = \
-        updateDataMinFi.getColumnPosition(headerTest, connDB, True)
-
-    # Controle des clés présentes et de leur position dans headerTest
-    for keyOk in dictKeyOk:
-        assert dictPositionColumns[keyOk] == dictKeyOk[keyOk]
-
-    if listMissingKeys:
-        assert missingKey in listMissingKeys
-    else:
-        assert not missingKey
-
-    database.closeDatabase(connDB, True)
-
-def test_getColumnPosition_Pb():
-    """ Test cas d'erreur fonction de validation d'un répertoire contenant les données
-        issues du site gouvernemental
-        """
-    config = configparser.RawConfigParser()
-    config.read('FinancesLocales.properties')
-
-    # Recup chemin base de test
-    databasePathDir = config.get('Test', 'database.testDir')
-    databasePath = os.path.join(databasePathDir, config.get('Test', 'database.testName'))
-    # Création base
-    connDB = database.createDatabase(config, databasePath, True)
-
-    with pytest.raises(ValueError,
-                       match=r".*Entete CSV non valide.*"):
-        dictPositionColumns, listMissingKeys = \
-            updateDataMinFi.getColumnPosition("Entete tout moisi", connDB, True)
-
-    database.closeDatabase(connDB, True)
-
 @pytest.mark.parametrize("ligneVille, header, dictVerif",
                          [
                           ('001;007;ST PIERRE DU MONT;25.6;2.5;4.7;2.6;20.6;Salut',
@@ -170,7 +118,7 @@ def test_analyseLigneVille(ligneVille, header, dictVerif):
     connDB = database.createDatabase(config, databasePath, False)
 
     dictPositionColumns, listMissingKeys = \
-        updateDataMinFi.getColumnPosition(header, connDB, False)
+        updateDataMinFiCommon.getColumnPosition(header, "V", connDB, False)
 
     dictValues = updateDataMinFi.analyseLigneVille(config, ligneVille, dictPositionColumns, True)
     assert dictValues == dictVerif
@@ -191,7 +139,8 @@ def test_analyseLigneVille_Manque_Champ():
     connDB = database.createDatabase(config, databasePath, False)
 
     dictPositionColumns, listMissingKeys = \
-        updateDataMinFi.getColumnPosition('dep;icom;prod;fprod;mprod;tmth', connDB, False)
+        updateDataMinFiCommon.getColumnPosition('dep;icom;prod;fprod;mprod;tmth',
+                                                "V", connDB, False)
 
     with pytest.raises(ValueError, match=r'manque clé tmth'):
         dictValues = updateDataMinFi.analyseLigneVille(config, '068;101;25.6;2.5;4.7',
@@ -213,7 +162,7 @@ def test_analyseLigneVille_Pb_dep():
     connDB = database.createDatabase(config, databasePath, False)
 
     dictPositionColumns, listMissingKeys = \
-        updateDataMinFi.getColumnPosition('dep;icom', connDB, False)
+        updateDataMinFiCommon.getColumnPosition('dep;icom', "V", connDB, False)
 
     with pytest.raises(ValueError, match=r'doit comporter 2 ou 3 caractères'):
         dictValues = updateDataMinFi.analyseLigneVille(config, '0685;4',
@@ -246,7 +195,7 @@ def test_createDbDataMinFi():
     connDB.commit()
     database.closeDatabase(connDB, True)
 
-    # Création de la création de la base de test
+    # Appel programme
     param = ['updateDataMinFi.py', pathDatabaseMini, pathCSVMini]
     updateDataMinFi.main(param)
     assert os.path.isfile(pathDatabaseMini)

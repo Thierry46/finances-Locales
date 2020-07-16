@@ -4,7 +4,7 @@
 *********************************************************
 Module : updateDataMinFi.py
 Auteur : Thierry Maillard (TMD)
-Date : 1/7/2019 - 14/12/2019
+Date : 1/7/2019 - 7/4/2020
 
 Role : Met à jour la base de données du ministère des finances
     à partir des fichiers .csv du répertoire passé en paramètres
@@ -48,6 +48,7 @@ import datetime
 
 import utilitaires
 import database
+import updateDataMinFiCommon
 
 ##################################################
 # main function
@@ -145,9 +146,9 @@ def main(argv=None):
 
             # Analyse l'entête du fichier
             header = hFicMinFi.readline().strip()
-            dictPositionColumns, listMissingKeys = getColumnPosition(header,
-                                                                     connDB,
-                                                                     verbose)
+            dictPositionColumns, listMissingKeys = \
+                    updateDataMinFiCommon.getColumnPosition(header, "V",
+                                                            connDB, verbose)
             # Print missing columns
             if len(listMissingKeys) > 0:
                 print("Attention : les motcles suivants n'ont pas été trouvés :\n",
@@ -163,7 +164,7 @@ def main(argv=None):
                        int(dictValues[config.get("cleFi1Valeur", "clefi.annee")]) \
                            not in dictCodeCommuneAnnees[dictValues['codeCommune']]:
                     database.enregistreLigneVilleMinFi(config, dictValues, connDB, verbose)
-            print(str(numLine) + " villes traitées")
+            print(numLine-1, "villes traitées.")
 
     # Ferme la base de données
     database.closeDatabase(connDB, verbose)
@@ -206,44 +207,9 @@ def checkPathCSVDataGouvFr(config, pathCSVDataGouvFr, verbose):
         print("Sortie de checkPathCSVDataGouvFr")
     return listFileCSVMinFi
 
-def getColumnPosition(header, connDB, verbose):
-    """
-        Contrôle que tous les codes clés de la table clesMinFi
-        soient présents dans la ligne d'entête header
-        passée en paramètre
-        Retourne :
-        - un dictionnaire (moclé : position (0:n))
-        - la liste des clés manquantes
-    """
-    if verbose:
-        print("Entrée dans getColumnPosition")
-        print("header =", header)
-
-    listMissingKeys = []
-
-    # Récupère la liste des codes clés de la table clesMinFi
-    listCodeCle = database.getListCodeClesMiniFi(connDB, verbose)
-
-    headerList = header.replace(' ', '').split(";")
-    dictPositionColumns = dict()
-    for motCle in listCodeCle:
-        try:
-            dictPositionColumns[motCle] = headerList.index(motCle)
-        except ValueError:
-            listMissingKeys.append(motCle)
-
-    if len(dictPositionColumns) == 0:
-        raise ValueError("Entete CSV non valide (aucun mot-clé trouvé) " + header)
-
-    if verbose:
-        print("dictPositionColumns :", dictPositionColumns)
-        print("Mots clés manquant :", listMissingKeys)
-        print("Sortie de getColumnPosition")
-    return dictPositionColumns, listMissingKeys
-
 def analyseLigneVille(config, ligneVille, dictPositionColumns, verbose):
     """
-    Extrait les données de ligneVille selon les position indiquées par
+    Extrait les données de ligneVille selon les positions indiquées par
     dictPositionColumns
     Retourne :
     - un dictionnaire (moclé : valeurs)

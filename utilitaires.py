@@ -4,7 +4,7 @@
 *********************************************************
 Programme : utilitaires.py
 Auteur : Thierry Maillard (TMD)
-Date : 24/5/2015 - 8/12/2019
+Date : 24/5/2015 - 2/7/2020
 Role : Fonctions communes
 ------------------------------------------------------------
 Licence : GPLv3 (en français dans le fichier gpl-3.0.fr.txt)
@@ -36,6 +36,9 @@ import time
 import platform
 import sys
 import unicodedata
+import urllib.request
+import re
+
 
 __TPREC__ = 0.0
 
@@ -70,7 +73,7 @@ def lectureFiltreModele(modele, isComplet, verbose):
     if verbose:
         print("Entree dans lectureFiltreModele")
         print("modele =", modele)
-        print("isComplet =", str(isComplet))
+        print("isComplet =", isComplet)
 
     modelefile = open(modele, 'r')
     htmlPage = ""
@@ -389,7 +392,7 @@ def convertLettresAccents(ligne):
                'AE': ['Æ'],
                'c': ['ç'],
                'C': ['Ç'],
-               '_': ['(', ')']}
+               '_': ['(', ')', ' ', '/']} # 32/7/2020 = Ajout /
 
     for char in accents:
         for accented_char in accents[char]:
@@ -477,3 +480,165 @@ def getNomsVille(config, nomVille, repertoireDepBase, verbose):
         print("Sortie de getNomsVille")
 
     return dictNomsVille
+
+def getPageWikipediaFr(config, nomArticleUrl, verbose):
+    """
+    Ouvre une page de Wikipedia et en retourne le texte brut
+    Affiche un point sur stdout sans newline.
+
+    if problem urllib ssl.SSLError :
+    Launch "Install Certificates.command" located in Python installation directory :
+    sudo '/Applications/Python 3.6/Install Certificates.command'
+
+    Exception urllib.error.HTTPError : si page Wikipedia inexistante
+
+    V 4.0 : Respecte un délai entre 2 requetes Wikipedia
+            pour ne pas faire croire à une attaque DOS
+    """
+    if verbose:
+        print("Entrée dans getPageWikipediaFr")
+        print("Recuperation de l'article :", nomArticleUrl)
+
+    # Délai entre 2 requetes
+    wait2requete(config, verbose)
+    print('.', end='', flush=True)
+
+    # Pour ressembler à un navigateur Mozilla/5.0
+    opener = urllib.request.build_opener()
+    opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+
+    # Construction URL à partir de la config et du nom d'article
+    baseWkpFrUrl = config.get('Extraction', 'wikipediaFr.baseUrl')
+    actionTodo = config.get('Extraction', 'wikipediaFr.actionRow')
+    urltoGet = baseWkpFrUrl + nomArticleUrl + actionTodo
+    if verbose:
+        print("urltoGet =", urltoGet)
+
+    # Envoi requete, lecture de la page et decodage vers Unicode
+    infile = opener.open(urltoGet)
+    page = infile.read().decode('utf8')
+
+    if verbose:
+        print("Sortie de getPageWikipediaFr")
+        print("Nombre de caracteres lus :", len(page))
+    return page
+
+#REDIRECTION[[lienCC]]
+#REDIRECTION [[lienCC]]
+#REDIRECT[[lienCC]]
+#REDIRECT [[lienCC]]
+regExpPageRedirection = re.compile(r'^[ ]*#REDIRECT(ION)*[ ]*' +
+                                   r'[\[]{2}(?P<lienCC>.*?)[\]]{2}')
+def jumpRedirGetPageWikipediaFr(config, nomArticle, verbose):
+    """
+    Elimine les redirections de pages Wikipedia et lit la page finale
+    Affiche un R sur stdout sans newline, pour chaque redirection.
+
+    retourne :
+    nomArticle : nom de la page Wikipedia au bout des redirections
+    page : le texte de la page demandée
+    Exception ValueError : si page Wikipedia inexistante
+    """
+    if verbose:
+        print("Entrée dans jumpRedirGetPageWikipediaFr")
+        print("Recuperation de l'article :", nomArticle)
+
+    URLNomArticle = urllib.request.pathname2url(nomArticle)
+    page = None
+    try:
+        # Elimination des pages de redirections Wikipedia
+        findRedir = True
+        countRedir = 0
+        while findRedir:
+            page = getPageWikipediaFr(config, URLNomArticle, verbose)
+            line = page.splitlines()[0]
+            m = regExpPageRedirection.search(line)
+            if m:
+                print('R', end='', flush=True)
+                URLNomArticle = urllib.request.pathname2url(m.group("lienCC"))
+                countRedir += 1
+            else:
+                findRedir = False
+
+        if countRedir > 1:
+            print("\nWarning Wikipedia page :", nomArticle,
+                  ", Trop de redirection (>1) :", countRedir,
+                  file=sys.stderr)
+    except (urllib.error.HTTPError) as exc:
+        raise ValueError("Problème page Wikipedia :" +
+                         urllib.request.url2pathname(URLNomArticle) +
+                         ":" + str(exc))
+
+    nomArticle = urllib.request.url2pathname(URLNomArticle)
+    if verbose:
+        print("Sortie de jumpRedirGetPageWikipediaFr")
+        print("nom de l'article linal =", nomArticle)
+
+    return nomArticle, page
+
+regExpBR = re.compile(r'[\s]*\<br[\s]*/>[\s]*')
+regExpNobr = re.compile(r'[\{]{2}nobr\|(?P<Texte>.*)[\}]{2}')
+regExpGras = re.compile(r"[']{3}(?P<Texte>.*)[']{3}")
+regExpItalic = re.compile(r"[']{2}(?P<Texte>.*)[']{2}")
+regExpHTMLComment = re.compile(r'\<!--.*--\>')
+regExpLienAliasWKP = re.compile(r'[\[]{2}(?P<Texte>[^\]]*?)\|.*?[\]]{2}')
+regExpLienWKP = re.compile(r'[\[]{2}(?P<Texte>.*?)[\]]{2}')
+regExpAliasPipeLien = re.compile(r'.*\|[\s]*(?P<Texte>.*)')
+regExpDrapeauModele = re.compile(r'[\{]{2}[\s]*[Dd]rapeau[\s]*\|.*[\}]{2}[\s]*')
+regExpLienFile = re.compile(r'[\[]{2}[\s]*File\:.*?[\]]{2}[\s]*')
+regExpLienWEBAlias = re.compile(r'\[[\s]*(?P<Texte>http[s]?\://.*?)/[\s]+.*\]')
+regExpLienWEBSimple = re.compile(r'\[[\s]*(?P<Texte>http[s]?\://.*?)[\s]*\]')
+regExpHTMLTag = re.compile(r'\<.*?\>')
+def removeFormatWikipedia(valeurStr):
+    """
+    Retire les formattages Wikipedia définis dans les expressions
+    régulières au dessus
+    """
+    valeurStr = regExpHTMLComment.sub("", valeurStr)
+    valeurStr = regExpBR.sub(" ", valeurStr)
+    valeurStr = regExpDrapeauModele.sub("", valeurStr)
+    valeurStr = regExpLienFile.sub("", valeurStr)
+    valeurStr = regExpLienWEBAlias.sub(r'\g<Texte>', valeurStr)
+    valeurStr = regExpLienWEBSimple.sub(r'\g<Texte>', valeurStr)
+    valeurStr = regExpLienAliasWKP.sub(r'\g<Texte>', valeurStr)
+    valeurStr = regExpLienWKP.sub(r'\g<Texte>', valeurStr)
+    valeurStr = regExpNobr.sub(r'\g<Texte>', valeurStr)
+    valeurStr = regExpGras.sub(r'\g<Texte>', valeurStr)
+    valeurStr = regExpItalic.sub(r'\g<Texte>', valeurStr)
+    valeurStr = regExpAliasPipeLien.sub(r'\g<Texte>', valeurStr)
+    valeurStr = regExpHTMLTag.sub("", valeurStr)
+    valeurStr = valeurStr.replace('&nbsp;', ' ')
+    return valeurStr
+
+def getNomsGroupement(nomGroupement, repertoireGroupements, verbose):
+    """
+    Retourne les noms des fichiers et répertoire qui stockeront les
+    données de ce groupement de communes.
+    nomGroupement : nom usuel du groupement de communes (Wikipedia)
+    """
+
+    if verbose:
+        print("Entrée dans getNomsGroupement")
+        print('nomGroupement=', nomGroupement)
+
+    dictNomsGroupement = dict()
+    dictNomsGroupement['nom'] = nomGroupement
+    dictNomsGroupement['groupementNomDisque'] =\
+            convertLettresAccents(unicodedata.normalize('NFC', nomGroupement))
+    dictNomsGroupement['nomRelatifIndexGroupement'] = \
+                os.path.join(dictNomsGroupement['groupementNomDisque'],
+                             dictNomsGroupement['groupementNomDisque'])
+    dictNomsGroupement['groupementWikicode'] = (
+                dictNomsGroupement['nomRelatifIndexGroupement'] +
+                "_wikicode.html")
+    dictNomsGroupement['groupementHtml'] = \
+                dictNomsGroupement['nomRelatifIndexGroupement'] + '.html'
+    dictNomsGroupement['repGroupement'] = \
+                os.path.join(repertoireGroupements,
+                             dictNomsGroupement['groupementNomDisque'])
+
+    if verbose:
+        print("dictNomsGroupement=", dictNomsGroupement)
+        print("Sortie de getNomsGroupement")
+
+    return dictNomsGroupement

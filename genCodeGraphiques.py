@@ -3,7 +3,7 @@
 *********************************************************
 Module : genCodeGraphiques.py
 Auteur : Thierry Maillard (TMD)
-Date : 24/5/2015 - 30/11/2019
+Date : 24/5/2015 - 21/6/2019
 
 Role : Transforme les donnees traitées par extractionMinFi.py
         en wikicode ou en png pour les parties graphiques.
@@ -34,11 +34,14 @@ import genHTMLCodeGraphiques
 import utilitaires
 
 def genCodeGraphiques(config, repVille, dictAllGrandeur,
-                      textSection, ville,
+                      textSection, nomEntite,
                       listAnnees, isComplet,
                       isWikicode, isMatplotlibOk,
                       verbose):
-    """ Génere le Wikicode pour tous les graphiques d'une ville """
+    """
+    Génere le Wikicode pour tous les graphiques d'une ville
+    ou d'un groupementde communes.
+    """
     if verbose:
         print("Entree dans genCodeGraphiques")
 
@@ -415,7 +418,7 @@ def genCodeGraphiques(config, repVille, dictAllGrandeur,
             if isWikicode:
                 graphiqueWiki, legendeVille, legendeStrate = \
                 genWikiCodeGraphiques.genGraphique(config, dictAllGrandeur,
-                                                   ville[1], anneesOK,
+                                                   nomEntite, anneesOK,
                                                    graphique['courbes'],
                                                    graphique['largeur'],
                                                    arrondi,
@@ -431,7 +434,7 @@ def genCodeGraphiques(config, repVille, dictAllGrandeur,
                 textLien = genHTMLCodeGraphiques.genGraphique(repVille, dictAllGrandeur,
                                                               graphique['nomGraphique'],
                                                               graphique['titreGrahique'],
-                                                              ville[1], anneesOK,
+                                                              nomEntite, anneesOK,
                                                               graphique['courbes'],
                                                               arrondi,
                                                               arrondiStrAffiche,
@@ -443,7 +446,7 @@ def genCodeGraphiques(config, repVille, dictAllGrandeur,
                                                   "Graphique non disponible, " +\
                                                   " installez matplotlib !<br/>")
         except ValueError as exc:
-            print(str(exc) + "\n pour la ville " + ville[1] +
+            print(str(exc) + "\n pour la ville ou le groupement " + nomEntite +
                   " et graphique " + graphique['nomGraphique'])
             textSection = textSection.replace("<GRAPHIQUE_" + graphique['nomGraphique'] + ">",
                                               "Graphique non disponible, " + \

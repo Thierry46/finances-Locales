@@ -51,17 +51,12 @@ import os.path
 import platform
 import configparser
 import locale
-import time
-import shutil
 
 import utilitaires
-import genCodeTexte
-import genCodeTableaux
-import genCodeGraphiques
+import genCodeCommon
 import genHTML
 import database
-import ratioTendance
-
+import genereCode1Ville
 
 ##################################################
 # main function
@@ -124,7 +119,7 @@ def main(argv=None):
     print("databasePath =", databasePath)
     print("resultatsPath =", resultatsPath)
 
-    createResultDir(config, resultatsPath)
+    genCodeCommon.createResultDir(config, resultatsPath)
 
     # Ouvre la base de données
     connDB = database.createDatabase(config, databasePath, verbose)
@@ -135,20 +130,11 @@ def main(argv=None):
     # Ferme la base de données
     database.closeDatabase(connDB, verbose)
 
-def createResultDir(config, resultatsPath):
-    """ Création répertoire resultat pour les départements """
-
-    if not os.path.isdir(resultatsPath):
-        print("Creation repertoire résultats :", resultatsPath)
-        os.makedirs(resultatsPath)
-        # Copie du répertoire des images dans les résultats
-        RepSrcFicAux = config.get('EntreesSorties', 'io.RepSrcFicAux')
-        shutil.copytree(RepSrcFicAux, os.path.join(resultatsPath, RepSrcFicAux))
-        nomNoticeTermes = config.get('EntreesSorties', 'io.nomNoticeTermes')
-        shutil.copy(nomNoticeTermes, resultatsPath)
-
 def traiteDepartement(config, nomProg, isMatplotlibOk, connDB, resultatsPath, verbose):
     """ Récup et traitement des départements """
+    if verbose:
+        print("Entree dans traiteDepartement")
+
     for departement in database.getListeDepartement(connDB, verbose):
         print("===================\nTraitement du département",
               departement[0], ":", departement[2], "...")
@@ -166,49 +152,11 @@ def traiteDepartement(config, nomProg, isMatplotlibOk, connDB, resultatsPath, ve
         auMoins1villeGenere = False
         listVilles = database.getListeVilles4Departement(connDB, departement[0], verbose)
         for ville in listVilles:
-            dictNomsVille = utilitaires.getNomsVille(config, ville[1],
-                                                     repertoireDepBase,
-                                                     verbose)
-            print(dictNomsVille['nom'], 'sur disque',
-                  dictNomsVille['repVille'], '...')
-
-            # V2.3.0 : on ne génère pas une ville dont le répertoire existe
-            # Création du sous répertoire pour la ville
-            if os.path.isdir(dictNomsVille['repVille']):
-                print(ville[1], "ignoréée car le répertoire",
-                      dictNomsVille['repVille'], "existe.")
-            else:
-                auMoins1villeGenere = True
-                if verbose:
-                    print("Creation répertoire de la commune :", dictNomsVille['repVille'])
-                os.makedirs(dictNomsVille['repVille'])
-
-                for typeCode in ["wikiArticle", "HTML"]:
-                    textSection = genereCode1Ville(config, connDB,
-                                                   dictNomsVille['repVille'], ville,
-                                                   nomProg, typeCode,
-                                                   isMatplotlibOk, verbose)
-
-                    if typeCode == "wikiArticle":
-                        indicateur = config.get('GenCode', 'gen.idFicDetail')
-                        extensionFic = '.txt'
-                    elif typeCode == "HTML":
-                        indicateur = ''
-                        extensionFic = '.html'
-
-                    # Ecriture du fichier du Wikicode et du fichier html
-                    # Inclusion des fichiers Wikicode dans des fichiers HTML pour
-                    # éviter problèmes d'encodage et travaller uniquement dans un navigateur Web.
-                    nomFic = utilitaires.construitNomFic(dictNomsVille['repVille'],
-                                                         dictNomsVille['villeNomDisque'],
-                                                         indicateur, extensionFic)
-                    if verbose:
-                        print("Ecriture du code dans :", nomFic)
-                    with open(nomFic, 'w') as ficVille:
-                        ficVille.write(textSection)
-
-                    if typeCode == "wikiArticle":
-                        genHTML.convertWikicode2Html(config, nomFic, verbose)
+            auMoins1villeGenere |= genereCode1Ville.traite1Ville(config, ville,
+                                                                 repertoireDepBase,
+                                                                 connDB, nomProg,
+                                                                 isMatplotlibOk,
+                                                                 verbose)
 
         # Génération de l'index des villes
         print("-------------")
@@ -219,94 +167,8 @@ def traiteDepartement(config, nomProg, isMatplotlibOk, connDB, resultatsPath, ve
         else:
             print("Aucune commune générée !")
 
-def genereCode1Ville(config, connDB, repVille, ville,
-                     nomProg, typeCode,
-                     isMatplotlibOk, verbose):
-    """ Génère le Wikicode pour une ville """
     if verbose:
-        print("Entree dans genereWikicode1Ville")
-        print("repVille=", repVille)
-        print('ville =', ville)
-        print('typeCode =', typeCode)
-        print('isMatplotlibOk', isMatplotlibOk)
-
-    nomBaseModele = config.get('Modele', 'modele.nomBaseModele')
-    if typeCode == "wikiArticle":
-        cle = 'gen.idFicDetail'
-        isWikicode = True
-    elif typeCode == "wikiSection":
-        cle = 'gen.idFicSection'
-        isWikicode = True
-    else:
-        cle = 'gen.idFicHTML'
-        isWikicode = False
-    typeSortie = config.get('GenCode', cle)
-    modele = nomBaseModele + '_' + typeSortie + '.txt'
-
-    # v2.1.0 : pour cas particulier Paris : Strate = Ville -> pas de strate dans les sorties
-    if ville[1] == 'Paris':
-        isComplet = False
-    else:
-        isComplet = (config.get('Modele', 'modele.type') == 'complet')
-
-    # Lecture et filtrage du fichier modèle
-    textSection = utilitaires.lectureFiltreModele(modele, isComplet, verbose)
-
-    # Récupère toutes les données concernant cette ville
-    dictAllGrandeur = database.getAllValeurs4Ville(connDB, ville[0], verbose)
-    listAnnees = database.getListeAnnees4Ville(connDB, ville[0], verbose)
-
-    # Agglomère certaines grandeurs et complète dictAllGrandeur
-    calculeGrandeur(config, dictAllGrandeur, listAnnees, isWikicode, verbose)
-
-    # Modification des valeurs simples
-    textSection = genCodeTexte.genTexte(config, dictAllGrandeur,
-                                        modele, textSection,
-                                        ville, listAnnees, nomProg,
-                                        isWikicode, verbose)
-
-    # Génération des tableaux pictogrammes
-    textSection = genCodeTableaux.genCodeTableauxPicto(config, dictAllGrandeur,
-                                                       textSection,
-                                                       listAnnees,
-                                                       isComplet,
-                                                       isWikicode, verbose)
-     # Génération des tableaux
-    textSection = genCodeTableaux.genCodeTableaux(config, dictAllGrandeur,
-                                                  textSection, ville,
-                                                  listAnnees, isComplet,
-                                                  isWikicode, verbose)
-
-    # Generation des graphiques
-    textSection = genCodeGraphiques.genCodeGraphiques(config,
-                                                      repVille, dictAllGrandeur,
-                                                      textSection, ville,
-                                                      listAnnees, isComplet,
-                                                      isWikicode, isMatplotlibOk,
-                                                      verbose)
-
-    if verbose:
-        print("Sortie de genereCode1Ville")
-
-    return textSection
-
-def calculeGrandeur(config, dictAllGrandeur, listAnnees, isWikicode, verbose):
-    """ Aglomère certaines grandeurs et complète dictAllGrandeur """
-
-    if verbose:
-        print("Entree calculeGrandeur")
-    dictAllGrandeur["tendance ratio"], dictAllGrandeur["ratio dette / caf"] = \
-            ratioTendance.getTendanceRatioDetteCAF(config, dictAllGrandeur,
-                                                   isWikicode, verbose)
-    ratioCAFDetteN = dictAllGrandeur["ratio dette / caf"][listAnnees[0]]
-    dictAllGrandeur["ratio n"] = \
-                           ratioTendance.presentRatioDettesCAF(config,
-                                                               ratioCAFDetteN,
-                                                               isWikicode, verbose)
-    if verbose:
-        for grandeur in ["tendance ratio", "ratio dette / caf", "ratio n"]:
-            print(grandeur, "=", dictAllGrandeur[grandeur])
-        print("Sortie de calculeGrandeur")
+        print("Sortie de traiteDepartement")
 
 ##################################################
 # to be called as a script

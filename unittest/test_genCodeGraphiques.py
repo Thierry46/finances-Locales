@@ -35,6 +35,7 @@ import pytest
 
 import genCodeGraphiques
 import genCode
+import genCodeCommon
 import updateDataMinFi
 import database
 import utilitaires
@@ -115,12 +116,13 @@ def test_controleSeriesOK(courbesTest):
     ville = listeVilleWalheim[0]
 
     # Recup des annees de données fiscales por WALHEIN
-    dictAllGrandeur = database.getAllValeurs4Ville(connDB, ville[0], False)
-    listAnnees = database.getListeAnnees4Ville(connDB, ville[0], False)
+    dictAllGrandeur = database.getAllValeursDataMinFi4Entite(connDB, 'V', ville[0], False)
+    listAnnees = database.getListeAnneesDataMinFi4Entite(connDB, 'V',
+                                                         ville[0], False)
     assert len(listAnnees) == 3
 
     # Grandeurs calculées
-    genCode.calculeGrandeur(config, dictAllGrandeur,
+    genCodeCommon.calculeGrandeur(config, dictAllGrandeur,
                             listAnnees, True, False)
 
     # Test calcul des valeurs
@@ -170,8 +172,9 @@ def test_controleSeriesSuppr():
     ville = listeVilleWalheim[0]
 
     # Recup des annees de données fiscales por WALHEIN
-    dictAllGrandeur = database.getAllValeurs4Ville(connDB, ville[0], False)
-    listAnnees = database.getListeAnnees4Ville(connDB, ville[0], False)
+    dictAllGrandeur = database.getAllValeursDataMinFi4Entite(connDB, 'V', ville[0], False)
+    listAnnees = database.getListeAnneesDataMinFi4Entite(connDB, 'V',
+                                                         ville[0], False)
     assert len(listAnnees) == 3
 
     # La courbe de clé "inconnue" devra être supprimee
@@ -235,8 +238,9 @@ def test_controleSeriesSupprAll():
     ville = listeVilleWalheim[0]
 
     # Recup des annees de données fiscales por WALHEIN
-    dictAllGrandeur = database.getAllValeurs4Ville(connDB, ville[0], False)
-    listAnnees = database.getListeAnnees4Ville(connDB, ville[0], False)
+    dictAllGrandeur = database.getAllValeursDataMinFi4Entite(connDB, 'V', ville[0], False)
+    listAnnees = database.getListeAnneesDataMinFi4Entite(connDB, 'V',
+                                                         ville[0], False)
     assert len(listAnnees) == 3
 
     # Les courbee de clé "inconnue*" devront être supprimees
@@ -306,12 +310,13 @@ def test_genCodeGraphiques_OK(isComplet, isWikicode):
     ville = listeVilleWalheim[0]
 
     # Recup des annees de données fiscales por WALHEIN
-    dictAllGrandeur = database.getAllValeurs4Ville(connDB, ville[0], False)
-    listAnnees = database.getListeAnnees4Ville(connDB, ville[0], False)
+    dictAllGrandeur = database.getAllValeursDataMinFi4Entite(connDB, 'V', ville[0], False)
+    listAnnees = database.getListeAnneesDataMinFi4Entite(connDB, 'V',
+                                                         ville[0], False)
     assert len(listAnnees) == 3
     
     # Agglomère certaines grandeurs et complète dictAllGrandeur
-    genCode.calculeGrandeur(config, dictAllGrandeur,
+    genCodeCommon.calculeGrandeur(config, dictAllGrandeur,
                             listAnnees, True, False)
 
     # Lecture du modèle
@@ -323,7 +328,7 @@ def test_genCodeGraphiques_OK(isComplet, isWikicode):
     # Generation des graphiques pour une ville
     textSection = genCodeGraphiques.genCodeGraphiques(
                       config, repOutGraphique, dictAllGrandeur,
-                      textSection, ville,
+                      textSection, ville[1],
                       listAnnees, isComplet,
                       isWikicode, True, True)
 

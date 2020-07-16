@@ -1,33 +1,48 @@
-Name                                     Stmts   Miss  Cover   Missing
-----------------------------------------------------------------------
-database.py                                267      9    97%   48-49, 93-94, 260, 570-573
-genCode.py                                 147     18    88%   82, 93-96, 105, 111-114, 118, 120, 178, 238-239, 248, 315-318
-genCodeGraphiques.py                       121      4    97%   442-448
-genCodeTableaux.py                         308      2    99%   602, 627
-genCodeTexte.py                            112      1    99%   80
-genHTML.py                                 142      0   100%
-genHTMLCodeGraphiques.py                    60      1    98%   86
-genHTMLCodeTableaux.py                      93      0   100%
-genWikiCodeGraphiques.py                   145      3    98%   89, 213, 218
-genWikiCodeTableaux.py                      81      0   100%
-initBdFomListeDep.py                       120     32    73%   78, 89-92, 96-102, 106-110, 115-119, 124-128, 133-137, 153-157, 181-182, 205-206, 250-251
-ratioTendance.py                           126      9    93%   49, 60, 129-135
-unittest/test_database.py                  390     15    96%   74, 125, 198, 243, 267, 302, 349, 399, 430, 459, 502, 539, 563, 621, 665
-unittest/test_genCode.py                   100      1    99%   121
-unittest/test_genCodeGraphiques.py         121      1    99%   278
-unittest/test_genCodeTableaux.py           243      0   100%
-unittest/test_genCodeTexte.py               54      0   100%
-unittest/test_genHTML.py                   138      1    99%   150
-unittest/test_genHTMLCodeGraphiques.py      50      1    98%   106
-unittest/test_genWikiCodeGraphiques.py      52      1    98%   161
-unittest/test_genWikiHTMLTableaux.py        84      0   100%
-unittest/test_initBdFomListeDep.py          41      0   100%
-unittest/test_ratioTendance.py              53      1    98%   143
-unittest/test_updateDataMinFi.py           110      2    98%   66-67
-unittest/test_updateScoreWikipedia.py       67      0   100%
-unittest/test_utilitaires.py                93      0   100%
-updateDataMinFi.py                         138     25    82%   72, 80-83, 87-92, 98-102, 107-110, 117-124, 134-136, 153, 277, 295-296
-updateScoreWikipedia.py                    132     18    86%   80, 89-92, 101, 104-105, 111-115, 120-123, 135-137, 321-322
-utilitaires.py                             279     10    96%   311-313, 326-331, 347
-----------------------------------------------------------------------
-TOTAL                                     3867    155    96%
+Name                                                 Stmts   Miss  Cover   Missing
+----------------------------------------------------------------------------------
+database.py                                            405     12    97%   48-49, 55, 97-98, 362, 741, 753, 897-900
+genCode.py                                              75     14    81%   77, 88-91, 100, 106-109, 113, 115, 177-180
+genCodeCommon.py                                       254      1    99%   449
+genCodeGraphiques.py                                   121      4    97%   445-451
+genCodeGroupement.py                                    68     15    78%   77, 88-91, 100, 106-109, 113, 115, 162, 168-171
+genCodeGroupementTableaux.py                            40      0   100%
+genCodeGroupementTexte.py                              117     27    77%   57, 85-86, 135, 171-207
+genCodeTableaux.py                                     121      0   100%
+genCodeTexte.py                                        119      1    99%   84
+genHTML.py                                             181      0   100%
+genHTMLCodeGraphiques.py                                60      1    98%   86
+genHTMLCodeTableaux.py                                  91      0   100%
+genWikiCodeGraphiques.py                               145      3    98%   89, 213, 218
+genWikiCodeTableaux.py                                  79      0   100%
+genereCode1Groupement.py                                65      2    97%   67, 101
+genereCode1Ville.py                                     76      4    95%   62, 121-122, 131
+initBdFomListeDep.py                                   120     32    73%   78, 89-92, 96-102, 106-110, 115-119, 124-128, 133-137, 153-157, 181-182, 205-206, 250-251
+ratioTendance.py                                       126      9    93%   49, 60, 129-135
+unittest/test_database.py                              568     18    97%   103, 145, 247, 320, 365, 389, 424, 471, 521, 552, 597, 644, 681, 705, 763, 807, 846, 1180
+unittest/test_genCode.py                                66      1    98%   56
+unittest/test_genCodeCommon.py                         273      0   100%
+unittest/test_genCodeGraphiques.py                     122      1    99%   282
+unittest/test_genCodeGroupement.py                      74      1    99%   56
+unittest/test_genCodeGroupementTexte.py                 50      0   100%
+unittest/test_genCodeTableaux.py                       108      0   100%
+unittest/test_genCodeTexte.py                           58      0   100%
+unittest/test_genHTML.py                               182      1    99%   153
+unittest/test_genHTMLCodeGraphiques.py                  51      1    98%   108
+unittest/test_genWikiCodeGraphiques.py                  53      1    98%   164
+unittest/test_genWikiHTMLTableaux.py                    86      0   100%
+unittest/test_initBdFomListeDep.py                      41      0   100%
+unittest/test_ratioTendance.py                          53      1    98%   143
+unittest/test_updateDataMinFi.py                        88      2    98%   67-68
+unittest/test_updateDataMinFiCommon.py                  30      0   100%
+unittest/test_updateDataMinFiGroupementCommunes.py      48      0   100%
+unittest/test_updateGroupementsCommunes.py              70      3    96%   98-100
+unittest/test_updateScoreWikipedia.py                   53      0   100%
+unittest/test_utilitaires.py                           122      0   100%
+updateDataMinFi.py                                     119     25    79%   73, 81-84, 88-93, 99-103, 108-111, 118-125, 135-137, 154, 243, 261-262
+updateDataMinFiCommon.py                                26      0   100%
+updateDataMinFiGroupementCommunes.py                    86     24    72%   74, 82-85, 89-94, 100-104, 109-112, 117-122, 133-136, 201-203, 214-215
+updateGroupementsCommunes.py                           195     20    90%   112, 121-124, 133, 136-138, 144-147, 152-155, 159, 174, 178-180, 222-223, 437-438
+updateScoreWikipedia.py                                112     18    84%   79, 88-91, 100, 103-104, 110-114, 119-122, 135-137, 288-289
+utilitaires.py                                         372     11    97%   314-316, 329-334, 350, 564
+----------------------------------------------------------------------------------
+TOTAL                                                 5369    253    95%

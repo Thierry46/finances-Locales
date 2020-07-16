@@ -11,13 +11,31 @@ To see results : http://marielaure.monde.free.fr/Finances_Locales_Web/Finances_L
 Author : Thierry Maillard
 
 Usage :
-cd /Users/thierry/Documents/wikipedia/finances_locales_wkpfr/FinancesLocales_v3.1.0
++++++
+
+Pour les finances locales des communes de France :
+------------------------------------------------
+https://www.data.gouv.fr/fr/datasets/comptes-individuels-des-groupements-a-fiscalite-propre-fichier-global-a-compter-de-2007/
+
+cd /Users/thierry/Documents/wikipedia/finances_locales_wkpfr/FinancesLocales_v4.0.0
 ./initBdFomListeDep.py ../database/bd_minfi.db ../Listes_villes_par_departement
 utilisez Browser for SQLite pour vérifier
 ./updateDataMinFi.py ../database/bd_minfi.db ../recup_data_gouv_fr
 
-../updateScoreWikipedia.py ./database/bd_minfi.db
-utiliser l'option -f pour ne traiter que les nouvelles villes ajoutées
+./updateScoreWikipedia.py -f ../database/bd_minfi.db
+Supprimer l'option -f pour traiter toutes les villes
 
 ./genCode.py ../database/bd_minfi.db ../resultats
 ./genIndexSite.py ../resultats
+
+Pour les finances locales des groupements de communes :
+------------------------------------------------
+./updateGroupementsCommunes.py ../database_testCC/bd_minfi.db 1000
+Utilisez l'option -f au prochain run.
+
+./updateDataMinFiGroupementCommunes.py ../database_testCC/bd_minfi.db ../recup_data_gouv_fr_colectivite/comptes-groupements.csv
+Attention : les motcles suivants n'ont pas été trouvés :
+ ptp1;fptp1;ptp2;fptp2;ptp3;fptp3;ttp1;ttp2;ttp3
+ 26869 lignes traitées, 1834 groupements enregistrés
+
+./genCodeGroupement.py  ../database/bd_minfi.db ../resultats

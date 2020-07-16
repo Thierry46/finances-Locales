@@ -3,7 +3,7 @@
 """
 Name : test_genCodeTexte.py
 Author : Thierry Maillard (TMD)
-Date : 1/6/2015 - 25/9/2019
+Date : 1/6/2015 - 14/4/2020
 Role : Tests unitaires du projet FinancesLocales avec py.test
 Utilisation : python3 -m pytest [-k "nomTest"] .
 options :
@@ -40,6 +40,7 @@ import updateDataMinFi
 import database
 import utilitaires
 import genCode
+import genCodeCommon
 
 
 @pytest.mark.parametrize(\
@@ -124,22 +125,31 @@ def test_genCodeTexte_func(typeCode):
     ville = listeVilleWalheim[0]
 
     # Recup des annees de données fiscales por WALHEIN
-    dictAllGrandeur = database.getAllValeurs4Ville(connDB, ville[0], True)
-    listAnnees = database.getListeAnnees4Ville(connDB, ville[0], True)
+    dictAllGrandeur = database.getAllValeursDataMinFi4Entite(connDB, 'V',
+                                                             ville[0], True)
+    
+    listAnnees = database.getListeAnneesDataMinFi4Entite(connDB, 'V',
+                                                         ville[0], True)
     print("listAnnees =", listAnnees)
     assert len(listAnnees) == 3
+
+    infosGroupement = ('200066041', 'Communauté de communes Sundgau',
+                       'CC du Sundgau')
     
     # Agglomère certaines grandeurs et complète dictAllGrandeur
-    genCode.calculeGrandeur(config, dictAllGrandeur,
-                            listAnnees, isWikicode, False)
+    genCodeCommon.calculeGrandeur(config, dictAllGrandeur,
+                                  listAnnees, isWikicode, False)
 
 
     # Test de la generation du texte
     textSection = genCodeTexte.genTexte(config, dictAllGrandeur,
-                                            modele, textSection,
-                                            ville, listAnnees,
-                                            "test_genCodeTexte", isWikicode,
-                                            True)
+                                        infosGroupement,
+                                        modele, textSection,
+                                        ville, listAnnees,
+                                        "test_genCodeTexte", isWikicode,
+                                        True)
     assert "21547710" in textSection
+    if not isWikicode:
+        assert "Sundgau" in textSection
     database.closeDatabase(connDB, False)
    

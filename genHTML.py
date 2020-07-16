@@ -3,12 +3,12 @@
 *********************************************************
 Module : genHTML.py
 Auteur : Thierry Maillard (TMD)
-Date : 15/7/2015 - 3/11/2019
+Date : 15/7/2015 - 2/7/2020
 
 Role : Routines de génération du code HTML de déploiement.
 ------------------------------------------------------------
 Licence : GPLv3 (en français dans le fichier gpl-3.0.fr.txt)
-Copyright (c) 2015 - 2019 - Thierry Maillard
+Copyright (c) 2015 - 2020 - Thierry Maillard
 ------------------------------------------------------------
 
     This file is part of FinancesLocales project.
@@ -218,7 +218,7 @@ def convertWikicode2Html(config, pathVille, verbose):
 
 def genIndexDepartement(config, repTransfertWeb, verbose):
     """
-    Genere l'index des déparetements disponibles
+    Genere l'index des départements disponibles
     repTransfertWeb : repertoire où écrire les résultats
     """
 
@@ -273,3 +273,88 @@ def genIndexDepartement(config, repTransfertWeb, verbose):
     if verbose:
         print("Ecriture de :", pathFicResu)
     enregistreFicHTML(pathFicResu, htmlText, verbose)
+
+def genIndexGroupementHTML(config, repertoireGroupements,
+                           listGroupements, verbose):
+    """
+    Génération de l'index des viles d'un département
+    repertoireGroupements : path du répertoire dans lequel sera produit l'index
+    listGroupements : liste des groupements de communes traités traitées
+        Format d'un enregistrement :
+        [sirenGroupement, nomArticleCC, nom,
+                            région, département, forme, siège,
+                            logo, siteWeb]
+    """
+    assert listGroupements, "genIndexGroupementHTML : Aucune ville à traiter !"
+
+    if verbose:
+        print("Entree dans genIndexGroupementHTML")
+        print("repertoireGroupements=", repertoireGroupements)
+        print("listGroupements =", listGroupements)
+
+    # Lecture du modèle
+    ficModelHTML = config.get('EntreesSorties', 'io.nomModeleIndexGroupementHTML')
+    htmlText = litModeleHTML(ficModelHTML, verbose)
+
+    # Remplacement des variables texte
+    htmlText = replaceTags(config, htmlText, "", verbose)
+
+    # Insertion des lignes de tableau les Groupements traitées
+    htmlText = insertGroupementTableau(config, htmlText,
+                                       listGroupements, verbose)
+
+    # Enregistrement du fichier
+    nomFicIndexHTML = config.get('EntreesSorties', 'io.nomFicGroupementHTML')
+    pathFileHTML = os.path.normcase(os.path.join(repertoireGroupements, nomFicIndexHTML))
+    enregistreFicHTML(pathFileHTML, htmlText, verbose)
+
+    if verbose:
+        print("Sortie de genIndexGroupementHTML")
+
+def insertGroupementTableau(config, htmlText, listGroupements, verbose):
+    """
+    Insere les groupements de communes dans le texte passé en paramètre
+    listGroupements : liste des groupements de communes traités traitées
+        Format d'un enregistrement :
+        [sirenGroupement, nomArticleCC, nom,
+                            région, département, forme, siège,
+                            logo, siteWeb]
+    """
+    if verbose:
+        print("Entree dans insertGroupementTableau")
+        print("Nombre de groupents de communes :", len(listGroupements))
+        if listGroupements:
+            print(listGroupements[0])
+
+    lignes = ""
+    for groupement in listGroupements:
+        dictNomsGroupement = utilitaires.getNomsGroupement(groupement[2],
+                                                           "",
+                                                           verbose)
+        lignes += '<tr>\n'
+
+        # Lien article Finances locales
+        nomFic = utilitaires.construitNomFic(dictNomsGroupement['repGroupement'],
+                                             dictNomsGroupement['groupementNomDisque'],
+                                             "HTML", '.html')
+        lignes += '<td><a href="' + nomFic +  '" target="_blank">'
+        lignes += groupement[1] + ' (HTML)</a></td>\n'
+
+        # Lien Wikicode
+        nomFic = utilitaires.construitNomFic(dictNomsGroupement['repGroupement'],
+                                             dictNomsGroupement['groupementNomDisque'],
+                                             "wikicode", '.txt')
+        lignes += '<td><a href="' + nomFic + '" target="_blank">Wiki</a></td>\n'
+
+        # Info score Wikipédia
+        lignes += '<td>' + groupement[3] + '</td>\n'
+        lignes += '<td>' + groupement[4] + '</td>\n'
+        lignes += '<td>' + groupement[0] + '</td>\n'
+        lignes += '</tr>\n'
+
+    htmlText = htmlText.replace("++LIGNES_GROUPEMENTS++", lignes)
+
+    if verbose:
+        print("lignes :", lignes)
+        print("Sortie de insertGroupementTableau")
+    return htmlText

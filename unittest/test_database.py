@@ -3,7 +3,7 @@
 """
 Name : test_database.py
 Author : Thierry Maillard (TMD)
-Date : 30/6/2015 - 12/11/2019
+Date : 30/6/2015 - 14/4/2020
 Role : Tests unitaires du projet FinancesLocales avec py.test
 Utilisation :
     Pour jouer les tests de ce fichier
@@ -41,18 +41,48 @@ import database
 import sqlite3
 
 import updateDataMinFi
-
+import updateDataMinFiGroupementCommunes
 
 def test_initClesMinFi():
-    """ Test fonction d'init des mots clés du ministère des finances """
+    """
+    Test fonction d'init des mots clés du ministère des finances
+    pour les communes
+    """
     config = configparser.RawConfigParser()
     config.read('FinancesLocales.properties')
 
-    listCodeCle = [list1Cles[0] for list1Cles in database.initClesMinFi(config, True)]
+    listCodeCle = [list1Cles[0]
+                   for list1Cles
+                   in database.initClesMinFi(config, "V", True)]
+    assert len(listCodeCle) == \
+        (len(config['cleFi3Valeurs']) * 3 + len(config['cleFi2Valeurs']) * 2 +
+         len(config['cleFi1Valeur']))
     assert config['cleFi3Valeurs']['clefi.dont charges de personnel'] in listCodeCle
+    assert "f"+config['cleFi3Valeurs']['clefi.dont charges de personnel'] in listCodeCle
+    assert "m"+config['cleFi3Valeurs']['clefi.dont charges de personnel'] in listCodeCle
     assert config['cleFi2Valeurs']["cletaxe.taux taxe habitation"] in listCodeCle
+    assert config['cleFi2Valeurs']["cletaxe.taux taxe habitation"].replace("t", "tm", 1) in listCodeCle
     assert config['cleFi1Valeur']['clefi.codeInsee'] in listCodeCle
 
+def test_initClesMinFiGC():
+    """
+    Test fonction d'init des mots clés du ministère des finances
+    pour les groupements de communes
+    """
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+
+    listCodeCle = [list1Cles[0]
+                   for list1Cles
+                   in database.initClesMinFi(config, "GC", True)]
+    assert len(listCodeCle) == \
+        (len(config['cleFi2ValeursGC']) * 2 +len(config['cleFi1ValeurGC']))
+    assert config['cleFi2ValeursGC']['clefi.dont charges de personnel'] in listCodeCle
+    assert config['cleFi2ValeursGC']['clefi.dont charges de personnel']+"hab" in listCodeCle
+    assert config['cleFi2ValeursGC']["cletaxe.taxe habitation"] in listCodeCle
+    assert "f"+config['cleFi2ValeursGC']["cletaxe.taxe habitation"] in listCodeCle
+    assert config['cleFi1ValeurGC']['clefi.siren'] in listCodeCle
+ 
 def test_initDepartements():
     """ Test fonction d'init des noms de départements """
     config = configparser.RawConfigParser()
@@ -61,6 +91,47 @@ def test_initDepartements():
     listeDepartements = database.initDepartements(config, True)
     assert len(listeDepartements) == 101
     assert ('046', 'Lot', 'du') in listeDepartements
+
+def test_createMinFiTables():
+    """ Test de la création des tables de la base de données """
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+
+    databasePathDir = config.get('Test', 'database.testDir')
+    databasePath = os.path.join(databasePathDir, config.get('Test', 'database.testName'))
+    if not os.path.isdir(databasePathDir):
+        os.mkdir(databasePathDir)
+    if os.path.isfile(databasePath):
+        os.remove(databasePath)
+
+    # Création base vide
+    connDB = sqlite3.connect(databasePath)
+    assert os.path.isfile(databasePath)
+    assert connDB
+
+    # Creation des tables
+    database.createMinFiTables(connDB, True)
+    
+    # Test si les tables ont bien été créée
+    cursor = connDB.cursor()
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+    listTablesRecords = cursor.fetchall()
+    assert len(listTablesRecords) == 6
+    listTables = [tableRecord[0] for tableRecord in listTablesRecords]
+    for table in ('villes', 'clesMinFi', 'dataFi', 'departements',
+                  'groupementCommunes', 'dataFiGroupement'):
+        assert table in listTables
+
+    # V4.0 : Test si la colonne ville contient bien
+    #   les champs sirenGroupement et ancienneCommune
+    cursor.execute("SELECT sirenGroupement, ancienneCommune FROM villes")
+
+    # V4.0 : Test si la colonne clesMinFi contient bien un champ type
+    cursor.execute("SELECT typeEntite FROM clesMinFi")
+
+    # Fermeture base
+    cursor.close()
+    database.closeDatabase(connDB, True)
 
 def test_createDatabase():
     """ Test fonction de creation de la base de données """
@@ -76,25 +147,66 @@ def test_createDatabase():
         os.remove(databasePath)
 
     # Création base vide
-    connDB = database.createDatabase(config, databasePath, True)
+    print("Creation de la base :", databasePath)
+    connDB = database.createDatabase(config, databasePath, False)
     assert os.path.isfile(databasePath)
     assert connDB
 
-    # Test si les tables ont bien été créée
+    # Récupère les clés existantes dans la table clesMinFi
     cursor = connDB.cursor()
-    cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
-    listTablesRecords = cursor.fetchall()
-    assert len(listTablesRecords) == 4
-    listTables = [tableRecord[0] for tableRecord in listTablesRecords]
-    for table in ('villes', 'clesMinFi', 'dataFi', 'departements'):
-        assert table in listTables
-
+    cursor.execute("""SELECT codeCle, typeEntite, nomCle, typeCle, unite
+                      FROM clesMinFi""")
+    values = cursor.fetchall()
+    print("values in clesMinFi", values)
     # Fermeture base
     cursor.close()
     database.closeDatabase(connDB, True)
 
+    # Enregistrements qui devraient être dans clesMinFi
+    # pour les communes V et les groupements de communes GC
+    listTestOk = [
+        (config['cleFi3Valeurs']['clefi.dont charges de personnel'],
+         "V", "dont charges de personnel",
+         "Valeur totale", "En milliers d'Euros"),
+        ("f"+config['cleFi3Valeurs']['clefi.dont charges de personnel'],
+         "V", "dont charges de personnel par habitant",
+         "Par habitant", "Euros par habitant"),
+        ("m"+config['cleFi3Valeurs']['clefi.dont charges de personnel'],
+         "V", "dont charges de personnel moyen",
+         "En moyenne pour la strate", "En milliers d'Euros"),
+        (config['cleFi2Valeurs']["cletaxe.taux taxe habitation"],
+         "V", "taux taxe habitation",
+         "Taux", "taux voté (%)"),
+        (config['cleFi2Valeurs']["cletaxe.taux taxe habitation"].replace("t", "tm", 1),
+         "V", "taux taxe habitation moyen",
+         "taux moyen pour la strate", "taux moyen de la strate (%)"),
+        (config['cleFi1Valeur']['clefi.codeInsee'],
+         "V", "codeinsee", "Valeur simple", ""),
+        (config['cleFi2ValeursGC']['clefi.dont charges de personnel'],
+         "GC", "dont charges de personnel",
+         "Valeur totale", "En milliers d'Euros"),
+        (config['cleFi2ValeursGC']['clefi.dont charges de personnel']+"hab",
+         "GC", "dont charges de personnel par habitant",
+         "Par habitant", "Euros par habitant"),
+        (config['cleFi2ValeursGC']["cletaxe.taxe habitation"],
+         "GC", "taxe habitation",
+         "Valeur totale", "En milliers d'Euros"),
+        ("f"+config['cleFi2ValeursGC']["cletaxe.taxe habitation"],
+         "GC", "taxe habitation par habitant",
+         "Par habitant", "Euros par habitant"),
+        (config['cleFi1ValeurGC']['clefi.siren'],
+         "GC", "siren", "Valeur simple", ""),
+        ]
+
+    # Test
+    for valuesOK in listTestOk:
+        assert valuesOK in values
+
 def test_getListCodeClesMiniFi():
-    """ Test fonction de creation de la base de données """
+    """
+    Test fonction getListCodeClesMiniFide récupération
+    des clés de la table clesMinFi
+    """
     config = configparser.RawConfigParser()
     config.read('FinancesLocales.properties')
 
@@ -104,14 +216,24 @@ def test_getListCodeClesMiniFi():
     # Création base
     connDB = database.createDatabase(config, databasePath, True)
 
-    # Test getListCodeClesMiniFi
-    listCodeCle = database.getListCodeClesMiniFi(connDB, True)
+    # Test getListCodeClesMiniFi pour les communes
+    listCodeCle = database.getListCodeClesMiniFi(connDB, "V", True)
+    print("listCodeCle (V)=", listCodeCle)
     assert len(listCodeCle) == \
         (len(config['cleFi3Valeurs']) * 3 + len(config['cleFi2Valeurs']) * 2 +
          len(config['cleFi1Valeur']))
     assert config['cleFi3Valeurs']['clefi.dont charges de personnel'] in listCodeCle
     assert config['cleFi2Valeurs']["cletaxe.taux taxe habitation"] in listCodeCle
     assert config['cleFi1Valeur']['clefi.codeInsee'] in listCodeCle
+
+    # Test getListCodeClesMiniFi pour les groupements de communes
+    listCodeCle = database.getListCodeClesMiniFi(connDB, "GC", True)
+    print("listCodeCle (GC)=", listCodeCle)
+    assert len(listCodeCle) == \
+        (len(config['cleFi2ValeursGC']) * 2 +len(config['cleFi1ValeurGC']))
+    assert config['cleFi2ValeursGC']['clefi.dont charges de personnel'] in listCodeCle
+    assert config['cleFi2ValeursGC']["cletaxe.taxe habitation"] in listCodeCle
+    assert config['cleFi1ValeurGC']['clefi.siren'] in listCodeCle
 
 def test_enregistreLigneVilleMinFi():
     """ Test fonction d'enregistrement d'une ville dans la base """
@@ -444,7 +566,23 @@ def test_enregistreVilleWKP_Pb_doublon():
                        match=r".*UNIQUE constraint failed.*"):
         database.enregistreVilleWKP(config, databasePath, listeVilles4Bd, True)
     
-def test_getListeCodeCommuneNomWkp_2_rec():
+@pytest.mark.parametrize(\
+    "isFast, nbCommuneOK, listCodeCommuneNomWkpOK",
+    [
+        (False, 3,
+          [
+            ('046123', 'Biars'),
+            ('001007', 'Trifouilly-les Oies (Ain)'),
+            ('046111', 'Chat Ours Ville')
+          ]),
+        (True, 2,
+          [
+            ('046123', 'Biars'),
+            ('046111', 'Chat Ours Ville')
+          ])
+    ])
+def test_getListeCodeCommuneNomWkp(isFast, nbCommuneOK,
+                                   listCodeCommuneNomWkpOK):
     """
         Test récupération de toutes les villes de la base et leur nomWikipedia.
         Test sur base avec 2 enregistrements
@@ -461,29 +599,33 @@ def test_getListeCodeCommuneNomWkp_2_rec():
         os.remove(databasePath)
     connDB = database.createDatabase(config, databasePath, False)
 
-    # Ajout 2 villes
-    connDB.executemany("""INSERT INTO villes(codeCommune, nomWkpFr)
-                            VALUES (?, ?)""",
-                       (('001007', 'Trifouilly-les Oies (Ain)'),
-                        ('046123', 'Biars')))
+    # Ajout 3 villes : 2 anciennes commune et une existante
+    connDB.executemany("""INSERT INTO villes(codeCommune, ancienneCommune,nomWkpFr)
+                            VALUES (?, ?, ?)""",
+                       (('001007', 1, 'Trifouilly-les Oies (Ain)'),
+                        ('046123', 0, 'Biars'),
+                        ('046111', 0, 'Chat Ours Ville')))
     connDB.commit()
 
     # Test getListeCodeCommuneNomWkp pour toutes les villes
-    isFast = False
-    listCodeCommuneNomWkp = database.getListeCodeCommuneNomWkp(connDB, isFast, True)
-    assert len(listCodeCommuneNomWkp) == 2
-    assert listCodeCommuneNomWkp[0] == ('001007', 'Trifouilly-les Oies (Ain)')
-    assert listCodeCommuneNomWkp[1] == ('046123', 'Biars')
-
+    listCodeCommuneNomWkp = database.getListeCodeCommuneNomWkp(connDB,
+                                                    isFast, "score", True)
+    assert len(listCodeCommuneNomWkp) == nbCommuneOK
+    for codeCommuneNomWkpOK in listCodeCommuneNomWkpOK:
+        assert codeCommuneNomWkpOK in listCodeCommuneNomWkp
+ 
     # Renseignement d'un score pour Biars
-    connDB.execute("""UPDATE villes SET score=25  WHERE codeCommune='046123'""")
+    connDB.execute("UPDATE villes SET score=25  WHERE codeCommune='046123'")
     connDB.commit()
     
     # Test getListeCodeCommuneNomWkp pour les villes de score NULL
-    isFast = True
-    listCodeCommuneNomWkp = database.getListeCodeCommuneNomWkp(connDB, isFast, True)
-    assert len(listCodeCommuneNomWkp) == 1
-    assert listCodeCommuneNomWkp[0] == ('001007', 'Trifouilly-les Oies (Ain)')
+    listCodeCommuneNomWkp = database.getListeCodeCommuneNomWkp(connDB,
+                                                    isFast, "score", True)
+    if isFast:
+        nbCommuneOK -= 1
+    assert len(listCodeCommuneNomWkp) == nbCommuneOK
+    for codeCommuneNomWkpOK in listCodeCommuneNomWkpOK[1:]:
+        assert codeCommuneNomWkpOK in listCodeCommuneNomWkp
 
     # Fermeture base
     database.closeDatabase(connDB, True)
@@ -651,9 +793,9 @@ def test_getValeurs4VilleCle():
     # Fermeture base
     database.closeDatabase(connDB, True)
 
-def test_getListeAnnees4Ville():
+def test_getListeAnneesDataMinFi4Entite():
     """
-        Test récup valeur pour une clé et une ville
+        Test récup années des données financières pour une clé et une ville
     """
     config = configparser.RawConfigParser()
     config.read('FinancesLocales.properties')
@@ -682,17 +824,56 @@ def test_getListeAnnees4Ville():
     connDB.commit()
 
     # Test
-    listeAnnee = database.getListeAnnees4Ville(connDB, '001001', True)
+    listeAnnee = database.getListeAnneesDataMinFi4Entite(connDB, 'V', '001001', True)
     assert len(listeAnnee) == 3
     assert listeAnnee == [1998, 1910, 1900]
 
     # Fermeture base
     database.closeDatabase(connDB, True)
 
-
-def test_getAllValeurs4Ville():
+def test_getListeAnneesDataMinFi4EntiteGroupement():
     """
-        Test récup valeurs pour une ville
+        Test récup années des données financières pour une clé et
+        un groupement de communes
+    """
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+
+    # Creation base vide
+    databasePathDir = config.get('Test', 'database.testDir')
+    databasePath = os.path.join(databasePathDir, config.get('Test', 'database.testName'))
+    if not os.path.isdir(databasePathDir):
+        os.mkdir(databasePathDir)
+    if os.path.isfile(databasePath):
+        os.remove(databasePath)
+    connDB = database.createDatabase(config, databasePath, False)
+
+    # Insertion de valeurs dans la base
+    connDB.executemany("""INSERT INTO dataFiGroupement(sirenGroupement, annee,
+                                                       codeCle, valeur)
+                            VALUES (?, ?, ?, ?)""",
+                       (
+                            ('001001', 1998, "GrosSous1", "2000.5"),
+                            ('001007', 2000, "GrosSous1", "180"),
+                            ('001007', 1998, "GrosSous2", "5.5"),
+                            ('001001', 1900, "GrosSous1", "1.5"),
+                            ('001001', 1910, "GrosSous1", "11.5"),
+                            ('001001', 1900, "GrosSous2", "0.5"),
+                       )
+                       )
+    connDB.commit()
+
+    # Test
+    listeAnnee = database.getListeAnneesDataMinFi4Entite(connDB, 'GC', '001001', True)
+    assert len(listeAnnee) == 3
+    assert listeAnnee == [1998, 1910, 1900]
+
+    # Fermeture base
+    database.closeDatabase(connDB, True)
+
+def test_getAllValeursDataMinFi4Ville():
+    """
+        Test récup valeurs financières pour une ville
     """
     config = configparser.RawConfigParser()
     config.read('FinancesLocales.properties')
@@ -700,11 +881,12 @@ def test_getAllValeurs4Ville():
     # récup données de test
     pathDatabaseMini = config.get('Test', 'genCode.pathDatabaseMini')
     pathCSVMini = config.get('Test', 'genCode.pathCSVMini')
+    print("\ntest_getAllValeursDataMinFi4Ville : base =", pathDatabaseMini)
     if os.path.isfile(pathDatabaseMini):
         print("destruction de la base :", pathDatabaseMini)
         os.remove(pathDatabaseMini)
 
-    # Insertion dans la table ville des villes à traiter
+    # Insertion dans la table villes des villes à traiter
     # Création base
     connDB = database.createDatabase(config, pathDatabaseMini, False)
     connDB.executemany("""
@@ -714,14 +896,15 @@ def test_getAllValeurs4Ville():
                        )
     connDB.commit()
 
-    # Création de la création de la base de test
+    # Création de la base de test
     param = ['updateDataMinFi.py', pathDatabaseMini, pathCSVMini]
     updateDataMinFi.main(param)
     assert os.path.isfile(pathDatabaseMini)
 
-    # Test fonction getAllValeurs4Ville
+    # Test fonction getAllValeursDataMinFi4Entite
     # Récupère toutes les valeurs pour cette ville pour les grandeurs demandées
-    dictAllGrandeur = database.getAllValeurs4Ville(connDB, '068376', True)
+    dictAllGrandeur = database.getAllValeursDataMinFi4Entite(connDB, 'V',
+                                                             '068376', True)
     assert dictAllGrandeur["Taux"]["taux taxe habitation"][2013]  == \
                pytest.approx(10.11)
     assert dictAllGrandeur["taux moyen pour la strate"]["taux taxe habitation moyen"][2013]  == \
@@ -754,3 +937,280 @@ def test_getAllValeurs4Ville():
                pytest.approx(268.35)
 
     database.closeDatabase(connDB, False)
+
+def test_getAllValeursDataMinFi4Groupement():
+    """
+        Test récup valeurs financières pour un groupement de communes
+    """
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+
+    # récup données de test
+    pathDatabaseMini = config.get('Test', 'updateDataMinFiGroupement.pathDatabaseMini')
+    pathCSVMini = config.get('Test', 'updateDataMinFiGroupement.pathCSVMini')
+    print("\ntest_getAllValeursDataMinFi4Groupement : base =", pathDatabaseMini)
+    if os.path.isfile(pathDatabaseMini):
+        print("destruction de la base :", pathDatabaseMini)
+        os.remove(pathDatabaseMini)
+
+    # Insertion dans la table groupementCommunes des groupements à traiter
+    # Création base
+    connDB = database.createDatabase(config, pathDatabaseMini, False)
+    connDB.executemany("""
+        INSERT INTO villes(codeCommune, nomMinFi, sirenGroupement)
+        VALUES (?, ?, ?)
+        """, (('045006', 'ARDON', '200005932'),))
+    connDB.executemany("""
+        INSERT INTO groupementCommunes(sirenGroupement, nom)
+        VALUES (?, ?)
+        """, (('200005932', 'Communauté de communes des Portes de Sologne'),))
+    connDB.commit()
+
+    # Création de la base de test
+    # Appel programme
+    param = ['updateDataMinFiGroupementCommunes.py', pathDatabaseMini, pathCSVMini]
+    updateDataMinFiGroupementCommunes.main(param)
+    assert os.path.isfile(pathDatabaseMini)
+
+    # Test fonction getAllValeursDataMinFi4Entite
+    # Récupère toutes les valeurs pour ce groupement
+    dictAllGrandeur = database.getAllValeursDataMinFi4Entite(connDB, 'GC',
+                                                             '200005932', True)
+
+    # Test
+    assert dictAllGrandeur["Valeur totale"]['total des produits de fonctionnement'][2018]  == \
+               pytest.approx(6526.)
+    assert dictAllGrandeur["Par habitant"]["total des produits de fonctionnement par habitant"][2018]  == \
+               pytest.approx(417.)
+
+    
+    assert dictAllGrandeur["Valeur simple"]["nomminfi"][2018]  == \
+               'CC DES PORTES DE SOLOGNE'
+    assert dictAllGrandeur["Taux"]["taux taxe habitation"][2018]  == \
+               pytest.approx(8.18)
+
+    database.closeDatabase(connDB, False)
+
+def test_updateInfosGroupement():
+    """
+        Test mise à jour dans la base des infos des groupements de communes
+    """
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+
+    # récup données de test
+    pathDatabaseCC = os.path.join(config.get('Test', 'database.testDir'),
+                                  config.get('Test', 'database.testNameCC'))
+    print("\ntest_updateInfosGroupement : base =", pathDatabaseCC)
+    if os.path.isfile(pathDatabaseCC):
+        print("destruction de la base :", pathDatabaseCC)
+        os.remove(pathDatabaseCC)
+
+    # Insertion dans la table villes des villes existantes et
+    # d'un groupement de commune
+    # Création base
+    connDB = database.createDatabase(config, pathDatabaseCC, False)
+    connDB.executemany("""
+        INSERT INTO villes(codeCommune, ancienneCommune, nom)
+        VALUES (?, ?, ?)
+        """, (('068376', 0, 'Wittenheim'), ('046132', 0, 'Issendolus')))
+    connDB.executemany("""
+        INSERT INTO groupementCommunes(nomArticleCC, nom, sirenGroupement)
+        VALUES (?, ?, ?)
+        """, (('Communauté_de_communes_Grand-Figeac_(nouvelle)',
+               'CC Grand Figeac', '200067361'),))
+    connDB.commit()
+
+    # Définition valeurs de test
+    listeSirenCodeCommune=[('200067361', 1, '046132'), ('200066009', 0, '068376')]
+    dictSirenInfoCC={'200067361':
+                     {"nomArticleCC":"Communauté de communes Grand-Figeac (nouvelle)",
+                      "sirenGroupement":"200067361",
+                      "nom":"Communauté de communes Grand-Figeac",
+                      "région":"[[Occitanie (région administrative)|Occitanie]]",
+                      "département":"[[Lot (département)|Lot]] et [[Aveyron (département)|Aveyron]]",
+                      "forme":"[[Communauté de communes]]",
+                      "siège":"[[Figeac]]",
+                      "nombreCommunes":92,
+                      "population":43499,
+                      "annéePop":2016,
+                      "superficie":1283,
+                      "logo":"Logo CdC Grand Figeac.png",
+                      "siteWeb":"[http://www.grand-figeac.fr/ grand-figeac.fr/]"
+                     },
+                     '200066009':
+                     {"nomArticleCC":"Communauté de communes Grand-Figeac (nouvelle)",
+                      "sirenGroupement":"200066009",
+                      "nom":"Mulhouse Alsace Agglomération",
+                      "région":"[[Grand Est]]",
+                      "département":"[[Haut-Rhin]]",
+                      "forme":"[[Communauté d'agglomération]]",
+                      "siège":"[[Mulhouse]]",
+                      "nombreCommunes":39,
+                      "population":272985,
+                      "annéePop":2016,
+                      "superficie":439,
+                      "logo":"Logo officiel de Mulhouse Alsace Agglomération.png|vignette Logo m2a.jpg|vignette",
+                      "siteWeb":"[http://www.mulhouse-alsace.fr www.mulhouse-alsace.fr]"
+                     }
+                    }
+
+    # Test fonction
+    database.updateInfosGroupement(connDB, listeSirenCodeCommune,
+                          dictSirenInfoCC, True)
+
+    # Contrôle des valeurs de la base
+    cursor = connDB.cursor()
+    cursor.execute("SELECT sirenGroupement, ancienneCommune FROM villes")
+    listSirenGroupement = cursor.fetchall()
+    assert len(listSirenGroupement) == 2
+    listNumSiren = [numSiren[0] for numSiren in listSirenGroupement]
+    for numSirenOK in ('200067361', '200066009'):
+        assert numSirenOK in listNumSiren
+    assert ('200067361', 1) in listSirenGroupement # Issendolus est devenue une ancienne commune
+    assert ('200066009', 0) in listSirenGroupement
+
+    cursor.execute("SELECT sirenGroupement, nom FROM groupementCommunes")
+    listResultat = cursor.fetchall()
+    for tupple in (('200067361', "Communauté de communes Grand-Figeac"),
+                              ('200066009', "Mulhouse Alsace Agglomération")):
+        assert tupple in listResultat
+
+    # Fermeture base
+    cursor.close()
+    database.closeDatabase(connDB, True)
+
+def test_getSirenInfosGroupementsAnnees():
+    """
+    Test récupération des numéros de SIREN des groupements déjà présents dans la base
+    ainsi que leurs noms et années des infos financières déjà enregistrées.
+    table groupementCommunes.
+    """
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+
+    # Init de la base
+    pathDatabaseCC = os.path.join(config.get('Test', 'database.testDir'),
+                                  config.get('Test', 'database.testNameCC'))
+    print("\ntest_getSirenInfosGroupementsAnnees : base =", pathDatabaseCC)
+    if os.path.isfile(pathDatabaseCC):
+        print("destruction de la base :", pathDatabaseCC)
+        os.remove(pathDatabaseCC)
+
+    # Insertion d'un groupement de commune
+    # Création base
+    connDB = database.createDatabase(config, pathDatabaseCC, False)
+    connDB.executemany("""
+        INSERT INTO villes(sirenGroupement)
+        VALUES (?)
+        """,
+                       (('1',), ('2',)))
+    connDB.executemany("""
+        INSERT INTO groupementCommunes(nom, sirenGroupement, nomArticleCC)
+        VALUES (?, ?, ?)
+        """, (('CC1', '1', 'CC1Wkp'), ('CC2', '2', 'CC2Wkp')))
+    connDB.commit()
+
+    # Aucune données financières dans la table dataFiGroupement
+    dictSirenInfos = database.getSirenInfosGroupementsAnnees(connDB, True)
+    assert dictSirenInfos == {'1': ('CC1', 'CC1Wkp', []), '2': ('CC2', 'CC2Wkp', [])}
+
+    # Ajout de l'annee 2019 et 2020 pour le groupement 2 dans la table dataFiGroupement
+    connDB.executemany("""
+        INSERT INTO dataFiGroupement(sirenGroupement, annee, codeCle, valeur)
+        VALUES (?, ?, ?, ?)
+        """, (('2', '2020', 'prod1', '45.2'),
+              ('2', '2020', 'prod2', '105.3'),
+              ('2', '2019', 'prod3', '2105.3'),
+              ('3', '2020', 'prod1', '0.2'))
+                       )
+    connDB.commit()
+
+    dictSirenInfos = database.getSirenInfosGroupementsAnnees(connDB, True)
+    assert dictSirenInfos == {'1': ('CC1', 'CC1Wkp', []),
+                              '2': ('CC2', 'CC2Wkp', [2019, 2020])}
+
+    # Fermeture base
+    database.closeDatabase(connDB, True)
+
+def test_enregistreLigneGroupementMinFi():
+    """
+    Test enregistrement de valeurs dans la table dataFiGroupement.
+    """
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+
+    # Init de la base
+    pathDatabaseCC = os.path.join(config.get('Test', 'database.testDir'),
+                                  config.get('Test', 'database.testNameCC'))
+    print("\ntest_getSirenInfosGroupementsAnnees : base =", pathDatabaseCC)
+    if os.path.isfile(pathDatabaseCC):
+        print("destruction de la base :", pathDatabaseCC)
+        os.remove(pathDatabaseCC)
+    connDB = database.createDatabase(config, pathDatabaseCC, False)
+
+    # Test
+    dictValues = {'siren':'1', 'exer':'2020', 'prod1':'45.2', 'prod2':'100.5'}
+    database.enregistreLigneGroupementMinFi(dictValues, connDB, True)
+
+    # Vérification
+    listDataFiOk = [('1', 2020, 'prod1', '45.2'), ('1', 2020, 'prod2', '100.5')]
+    cursor = connDB.cursor()
+    cursor.execute("""SELECT sirenGroupement, annee, codeCle, valeur
+                        FROM dataFiGroupement
+                        """)
+    assert listDataFiOk == cursor.fetchall()
+  
+    # Fermeture base
+    cursor.close()
+    database.closeDatabase(connDB, True)
+   
+def test_getListeVilleGroupement():
+    """
+        Test récupération des villes et de leurs info groupement.
+    """
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+
+    # Creation base vide
+    databasePathDir = config.get('Test', 'database.testDir')
+    databasePath = os.path.join(databasePathDir, config.get('Test',
+                                                            'database.testName'))
+    if not os.path.isdir(databasePathDir):
+        os.mkdir(databasePathDir)
+    if os.path.isfile(databasePath):
+        os.remove(databasePath)
+    connDB = database.createDatabase(config, databasePath, False)
+
+    # Insertion de villes dans la base
+    connDB.executemany("""INSERT INTO villes
+                            (codeCommune, sirenGroupement)
+                            VALUES (?, ?)""",
+                       (('001007', 'SIREN1'),
+                        ('046123', 'SIREN1'),
+                        ('001001', 'SIREN2'),
+                        ('002001', ''))
+                       )
+    connDB.executemany("""INSERT INTO groupementCommunes
+                            (sirenGroupement, nomArticleCC, nom)
+                            VALUES (?, ?, ?)""",
+                       (('SIREN1', 'nomArticleCCSiren1', "nomArticleCCSiren1"),
+                        ('SIREN2', 'nomArticleCCSiren2', "nomArticleCCSiren2"),
+                        ('SIREN3', 'nomArticleCCSiren3', "nomArticleCCSiren3"))
+                       )
+    connDB.commit()
+    
+    # Test getListeVilleGroupement
+    infosGroupement = database.getListeVilleGroupement(connDB, '001007', True)
+    assert infosGroupement == ('SIREN1', 'nomArticleCCSiren1', "nomArticleCCSiren1")
+    infosGroupement = database.getListeVilleGroupement(connDB, '046123', True)
+    assert infosGroupement == ('SIREN1', 'nomArticleCCSiren1', "nomArticleCCSiren1")
+    infosGroupement = database.getListeVilleGroupement(connDB, '001001', True)
+    assert infosGroupement == ('SIREN2', 'nomArticleCCSiren2', "nomArticleCCSiren2")
+    infosGroupement = database.getListeVilleGroupement(connDB, '002001', True)
+    assert not infosGroupement
+    infosGroupement = database.getListeVilleGroupement(connDB, '999999', True)
+    assert not infosGroupement
+
+    # Fermeture base
+    database.closeDatabase(connDB, True)

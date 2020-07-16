@@ -32,33 +32,10 @@ Copyright (c) 2019 - Thierry Maillard
 """
 import os.path
 import configparser
-import urllib.request, urllib.parse, urllib.error
 import pytest
 
 import updateScoreWikipedia
 import database
-
-@pytest.mark.parametrize("nomArticleUrl", [
-    "Issendolus",
-    "Toulouse",
-    "Montfaucon_(Lot)",
-    ])
-def test_getPageWikipediaFr(nomArticleUrl):
-    """ Test récupération d'une page Wikipédia """
-    config = configparser.RawConfigParser()
-    config.read('FinancesLocales.properties')
-
-    page = updateScoreWikipedia.getPageWikipediaFr(config, nomArticleUrl, True)
-    assert len(page) > 0
-    assert nomArticleUrl.split("_")[0] in page
-    assert '[[Catégorie:'  in page
-
-def test_getPageWikipediaFr_PbNomville():
-    """ Test cas erreur : récupération d'une page Wikipédia """
-    config = configparser.RawConfigParser()
-    config.read('FinancesLocales.properties')
-    with pytest.raises(urllib.error.HTTPError):
-        updateScoreWikipedia.getPageWikipediaFr(config, 'PetitCocoVille', True)
 
 @pytest.mark.parametrize(\
     "page, dicoOK",
@@ -110,7 +87,16 @@ def test_getPageWikipediaFr_PbNomville():
          |France d'outre-mer|élevée
          |avancement=BD}}""",
          {'importanceCDF' : "élevée", 'avancement' : "BD",
-          'importanceVDM' : "?", 'popularite' : "?"})
+          'importanceVDM' : "?", 'popularite' : "?"}),
+        ("""
+{{Wikiprojet
+|Communes de France|faible
+|Auvergne|faible
+|avancement=ébauche
+}}""",
+          {'importanceCDF' : "faible", 'avancement' : "ébauche",
+          'importanceVDM' : "?", 'popularite' : "?"}
+            )
     ])
 def test_recupScoreData1Ville(page, dicoOK):
     """ Test fonction d'analyse du score """
@@ -141,6 +127,7 @@ def test_recupScoreData1Ville_PbLabel():
         ([("031101", "Toulouse"),], {"031101":32}),
         ([("046101", "Issendolus"), ("031101", "Toulouse")],
          {"046101":9, "031101":32 }),
+        ([("043251", "Vals-près-le-Puy"),], {"043251":5}),
     ])
 def test_recupScoreDataVilles(listeCodeCommuneNomWkp, scoresVilleOK):
     """ Test recup score pour une série de villes """

@@ -3,13 +3,13 @@
 *********************************************************
 Module : genHTMLCodeTableaux.py
 Auteur : Thierry Maillard (TMD)
-Date : 24/5/2015 - 11/9/2019
+Date : 24/5/2015 - 12/5/2020
 
 Role : Transforme les donnees traitées par extractionMinFi.py
         en HTML pour les parties tableaux.
 ------------------------------------------------------------
 Licence : GPLv3 (en français dans le fichier gpl-3.0.fr.txt)
-Copyright (c) 2015 - Thierry Maillard
+Copyright (c) 2015 - 2020 - Thierry Maillard
 ------------------------------------------------------------
 
     This file is part of FinancesLocales project.
@@ -31,21 +31,20 @@ Copyright (c) 2015 - Thierry Maillard
 """
 import utilitaires
 
-def genereTableau(nomTableau, ville,
+def genereTableau(nomTableau,
                   listAnnees, nbAnneesTableau,
                   listeGrandeurs,
                   dictAllGrandeur,
                   couleurTitres, couleurStrate,
-                  isComplet, verbose):
+                  avecStrate, verbose):
     """ Génère le code HTML pour un tableau historique sur N années """
     if verbose:
         print("Entrée dans genereTableau (HTML)")
         print("nomTableau=", nomTableau)
-        print('ville=', ville)
         print('listAnnees=', listAnnees)
         print('nbAnneesTableau=', nbAnneesTableau)
         print('dictAllGrandeur=', dictAllGrandeur)
-        print("isComplet :", isComplet)
+        print("avecStrate :", avecStrate)
 
     arrondi, arrondiStr, arrondiStrAffiche = \
              utilitaires.setArrondi(dictAllGrandeur["Valeur totale"], listAnnees,
@@ -55,7 +54,7 @@ def genereTableau(nomTableau, ville,
     ligne = ""
     ligne += '<table border="1" cellpadding="2" cellspacing="2" width="100">\n'
     ligne += '   <tbody>\n'
-    if isComplet:
+    if avecStrate:
         colspanAnnee = '3'
     else:
         colspanAnnee = '2'
@@ -75,7 +74,7 @@ def genereTableau(nomTableau, ville,
                  'Valeur ('+ arrondiStr + ')</th>\n'
         ligne += '         <th bgcolor="' + couleurTitres + '">' + \
                  'Par hab. (€)</th>\n'
-        if isComplet:
+        if avecStrate:
             ligne += '         <th bgcolor="' + couleurStrate + '">' + \
                      'Strate (€)</th>\n'
     ligne += '      </tr>\n'
@@ -93,7 +92,7 @@ def genereTableau(nomTableau, ville,
             ligne += '         <td align="right" bgcolor="' + grandeur[2] + '">' + \
                      str(round(dictAllGrandeur["Par habitant"][ngph][annee])) + \
                      '</td>\n'
-            if isComplet:
+            if avecStrate:
                 ngm = nomGrandeur + " moyen"
                 ligne += '         <td align="right" bgcolor="' + couleurStrate + '">' + \
                          str(round(dictAllGrandeur["En moyenne pour la strate"][ngm][annee])) + \
@@ -113,27 +112,26 @@ def genereTableau(nomTableau, ville,
         print("Sortie de genereTableau (HTML)")
     return ligne.strip()
 
-def genereTableauTaux(nomTableau, ville,
+def genereTableauTaux(nomTableau,
                       listAnnees, nbAnneesTableau,
                       listeGrandeurs,
                       dictAllGrandeur,
                       couleurTitres, couleurStrate,
-                      isComplet, verbose):
+                      avecStrate, verbose):
     """ Genere le code HTML pour un tableau de taux de fiscalité """
     if verbose:
         print("Entrée dans genereTableautaux (HTML)")
         print("nomTableau=", nomTableau)
-        print('ville=', ville)
         print('listAnnees=', listAnnees)
         print('nbAnneesTableau=', nbAnneesTableau)
         print('listeGrandeurs=', listeGrandeurs)
-        print("isComplet :", str(isComplet))
+        print("avecStrate :", avecStrate)
 
     # Titres
     ligne = ""
     ligne += '<table border="1" cellpadding="2" cellspacing="2" width="100">\n'
     ligne += '   <tbody>\n'
-    if isComplet:
+    if avecStrate:
         colspanAnnee = '2'
     else:
         colspanAnnee = '1'
@@ -150,7 +148,7 @@ def genereTableauTaux(nomTableau, ville,
     for annee in sorted(listAnnees[:nbAnneesTableau]):
         ligne += '         <th bgcolor="' + couleurTitres + '">' + \
                  'taux voté</th>\n'
-        if isComplet:
+        if avecStrate:
             ligne += '         <th bgcolor="' + couleurStrate + '">' + \
                      'taux moyen de la strate</th>\n'
     ligne += '      </tr>\n'
@@ -162,12 +160,12 @@ def genereTableauTaux(nomTableau, ville,
                  grandeur[1] + '</th>\n'
         for annee in sorted(listAnnees[:nbAnneesTableau]):
             ligne += '         <td align="right" bgcolor="' + grandeur[2] + '">' + \
-                     str(round(dictAllGrandeur["Taux"][nomGrandeur][annee])) + \
+                     str(round(dictAllGrandeur["Taux"][nomGrandeur][annee], 2)) + \
                      '</td>\n'
-            if isComplet:
+            if avecStrate:
                 ngm = nomGrandeur + " moyen"
                 ligne += '         <td align="right" bgcolor="' + couleurStrate + '">' + \
-                         str(round(dictAllGrandeur["taux moyen pour la strate"][ngm][annee])) + \
+                         str(round(dictAllGrandeur["taux moyen pour la strate"][ngm][annee], 2)) + \
                          '</td>\n'
         ligne += '      </tr>\n'
 

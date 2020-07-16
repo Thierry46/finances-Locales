@@ -44,7 +44,8 @@ Cette page est consacrée aux
 
 Les comparaisons des <a href="https://fr.wikipedia.org/wiki/Fraction_(mathématiques)" target="_blank">ratios</a>
 par habitant sont effectuées avec ceux des <DEF_STRATE>, c'est à dire à la même
-<a href="https://fr.wikipedia.org/wiki/Strate#En_sciences_sociales">strate</a> fiscale.
+<a href="https://fr.wikipedia.org/wiki/Strate#En_sciences_sociales">strate</a> fiscale.<br/>
+Groupement de commune : <LIEN_GROUPEMENT>.
 
 <h2><A NAME="Budget"></A>Budget général</h2>
 

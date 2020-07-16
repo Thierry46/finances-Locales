@@ -1,0 +1,545 @@
+<!--------------------------------------------------------------------
+Choisissez dans le wikicode ci-dessous les parties qui vous intéressent
+pour enrichir le chapitre consacré au finances locales
+de la Communauté de communes des Portes de Sologne
+--------------------------------------------------------------------->
+
+<!-- !!! Contenu généré automatiquement par l'outil Finances locales !!!
+    Généré le 04 July 2020 par le programme genCodeGroupement.py (complet)
+    version 4.0.0 : Yin Yang Tau du 2/7/2020
+    et le modèle modele_groupement_wikicode.txt pour l'article Communauté de communes des Portes de Sologne.
+    En cas de problème, contactez-moi SVP : Utilisateur:Thierry46
+    Additionnons nos forces, partageons nos connaissances ! -->
+Cette section est consacrée aux [[Finances locales en France|finances locales]] de la Communauté de communes des Portes de Sologne de 2018 à 2018<ref group="Note">Cette section est réalisée à partir des données des données du site <URL_BASE_GROUPEMENT> du [[Ministère de l'Économie et des Finances (France)|ministère de l'Économie et des Finances]].
+Pour constituer cette partie, l'outil Finances locales version 4.0.0 : Yin Yang Tau a effectué la synthèse du tableau du site <URL_BASE_GROUPEMENT> pour les lignes concernant Communauté de communes des Portes de Sologne.
+Finances locales est un [[logiciels libres|logiciel libre]] distribué en [[copyleft]] sous [[licence (juridique)|licence]] [[Licence publique générale GNU|GNU GPL version 3]].
+</ref>.
+
+== Budget général ==
+Pour l'exercice 2018, le compte administratif du [[budget]] de la Communauté de communes des Portes de Sologne s'établit à  {{euro|6558000}} en [[Dépenses publiques|dépenses]] et {{euro|8268000}} en [[Recettes publiques|recettes]] :
+* les dépenses se répartissent en {{euro|4831000}} de [[Charge (comptabilité)|charges]] de fonctionnement et {{euro|1727000}} d'emplois d'[[investissement]] ;
+* les recettes proviennent des {{euro|6526000}} de [[Produit (comptabilité)|produits]] de fonctionnement et de {{euro|1742000}} de ressources d'investissement.
+
+=== Évolution du fonctionnement et de l'investissement de 2018 à 2018 ===
+{| class="wikitable centre" style="width:80%;"
+ |+G0a - Évolution de la section fonctionnement de la Communauté de communes des Portes de Sologne
+ |------
+ | {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 2
+ | nb_abscisses = 1
+ | lb_x1 = 2018
+ | y_max =20 | y_min = 0
+ | pas_grille_principale = 5 | pas_grille_secondaire = 1
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = brightblue
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = red
+ | S01V01 = 7  | S02V01 = 5 
+ | points = oui}}
+ |------
+ | Valeurs en million d'euros (M€)<br />Communauté de communes des Portes de Sologne, Valeur totale : [[fichier:Bb blue.jpg|10px|alt=Point bleu|link=]] Produits [[fichier:Red rectangle.svg|10px|alt=Point rouge|link=]] Charges 
+ |}
+{| class="wikitable centre" style="width:80%;"
+ |+G0b - Évolution de la section investissement de la Communauté de communes des Portes de Sologne
+ |------
+ | {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 2
+ | nb_abscisses = 1
+ | lb_x1 = 2018
+ | y_max =10 | y_min = -10
+ | pas_grille_principale = 5 | pas_grille_secondaire = 1
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = teal
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = black
+ | S01V01 = 2  | S02V01 = 2 
+ | points = oui}}
+ |------
+ | Valeurs en million d'euros (M€)<br />Communauté de communes des Portes de Sologne, Valeur totale : [[fichier:Flag of Beni.svg|10px|alt=Point vert|link=]] Emplois [[fichier:Black222.JPG|10px|alt=Point noir|link=]] Ressources 
+ |}
+
+=== Tableau des chiffres clés du budget de 2018 à 2018 ===
+{|class="wikitable centre"
+ |+T0v - Chiffres clés des finances de la Communauté de communes des Portes de Sologne de 2018 à 2018
+ |------
+ |
+ ! id="PRINCIPAL2018" colspan="2" style="background-color: #ffffff" |2018
+ |-
+ ! id="PRINCIPALh" style="background:#ffffff" | Chiffres clés
+ ! id="PRINCIPAL2018V" headers="PRINCIPAL2018" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="PRINCIPAL2018P" headers="PRINCIPAL2018" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ |-
+ ! headers="PRINCIPALh" scope="row" style="background-color: #ccfff2" | [[Recettes publiques|Produits de fonctionnement]]
+ | headers="PRINCIPAL2018 PRINCIPAL2018V" style="text-align:right;background-color: #ccfff2" | {{unité|6526}}
+ | headers="PRINCIPAL2018 PRINCIPAL2018P" style="text-align:right;background-color: #ccfff2" | {{unité|417}}
+ |-
+ ! headers="PRINCIPALh" scope="row" style="background-color: #ffd9ff" | [[Dépenses publiques|Charges de fonctionnement]]
+ | headers="PRINCIPAL2018 PRINCIPAL2018V" style="text-align:right;background-color: #ffd9ff" | {{unité|4831}}
+ | headers="PRINCIPAL2018 PRINCIPAL2018P" style="text-align:right;background-color: #ffd9ff" | {{unité|309}}
+ |-
+ ! headers="PRINCIPALh" scope="row" style="background-color: #ffffff" | [[Résultat fiscal en France|Solde de la section de fonctionnement]]
+ | headers="PRINCIPAL2018 PRINCIPAL2018V" style="text-align:right;background-color: #ffffff" | {{unité|1695}}
+ | headers="PRINCIPAL2018 PRINCIPAL2018P" style="text-align:right;background-color: #ffffff" | {{unité|108}}
+ |-
+ ! headers="PRINCIPALh" scope="row" style="background-color: #d9ffd9" | [[Investissement|Emplois d'investissement]]
+ | headers="PRINCIPAL2018 PRINCIPAL2018V" style="text-align:right;background-color: #d9ffd9" | {{unité|1727}}
+ | headers="PRINCIPAL2018 PRINCIPAL2018P" style="text-align:right;background-color: #d9ffd9" | {{unité|110}}
+ |-
+ ! headers="PRINCIPALh" scope="row" style="background-color: #ffd9d9" | [[Investissement|Ressources d'investissement]]
+ | headers="PRINCIPAL2018 PRINCIPAL2018V" style="text-align:right;background-color: #ffd9d9" | {{unité|1742}}
+ | headers="PRINCIPAL2018 PRINCIPAL2018P" style="text-align:right;background-color: #ffd9d9" | {{unité|111}}
+ |-
+ ! headers="PRINCIPALh" scope="row" style="background-color: #ffffff" | [[Résultat fiscal en France|Solde de la section d'investissement]]
+ | headers="PRINCIPAL2018 PRINCIPAL2018V" style="text-align:right;background-color: #ffffff" | {{unité|-15}}
+ | headers="PRINCIPAL2018 PRINCIPAL2018P" style="text-align:right;background-color: #ffffff" | {{unité|-1}}
+ |-
+ ! colspan="3" style="background-color: #ffffff" | Les valeurs sont arrondies au millier d'euros (k€) le plus proche.
+ |-
+ |}
+{{Clr}}
+
+== Fonctionnement ==
+{|class="wikitable right"
+ |+T1p - Section de fonctionnement de la Communauté de communes des Portes de Sologne en 2018
+ |----
+ ! !! scope="col" | Communauté de communes des Portes de Sologne<br/>(€/hab.) !! scope="col" | Strate<br/>(€/hab.)
+  |----
+ ! scope="row" style="background-color: #ffffff" | Résultat comptable
+ | style="text-align:right;background-color: #ffffff" | {{euro|108}}
+ |----
+ ! scope="row" style="background-color: #ffd9ff" | Achats et charges ext.
+ | style="text-align:right;background-color: #ffd9ff" | {{euro|77}}
+ |----
+ ! scope="row" style="background-color: #ffd9ff" | Charges de personnels
+ | style="text-align:right;background-color: #ffd9ff" | {{euro|74}}
+ |----
+ ! scope="row" style="background-color: #ccfff2" | Impôts locaux
+ | style="text-align:right;background-color: #ccfff2" | {{euro|340}}
+ |----
+ ! scope="row" style="background-color: #ccfff2" | Autres impôts
+ | style="text-align:right;background-color: #ccfff2" | {{euro|110}}
+
+ |------
+ | colspan="4" |Écart par rapport à la moyenne de la strate :<br/><LEGENDE_ECART_TABLEAU_PICTO>
+ |}
+Pour Communauté de communes des Portes de Sologne en 2018, la section de fonctionnement<ref group="Note">La  « section de fonctionnement » est constituée des [[Dépenses publiques|dépense]]s courantes et récurrentes nécessaires au bon fonctionnement des services du groupement et à la mise en œuvre des actions décidées par les élus, mais sans influence sur la consistance du [[Patrimoine (droit)|patrimoine]] de la commune. Y figure aussi le [[Plan de remboursement|remboursement]] des [[Intérêt (finance)|intérêt]]s des [[Emprunt (finance)|emprunt]]s. Elle enregistre également les [[Recettes publiques|recettes]] fiscales, les [[Dotation publique|dotation]]s et participations de l’État ainsi que les recettes d’exploitation des services du groupement.</ref> se répartit en {{euro|4831000}}  de charges ({{euro|309}} par habitant) pour {{euro|6526000}} de produits ({{euro|417}} par habitant), soit un solde de la section de fonctionnement de {{euro|1695000}} ({{euro|108}} par habitant) :
+
+* le principal pôle de [[Dépenses publiques|dépenses]] de fonctionnement est celui des [[achats]] et charges externes<ref group="Note">Le poste « achats et charges externes » regroupe les achats non stockés de matières et fournitures ([[Eau potable|eau]], [[énergie]]...), le petit matériel, les achats de [[Crédit-bail|crédits-bails]], les [[location]]s, [[Prime d'assurance|primes d'assurances]]...</ref> pour  {{euro|1204000}} (25 %), soit {{euro|77}} par habitant, ratio . <VALEUR_CHARGE_TENDANCE_SERIE1>. Viennent ensuite les groupes des [[Charge (comptabilité)|charges]] de personnels<ref group="Note">Les « charges de personnel » regroupent les frais de [[rémunération]] des employés du groupement.</ref> pour 24 %, des [[subventions]] versées<ref group="Note">Les « subventions versées » rassemblent l'ensemble des [[subvention]]s à des associations votées par le [[Établissement public de coopération intercommunale|conseil communautaire]].</ref> pour 4 %, des charges financières<ref group="Note">Les « charges financières » correspondent à la rémunération des ressources d'[[Emprunt (finance)|emprunt]].</ref> pour 3 % et finalement celui <LIBELLE_CHARGE5><ref group="Note"><NOTE_CHARGE5></ref> pour <VALEUR_CHARGE_PC5> ;
+* la plus grande part des [[Recettes publiques|recettes]] est constituée des [[Impôts locaux en France|impôts locaux]]<ref group="Note">Les « [[Impôts locaux en France|impôts locaux]] » désignent les [[impôt]]s prélevés par les [[Collectivité territoriale|collectivités territoriales]] pour alimenter leur budget. Ils regroupent les [[Taxe foncière|impôts fonciers]], la [[taxe d'habitation]] ou encore, pour les [[entreprise]]s, les [[Cotisation foncière des entreprises|cotisations foncières]] ou sur la [[valeur ajoutée]].</ref> pour une valeur de {{euro|5329000}} (82 %), soit {{euro|340}} par habitant, ratio . <VALEUR_RECETTE_TENDANCE_SERIE1>. Viennent ensuite des [[Impôts locaux en France|autres impôts]]<ref group="Note">Les « autres impôts » couvrent certains impôts et [[taxe]]s autres que les [[Impôts locaux en France|impôts locaux]].</ref> pour 26 % et de la [[dotation globale de fonctionnement]] (DGF)<ref group="Note">Les « [[Finances locales en France#Dotations et subventions de l'État|dotations globales de fonctionnement]] » désignent, en [[France]], des concours financiers de l'[[État]] au [[budget]] des [[Collectivité territoriale|collectivités territoriales]].</ref> pour 4 %.
+
+La dotation globale de fonctionnement est égale à celle versée en 2018.
+
+=== Évolution des produits et charges de fonctionnement de 2018 à 2018 ===
+{| class="wikitable centre" style="width:80%;"
+ |+G1a - Évolution des produits de fonctionnement pour Communauté de communes des Portes de Sologne
+ |------
+ | {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 3
+ | nb_abscisses = 1
+ | lb_x1 = 2018
+ | y_max =6000 | y_min = 0
+ | pas_grille_principale = 500 | pas_grille_secondaire = 100
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = brightblue
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = red
+ | epaisseur_serie3 = 0.9  | coul_serie_3 = black
+ | S01V01 = 5329  | S02V01 = 1719  | S03V01 = 833 
+ | points = oui}}
+ |------
+ | Valeurs en millier d'euros (k€)<br />Communauté de communes des Portes de Sologne, Valeur totale : [[fichier:Bb blue.jpg|10px|alt=Point bleu|link=]] Impôts Locaux [[fichier:Red rectangle.svg|10px|alt=Point rouge|link=]] autres impôts et taxes [[fichier:Black222.JPG|10px|alt=Point noir|link=]] dotation globale de fonctionnement 
+ |}
+
+{| class="wikitable centre" style="width:80%;"
+ |+G1b1 - Évolution des charges de personnel et externes pour Communauté de communes des Portes de Sologne
+ |------
+ | {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 2
+ | nb_abscisses = 1
+ | lb_x1 = 2018
+ | y_max =10 | y_min = -10
+ | pas_grille_principale = 5 | pas_grille_secondaire = 1
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = brightblue
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = red
+ | S01V01 = 1  | S02V01 = 1 
+ | points = oui}}
+ |------
+ | Valeurs en million d'euros (M€)<br />Communauté de communes des Portes de Sologne, Valeur totale : [[fichier:Bb blue.jpg|10px|alt=Point bleu|link=]] Charges de personnel [[fichier:Red rectangle.svg|10px|alt=Point rouge|link=]] achats et charges externes 
+ |}
+{| class="wikitable centre" style="width:80%;"
+ |+G1b2 - Évolution des charges financières et des subventions versées pour Communauté de communes des Portes de Sologne
+ |------
+ | {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 2
+ | nb_abscisses = 1
+ | lb_x1 = 2018
+ | y_max =200 | y_min = 150
+ | pas_grille_principale = 5 | pas_grille_secondaire = 1
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = teal
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = black
+ | S01V01 = 157  | S02V01 = 193 
+ | points = oui}}
+ |------
+ | Valeurs en millier d'euros (k€)<br />Communauté de communes des Portes de Sologne, Valeur totale : [[fichier:Flag of Beni.svg|10px|alt=Point vert|link=]] charges financières [[fichier:Black222.JPG|10px|alt=Point noir|link=]] subventions versées 
+ |}
+{{Clr}}
+
+=== Tableau des valeurs pour les produits et charges de 2018 à 2018 ===
+{|class="wikitable centre"
+ |+T1v - Produits et charges de fonctionnement de la Communauté de communes des Portes de Sologne de 2018 à 2018
+ |------
+ |
+ ! id="PRODUITS_CHARGES2018" colspan="2" style="background-color: #ffffff" |2018
+ |-
+ ! id="PRODUITS_CHARGESh" style="background:#ffffff" | Chiffres clés
+ ! id="PRODUITS_CHARGES2018V" headers="PRODUITS_CHARGES2018" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="PRODUITS_CHARGES2018P" headers="PRODUITS_CHARGES2018" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ |-
+ ! headers="PRODUITS_CHARGESh" scope="row" style="background-color: #ccfff2" | Impôts Locaux
+ | headers="PRODUITS_CHARGES2018 PRODUITS_CHARGES2018V" style="text-align:right;background-color: #ccfff2" | {{unité|5329}}
+ | headers="PRODUITS_CHARGES2018 PRODUITS_CHARGES2018P" style="text-align:right;background-color: #ccfff2" | {{unité|340}}
+ |-
+ ! headers="PRODUITS_CHARGESh" scope="row" style="background-color: #ccfff2" | autres impôts et taxes
+ | headers="PRODUITS_CHARGES2018 PRODUITS_CHARGES2018V" style="text-align:right;background-color: #ccfff2" | {{unité|1719}}
+ | headers="PRODUITS_CHARGES2018 PRODUITS_CHARGES2018P" style="text-align:right;background-color: #ccfff2" | {{unité|110}}
+ |-
+ ! headers="PRODUITS_CHARGESh" scope="row" style="background-color: #ccfff2" | DGF
+ | headers="PRODUITS_CHARGES2018 PRODUITS_CHARGES2018V" style="text-align:right;background-color: #ccfff2" | {{unité|833}}
+ | headers="PRODUITS_CHARGES2018 PRODUITS_CHARGES2018P" style="text-align:right;background-color: #ccfff2" | {{unité|53}}
+ |-
+ ! headers="PRODUITS_CHARGESh" scope="row" style="background-color: #ffd9ff" | Charges de personnel
+ | headers="PRODUITS_CHARGES2018 PRODUITS_CHARGES2018V" style="text-align:right;background-color: #ffd9ff" | {{unité|1165}}
+ | headers="PRODUITS_CHARGES2018 PRODUITS_CHARGES2018P" style="text-align:right;background-color: #ffd9ff" | {{unité|74}}
+ |-
+ ! headers="PRODUITS_CHARGESh" scope="row" style="background-color: #ffd9ff" | achats et charges externes
+ | headers="PRODUITS_CHARGES2018 PRODUITS_CHARGES2018V" style="text-align:right;background-color: #ffd9ff" | {{unité|1204}}
+ | headers="PRODUITS_CHARGES2018 PRODUITS_CHARGES2018P" style="text-align:right;background-color: #ffd9ff" | {{unité|77}}
+ |-
+ ! headers="PRODUITS_CHARGESh" scope="row" style="background-color: #ffd9ff" | charges financières
+ | headers="PRODUITS_CHARGES2018 PRODUITS_CHARGES2018V" style="text-align:right;background-color: #ffd9ff" | {{unité|157}}
+ | headers="PRODUITS_CHARGES2018 PRODUITS_CHARGES2018P" style="text-align:right;background-color: #ffd9ff" | {{unité|10}}
+ |-
+ ! headers="PRODUITS_CHARGESh" scope="row" style="background-color: #ffd9ff" | subventions versées
+ | headers="PRODUITS_CHARGES2018 PRODUITS_CHARGES2018V" style="text-align:right;background-color: #ffd9ff" | {{unité|193}}
+ | headers="PRODUITS_CHARGES2018 PRODUITS_CHARGES2018P" style="text-align:right;background-color: #ffd9ff" | {{unité|12}}
+ |-
+ ! colspan="3" style="background-color: #ffffff" | Les valeurs sont arrondies au millier d'euros (k€) le plus proche.
+ |-
+ |}
+{{Clr}}
+
+== Fiscalité communale ==
+{|class="wikitable right"
+ |+T2p - Fiscalité de la Communauté de communes des Portes de Sologne en 2018
+ |----
+ ! !! scope="col" | Communauté de communes des Portes de Sologne<br/>(%) !! scope="col" | Strate<br/>(%)
+  |----
+ ! scope="row" style="background-color: #ccfff2" | Taxe d'habitation
+ | style="text-align:right;background-color: #ccfff2" | {{unité|8.18}}
+ |----
+ ! scope="row" style="background-color: #ccfff2" | Taxe foncière sur le bâti
+ | style="text-align:right;background-color: #ccfff2" | {{unité|1.54}}
+ |----
+ ! scope="row" style="background-color: #ccfff2" | Taxe foncière sur le non bâti
+ | style="text-align:right;background-color: #ccfff2" | {{unité|3.42}}
+
+ |------
+ | colspan="4" |Écart par rapport à la moyenne de la strate :<br/><LEGENDE_ECART_TABLEAU_PICTO>
+ |}
+Le tableau T2p compare les [[taux d'imposition]] locaux à ceux des autres communes de la même {{page h'|Strate#En_sciences_sociales|strate}} fiscale.
+
+Les taux des [[taxe]]s ci-dessous sont votés par de la Communauté de communes des Portes de Sologne. Ils ont varié de la façon suivante par rapport à 2018 :
+* la [[taxe d'habitation]] ? ? % ;
+* la [[Taxe foncière|taxe foncière sur le bâti]] ? ? % ;
+* celle sur le [[Taxe foncière|non bâti]] ? ? %.
+{{Clr}}
+
+=== Évolution des taux des différentes taxes de 2018 à 2018 ===
+{| class="wikitable centre" style="width:80%;"
+ |+G2a - Évolution de la taxe d'habitation et foncière sur le bâti pour Communauté de communes des Portes de Sologne
+ |------
+ | {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 2
+ | nb_abscisses = 1
+ | lb_x1 = 2018
+ | y_max =20 | y_min = -10
+ | pas_grille_principale = 5 | pas_grille_secondaire = 1
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = brightblue
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = red
+ | S01V01 = 8  | S02V01 = 2 
+ | points = oui}}
+ |------
+ | Valeurs en %<br />Communauté de communes des Portes de Sologne, Taux : [[fichier:Bb blue.jpg|10px|alt=Point bleu|link=]] taux taxe habitation [[fichier:Red rectangle.svg|10px|alt=Point rouge|link=]] taux foncier bâti 
+ |}
+
+{| class="wikitable centre" style="width:80%;"
+ |+G2b - Évolution de la taxe foncière sur le non bâti pour Communauté de communes des Portes de Sologne
+ |------
+ | {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 1
+ | nb_abscisses = 1
+ | lb_x1 = 2018
+ | y_max =10 | y_min = -10
+ | pas_grille_principale = 5 | pas_grille_secondaire = 1
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = red
+ | S01V01 = 3 
+ | points = oui}}
+ |------
+ | Valeurs en %<br />Communauté de communes des Portes de Sologne, Taux : [[fichier:Red rectangle.svg|10px|alt=Point rouge|link=]] taux foncier non bâti 
+ |}
+
+=== Tableau des taux des impôts et taxes de 2018 à 2018 ===
+{|class="wikitable centre"
+ |+T2v - Taux des impôts et taxes pour Communauté de communes des Portes de Sologne de 2018 à 2018
+ |------
+ |
+ ! id="TAXES2018" colspan="1" style="background-color: #ffffff" |2018
+ |-
+ ! id="TAXESh" style="background:#ffffff" | Chiffres clés
+ ! id="TAXES2018TV" headers="TAXES2018" scope="col" style="background-color: #ffffff" | taux voté %
+ |-
+ ! headers="TAXESh" scope="row" style="background-color: #ffd9ff" | taux taxe d'habitation
+ | headers="TAXES2018 TAXES2018TV" style="text-align:right;background-color: #ffd9ff" | {{unité|8.18}}
+ |-
+ ! headers="TAXESh" scope="row" style="background-color: #FFCFB2" | taux foncier bâti
+ | headers="TAXES2018 TAXES2018TV" style="text-align:right;background-color: #FFCFB2" | {{unité|1.54}}
+ |-
+ ! headers="TAXESh" scope="row" style="background-color: #d9ffd9" | taux foncier non bâti
+ | headers="TAXES2018 TAXES2018TV" style="text-align:right;background-color: #d9ffd9" | {{unité|3.42}}
+ |-
+ |}
+{{Clr}}
+
+== Investissement ==
+{|class="wikitable right"
+ |+T3p - Investissement de la Communauté de communes des Portes de Sologne en 2018
+ |----
+ ! !! scope="col" | Communauté de communes des Portes de Sologne<br/>(€/hab.) !! scope="col" | Strate<br/>(€/hab.)
+  |----
+ ! scope="row" style="background-color: #d9ffd9" | Dépenses d'équipement
+ | style="text-align:right;background-color: #d9ffd9" | {{euro|73}}
+ |----
+ ! scope="row" style="background-color: #d9ffd9" | Remboursements d'emprunts
+ | style="text-align:right;background-color: #d9ffd9" | {{euro|18}}
+ |----
+ ! scope="row" style="background-color: #ffd9d9" | fctva
+ | style="text-align:right;background-color: #ffd9d9" | {{euro|14}}
+ |----
+ ! scope="row" style="background-color: #ffd9d9" | subventions reçues
+ | style="text-align:right;background-color: #ffd9d9" | {{euro|13}}
+
+ |------
+ | colspan="4" |Écart par rapport à la moyenne de la strate :<br/><LEGENDE_ECART_TABLEAU_PICTO>
+ |}
+Cette section détaille les [[investissement]]s<ref group="Note">La section « [[investissement]] » concerne essentiellement les opérations visant à [[Achat|acquérir]] des équipements d’envergure et aussi au [[Plan de remboursement|remboursement]] du capital de la [[Dette publique|dette]].</ref> réalisés par la commune de la Communauté de communes des Portes de Sologne.
+
+Les emplois d'investissement en 2018 comprenaient par ordre d'importance :
+* des dépenses d'équipement<ref group="Note">Les « dépenses d’équipement » servent à financer des projets d’envergure ayant pour objet d’augmenter la valeur du [[Patrimoine (finance)|patrimoine]] du groupement et d’améliorer la qualité des équipements municipaux, voire d’en créer de nouveaux.</ref> pour une valeur totale de {{euro|1141000}} (66 %), soit {{euro|73}} par habitant, ratio . <VALEUR_EMPLOI_INVEST_TENDANCE_SERIE1> ;
+* des [[Plan de remboursement|remboursements]] d'emprunts<ref group="Note">Les « [[Plan de remboursement|remboursement]]s d'emprunts » représentent les sommes affectées par le groupement au remboursement du capital de la dette.</ref> pour  {{euro|276000}} (16 %), soit {{euro|18}} par habitant, ratio .
+
+Les ressources en investissement de la Communauté de communes des Portes de Sologne se répartissent principalement en :
+* [[fonds de Compensation pour la TVA]] pour une valeur totale de {{euro|222000}} (13 %), soit {{euro|14}} par habitant, ratio . <VALEUR_RESSOURCES_INVEST_TENDANCE_SERIE1> ;
+* [[subventions]] reçues pour une valeur totale de {{euro|206000}} (12 %), soit {{euro|13}} par habitant, ratio .
+
+=== Évolution de l'investissement de 2018 à 2018 ===
+{| class="wikitable centre" style="width:80%;"
+ |+G3a - Évolution des emplois d'investissement pour Communauté de communes des Portes de Sologne
+ |------
+| {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 2
+ | nb_abscisses = 1
+ | lb_x1 = 2018
+ | y_max =1200 | y_min = 200
+ | pas_grille_principale = 200 | pas_grille_secondaire = 100
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = brightblue
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = teal
+ | S01V01 = 1141  | S02V01 = 276 
+ | points = oui}}
+ |------
+ | Valeurs en millier d'euros (k€)<br />Communauté de communes des Portes de Sologne, Valeur totale : [[fichier:Bb blue.jpg|10px|alt=Point bleu|link=]] Dépenses d'équipement [[fichier:Flag of Beni.svg|10px|alt=Point vert|link=]] Remboursements d'emprunts 
+ |}
+{| class="wikitable centre" style="width:80%;"
+ |+G3b - Évolution des ressources d'investissement pour Communauté de communes des Portes de Sologne
+ |------
+| {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 3
+ | nb_abscisses = 1
+ | lb_x1 = 2018
+ | y_max =300 | y_min = 0
+ | pas_grille_principale = 50 | pas_grille_secondaire = 10
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = red
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = brightblue
+ | epaisseur_serie3 = 0.9  | coul_serie_3 = teal
+ | S01V01 = 0  | S02V01 = 206  | S03V01 = 222 
+ | points = oui}}
+ |------
+ | Valeurs en millier d'euros (k€)<br />Communauté de communes des Portes de Sologne, Valeur totale : [[fichier:Red rectangle.svg|10px|alt=Point rouge|link=]] Nouvelles dettes [[fichier:Bb blue.jpg|10px|alt=Point bleu|link=]] subventions reçues [[fichier:Flag of Beni.svg|10px|alt=Point vert|link=]] Fonds de compensation pour la TVA 
+ |}
+{{Clr}}
+
+=== Tableau des valeurs d'investissement de 2018 à 2018 ===
+{|class="wikitable centre"
+ |+T3v - Investissement de la Communauté de communes des Portes de Sologne de 2018 à 2018
+ |------
+ |
+ ! id="INVEST2018" colspan="2" style="background-color: #ffffff" |2018
+ |-
+ ! id="INVESTh" style="background:#ffffff" | Chiffres clés
+ ! id="INVEST2018V" headers="INVEST2018" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="INVEST2018P" headers="INVEST2018" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ |-
+ ! headers="INVESTh" scope="row" style="background-color: #ccfff2" | [[Dépenses publiques|Dépenses]] d'équipement
+ | headers="INVEST2018 INVEST2018V" style="text-align:right;background-color: #ccfff2" | {{unité|1141}}
+ | headers="INVEST2018 INVEST2018P" style="text-align:right;background-color: #ccfff2" | {{unité|73}}
+ |-
+ ! headers="INVESTh" scope="row" style="background-color: #ccfff2" | [[Plan de remboursement|Remboursements]] [[Emprunt (finance)|emprunts]]
+ | headers="INVEST2018 INVEST2018V" style="text-align:right;background-color: #ccfff2" | {{unité|276}}
+ | headers="INVEST2018 INVEST2018P" style="text-align:right;background-color: #ccfff2" | {{unité|18}}
+ |-
+ ! headers="INVESTh" scope="row" style="background-color: #ffd9ff" | Nouvelles [[Emprunt (finance)|dettes]]
+ | headers="INVEST2018 INVEST2018V" style="text-align:right;background-color: #ffd9ff" | {{unité|0}}
+ | headers="INVEST2018 INVEST2018P" style="text-align:right;background-color: #ffd9ff" | {{unité|0}}
+ |-
+ ! colspan="3" style="background-color: #ffffff" | Les valeurs sont arrondies au millier d'euros (k€) le plus proche.
+ |-
+ |}
+{{Clr}}
+
+== Endettement ==
+{|class="wikitable right"
+ |+T4p - Endettement et capacité d'autofinancement de la Communauté de communes des Portes de Sologne en 2018
+ |----
+ ! !! scope="col" | Communauté de communes des Portes de Sologne<br/>(€/hab.) !! scope="col" | Strate<br/>(€/hab.)
+  |----
+ ! scope="row" style="background-color: #ffcfb2" | Encours de la dette
+ | style="text-align:right;background-color: #ffcfb2" | {{euro|274}}
+ |----
+ ! scope="row" style="background-color: #ffcfb2" | annuité de la dette
+ | style="text-align:right;background-color: #ffcfb2" | {{euro|28}}
+ |----
+ ! scope="row" style="background-color: #ccfff2" | Capacité d'autofinancement
+ | style="text-align:right;background-color: #ccfff2" | {{euro|119}}
+
+ |------
+ | colspan="4" |Écart par rapport à la moyenne de la strate :<br/><LEGENDE_ECART_TABLEAU_PICTO>
+ |}
+L'[[Emprunt (finance)|endettement]] de la Communauté de communes des Portes de Sologne au {{Date-|31|décembre|2018}} peut s'évaluer à partir de trois critères : l'encours de la dette<ref group="Note">L'« [[encours]] de la dette » représente la somme que la commune doit aux [[banque]]s au {{Date-|31/12}} de l'année considérée</ref>, l'annuité de la dette<ref group="Note">L'« annuité de la [[Emprunt (finance)|dette]] » équivaut à la somme des intérêts d'emprunts de la commune et du montant de remboursement du capital au cours de l'année</ref> et sa capacité de désendettement<ref group="Note">La « capacité de [[Dette publique|désendettement]] » est basée sur le ratio suivant défini par la formule : {{Formule|§=ratio = {{fraction|encours de la dette|capacité d'autofinancement}}}}. Ce ratio montre, à un instant donné, le nombre d'années qui seraient nécessaires au remboursement des dettes en considérant les ressources de la Communauté de communes des Portes de Sologne.</ref> :
+* l'encours de la dette pour une valeur totale de {{euro|4284000}}, soit {{euro|274}} par habitant, ratio . <VALEUR_ENCOURS_DETTE_TENDANCE_SERIE1> ;
+* l'annuité de la dette pour une somme de {{euro|433000}}, soit {{euro|28}} par habitant, ratio . <VALEUR_ANNUITE_DETTE_TENDANCE_SERIE1> ;
+* la [[capacité d'autofinancement]] (CAF) pour une valeur de {{euro|1855000}}, soit {{euro|119}} par habitant, ratio . <VALEUR_CAF_TENDANCE_SERIE1>. La capacité de [[Dette publique|désendettement]] est d'environ {{nobr|2 années}} en 2018. Sur une période de {{nobr|1 années}}, ce ratio est constant et faible (inférieur à {{nobr|4}} ans)
+{{Clr}}
+
+=== Évolution de la capacité d'autofinancement (CAF) et de l'encours de la dette de 2018 à 2018 ===
+Les courbes G4a et G4b présentent l'historique des [[Dette publique|dette]]s de la Communauté de communes des Portes de Sologne.
+{| class="wikitable centre" style="width:80%;"
+ |+G4a - Capacité d'autofinancement et encours total de la dette de la Communauté de communes des Portes de Sologne
+ |------
+| {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 2
+ | nb_abscisses = 1
+ | lb_x1 = 2018
+ | y_max =300 | y_min = 100
+ | pas_grille_principale = 50 | pas_grille_secondaire = 10
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = brightblue
+ | epaisseur_serie2 = 0.9  | coul_serie_2 = red
+ | S01V01 = 119  | S02V01 = 274 
+ | points = oui}}
+ |------
+ | Valeurs en euros<br />Communauté de communes des Portes de Sologne, Par habitant : [[fichier:Bb blue.jpg|10px|alt=Point bleu|link=]] CAF [[fichier:Red rectangle.svg|10px|alt=Point rouge|link=]] Encours total de la dette 
+ |}
+
+{| class="wikitable centre" style="width:80%;"
+ |+G4b - Nombre d'années pour rembourser la dette en fonction de la [[capacité d'autofinancement|CAF]] de la Communauté de communes des Portes de Sologne
+ |------
+ | {{Graphique polygonal
+ | coul_fond = white
+ | largeur = 700 | hauteur = 300
+ | marge_g = 50 | marge_d = 10 | marge_h = 10 | marge_b = 20
+ | nb_series = 1
+ | nb_abscisses = 1
+ | lb_x1 = 2018
+ | y_max =10 | y_min = -10
+ | pas_grille_principale = 5 | pas_grille_secondaire = 1
+ | grille = oui
+ | epaisseur_serie1 = 0.9  | coul_serie_1 = brightblue
+ | S01V01 = 2 
+ | points = oui}}
+ |------
+ | Valeurs en années<br />Communauté de communes des Portes de Sologne,  : [[fichier:Bb blue.jpg|10px|alt=Point bleu|link=]] Ratio = Encours de la dette / CAF 
+ |}
+{{Clr}}
+
+=== Tableau des valeurs d'endettement de 2018 à 2018 ===
+{|class="wikitable centre"
+ |+T4v - Encours de la dette et capacité d'autofinancement de la Communauté de communes des Portes de Sologne de 2018 à 2018
+ |------
+ |
+ ! id="DETTE_CAF2018" colspan="2" style="background-color: #ffffff" |2018
+ |-
+ ! id="DETTE_CAFh" style="background:#ffffff" | Chiffres clés
+ ! id="DETTE_CAF2018V" headers="DETTE_CAF2018" scope="col" style="background-color: #ffffff" | Valeur (k€)
+ ! id="DETTE_CAF2018P" headers="DETTE_CAF2018" scope="col" style="background-color: #ffffff" | Par hab. (€)
+ |-
+ ! headers="DETTE_CAFh" scope="row" style="background-color: #ffcfb2" | [[Encours]] de la [[Emprunt (finance)|dette]] au 31 décembre de l'année
+ | headers="DETTE_CAF2018 DETTE_CAF2018V" style="text-align:right;background-color: #ffcfb2" | {{unité|4284}}
+ | headers="DETTE_CAF2018 DETTE_CAF2018P" style="text-align:right;background-color: #ffcfb2" | {{unité|274}}
+ |-
+ ! headers="DETTE_CAFh" scope="row" style="background-color: #ffcfb2" | [[Capacité d'autofinancement]] (CAF)
+ | headers="DETTE_CAF2018 DETTE_CAF2018V" style="text-align:right;background-color: #ffcfb2" | {{unité|1855}}
+ | headers="DETTE_CAF2018 DETTE_CAF2018P" style="text-align:right;background-color: #ffcfb2" | {{unité|119}}
+ |-
+ ! colspan="3" style="background-color: #ffffff" | Les valeurs sont arrondies au millier d'euros (k€) le plus proche.
+ |-
+ |}
+{{Clr}}
+
+== Faits en rapport avec les finances locales ==
+{{...}}
+
+== Références ==
+=== Notes ===
+{{Références|groupe=Note|colonnes=2}}
+
+=== Autres références ===
+{{Références|colonnes=2}}
+
+[[Catégorie:<CATEGORIE_ARTICLE>|Communauté de communes des Portes de Sologne]]
+[[Catégorie:Communauté de communes des Portes de Sologne]]
+<!-- Fin du wikicode généré le 04 July 2020
+    par le programme genCodeGroupement.py complet version 4.0.0 : Yin Yang Tau 
+    et le modèle modele_groupement_wikicode.txt pour l'article Communauté de communes des Portes de Sologne.
+    En cas de problème, contactez-moi SVP : Utilisateur:Thierry46 -->

@@ -1,4 +1,4 @@
-Thierry Maillard - 29/7/2015 - 12/12/2019
+Thierry Maillard - 29/7/2015 - 4/7/2020
 
 =======================
 Installations de base :
@@ -29,25 +29,11 @@ Successfully installed matplotlib-1.4.3 nose-1.3.7 numpy-1.10.1 pyparsing-2.0.3 
 ===============================
 Lancement programmes :
 ===============================
-cd /Users/thierry/Documents/wikipedia/finances_locales_wkpfr/FinancesLocales_v3.0.0
-./initBdFomListeDep.py ../database/bd_minfi.db ../Listes_villes_par_departement
-utilisez Browser for SQLite pour vérifier
-./updateDataMinFi.py ../database/bd_minfi.db ../recup_data_gouv_fr
-./updateScoreWikipedia.py ../database/bd_minfi.db
-./genCode.py ../database/bd_minfi.db ../resultats
-./genIndexDepartement.py ../resultats
-
+Voir README
 
 ===============================
 Problèmes et solution :
 ===============================
-- Si plantage sur l’extraction de villes dans le traitement par liste A2 et A3 :
-	Ex. : 90/Beaucourt : manque 2009 dans BD Alize2
-	- Les commenter dans la liste A3,
-	- Les mettre dans le fichier ville_pb.txt
-	- Relancer l’extraction A0
-	- Relancer les étapes B et C
-
 - Erreur Détection nom de département
 	AssertionError: recupNomDepStr() nom de département vide dans article :
 		 Beaupréau
@@ -69,6 +55,7 @@ Utilisation Py.test sous compte user : 168 tests en V1.2.0
 Jouer tous les tests unitaires : python3 -m pytest .
 Afficher stdout :  python3 -m pytest -s .
 Jouer un test unitaire spécifique : python3 -m pytest -k letestajouer .
+Utiliser unit test.sh
 
 Evaluer la couverture de test globale :
 Analyse run Py.test : python3 -m coverage run -m pytest .
@@ -81,9 +68,15 @@ Usage : python3 -m pylint xxx.py
 Désactiver un message : invalid-name (C0103) et tout analyser :
 python3 -m pylint --disable=invalid-name *.py > qualite/resu_pylint.txt
 
-Problème avec genCode.py 
-python3 -m pylint --disable=invalid-name genCode.py
-python3 -m pylint --disable=invalid-name genCode?*.py genH*.py database.py ratioTendance.py u*.py  > qualite/resu_pylint.txt
+Problème pylint pour genereCode1Goupement.py et genereCode1Ville.py
+RecursionError: maximum recursion depth exceeded
+L'analyse s'arrête après un de ces fichier.
+Malgré mes efforts (fractionnement des sources), je ne trouve pas pourquoi.
+Solution :
+- soumettre genereCode1Goupement.py et genereCode1Ville.py individuellement à pylint
+- renommer ces 2 fichiers : ext + .0
+- python3 -m pylint --disable=invalid-name *.py > qualite/resu_pylint.txt
+
 
 Pycoverage :
 Ref : https://coverage.readthedocs.io/en/latest/

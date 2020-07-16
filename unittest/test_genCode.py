@@ -1,7 +1,7 @@
 """
 Name : test_genCode.py
 Author : Thierry Maillard (TMD)
-Date : 25/9/2019 - 21/11/2019
+Date : 25/9/2019 - 14/4/2020
 Role : Tests unitaires du projet FinancesLocales avec py.test
 Utilisation : python3 -m pytest [-k "nomTest"] .
 options :
@@ -11,7 +11,7 @@ Ref : http://pytest.org/latest/
 prerequis : pip install pytest
 
 #Licence : GPLv3
-#Copyright (c) 2015 - 2019 - Thierry Maillard
+#Copyright (c) 2015 - 2020 - Thierry Maillard
 
    This file is part of Finance Locales project.
 
@@ -39,72 +39,7 @@ import genCode
 import updateDataMinFi
 import database
 import utilitaires
-
-@pytest.mark.parametrize( "typeCode", ["wikiArticle", "HTML"])
-def test_calculeGrandeur(typeCode):
-    """
-        teste le calcule de grandeurs agglomérées
-    """
-
-    config = configparser.RawConfigParser()
-    config.read('FinancesLocales.properties')
-
-    # récup données de test
-    pathDatabaseMini = config.get('Test', 'genCode.pathDatabaseMini')
-    pathCSVMini = config.get('Test', 'genCode.pathCSVMini')
-    if os.path.isfile(pathDatabaseMini):
-        print("destruction de la base :", pathDatabaseMini)
-        os.remove(pathDatabaseMini)
-
-    # Insertion dans la table ville des villes à traiter
-    # Création base
-    connDB = database.createDatabase(config, pathDatabaseMini, False)
-    connDB.executemany("""
-        INSERT INTO villes(codeCommune, nomMinFi, nom, nomWkpFr)
-        VALUES (?, ?, ?, ?)
-        """, (('068376', 'WITTENHEIM', 'Wittenheim', 'Wittenheim'),)
-                       )
-    connDB.commit()
-
-    # Création de la création de la base de test
-    param = ['updateDataMinFi.py', pathDatabaseMini, pathCSVMini]
-    updateDataMinFi.main(param)
-    assert os.path.isfile(pathDatabaseMini)
-
-    # Lecture et filtrage du fichier modèle
-    nomBaseModele = config.get('Modele', 'modele.nomBaseModele')
-    numVersion = config.get('Version', 'version.number')
-    cle = ''
-    isWikicode = False
-    if typeCode == "wikiArticle":
-        cle = 'gen.idFicDetail'
-        isWikicode = True
-    elif typeCode == "HTML":
-        cle = 'gen.idFicHTML'
-        isWikicode = False
-    typeSortie = config.get('GenCode', cle)
-    modele = nomBaseModele + '_' + typeSortie + '.txt'
-    isComplet = (config.get('Modele', 'modele.type') == 'complet')
-    textSection = utilitaires.lectureFiltreModele(modele, isComplet, False)
-
-    # Lit dans la base les infos concernant la ville à traiter
-    listeVilleWalheim = [ville
-                         for ville in database.getListeVilles4Departement(connDB, '068', False)
-                         if ville[0] == '068376']
-    ville = listeVilleWalheim[0]
-
-    # Recup des annees de données fiscales por WALHEIN
-    dictAllGrandeur = database.getAllValeurs4Ville(connDB, ville[0], True)
-    listAnnees = database.getListeAnnees4Ville(connDB, ville[0], True)
-    assert len(listAnnees) == 3
-
-    # Test calcul des valeurs
-    genCode.calculeGrandeur(config, dictAllGrandeur, listAnnees, isWikicode, True)
-    for grandeur in ["tendance ratio", "ratio dette / caf", "ratio n"]:
-        assert grandeur in dictAllGrandeur
-
-    # Fermeture base
-    database.closeDatabase(connDB, True)
+import genereCode1Ville
 
 @pytest.mark.parametrize( "typeCode", ["wikiArticle", "HTML"])
 def test_genereCode1Ville_OK(typeCode):
@@ -149,7 +84,7 @@ def test_genereCode1Ville_OK(typeCode):
     ville = listeVilleWalheim[0]
 
     # Test fonction de génération
-    genCode.genereCode1Ville(config, connDB,
+    genereCode1Ville.genereCode1Ville(config, connDB,
                              repVilles, ville,
                              nomProg, typeCode,
                              True, True)
@@ -157,7 +92,8 @@ def test_genereCode1Ville_OK(typeCode):
     # Fermeture base
     database.closeDatabase(connDB, False)
     
-def test_genCodeProg():
+@pytest.mark.parametrize( "verbose", [True, False])
+def test_genCodeProg(verbose):
     """
     Teste le programme de génération du code Wiki et HTML
     sur base de test 1 ville et 3 années.
@@ -197,7 +133,10 @@ def test_genCodeProg():
     assert os.path.isfile(pathDatabaseMini)
 
     # Test du programme genCode
-    param = ['genCode.py', '-v', pathDatabaseMini, resultatsPath]
+    if verbose:
+        param = ['genCode.py', '-v', pathDatabaseMini, resultatsPath]
+    else:
+        param = ['genCode.py', pathDatabaseMini, resultatsPath]
     genCode.main(param)
 
     # Vérif des résultats

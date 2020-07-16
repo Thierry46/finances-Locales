@@ -3,7 +3,7 @@
 """
 Name : test_ratioTendance.py
 Author : Thierry Maillard (TMD)
-Date : 5/8/2019
+Date : 5/8/2019 - 14/4/2020
 Role : Tests unitaires du projet FinancesLocales avec py.test
         not global : élimine les tests globaux très long
 Utilisation : python3 -m pytest -k "not global" .
@@ -165,8 +165,10 @@ def test_getTendanceRatioDetteCAF():
     connDB.commit()
     
     # Récupère toutes les données concernant cette ville
-    dictAllGrandeur = database.getAllValeurs4Ville(connDB, '001008', False)
-    listAnnees = database.getListeAnnees4Ville(connDB, '001008', False)
+    dictAllGrandeur = database.getAllValeursDataMinFi4Entite(connDB, 'V',
+                                                             '001008', False)
+    listAnnees = database.getListeAnneesDataMinFi4Entite(connDB, 'V',
+                                                         '001008', False)
 
     # Test
     tendanceRatio, dicoRatio = ratioTendance.getTendanceRatioDetteCAF(config, dictAllGrandeur,

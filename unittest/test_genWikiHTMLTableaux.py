@@ -3,7 +3,7 @@
 """
 Name : test_genWikiHTMLTableaux.py
 Author : Thierry Maillard (TMD)
-Date : 1/6/2015 - 11/9/2019
+Date : 1/6/2015 - 14/4/2020
 Role : Tests unitaires du projet FinancesLocales avec py.test
 Utilisation : python3 -m pytest [-k "nomTest"] .
 options :
@@ -35,6 +35,7 @@ import os.path
 
 import pytest
 
+import genCodeCommon
 import genWikiCodeTableaux
 import genHTMLCodeTableaux
 import genCodeTableaux
@@ -86,7 +87,8 @@ def test_genereTableau(isWikicode, isComplet):
                          if ville[0] == '068376']
     ville = listeVilleWalheim[0]
     # Recup des annees de données fiscales por WALHEIN
-    listAnnees = database.getListeAnnees4Ville(connDB, ville[0], False)
+    listAnnees = database.getListeAnneesDataMinFi4Entite(connDB, 'V',
+                                                         ville[0], False)
     assert len(listAnnees) == 3
     nbAnneesTableau = min(int(config.get('GenWIkiCode', 'gen.nbLignesTableauxEuros')),
                           len(listAnnees))
@@ -103,48 +105,48 @@ def test_genereTableau(isWikicode, isComplet):
     verbose = True
     listeValeurs = [
                     ["total des produits de fonctionnement",
-                     genCodeTableaux.genLien(config, ["Recettes publiques",
+                     genCodeCommon.genLien(config, ["Recettes publiques",
                                                       "Produits de fonctionnement"],
                                              isWikicode, verbose),
                      couleurRecettes],
                     ["total des charges de fonctionnement",
-                     genCodeTableaux.genLien(config, ["Dépenses publiques",
+                     genCodeCommon.genLien(config, ["Dépenses publiques",
                                                       "Charges de fonctionnement"],
                                              isWikicode, verbose),
                      couleurCharges],
                     ["resultat comptable",
-                     genCodeTableaux.genLien(config, ["Résultat fiscal en France",
+                     genCodeCommon.genLien(config, ["Résultat fiscal en France",
                                                       "Solde de la section de fonctionnement"],
                                              isWikicode, verbose),
                      couleurSolde],
                     ["total des emplois investissement",
-                     genCodeTableaux.genLien(config, ["Investissement",
+                     genCodeCommon.genLien(config, ["Investissement",
                                                       "Emplois investissement"],
                                              isWikicode, verbose),
                      couleurEmploisInvest],
                     ["total des ressources d'investissement",
-                     genCodeTableaux.genLien(config, ["Investissement",
+                     genCodeCommon.genLien(config, ["Investissement",
                                                       "Ressources d'investissement"],
                                              isWikicode, verbose),
                      couleurRessourcesInvest],
                     ["besoin ou capacité de financement de la section investissement",
-                     genCodeTableaux.genLien(config, ["Résultat fiscal en France",
+                     genCodeCommon.genLien(config, ["Résultat fiscal en France",
                                                       "Solde de la section d'investissement"],
                                              isWikicode, verbose),
                      couleurSolde],
                    ]
 
     # Récupère toutes les valeurs pour cette ville pour les grandeurs demandées
-    dictAllGrandeur = database.getAllValeurs4Ville(connDB, ville[0], verbose)
+    dictAllGrandeur = database.getAllValeursDataMinFi4Entite(connDB, 'V', ville[0], verbose)
     # Test de la generation tableau
     if isWikicode:
-        ligne = genWikiCodeTableaux.genereTableau(nomTableau, ville,
+        ligne = genWikiCodeTableaux.genereTableau(nomTableau,
                                               listAnnees, nbAnneesTableau,
                                               listeValeurs, dictAllGrandeur,
                                               couleurTitres, couleurStrate,
                                               isComplet, verbose)
     else:
-        ligne = genHTMLCodeTableaux.genereTableau(nomTableau, ville,
+        ligne = genHTMLCodeTableaux.genereTableau(nomTableau,
                                               listAnnees, nbAnneesTableau,
                                               listeValeurs, dictAllGrandeur,
                                               couleurTitres, couleurStrate,
@@ -209,7 +211,8 @@ def test_genereTableauTaux(isWikicode, isComplet):
                          if ville[0] == '068376']
     ville = listeVilleWalheim[0]
     # Recup des annees de données fiscales por WALHEIN
-    listAnnees = database.getListeAnnees4Ville(connDB, ville[0], False)
+    listAnnees = database.getListeAnneesDataMinFi4Entite(connDB, 'V',
+                                                         ville[0], False)
     assert len(listAnnees) == 3
     nbAnneesTableau = min(int(config.get('GenWIkiCode', 'gen.nbLignesTableauxEuros')),
                           len(listAnnees))
@@ -220,7 +223,7 @@ def test_genereTableauTaux(isWikicode, isComplet):
     couleurTaxeFonciereBati = config.get('Tableaux', 'tableaux.couleurTaxeFonciereBati')
     couleurTaxeFonciereNonBati = config.get('Tableaux', 'tableaux.couleurTaxeFonciereNonBati')
 
-    verbose = True
+    verbose = False
     listeValeurs = [
                     ["taux taxe habitation",
                      "taux taxe d'habitation",
@@ -234,27 +237,30 @@ def test_genereTableauTaux(isWikicode, isComplet):
                    ]
     
     # Récupère toutes les valeurs pour cette ville pour les grandeurs demandées
-    dictAllGrandeur = database.getAllValeurs4Ville(connDB, ville[0], verbose)
+    dictAllGrandeur = database.getAllValeursDataMinFi4Entite(connDB, 'V',
+                                                             ville[0], verbose)
 
     # Test de la generation tableau
     if isWikicode:
-        ligne = genWikiCodeTableaux.genereTableauTaux(nomTableau, ville,
+        ligne = genWikiCodeTableaux.genereTableauTaux(nomTableau,
                       listAnnees, nbAnneesTableau,
                       listeValeurs, dictAllGrandeur,
                       couleurTitres, couleurStrate,
                       isComplet, verbose)
     else:
-        ligne = genHTMLCodeTableaux.genereTableauTaux(nomTableau, ville,
+        ligne = genHTMLCodeTableaux.genereTableauTaux(nomTableau,
                       listAnnees, nbAnneesTableau,
                       listeValeurs, dictAllGrandeur,
                       couleurTitres, couleurStrate,
                       isComplet, verbose)
+
+    print("ligne=", ligne)
     
     # Test valeur taux taxe d'habitation en 2015
     # (cle tth) : 10.11
-    assert "10" in ligne
+    assert "10.11" in ligne
 
     if isComplet:
         # Test valeur taux taxe d'habitation pour la strate en 2015
         # (cle tmth) : 15.98
-        assert "16" in ligne
+        assert "15.68" in ligne

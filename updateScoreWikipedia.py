@@ -51,7 +51,6 @@ import os.path
 import configparser
 import urllib.request
 import urllib.error
-import urllib.parse
 import re
 
 import utilitaires
@@ -130,6 +129,7 @@ def main(argv=None):
     # Récupère la liste des villes et des années présentes dans la base
     listeCodeCommuneNomWkp = database.getListeCodeCommuneNomWkp(connDB,
                                                                 isFast,
+                                                                "score",
                                                                 verbose)
     if not listeCodeCommuneNomWkp:
         msg = "Erreur : La base de données :\n" + databasePath + \
@@ -181,10 +181,8 @@ def recupScoreDataVilles(config, listeCodeCommuneNomWkp, verbose):
                         urllib.request.pathname2url(nomWkpFr)
 
         # Lecture et analyse des criteres d'avancement et de popularité de la PDD
-        # Avec délai entre 2 requetes Wikipedia pour ne pas faire croire à une attaque DOS
-        utilitaires.wait2requete(config, verbose)
         try:
-            page = getPageWikipediaFr(config, nomArticlePDD, verbose)
+            page = utilitaires.getPageWikipediaFr(config, nomArticlePDD, verbose)
             listeCriteres = recupScoreData1Ville(config, page, nomArticlePDD, verbose)
             criteres1ville = dict()
             for critere in listeCriteres:
@@ -283,37 +281,6 @@ def recupScoreData1Ville(config, page, nomArticlePDD, verbose):
         print("Sortie de recupScoreData1Ville")
     return listeCriteres
 
-def getPageWikipediaFr(config, nomArticleUrl, verbose):
-    """
-    Ouvre une page de Wikipedia et retourne le texte brut de la page
-    if problem urllib ssl.SSLError :
-    Launch "Install Certificates.command" located in Python installation directory :
-    sudo '/Applications/Python 3.6/Install Certificates.command'
-    """
-    if verbose:
-        print("Entrée dans getPageWikipediaFr")
-        print("Recuperation de l'article :", nomArticleUrl)
-    print('.', end='', flush=True)
-
-    # Pour ressembler à un navigateur Mozilla/5.0
-    opener = urllib.request.build_opener()
-    opener.addheaders = [('User-agent', 'Mozilla/5.0')]
-
-    # Construction URL à partir de la config et du nom d'article
-    baseWkpFrUrl = config.get('Extraction', 'wikipediaFr.baseUrl')
-    actionTodo = config.get('Extraction', 'wikipediaFr.actionRow')
-    urltoGet = baseWkpFrUrl + nomArticleUrl + actionTodo
-    if verbose:
-        print("urltoGet =", urltoGet)
-
-    # Envoi requete, lecture de la page et decodage vers Unicode
-    infile = opener.open(urltoGet)
-    page = infile.read().decode('utf8')
-
-    if verbose:
-        print("Sortie de getPageWikipediaFr")
-        print("Nombre de caracteres lus :", len(page))
-    return page
 #
 ##################################################
 #to be called as a script

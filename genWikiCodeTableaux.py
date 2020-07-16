@@ -3,7 +3,7 @@
 *********************************************************
 Module : genWikiCodeTableaux.py
 Auteur : Thierry Maillard (TMD)
-Date : 24/5/2015 - 11/9/2019
+Date : 24/5/2015 - 12/5/2020
 
 Role : Transforme les donnees traitées par extractionMinFi.py
         en wikicode pour les parties tableaux.
@@ -31,20 +31,19 @@ Copyright (c) 2015 - 2019 - Thierry Maillard
 """
 import utilitaires
 
-def genereTableau(nomTableau, ville,
+def genereTableau(nomTableau,
                   listAnnees, nbAnneesTableau,
                   listeGrandeurs,
                   dictAllGrandeur,
                   couleurTitres, couleurStrate,
-                  isComplet, verbose):
+                  avecStrate, verbose):
     """ Génère le Wikicode pour un tableau historique sur N années """
     if verbose:
         print("Entrée dans genereTableau (Wikicode)")
-        print('ville=', ville)
         print('listAnnees=', listAnnees)
         print('nbAnneesTableau=', nbAnneesTableau)
         print('dictAllGrandeur=', dictAllGrandeur)
-        print("isComplet :", isComplet)
+        print("avecStrate :", avecStrate)
 
     arrondi, arrondiStr, arrondiStrAffiche = \
              utilitaires.setArrondi(dictAllGrandeur["Valeur totale"], listAnnees,
@@ -53,7 +52,7 @@ def genereTableau(nomTableau, ville,
     # Titres
     ligne = ""
     ligne += ' |\n'
-    if isComplet:
+    if avecStrate:
         colspanAnnee = '3'
     else:
         colspanAnnee = '2'
@@ -70,7 +69,7 @@ def genereTableau(nomTableau, ville,
         ligne += ' ! id="' + nomTableau + str(annee) + 'P" headers="'+ nomTableau + \
                  str(annee) + '" scope="col" style="background-color: ' + \
                  couleurTitres + '" | Par hab. (€)\n'
-        if isComplet:
+        if avecStrate:
             ligne += ' ! id="' + nomTableau + str(annee) + 'S" headers="'+ nomTableau + \
                      str(annee) + '" scope="col" style="background-color: ' + \
                      couleurStrate + '" | Strate (€)\n'
@@ -91,7 +90,7 @@ def genereTableau(nomTableau, ville,
                      str(annee) + 'P"' + ' style="text-align:right;background-color: ' + \
                      grandeur[2] + '" | {{unité|' + \
                      str(round(valFloat)) + '}}\n'
-            if isComplet:
+            if avecStrate:
                 ngm = nomGrandeur + " moyen"
                 valFloat = dictAllGrandeur["En moyenne pour la strate"][ngm][annee]
                 ligne += ' | headers="'+ nomTableau + str(annee) + ' ' + nomTableau + \
@@ -112,25 +111,24 @@ def genereTableau(nomTableau, ville,
 
     return ligne.strip()
 
-def genereTableauTaux(nomTableau, ville,
+def genereTableauTaux(nomTableau,
                       listAnnees, nbAnneesTableau,
                       listeGrandeurs,
                       dictAllGrandeur,
                       couleurTitres, couleurStrate,
-                      isComplet, verbose):
+                      avecStrate, verbose):
     """ Genere le wikicode pour un tableau de taux de fiscalité """
     if verbose:
         print("Entrée dans genereTableautaux (Wikicode)")
-        print('ville=', ville)
         print('listAnnees=', listAnnees)
         print('nbAnneesTableau=', nbAnneesTableau)
         print('dictAllGrandeur=', dictAllGrandeur)
-        print("isComplet :", str(isComplet))
+        print("avecStrate :", avecStrate)
 
     # Titres
     ligne = ""
     ligne += ' |\n'
-    if isComplet:
+    if avecStrate:
         colspanAnnee = '2'
     else:
         colspanAnnee = '1'
@@ -145,7 +143,7 @@ def genereTableauTaux(nomTableau, ville,
         ligne += ' ! id="' + nomTableau + str(annee) + 'TV" headers="'+ nomTableau + \
                  str(annee) + '" scope="col" style="background-color: ' + \
                  couleurTitres + '" | taux voté %\n'
-        if isComplet:
+        if avecStrate:
             ligne += ' ! id="' + nomTableau + str(annee) + 'TM" headers="'+ \
                      nomTableau + str(annee) + \
                     '" scope="col" style="background-color: ' + couleurStrate + \
@@ -160,15 +158,15 @@ def genereTableauTaux(nomTableau, ville,
             ligne += ' | headers="'+ nomTableau + str(annee) + ' ' + nomTableau + \
                      str(annee) + 'TV"' + ' style="text-align:right;background-color: ' + \
                      grandeur[2] + '" | {{unité|' + \
-                     str(round(dictAllGrandeur["Taux"][nomGrandeur][annee])) + \
+                     str(round(dictAllGrandeur["Taux"][nomGrandeur][annee], 2)) + \
                      '}}\n'
-            if isComplet:
+            if avecStrate:
                 ngm = nomGrandeur + " moyen"
                 valFloat = dictAllGrandeur["taux moyen pour la strate"][ngm][annee]
                 ligne += ' | headers="'+ nomTableau + str(annee) + ' ' + nomTableau + \
                          str(annee) + 'TS"' + \
                          ' style="text-align:right;background-color: ' + couleurStrate + \
-                         '" | {{unité|' + str(round(valFloat)) + '}}\n'
+                         '" | {{unité|' + str(round(valFloat, 2)) + '}}\n'
         ligne += ' |-\n'
 
     if verbose:

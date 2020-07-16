@@ -33,13 +33,17 @@ import time
 import re
 
 import utilitaires
+import genCodeCommon
 
-def genTexte(config, dictAllGrandeur, modele, textSection, ville,
+def genTexte(config, dictAllGrandeur, infosGroupement,
+             modele, textSection, ville,
              listAnnees, nomProg, isWikicode, verbose):
     """
         Expanse les tags concernant du txte simple pour une ville donnée,
-        dictAllGrandeur contient toutes les donnes pour cette ville
-        les mot clé de type textuels du modèle.
+        les mots clés de type textuels du modèle.
+        dictAllGrandeur contient toutes les données financières pour cette ville
+        infosGroupement contient les infos relatives au groupement de commune
+        de rattachement,
         Le texte du modèle en entrée est fourni dans la chaine textSection.
         Le type de sortie peut être du Wikicode ou du HTML.
         Le texte résultat est retourné à l'appelant.
@@ -92,6 +96,15 @@ def genTexte(config, dictAllGrandeur, modele, textSection, ville,
     categorieArticle = config.get('GenCode', 'gen.prefixeCategorieArticle') + \
                        " " + article + nomDepartement
     textSection = textSection.replace("<CATEGORIE_ARTICLE>", categorieArticle)
+
+    # Info du groupement d'appartenance
+    lienGroupement = "aucun groupement d'appartenance"
+    print("infosGroupement=", infosGroupement)
+    if infosGroupement:
+        print("infosGroupement[1:2]=", infosGroupement[1:2])
+        lienGroupement = genCodeCommon.genLien(config, infosGroupement[1:2],
+                                               isWikicode, verbose)
+    textSection = textSection.replace("<LIEN_GROUPEMENT>", lienGroupement)
 
     # Budget général
     codeCle = "total des charges de fonctionnement"

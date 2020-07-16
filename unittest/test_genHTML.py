@@ -3,7 +3,7 @@
 """
 Name : test_genHTML.py
 Author : Thierry Maillard (TMD)
-Date : 1/6/2015 - 12/11/2019
+Date : 1/6/2015 - 4/6/2020
 Role : Tests unitaires du projet FinancesLocales avec py.test
         not global : élimine les tests globaux très long
 Utilisation : python3 -m pytest [-k "nomTest"] .
@@ -14,7 +14,7 @@ Ref : http://pytest.org/latest/
 prerequis : pip install pytest
 
 Licence : GPLv3
-Copyright (c) 2015 - 2019 - Thierry Maillard
+Copyright (c) 2015 - 2020 - Thierry Maillard
 
    This file is part of Finance Locales project.
 
@@ -35,8 +35,12 @@ import os
 import os.path
 import shutil
 import configparser
+import unicodedata
+
 import pytest
+
 import genHTML
+import utilitaires
 
 def test_enregistreIndexHTML():
     """ Test ecriture sur disque de l'index """
@@ -124,7 +128,6 @@ def test_insertVillesTableau():
     assert str(score) in htmlText
     assert html in htmlText
     assert wikicode in htmlText
-
 
 def test_genIndexHTML():
     """ Test génération de l'index html des villes d'un département """
@@ -254,3 +257,67 @@ def test_genIndexDepartement():
         text = "".join(hFicResu.readlines())
         assert "Departement_001/index.html" in text
         
+def test_genIndexGroupementHTML():
+    """ Test génération de l'index html des groupements de communes """
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+    
+    sirenGroupement = '256365'
+    nomArticleCC = 'CC Lot'
+    nom = 'Communauté de Commune du Lot'
+    region = 'Occitanie'
+    département = 'Lot'
+    
+    listGroupements = [
+        [sirenGroupement, nomArticleCC, nom, region, département]
+        ]
+    repertoireGroupements = config.get('Test', 'io.repertoireGroupements')
+    if os.path.isdir(repertoireGroupements):
+        shutil.rmtree(repertoireGroupements, ignore_errors=True)
+    print("Creation du répertoire :", repertoireGroupements)
+    os.makedirs(repertoireGroupements)
+
+    genHTML.genIndexGroupementHTML(config, repertoireGroupements,
+                                   listGroupements, True)
+
+    pathFileHTML = os.path.normcase(os.path.join(repertoireGroupements,
+                       config.get('EntreesSorties',
+                                  'io.nomFicGroupementHTML')))
+    print("pathFileHTML=", pathFileHTML)
+    assert os.path.isfile(pathFileHTML)
+    hFic = open(pathFileHTML, 'r')
+    page = hFic.read()
+    hFic.close()
+    assert sirenGroupement in page
+    assert utilitaires.convertLettresAccents(
+        unicodedata.normalize('NFC', nom)) in page
+    assert nomArticleCC in page
+    assert region in page
+    assert département in page
+
+def test_insertGroupementTableau():
+    """
+    Test insertion des lignes du tableaux des groupements de communes
+    """
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+    sirenGroupement = '256365'
+    nomArticleCC = 'CC Lot'
+    nom = 'Communauté de Commune du Lot'
+    region = 'Occitanie'
+    département = 'Lot'
+    
+    listGroupements = [
+         [sirenGroupement, nomArticleCC, nom, region, département]
+        ]
+
+    htmlText = 'Bla ++LIGNES_GROUPEMENTS++ Bla'
+    htmlText = genHTML.insertGroupementTableau(config, htmlText,
+                                               listGroupements, True)
+    assert sirenGroupement in htmlText
+    assert utilitaires.convertLettresAccents(
+        unicodedata.normalize('NFC', nom)) in htmlText
+    assert nomArticleCC in htmlText
+    assert region in htmlText
+    assert département in htmlText
+

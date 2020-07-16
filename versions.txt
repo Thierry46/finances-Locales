@@ -1,6 +1,12 @@
 ------------------------------------
 Evolutions du projet FinancesLocales
 ------------------------------------
+
+* v4.0.0 : nom de code : Yin Yang Tau - 4/7/2020
+	13612 lignes au total : 7719 lignes de code + 5893 lignes de test
+	- Traitement des finances locales des groupements de communes
+	source données : https://www.data.gouv.fr/fr/datasets/comptes-individuels-des-groupements-a-fiscalite-propre-fichier-global-a-compter-de-2007
+
 * v3.1.1 : nom de code : Yin Yang Sigma - 12/2/2020
 	9460 lignes au total : 5319 lignes de code + 4141 lignes de test
 	pycoverage : TOTAL 3867    155    96%
