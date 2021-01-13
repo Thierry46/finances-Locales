@@ -72,7 +72,7 @@ def traite1Groupement(config, groupement,
         if verbose:
             print("Creation répertoire du groupement :",
                   dictNomsGroupement['repGroupement'])
-            
+
         os.makedirs(dictNomsGroupement['repGroupement'])
 
         for typeCode in ["wikicode", "HTML"]:
@@ -130,7 +130,7 @@ def genereCode1Groupement(config, connDB, repGroupement, groupement,
                                                                  verbose)
 
         # On ne génère pas les communauté de communes sans donnée MinFi
-        if "Valeur totale" in dictAllGrandeur:        
+        if "Valeur totale" in dictAllGrandeur:
             listAnnees = database.getListeAnneesDataMinFi4Entite(connDB, 'GC',
                                                                  groupement[0],
                                                                  verbose)

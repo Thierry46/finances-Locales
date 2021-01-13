@@ -677,3 +677,48 @@ def test_genCodeTableauxPicto(isComplet, isWikicode):
         assert "16" in textSection
     
     database.closeDatabase(connDB, True)
+
+@pytest.mark.parametrize(\
+    "isWikicode, strOK",
+    [
+        (True, "[[fichier:"),
+        (True, "|10px|alt="),
+        (False, "<tr><td"),
+        (False, '<img alt="'),
+        (False, '" src="'),
+        (False, '</td></tr>'),
+    ])
+def test_genLegendePicto1(isWikicode, strOK):
+    """
+    V2.1.0 : test Fonction génération légende
+    """
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+    legende = genCodeCommon.genLegendePicto(config, isWikicode, True)
+    assert strOK in legende
+
+@pytest.mark.parametrize("isWikicode", [True, False])
+def test_genLegendePicto2(isWikicode):
+    """
+    V2.1.0 : Test Fonction génération légende
+    """
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+    if isWikicode:
+        prefix = 'picto'
+    else:
+        prefix = 'pictoHtml'
+    pictoFaible = config.get('Picto', prefix + '.ecartNul')
+    pictoMoyen = config.get('Picto', prefix + '.ecartMoyen')
+    pictoFort = config.get('Picto', prefix + '.ecartFort')
+    ecartNulAlt = config.get('Picto', 'picto.ecartNulAlt')
+    ecartMoyenAlt = config.get('Picto', 'picto.ecartMoyenAlt')
+    ecartFortAlt = config.get('Picto', 'picto.ecartFortAlt')
+    legende = genCodeCommon.genLegendePicto(config, isWikicode, True)
+    assert pictoFaible in legende
+    assert pictoMoyen in legende
+    assert pictoFort in legende
+    assert ecartNulAlt in legende
+    assert ecartMoyenAlt in legende
+    assert ecartFortAlt in legende
+

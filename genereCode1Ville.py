@@ -49,7 +49,7 @@ def traite1Ville(config, ville, repertoireDepBase,
         print("Entree dans traite1Ville")
 
     auMoins1villeGenere = False
-    
+
     dictNomsVille = utilitaires.getNomsVille(config, ville[1],
                                              repertoireDepBase,
                                              verbose)
@@ -158,7 +158,7 @@ def genereCode1Ville(config, connDB, repVille, ville,
     # Définit le contenu des tableaux picto
     grandeursAnalyse = genCodeTableaux.defTableauxPicto(config,
                                         dictAllGrandeur, listAnnees,
-                                        isWikicode, verbose)   
+                                        isWikicode, verbose)
 
     # Génération des tableaux pictogrammes
     textSection = genCodeCommon.genCodeTableauxPicto(config, dictAllGrandeur,

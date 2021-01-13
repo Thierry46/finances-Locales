@@ -99,9 +99,7 @@ def genTexte(config, dictAllGrandeur, infosGroupement,
 
     # Info du groupement d'appartenance
     lienGroupement = "aucun groupement d'appartenance"
-    print("infosGroupement=", infosGroupement)
     if infosGroupement:
-        print("infosGroupement[1:2]=", infosGroupement[1:2])
         lienGroupement = genCodeCommon.genLien(config, infosGroupement[1:2],
                                                isWikicode, verbose)
     textSection = textSection.replace("<LIEN_GROUPEMENT>", lienGroupement)
@@ -171,10 +169,18 @@ def genTexte(config, dictAllGrandeur, infosGroupement,
 
     return textSection
 
+regExpUnite1 = re.compile(r' de (?P<nb1>\d{3})( (?P<nb2>\d{3}))? hab(itants)?')
+regExpUnite2 = re.compile(r' de (?P<nb1>\d{1,3})( (?P<nb2>\d{3}))? à '+
+                          r'(?P<nb3>\d{1,3})( (?P<nb4>\d{3}))? hab(itants)?')
 def wikifieStrate(defStrate, verbose):
     """
     V1.0.1 : Wikification description strate suite
              remarque récurrente d'AntonyB
+    Si on ne trouve rien, on renvoie la chaine
+
+    V4.0.1 : Simplification et correction bug si expressions non trouvées
+    Voir pour les expressions remplacées dans :
+        unittest/test_genCodeTexte.py/test_wikifieStrate
     """
     if verbose:
         print("Entree dans wikifieStrate")
@@ -183,28 +189,12 @@ def wikifieStrate(defStrate, verbose):
     # Si on ne trouve rien, on renvoie la chaine
     strateWikif = defStrate.replace("(4 taxes)", "({{nobr|4 taxes}})")
 
-    #Recherche des formulation possibles
-    if strateWikif.find("moins de 250 habitants") != -1:
-        strateWikif = strateWikif.replace("moins de 250 habitants",
-                                          "moins de {{unité|250|habitants}}")
-    elif strateWikif.find("plus de 100 000 habitants") != -1:
-        strateWikif = strateWikif.replace("plus de 100 000 habitants",
-                                          "plus de {{unité|100000|habitants}}")
-    else:
-        # Récupère les deux nombres autour de la lettre à
-        # Ces nombres sont composés de chiffres et de blanc
-        posA = strateWikif.find(" à ")
-        if posA != -1:
-            strateWikif2 = strateWikif.split(" à ")
-            listNb1 = re.findall(r'\d{1,3}', strateWikif2[0])
-            startNb1 = strateWikif.find(listNb1[0])
-            nb1 = "".join(listNb1)
-            listNb2 = re.findall(r'\d{1,3}', strateWikif2[1])
-            endNb2 = strateWikif.find("habitants") + len("habitants")
-            nb2 = "".join(listNb2)
-            strateWikif = strateWikif[:startNb1] + \
-                          "{{unité/2|"+nb1+"|à="+nb2 +"|habitants}}" + \
-                          strateWikif[endNb2:]
+    # Formattage des nombres par les modèles wikipedia unité et unité/2
+    strateWikif = regExpUnite1.sub(r' de {{unité|\g<nb1>\g<nb2>|habitants}}',
+                                   strateWikif)
+    strateWikif = regExpUnite2.sub(r' de {{unité/2|\g<nb1>\g<nb2>|' +
+                                   r'à=\g<nb3>\g<nb4>|habitants}}',
+                                   strateWikif)
 
     # Suppresion abbréviation (FPU)
     strateWikif = strateWikif.replace(" (FPU)", "")

@@ -312,8 +312,7 @@ def test_insertGroupementTableau():
         ]
 
     htmlText = 'Bla ++LIGNES_GROUPEMENTS++ Bla'
-    htmlText = genHTML.insertGroupementTableau(config, htmlText,
-                                               listGroupements, True)
+    htmlText = genHTML.insertGroupementTableau(htmlText, listGroupements, True)
     assert sirenGroupement in htmlText
     assert utilitaires.convertLettresAccents(
         unicodedata.normalize('NFC', nom)) in htmlText

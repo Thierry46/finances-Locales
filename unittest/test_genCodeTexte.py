@@ -47,17 +47,20 @@ import genCodeCommon
     "defStrate,strateWikifOK",
     [
         ("bla bla de plus de 100 000 habitants appartenant ",
-         "{{unité|100000|habitants}}"),
+         "de {{unité|100000|habitants}} appartenant"),
         ("bla bla communes de moins de 250 habitants appartenant ",
-         "{{unité|250|habitants}}"),
+         "{{unité|250|habitants}} appartenant"),
         ("bla bla des communes de 500 à 2 000 habitants appartenant " + \
          "à un groupement fiscalisé (4 taxes)",
-         "{{unité/2|500|à=2000|habitants}}"),
+         "de {{unité/2|500|à=2000|habitants}} appartenant à"),
         ("bla bla des communes de 20 000 à 50 000 habitants appartenant",
-         "{{unité/2|20000|à=50000|habitants}}"),
+         "de {{unité/2|20000|à=50000|habitants}} appartenant"),
         ("bla bla des communes de 500 à 2 000 habitants appartenant " +
          "à un groupement fiscalisé (4 taxes)",
          "({{nobr|4 taxes}})"),
+        ("bla bla des communes de 10 000 à 20 000 hab " +
+         "appartenant à un groupement fiscalisé (FPU)",
+         "de {{unité/2|10000|à=20000|habitants}} appartenant"),
     ])
 def test_wikifieStrate(defStrate, strateWikifOK):
     """
@@ -124,7 +127,7 @@ def test_genCodeTexte_func(typeCode):
                          if ville[0] == '068376']
     ville = listeVilleWalheim[0]
 
-    # Recup des annees de données fiscales por WALHEIN
+    # Recup des annees de données fiscales pour WALHEIN
     dictAllGrandeur = database.getAllValeursDataMinFi4Entite(connDB, 'V',
                                                              ville[0], True)
     

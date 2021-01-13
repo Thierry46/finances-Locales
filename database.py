@@ -639,7 +639,6 @@ def getListeVilleGroupement(connDB, codeCommune, verbose):
         infosGroupement = resuInfosGroupement[0]
     cursor.close()
 
-        
     if verbose:
         print("infosGroupement =", infosGroupement)
         print("Sortie de getListeVilleGroupement")

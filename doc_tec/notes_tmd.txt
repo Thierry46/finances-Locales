@@ -55,7 +55,7 @@ Utilisation Py.test sous compte user : 168 tests en V1.2.0
 Jouer tous les tests unitaires : python3 -m pytest .
 Afficher stdout :  python3 -m pytest -s .
 Jouer un test unitaire spécifique : python3 -m pytest -k letestajouer .
-Utiliser unit test.sh
+Utiliser unittest.sh
 
 Evaluer la couverture de test globale :
 Analyse run Py.test : python3 -m coverage run -m pytest .

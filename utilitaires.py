@@ -438,11 +438,12 @@ def setArrondi(dictAllGrandeurAnneeValeur, listAnneesOK,
                     arrondi = 1.0
                     arrondiStr = 'k€'
                     arrondiStrAffiche = "millier d'euros (k€)"
-            except TypeError:
-                raise ValueError("Erreur : Impossible d'arrondir : " +
+            except TypeError as exc:
+                msg = ("Erreur : Impossible d'arrondir : " +
                                  "grandeur=" + grandeur + ", annee=" + str(annee) +
                                  ", valeur=" +
                                  str(dictAllGrandeurAnneeValeur[grandeur][annee]))
+                raise ValueError(msg) from exc
 
     if verbose:
         print("arrondi =", arrondi, ", arrondiStr = ", arrondiStr,
@@ -567,7 +568,7 @@ def jumpRedirGetPageWikipediaFr(config, nomArticle, verbose):
     except (urllib.error.HTTPError) as exc:
         raise ValueError("Problème page Wikipedia :" +
                          urllib.request.url2pathname(URLNomArticle) +
-                         ":" + str(exc))
+                         ":" + str(exc)) from exc
 
     nomArticle = urllib.request.url2pathname(URLNomArticle)
     if verbose:

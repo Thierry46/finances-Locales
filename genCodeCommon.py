@@ -520,6 +520,11 @@ def genCodeTableauxPicto(config, dictAllGrandeur, grandeursAnalyse,
                                                        float(tauxTaxeVilleNM1))
             textSection = textSection.replace("<TENDANCE_" + tag + "_PAR_HABITANT1>",
                                               augmentation)
+
+            # V4.0.1 : Insertion légende tableau picto
+            legende = genLegendePicto(config, isWikicode, verbose)
+            textSection = textSection.replace("<LEGENDE_ECART_TABLEAU_PICTO>",
+                                              legende)
         else:
             textSection = textSection.replace("<TENDANCE_" + tag + "_PAR_HABITANT1>",
                                               '?')
@@ -527,3 +532,50 @@ def genCodeTableauxPicto(config, dictAllGrandeur, grandeursAnalyse,
     if verbose:
         print("Sortie de genCodeTableauxPicto")
     return textSection.strip()
+
+
+def genLegendePicto(config, isWikicode, verbose):
+    """
+    V1.0.0 : Generation de la légende du tableau (Wikicode)
+    V1.0.2 : Accessibilité : texte alternatif
+    V2.1.0 : Légende en HTML
+    """
+    if verbose:
+        print("\nEntrée dans genLegendePicto")
+
+    seuilValeurPourCentDifferente = config.get('GenCode', 'gen.seuilValeurPourCentDifferente')
+    seuilValeurPourCentgrande = config.get('GenCode', 'gen.seuilValeurPourCentgrande')
+    seuilMoyen = (float(seuilValeurPourCentgrande) + float(seuilValeurPourCentDifferente)) / 2.0
+    seuilFort = float(seuilValeurPourCentgrande) * 2.0
+    ecartNul, ecartNulAlt = utilitaires.choixPicto(config, 0.0, isWikicode)
+    ecartMoyen, ecartMoyenAlt = utilitaires.choixPicto(config, seuilMoyen, isWikicode)
+    ecartFort, ecartFortAlt = utilitaires.choixPicto(config, seuilFort, isWikicode)
+
+    if isWikicode:
+        legende = "[[fichier:" + ecartNul + "|10px|alt=" + \
+                    ecartNulAlt + "|link=]] "
+        legende += "de 0 à " + seuilValeurPourCentDifferente + \
+               " % ; "
+        legende += "[[fichier:" + ecartMoyen + "|10px|alt=" + \
+                ecartMoyenAlt + "|link=]] de "
+        legende += seuilValeurPourCentDifferente + \
+               " à " + seuilValeurPourCentgrande + " % ; "
+        legende += "[[fichier:" + ecartFort + "|10px|alt=" + \
+                ecartFortAlt + "|link=]] "
+        legende += "supérieur à " + seuilValeurPourCentgrande + \
+                   " %"
+    else:
+        legende = '<tr><td align="center" colspan="4">'
+        legende += 'Êcart : <img alt="' + ecartNulAlt + '" src="' + ecartNul + '">'
+        legende += ' de 0 à ' + seuilValeurPourCentDifferente + ' % ; '
+        legende += '<img alt="' + ecartMoyenAlt + '" src="' + ecartMoyen + '">'
+        legende += ' de ' + seuilValeurPourCentDifferente
+        legende += ' à ' + seuilValeurPourCentgrande + ' % ; '
+        legende += '<img alt="' + ecartFortAlt + '" src="' + ecartFort + '">'
+        legende += ' supérieur à ' + seuilValeurPourCentgrande + ' %'
+        legende += '</td></tr>'
+
+    if verbose:
+        print("legende=", legende)
+        print("\nSortie de genLegendePicto")
+    return legende

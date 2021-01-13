@@ -300,8 +300,7 @@ def genIndexGroupementHTML(config, repertoireGroupements,
     htmlText = replaceTags(config, htmlText, "", verbose)
 
     # Insertion des lignes de tableau les Groupements traitées
-    htmlText = insertGroupementTableau(config, htmlText,
-                                       listGroupements, verbose)
+    htmlText = insertGroupementTableau(htmlText, listGroupements, verbose)
 
     # Enregistrement du fichier
     nomFicIndexHTML = config.get('EntreesSorties', 'io.nomFicGroupementHTML')
@@ -311,7 +310,7 @@ def genIndexGroupementHTML(config, repertoireGroupements,
     if verbose:
         print("Sortie de genIndexGroupementHTML")
 
-def insertGroupementTableau(config, htmlText, listGroupements, verbose):
+def insertGroupementTableau(htmlText, listGroupements, verbose):
     """
     Insere les groupements de communes dans le texte passé en paramètre
     listGroupements : liste des groupements de communes traités traitées
