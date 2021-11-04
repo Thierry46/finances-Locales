@@ -1,4 +1,4 @@
-Thierry Maillard - 29/7/2015 - 4/7/2020
+Thierry Maillard - 29/7/2015 - 3/11/2021
 
 =======================
 Installations de base :
@@ -7,12 +7,12 @@ Installations de base :
 Python3 :
 Ref : https://www.python.org
 https://www.python.org/downloads/
-Télécharger un paquet précompilé
+Télécharger un paquet précompilé : Python 3.9.5 ou +
 
-        if problem urllib ssl.SSLError :
-        Launch "Install Certificates.command" located in Python installation directory :
-        sudo /Applications/Python\ 3.6/Install\ Certificates.command
-
+Certificats ssl :
+if problem urllib ssl.SSLError :
+Launch "Install Certificates.command" located in Python installation directory :
+sudo /Applications/Python\ 3.6/Install\ Certificates.command
 
 Pip :
 Ref : https://pypi.python.org/pypi/pip
@@ -20,11 +20,14 @@ curl -O https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py
 su
 cd /Users/thierry/Documents/informatique/logiciels/python/python3
 python3 get-pip.py
+Mise à jour pip :
+python3 -m pip install --upgrade pip
+Successfully installed pip-21.3.1
 
 matplotlib : 19/10/2015
-su
-sudo python3 -m pip install matplotlib
-Successfully installed matplotlib-1.4.3 nose-1.3.7 numpy-1.10.1 pyparsing-2.0.3 python-dateutil-2.4.2 pytz-2015.6 six-1.10.0
+python3 -m pip install matplotlib
+Successfully installed matplotlib-3.4.3
+
 
 ===============================
 Lancement programmes :
@@ -51,36 +54,40 @@ Outils de qualité logicielle
 Py.test :
 Ref : https://pytest.org
 python3 -m pip install -U pytest
+Successfully installed pytest 6.2.5
+
 Utilisation Py.test sous compte user : 168 tests en V1.2.0
 Jouer tous les tests unitaires : python3 -m pytest .
 Afficher stdout :  python3 -m pytest -s .
 Jouer un test unitaire spécifique : python3 -m pytest -k letestajouer .
 Utiliser unittest.sh
 
-Evaluer la couverture de test globale :
+Evaluer la couverture de test globale : coverage
+
+Install : python3 -m pip install -U coverage
+Successfully installed coverage-6.1.1
 Analyse run Py.test : python3 -m coverage run -m pytest .
 Affichage résultats : python3 -m coverage report > qualite/couv_test_verbose.txt
 
 Pylint :
 Ref : http://www.pylint.org
-Install : python3 -m pip install pylint
+Install : python3 -m pip install -U pylint
+Successfully installed astroid-2.8.4 isort-5.10.0 lazy-object-proxy-1.6.0 mccabe-0.6.1 platformdirs-2.4.0 pylint-2.11.1 typing-extensions-3.10.0.2 wrapt-1.13.3
+
 Usage : python3 -m pylint xxx.py
 Désactiver un message : invalid-name (C0103) et tout analyser :
 python3 -m pylint --disable=invalid-name *.py > qualite/resu_pylint.txt
+Note en bas du rapport : Your code has been rated at 9.43/10
 
-Problème pylint pour genereCode1Goupement.py et genereCode1Ville.py
-RecursionError: maximum recursion depth exceeded
-L'analyse s'arrête après un de ces fichier.
-Malgré mes efforts (fractionnement des sources), je ne trouve pas pourquoi.
-Solution :
-- soumettre genereCode1Goupement.py et genereCode1Ville.py individuellement à pylint
-- renommer ces 2 fichiers : ext + .0
-- python3 -m pylint --disable=invalid-name *.py > qualite/resu_pylint.txt
-
-
-Pycoverage :
+Pycoverage :.
 Ref : https://coverage.readthedocs.io/en/latest/
 Install : python3 -m pip install coverage
+Successfully installed coverage-6.1.1
+
 coverage run -m pytest  unittest
 coverage report -m > qualite/couv_test_verbose.txt
+
+==========================
+Publication sous GitHub : voir start_modif_git_finance.txt
+==========================
 

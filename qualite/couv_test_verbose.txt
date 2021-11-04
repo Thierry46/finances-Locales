@@ -1,14 +1,14 @@
 Name                                                 Stmts   Miss  Cover   Missing
 ----------------------------------------------------------------------------------
-database.py                                            405     12    97%   48-49, 55, 97-98, 362, 741, 753, 897-900
+database.py                                            405     12    97%   48-49, 55, 97-98, 362, 740, 752, 896-899
 genCode.py                                              75     14    81%   77, 88-91, 100, 106-109, 113, 115, 177-180
-genCodeCommon.py                                       254      1    99%   449
+genCodeCommon.py                                       286      1    99%   449
 genCodeGraphiques.py                                   121      4    97%   445-451
 genCodeGroupement.py                                    68     15    78%   77, 88-91, 100, 106-109, 113, 115, 162, 168-171
 genCodeGroupementTableaux.py                            40      0   100%
 genCodeGroupementTexte.py                              117     27    77%   57, 85-86, 135, 171-207
-genCodeTableaux.py                                     121      0   100%
-genCodeTexte.py                                        119      1    99%   84
+genCodeTableaux.py                                      91      0   100%
+genCodeTexte.py                                        107      1    99%   84
 genHTML.py                                             181      0   100%
 genHTMLCodeGraphiques.py                                60      1    98%   86
 genHTMLCodeTableaux.py                                  91      0   100%
@@ -20,11 +20,11 @@ initBdFomListeDep.py                                   120     32    73%   78, 8
 ratioTendance.py                                       126      9    93%   49, 60, 129-135
 unittest/test_database.py                              568     18    97%   103, 145, 247, 320, 365, 389, 424, 471, 521, 552, 597, 644, 681, 705, 763, 807, 846, 1180
 unittest/test_genCode.py                                66      1    98%   56
-unittest/test_genCodeCommon.py                         273      0   100%
+unittest/test_genCodeCommon.py                         299      0   100%
 unittest/test_genCodeGraphiques.py                     122      1    99%   282
 unittest/test_genCodeGroupement.py                      74      1    99%   56
 unittest/test_genCodeGroupementTexte.py                 50      0   100%
-unittest/test_genCodeTableaux.py                       108      0   100%
+unittest/test_genCodeTableaux.py                        82      0   100%
 unittest/test_genCodeTexte.py                           58      0   100%
 unittest/test_genHTML.py                               182      1    99%   153
 unittest/test_genHTMLCodeGraphiques.py                  51      1    98%   108
@@ -36,13 +36,13 @@ unittest/test_updateDataMinFi.py                        88      2    98%   67-68
 unittest/test_updateDataMinFiCommon.py                  30      0   100%
 unittest/test_updateDataMinFiGroupementCommunes.py      48      0   100%
 unittest/test_updateGroupementsCommunes.py              70      3    96%   98-100
-unittest/test_updateScoreWikipedia.py                   53      0   100%
+unittest/test_updateScoreWikipedia.py                   56      0   100%
 unittest/test_utilitaires.py                           122      0   100%
 updateDataMinFi.py                                     119     25    79%   73, 81-84, 88-93, 99-103, 108-111, 118-125, 135-137, 154, 243, 261-262
 updateDataMinFiCommon.py                                26      0   100%
 updateDataMinFiGroupementCommunes.py                    86     24    72%   74, 82-85, 89-94, 100-104, 109-112, 117-122, 133-136, 201-203, 214-215
 updateGroupementsCommunes.py                           195     20    90%   112, 121-124, 133, 136-138, 144-147, 152-155, 159, 174, 178-180, 222-223, 437-438
 updateScoreWikipedia.py                                112     18    84%   79, 88-91, 100, 103-104, 110-114, 119-122, 135-137, 288-289
-utilitaires.py                                         372     11    97%   314-316, 329-334, 350, 564
+utilitaires.py                                         373     11    97%   314-316, 329-334, 350, 565
 ----------------------------------------------------------------------------------
-TOTAL                                                 5369    253    95%
+TOTAL                                                 5363    253    95%

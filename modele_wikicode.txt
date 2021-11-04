@@ -10,7 +10,7 @@ pour enrichir le chapitre consacré au finances locales
     et le modèle <NOM_MODELE> pour l'article <VILLE>.
     En cas de problème, contactez-moi SVP : Utilisateur:Thierry46
     Additionnons nos forces, partageons nos connaissances ! -->
-Cette section est consacrée aux [[Finances locales en France|finances locales]] <ARTICLE_VILLE><VILLE> de <ANNEE0> à <ANNEE><ref group="Note">Cette section est réalisée à partir des données des données du site <URL_BASE> du [[Ministère de l'Économie et des Finances (France)|ministère de l'Économie et des Finances]].
+Cette section est consacrée aux [[Finances locales en France|finances locales]] <ARTICLE_VILLE><VILLE> de <ANNEE0> à <ANNEE><ref group="Note">Cette section est réalisée à partir des données du site <URL_BASE> du [[Ministère de l'Économie et des Finances (France)|ministère de l'Économie et des Finances]].
 Pour constituer cette partie, l'outil <OUTIL_NOM> version <VERSION> a effectué la synthèse des tableaux du site <URL_BASE> concernant <VILLE>.
 Finances locales est un [[logiciels libres|logiciel libre]] distribué en [[copyleft]] sous [[licence (juridique)|licence]] [[Licence publique générale GNU|GNU GPL version 3]].
 </ref>.

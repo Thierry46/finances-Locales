@@ -133,10 +133,16 @@ def test_recupScoreDataVilles(listeCodeCommuneNomWkp, scoresVilleOK):
     """ Test recup score pour une série de villes """
     config = configparser.RawConfigParser()
     config.read('FinancesLocales.properties')
+    scoreMax = config.getint('Test', 'test.scoreMax')
 
-    scoresVille = updateScoreWikipedia.recupScoreDataVilles(config, listeCodeCommuneNomWkp, True)
+    scoresVille = updateScoreWikipedia.recupScoreDataVilles(config,
+                                                            listeCodeCommuneNomWkp,
+                                                            True)
     assert len(listeCodeCommuneNomWkp) == len(scoresVille)
-    assert scoresVille == scoresVilleOK
+    for indice, score1Ville in enumerate(listeCodeCommuneNomWkp):
+    	codeCommune = listeCodeCommuneNomWkp[indice][0]
+    	assert scoresVille[codeCommune] >= scoresVilleOK[codeCommune] and \
+    	       scoresVille[codeCommune] <= scoreMax
 
 def test_recupScoreDataVilles_Pb404():
     """ Test recup score pour une série de villes """

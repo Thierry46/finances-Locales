@@ -1,0 +1,70 @@
+mkdir gitdir2
+cd gitdir2
+git clone https://github.com/Thierry46/finances-Locales.git
+cd finances-Locales
+Copie des fichiers modifiés ou modif ici (mieux)
+cp -r <rep_ok_hors_git>/*.py .
+git add .
+
+git status
+On branch master
+Your branch is up to date with 'origin/master'.
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   FinancesLocales.properties
+	modified:   database.py
+...
+	modified:   unittest/test_genHTML.py
+	modified:   utilitaires.py
+
+git commit -m "V4.0.1 : fix bug for strate text and strate comparison table legend"
+git push origin master
+
+Si Problème d'authentification
+thierry@pc19 finances-Locales % git push origin master
+remote: Invalid username or password.
+fatal: Authentication failed for 'https://github.com/Thierry46/finances-Locales.git/'
+https://www.freecodecamp.org/news/git-ssh-how-to/
+
+solution :
+generation d'une clé RSA 4096 bit
+ssh-keygen -t rsa -b 4096 -C thierry.maillard500@orange.fr
+ssh-add ~/.ssh/id_rsa
+Copie de la clé publique dans github
+cat ~/.ssh/id_rsa.pub
+copie dans clipboard
+Ajout dans https://github.com/settings/keys
+Test : 
+ssh -T git@github.com
+Warning: Permanently added the RSA host key for IP address '140.82.121.3' to the list of known hosts.
+Hi Thierry46! You've successfully authenticated, but GitHub does not provide shell access.
+
+-----
+Enumerating objects: 219, done.
+Counting objects: 100% (216/216), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (158/158), done.
+Writing objects: 100% (161/161), 221.76 KiB | 3.96 MiB/s, done.
+Total 161 (delta 109), reused 1 (delta 0)
+remote: Resolving deltas: 100% (109/109), completed with 41 local objects.
+To https://github.com/Thierry46/finances-Locales.git
+   c09263f..8d9267e  master -> master
+--------
+git status
+---------
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+-----
+
+Creation d'un tag pour cette version :
+Sous GitHub :
+https://github.com/Thierry46/finances-Locales
+Clic Tag
+Clic Releases
+Clic Draft new releases
+v4.0.0 : nom de code : Yin Yang Tau - 4/7/2020
+	13612 lignes au total : 7719 lignes de code + 5893 lignes de test
+	- Traitement des finances locales des groupements de communes
+	source données : https://www.data.gouv.fr/fr/datasets/comptes-individuels-des-groupements-a-fiscalite-propre-fichier-global-a-compter-de-2007
