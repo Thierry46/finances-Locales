@@ -39,6 +39,7 @@ ssh -T git@github.com
 Warning: Permanently added the RSA host key for IP address '140.82.121.3' to the list of known hosts.
 Hi Thierry46! You've successfully authenticated, but GitHub does not provide shell access.
 
+
 -----
 Enumerating objects: 219, done.
 Counting objects: 100% (216/216), done.
@@ -68,3 +69,18 @@ v4.0.0 : nom de code : Yin Yang Tau - 4/7/2020
 	13612 lignes au total : 7719 lignes de code + 5893 lignes de test
 	- Traitement des finances locales des groupements de communes
 	source données : https://www.data.gouv.fr/fr/datasets/comptes-individuels-des-groupements-a-fiscalite-propre-fichier-global-a-compter-de-2007
+	
+PAT : personnal access token a la place du mot de passe
+git push origin master
+Username for 'https://github.com': Thierry46
+Password for 'https://Thierry46@github.com': <Utiliser le PAT : personnal access token a la place du mot de passe>
+Énumération des objets: 175, fait.
+Décompte des objets: 100% (175/175), fait.
+Compression par delta en utilisant jusqu'à 4 fils d'exécution
+Compression des objets: 100% (102/102), fait.
+Écriture des objets: 100% (106/106), 118.05 Kio | 4.54 Mio/s, fait.
+Total 106 (delta 80), réutilisés 1 (delta 0), réutilisés du pack 0
+remote: Resolving deltas: 100% (80/80), completed with 23 local objects.
+To https://github.com/Thierry46/finances-Locales.git
+   9c6b36c..5cb6d73  master -> master
+
