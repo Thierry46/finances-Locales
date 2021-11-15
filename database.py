@@ -714,12 +714,12 @@ def updateInfosGroupement(connDB, listeSirenCodeCommune,
     # Valeur par défaut si champ non trouvé dans Wikipédia : None
     listeChamps = ["nomArticleCC", "nom", "région", "département", "forme", "siège",
                    "logo", "siteWeb", "sirenGroupement"]
-    listeInfosGroupement4Update = list()
+    listeInfosGroupement4Update = []
     for codeSiren in list(setSirenInfos4Update):
         listInfosChamp = [dictSirenInfoCC[codeSiren].get(champ, None)
                           for champ in listeChamps]
         listeInfosGroupement4Update.append(listInfosChamp)
-    listeInfosGroupement4Insert = list()
+    listeInfosGroupement4Insert = []
     for codeSiren in list(setSirenInfos4Insert):
         listInfosChamp = [dictSirenInfoCC[codeSiren].get(champ, None)
                           for champ in listeChamps]
@@ -770,7 +770,7 @@ def getSirenInfosGroupementsAnnees(connDB, verbose):
     if verbose:
         print("Entree dans getSirenInfosGroupementsAnnees")
 
-    dictSirenInfos = dict()
+    dictSirenInfos = {}
     cursor = connDB.cursor()
 
     # Récupère les informations des groupements des villes de la base
@@ -886,7 +886,7 @@ def getAllValeursDataMinFi4Entite(connDB, typeEntite,
     cursor.close()
 
     # Fabrique le dictionnaire résultat
-    dictAllGrandeur = dict()
+    dictAllGrandeur = {}
     for grandeur in listeClesValeur:
         valeur = grandeur[1]
         if grandeur[2] != "Valeur simple":
@@ -898,9 +898,9 @@ def getAllValeursDataMinFi4Entite(connDB, typeEntite,
                 print("Ignore entité=", cleEntite, grandeur)
                 continue
         if grandeur[2] not in dictAllGrandeur:
-            dictAllGrandeur[grandeur[2]] = dict()
+            dictAllGrandeur[grandeur[2]] = {}
         if grandeur[3] not in dictAllGrandeur[grandeur[2]]:
-            dictAllGrandeur[grandeur[2]][grandeur[3]] = dict()
+            dictAllGrandeur[grandeur[2]][grandeur[3]] = {}
         dictAllGrandeur[grandeur[2]][grandeur[3]][grandeur[0]] = \
              valeur
 

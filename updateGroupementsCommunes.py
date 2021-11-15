@@ -124,15 +124,15 @@ def main(argv=None):
         sys.exit(1)
 
     # process options
-    for option, arg in opts:
+    for opt in opts:
         verboseOpt, sortiePgm = \
-            utilitaires.traiteOptionStd(config, option, nomProg, __doc__,
+            utilitaires.traiteOptionStd(config, opt[0], nomProg, __doc__,
                                         ['database/minfi.db'])
         verbose = verbose or verboseOpt
         if sortiePgm:
             sys.exit(0)
 
-        if option in ("-f", "--fast"):
+        if opt[0] in ("-f", "--fast"):
             print("\nMode fast : ne traite que les villes (non anciennes)\n"
                   "\tdont les numéros de SIREN sont inconnus")
             isFast = True
@@ -212,11 +212,10 @@ def recupInfosCC(config, nomCCVilles, verbose):
         print("Entrée dans recupInfosCC")
 
     # Itération sur les liens CC sans doublons pour récupérer les infos sur les CC
-    dictInfoCC = dict()
-    for lienCC in set([nomCCVilles[codeCommune]["lienCC"]
+    dictInfoCC = {}
+    for lienCC in {nomCCVilles[codeCommune]["lienCC"]
                        for codeCommune in nomCCVilles
-                       if nomCCVilles[codeCommune]["ancienneCommune"] == 0
-                      ]):
+                       if nomCCVilles[codeCommune]["ancienneCommune"] == 0}:
         try:
             dictInfoCC[lienCC] = recupInfosPage1CC(config, lienCC, verbose)
         except ValueError as exc:
@@ -285,7 +284,7 @@ def recupInfosPage1CCInfobox(nomArticleCC, page, verbose):
         print("Entrée dans recupInfosPage1CCInfobox")
         print("page Wikipedia nomArticleCC=", nomArticleCC)
 
-    dictInfos1CC = dict()
+    dictInfos1CC = {}
     dictInfos1CC["nomArticleCC"] = urllib.request.url2pathname(nomArticleCC)
 
     foundInfobox = False
@@ -353,7 +352,7 @@ def recupNomCCVilles(config, listeCodeCommuneNomWkp, verbose):
         print("Entrée dans recupNomCCVilles")
         print("listeCodeCommuneNomWkp=", listeCodeCommuneNomWkp)
 
-    nomCCVilles = dict()
+    nomCCVilles = {}
     for (codeCommune, nomWkpFr) in listeCodeCommuneNomWkp:
         # Construction du lien sur l'article Wikipedia pour cette ville
         nomArticle = urllib.request.pathname2url(nomWkpFr)
@@ -381,7 +380,7 @@ def recupNomCC1Ville(page, verbose):
         print("Entrée dans recupNomCC1Ville")
 
     # Définition des expressions régulières de selection
-    dictInfosCC = dict()
+    dictInfosCC = {}
     inInfobox = False
     levelAccolade = 0
     for line in page.splitlines():

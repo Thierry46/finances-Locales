@@ -79,7 +79,7 @@ def calculeGrandeur(config, dictAllGrandeur, listAnnees, isWikicode, verbose):
     cleRessourceInv = "total des ressources d'investissement"
     cleRessourceInvHab = "total des ressources d'investissement par habitant"
     if cleManquante not in dictAllGrandeur['Valeur totale']:
-        dictValeurAnnee = dict()
+        dictValeurAnnee = {}
         for annee in listAnnees:
             dictValeurAnnee[annee] = \
                 dictAllGrandeur['Valeur totale'][cleEmploiInv][annee] - \
@@ -87,7 +87,7 @@ def calculeGrandeur(config, dictAllGrandeur, listAnnees, isWikicode, verbose):
             dictAllGrandeur['Valeur totale'][cleManquante] = dictValeurAnnee
 
     if cleManquanteHab not in dictAllGrandeur['Par habitant']:
-        dictValeurAnnee = dict()
+        dictValeurAnnee = {}
         for annee in listAnnees:
             dictValeurAnnee[annee] = \
                 dictAllGrandeur['Par habitant'][cleEmploiInvHab][annee] - \
@@ -201,7 +201,7 @@ def triPourCent(config, sommeValeurTotal, dictValeurs,
             dictValeurs[defValeur]['ratioStratePictoAlt'] = alt
 
     # tri des cles par importance decroissante
-    dictCleValeur = dict()
+    dictCleValeur = {}
     for defValeur in dictValeurs:
         dictCleValeur[defValeur] = dictValeurs[defValeur]["Valeur totale"]*1e3
     cleTriee = [e[0] for e in sorted(list(dictCleValeur.items()),
@@ -244,7 +244,7 @@ def getValeursDict(dictAllGrandeur,
 
         # V1.0.0 : Preparation données pour calcul tendance
         cle = dictValeurs[defValeur]['cle'] + " par habitant"
-        dictAnneesValeur = dict()
+        dictAnneesValeur = {}
         for anneeTendance in listeAnneesTendance:
             dictAnneesValeur[anneeTendance] = \
                     dictAllGrandeur["Par habitant"][cle][anneeTendance]
@@ -272,7 +272,7 @@ def genlignesTableauPicto(motCle, nbLignes, couleur, unite,
         print("couleur=", couleur)
         print("avecStrate=", avecStrate)
 
-    lignes = list()
+    lignes = []
     for numLigne in range(1, nbLignes+1):
         if isWikicode:
             ligne = ' |----\n'

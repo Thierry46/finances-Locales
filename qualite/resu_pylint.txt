@@ -1,24 +1,13 @@
 ************* Module database
 database.py:200:0: R0912: Too many branches (16/12) (too-many-branches)
-database.py:717:34: R1734: Consider using [] instead of list() (use-list-literal)
-database.py:722:34: R1734: Consider using [] instead of list() (use-list-literal)
-database.py:773:21: R1735: Consider using {} instead of dict() (use-dict-literal)
-database.py:889:22: R1735: Consider using {} instead of dict() (use-dict-literal)
-database.py:901:43: R1735: Consider using {} instead of dict() (use-dict-literal)
-database.py:903:56: R1735: Consider using {} instead of dict() (use-dict-literal)
 ************* Module genCodeCommon
-genCodeCommon.py:82:26: R1735: Consider using {} instead of dict() (use-dict-literal)
-genCodeCommon.py:90:26: R1735: Consider using {} instead of dict() (use-dict-literal)
 genCodeCommon.py:125:0: R0913: Too many arguments (7/5) (too-many-arguments)
 genCodeCommon.py:125:0: R0914: Too many local variables (18/15) (too-many-locals)
 genCodeCommon.py:161:16: C0209: Formatting a regular string which could be a f-string (consider-using-f-string)
 genCodeCommon.py:183:24: C0209: Formatting a regular string which could be a f-string (consider-using-f-string)
-genCodeCommon.py:204:20: R1735: Consider using {} instead of dict() (use-dict-literal)
 genCodeCommon.py:125:0: R0912: Too many branches (17/12) (too-many-branches)
 genCodeCommon.py:216:0: R0913: Too many arguments (6/5) (too-many-arguments)
-genCodeCommon.py:247:27: R1735: Consider using {} instead of dict() (use-dict-literal)
 genCodeCommon.py:259:0: R0913: Too many arguments (8/5) (too-many-arguments)
-genCodeCommon.py:275:13: R1734: Consider using [] instead of list() (use-list-literal)
 genCodeCommon.py:259:0: R0912: Too many branches (17/12) (too-many-branches)
 genCodeCommon.py:327:0: R0913: Too many arguments (10/5) (too-many-arguments)
 genCodeCommon.py:327:0: R0914: Too many local variables (36/15) (too-many-locals)
@@ -27,43 +16,31 @@ genCodeCommon.py:327:0: R0915: Too many statements (87/50) (too-many-statements)
 ************* Module genCodeGraphiques
 genCodeGraphiques.py:36:0: R0913: Too many arguments (10/5) (too-many-arguments)
 genCodeGraphiques.py:36:0: R0914: Too many local variables (37/15) (too-many-locals)
-genCodeGraphiques.py:71:22: R1734: Consider using [] instead of list() (use-list-literal)
 genCodeGraphiques.py:36:0: R0915: Too many statements (64/50) (too-many-statements)
-genCodeGraphiques.py:477:21: R1735: Consider using {} instead of dict() (use-dict-literal)
-genCodeGraphiques.py:498:4: C0206: Consider iterating with .items() (consider-using-dict-items)
 ************* Module genCodeGroupement
-genCodeGroupement.py:94:16: W0612: Unused variable 'arg' (unused-variable)
 genCodeGroupement.py:133:0: R0913: Too many arguments (6/5) (too-many-arguments)
 ************* Module genCodeGroupementTableaux
 genCodeGroupementTableaux.py:36:0: R0914: Too many local variables (26/15) (too-many-locals)
 ************* Module genCodeGroupementTexte
 genCodeGroupementTexte.py:37:0: R0913: Too many arguments (9/5) (too-many-arguments)
 genCodeGroupementTexte.py:37:0: R0914: Too many local variables (33/15) (too-many-locals)
-genCodeGroupementTexte.py:159:13: W1514: Using open without explicitly specifying an encoding (unspecified-encoding)
 genCodeGroupementTexte.py:37:0: R0915: Too many statements (92/50) (too-many-statements)
 ************* Module genCode
-genCode.py:94:16: W0612: Unused variable 'arg' (unused-variable)
 genCode.py:133:0: R0913: Too many arguments (6/5) (too-many-arguments)
 ************* Module genCodeTableaux
-genCodeTableaux.py:38:0: R0913: Too many arguments (7/5) (too-many-arguments)
-genCodeTableaux.py:38:0: R0914: Too many local variables (27/15) (too-many-locals)
-genCodeTableaux.py:72:20: R1734: Consider using [] instead of list() (use-list-literal)
-genCodeTableaux.py:269:0: R0914: Too many local variables (26/15) (too-many-locals)
-genCodeTableaux.py:36:0: W0611: Unused import utilitaires (unused-import)
+genCodeTableaux.py:37:0: R0913: Too many arguments (7/5) (too-many-arguments)
+genCodeTableaux.py:37:0: R0914: Too many local variables (27/15) (too-many-locals)
+genCodeTableaux.py:268:0: R0914: Too many local variables (26/15) (too-many-locals)
 ************* Module genCodeTexte
 genCodeTexte.py:38:0: R0913: Too many arguments (10/5) (too-many-arguments)
 genCodeTexte.py:38:0: R0914: Too many local variables (37/15) (too-many-locals)
 genCodeTexte.py:38:0: R0915: Too many statements (89/50) (too-many-statements)
 ************* Module genereCode1Groupement
 genereCode1Groupement.py:45:0: R0913: Too many arguments (7/5) (too-many-arguments)
-genereCode1Groupement.py:97:17: W1514: Using open without explicitly specifying an encoding (unspecified-encoding)
 genereCode1Groupement.py:108:0: R0913: Too many arguments (8/5) (too-many-arguments)
 genereCode1Groupement.py:108:0: R0914: Too many local variables (17/15) (too-many-locals)
-genereCode1Groupement.py:118:17: R1719: The if expression can be replaced with 'test' (simplifiable-if-expression)
-genereCode1Groupement.py:124:9: W1514: Using open without explicitly specifying an encoding (unspecified-encoding)
 ************* Module genereCode1Ville
 genereCode1Ville.py:44:0: R0913: Too many arguments (7/5) (too-many-arguments)
-genereCode1Ville.py:94:17: W1514: Using open without explicitly specifying an encoding (unspecified-encoding)
 genereCode1Ville.py:105:0: R0913: Too many arguments (8/5) (too-many-arguments)
 genereCode1Ville.py:105:0: R0914: Too many local variables (20/15) (too-many-locals)
 ************* Module genHTMLCodeGraphiques
@@ -75,15 +52,6 @@ genHTMLCodeGraphiques.py:51:0: R0915: Too many statements (51/50) (too-many-stat
 genHTMLCodeTableaux.py:34:0: R0913: Too many arguments (9/5) (too-many-arguments)
 genHTMLCodeTableaux.py:34:0: R0914: Too many local variables (21/15) (too-many-locals)
 genHTMLCodeTableaux.py:115:0: R0913: Too many arguments (9/5) (too-many-arguments)
-************* Module genHTML
-genHTML.py:78:11: W1514: Using open without explicitly specifying an encoding (unspecified-encoding)
-genHTML.py:78:11: R1732: Consider using 'with' for resource-allocating operations (consider-using-with)
-genHTML.py:175:16: W1514: Using open without explicitly specifying an encoding (unspecified-encoding)
-genHTML.py:175:16: R1732: Consider using 'with' for resource-allocating operations (consider-using-with)
-genHTML.py:194:11: W1514: Using open without explicitly specifying an encoding (unspecified-encoding)
-genHTML.py:194:11: R1732: Consider using 'with' for resource-allocating operations (consider-using-with)
-************* Module genIndexSite
-genIndexSite.py:88:16: W0612: Unused variable 'arg' (unused-variable)
 ************* Module genWikiCodeGraphiques
 genWikiCodeGraphiques.py:34:0: R0913: Too many arguments (9/5) (too-many-arguments)
 genWikiCodeGraphiques.py:34:0: R0914: Too many local variables (33/15) (too-many-locals)
@@ -99,69 +67,42 @@ genWikiCodeTableaux.py:114:0: R0913: Too many arguments (9/5) (too-many-argument
 genWikiCodeTableaux.py:114:0: R0914: Too many local variables (16/15) (too-many-locals)
 ************* Module initBdFomListeDep
 initBdFomListeDep.py:61:0: R0914: Too many local variables (21/15) (too-many-locals)
-initBdFomListeDep.py:155:51: E1101: Instance of 'ValueError' has no 'value' member (no-member)
 initBdFomListeDep.py:95:16: W0612: Unused variable 'arg' (unused-variable)
 initBdFomListeDep.py:61:0: R0912: Too many branches (14/12) (too-many-branches)
 initBdFomListeDep.py:61:0: R0915: Too many statements (57/50) (too-many-statements)
-initBdFomListeDep.py:195:9: W1514: Using open without explicitly specifying an encoding (unspecified-encoding)
 ************* Module ratioTendance
-ratioTendance.py:57:16: R1735: Consider using {} instead of dict() (use-dict-literal)
-ratioTendance.py:63:12: R1730: Consider using 'ratio = min(ratio, seuilEcreteRatio)' instead of unnecessary if block (consider-using-min-builtin)
-ratioTendance.py:72:0: R0912: Too many branches (20/12) (too-many-branches)
-ratioTendance.py:72:0: R0915: Too many statements (63/50) (too-many-statements)
-ratioTendance.py:180:20: C0209: Formatting a regular string which could be a f-string (consider-using-f-string)
-************* Module updateDataMinFiCommon
-updateDataMinFiCommon.py:62:26: R1735: Consider using {} instead of dict() (use-dict-literal)
-updateDataMinFiCommon.py:34:0: W0611: Unused import os (unused-import)
-updateDataMinFiCommon.py:35:0: W0611: Unused import os.path (unused-import)
+ratioTendance.py:71:0: R0912: Too many branches (20/12) (too-many-branches)
+ratioTendance.py:71:0: R0915: Too many statements (63/50) (too-many-statements)
+ratioTendance.py:179:20: C0209: Formatting a regular string which could be a f-string (consider-using-f-string)
 ************* Module updateDataMinFiGroupementCommunes
-updateDataMinFiGroupementCommunes.py:56:0: R0914: Too many local variables (24/15) (too-many-locals)
+updateDataMinFiGroupementCommunes.py:56:0: R0914: Too many local variables (23/15) (too-many-locals)
 updateDataMinFiGroupementCommunes.py:164:15: R0916: Too many boolean expressions in if statement (8/5) (too-many-boolean-expressions)
-updateDataMinFiGroupementCommunes.py:88:16: W0612: Unused variable 'arg' (unused-variable)
 updateDataMinFiGroupementCommunes.py:56:0: R0915: Too many statements (57/50) (too-many-statements)
-updateDataMinFiGroupementCommunes.py:196:17: R1735: Consider using {} instead of dict() (use-dict-literal)
 ************* Module updateDataMinFi
 updateDataMinFi.py:56:0: R0914: Too many local variables (26/15) (too-many-locals)
 updateDataMinFi.py:87:16: W0612: Unused variable 'arg' (unused-variable)
 updateDataMinFi.py:56:0: R0915: Too many statements (55/50) (too-many-statements)
-updateDataMinFi.py:222:17: R1735: Consider using {} instead of dict() (use-dict-literal)
-updateDataMinFi.py:228:8: W0707: Consider explicitly re-raising using the 'from' keyword (raise-missing-from)
 ************* Module updateGroupementsCommunes
-updateGroupementsCommunes.py:94:0: R0914: Too many local variables (20/15) (too-many-locals)
-updateGroupementsCommunes.py:127:16: W0612: Unused variable 'arg' (unused-variable)
-updateGroupementsCommunes.py:215:17: R1735: Consider using {} instead of dict() (use-dict-literal)
-updateGroupementsCommunes.py:216:18: R1718: Consider using a set comprehension (consider-using-set-comprehension)
-updateGroupementsCommunes.py:241:0: C0206: Consider iterating with .items() (consider-using-dict-items)
-updateGroupementsCommunes.py:288:19: R1735: Consider using {} instead of dict() (use-dict-literal)
-updateGroupementsCommunes.py:295:4: R1702: Too many nested blocks (7/5) (too-many-nested-blocks)
-updateGroupementsCommunes.py:295:4: R1702: Too many nested blocks (7/5) (too-many-nested-blocks)
-updateGroupementsCommunes.py:274:0: R0912: Too many branches (16/12) (too-many-branches)
-updateGroupementsCommunes.py:356:18: R1735: Consider using {} instead of dict() (use-dict-literal)
-updateGroupementsCommunes.py:384:18: R1735: Consider using {} instead of dict() (use-dict-literal)
-updateGroupementsCommunes.py:373:0: R0912: Too many branches (14/12) (too-many-branches)
+updateGroupementsCommunes.py:94:0: R0914: Too many local variables (19/15) (too-many-locals)
+updateGroupementsCommunes.py:240:0: C0206: Consider iterating with .items() (consider-using-dict-items)
+updateGroupementsCommunes.py:294:4: R1702: Too many nested blocks (7/5) (too-many-nested-blocks)
+updateGroupementsCommunes.py:294:4: R1702: Too many nested blocks (7/5) (too-many-nested-blocks)
+updateGroupementsCommunes.py:273:0: R0912: Too many branches (16/12) (too-many-branches)
+updateGroupementsCommunes.py:372:0: R0912: Too many branches (14/12) (too-many-branches)
 ************* Module updateScoreWikipedia
-updateScoreWikipedia.py:62:0: R0914: Too many local variables (17/15) (too-many-locals)
-updateScoreWikipedia.py:94:16: W0612: Unused variable 'arg' (unused-variable)
-updateScoreWikipedia.py:177:18: R1735: Consider using {} instead of dict() (use-dict-literal)
-updateScoreWikipedia.py:187:29: R1735: Consider using {} instead of dict() (use-dict-literal)
+updateScoreWikipedia.py:62:0: R0914: Too many local variables (16/15) (too-many-locals)
 updateScoreWikipedia.py:207:0: R0914: Too many local variables (18/15) (too-many-locals)
-updateScoreWikipedia.py:221:20: R1734: Consider using [] instead of list() (use-list-literal)
 ************* Module utilitaires
-utilitaires.py:78:17: W1514: Using open without explicitly specifying an encoding (unspecified-encoding)
-utilitaires.py:78:17: R1732: Consider using 'with' for resource-allocating operations (consider-using-with)
-utilitaires.py:155:23: C0209: Formatting a regular string which could be a f-string (consider-using-f-string)
-utilitaires.py:157:23: C0209: Formatting a regular string which could be a f-string (consider-using-f-string)
-utilitaires.py:161:0: R0912: Too many branches (14/12) (too-many-branches)
-utilitaires.py:215:0: R0914: Too many local variables (19/15) (too-many-locals)
-utilitaires.py:280:4: W0603: Using the global statement (global-statement)
-utilitaires.py:326:8: C0415: Import outside toplevel (matplotlib) (import-outside-toplevel)
-utilitaires.py:326:8: W0611: Unused import matplotlib (unused-import)
-utilitaires.py:397:4: C0206: Consider iterating with .items() (consider-using-dict-items)
-utilitaires.py:465:20: R1735: Consider using {} instead of dict() (use-dict-literal)
-utilitaires.py:625:25: R1735: Consider using {} instead of dict() (use-dict-literal)
+utilitaires.py:154:23: C0209: Formatting a regular string which could be a f-string (consider-using-f-string)
+utilitaires.py:156:23: C0209: Formatting a regular string which could be a f-string (consider-using-f-string)
+utilitaires.py:160:0: R0912: Too many branches (14/12) (too-many-branches)
+utilitaires.py:214:0: R0914: Too many local variables (19/15) (too-many-locals)
+utilitaires.py:279:4: W0603: Using the global statement (global-statement)
+utilitaires.py:325:8: C0415: Import outside toplevel (matplotlib) (import-outside-toplevel)
+utilitaires.py:325:8: W0611: Unused import matplotlib (unused-import)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==genCodeGroupementTableaux:[120:187]
-==genCodeTableaux:[362:429]
+==genCodeTableaux:[361:428]
     }
     grandeursAnalyse.append([dictCharges, chargesF, "CHARGE", couleurCharges])
 
@@ -233,7 +174,7 @@ utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==genCode:[63:127]
 ==genCodeGroupement:[63:127]
 def main(argv=None):
-    """ Génère le Wikicode et du HTML pour les villes d'un département """
+    """ Génère le Wikicode et du HTML pour les groupements d'un département """
     # Valeur par défaut des options
     verbose = False
 
@@ -262,9 +203,9 @@ def main(argv=None):
         sys.exit(1)
 
     # process options
-    for option, arg in opts:
+    for opt in opts:
         verboseOpt, sortiePgm = \
-            utilitaires.traiteOptionStd(config, option, nomProg, __doc__,
+            utilitaires.traiteOptionStd(config, opt[0], nomProg, __doc__,
                                         ["../database/minfi.db ../Resultats",])
         verbose = verbose or verboseOpt
         if sortiePgm:
@@ -295,10 +236,10 @@ def main(argv=None):
     # Ouvre la base de données
     connDB = database.createDatabase(config, databasePath, verbose)
 
-    # Récup et traitement des départements (duplicate-code)
+    # Récup et traitement des groupements de communes (duplicate-code)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==genCodeGroupementTableaux:[188:226]
-==genCodeTableaux:[431:469]
+==genCodeTableaux:[430:468]
                                        isWikicode, verbose) :
         {
             'libellePicto' : 'Autres impôts',
@@ -380,7 +321,8 @@ utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==updateScoreWikipedia:[61:102]
 def main(argv=None):
     """
-        Met à jour la base de données avec les scores Wikipedia.
+        Met à jour la base de données avec les
+        infos sur les regroupements de communes.
     """
     # Valeur par défaut des options
     verbose = False
@@ -410,18 +352,18 @@ def main(argv=None):
         sys.exit(1)
 
     # process options
-    for option, arg in opts:
+    for opt in opts:
         verboseOpt, sortiePgm = \
-            utilitaires.traiteOptionStd(config, option, nomProg, __doc__,
+            utilitaires.traiteOptionStd(config, opt[0], nomProg, __doc__,
                                         ['database/minfi.db'])
         verbose = verbose or verboseOpt
         if sortiePgm:
             sys.exit(0)
 
-        if option in ("-f", "--fast"): (duplicate-code)
+        if opt[0] in ("-f", "--fast"): (duplicate-code)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==genCodeGroupementTableaux:[286:310]
-==genCodeTableaux:[527:551]
+==genCodeTableaux:[526:550]
                                           isWikicode, verbose)
         }
     }
@@ -447,8 +389,68 @@ utilitaires.py:1:0: R0801: Similar lines in 2 files
 
     if verbose: (duplicate-code)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
-==updateDataMinFi:[48:88]
-==updateDataMinFiGroupementCommunes:[48:89]
+==genCodeGroupementTableaux:[94:114]
+==genCodeTableaux:[324:344]
+                                                     isWikicode, verbose) + \
+            ' ou charge externe'
+        },
+        'des charges financières' :
+        {
+            'libellePicto' : 'charges financières',
+            'cle' : "charges financières",
+            'note' : "Les « charges financières » correspondent à la rémunération " + \
+                         "des ressources d'[[Emprunt (finance)|emprunt]].",
+            'noteHtml' : "9",
+            'nul' : 'aucune charge financière'
+        },
+        'des ' + genCodeCommon.genLien(config, ["subventions"],
+                                       isWikicode, verbose) + \
+        ' versées' :
+        {
+            'libellePicto' : 'subventions versées',
+            'cle' : "subventions versées",
+            'note' : "Les « subventions versées » rassemblent l'ensemble " + \
+                     "des [[subvention]]s à des associations votées par le " + \ (duplicate-code)
+utilitaires.py:1:0: R0801: Similar lines in 2 files
+==genCodeGroupement:[63:96]
+==genIndexSite:[56:90]
+def main(argv=None):
+    """ Génere l'index des départements """
+
+    # Valeur par défaut des options
+    verbose = False
+
+    # Lecture du fichier de propriétés
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+
+    #############################
+    # Analyse des arguments reçus
+    #############################
+    if argv is None:
+        argv = sys.argv
+
+    nomProg = os.path.basename(argv[0])
+
+    # parse command line options
+    try:
+        opts, args = getopt.getopt(
+            argv[1:],
+            "huvV",
+            ["help", "usage", "version", "verbose"]
+            )
+    except getopt.error as msg:
+        print(msg)
+        print("To get help use --help ou -h")
+        sys.exit(1)
+
+    # process options
+    for opt in opts:
+        verboseOpt, sortiePgm = \
+            utilitaires.traiteOptionStd(config, opt[0], nomProg, __doc__, (duplicate-code)
+utilitaires.py:1:0: R0801: Similar lines in 2 files
+==updateDataMinFi:[48:86]
+==updateDataMinFiGroupementCommunes:[48:87]
 import utilitaires
 import database
 import updateDataMinFiCommon
@@ -486,71 +488,10 @@ def main(argv=None):
         print("Pour avoir de l'aide : --help ou -h", file=sys.stderr)
         sys.exit(1)
 
-    # process options
-    for option, arg in opts:
-        verboseOpt, sortiePgm = \ (duplicate-code)
-utilitaires.py:1:0: R0801: Similar lines in 2 files
-==genCodeGroupementTableaux:[94:114]
-==genCodeTableaux:[325:345]
-                                                     isWikicode, verbose) + \
-            ' ou charge externe'
-        },
-        'des charges financières' :
-        {
-            'libellePicto' : 'charges financières',
-            'cle' : "charges financières",
-            'note' : "Les « charges financières » correspondent à la rémunération " + \
-                         "des ressources d'[[Emprunt (finance)|emprunt]].",
-            'noteHtml' : "9",
-            'nul' : 'aucune charge financière'
-        },
-        'des ' + genCodeCommon.genLien(config, ["subventions"],
-                                       isWikicode, verbose) + \
-        ' versées' :
-        {
-            'libellePicto' : 'subventions versées',
-            'cle' : "subventions versées",
-            'note' : "Les « subventions versées » rassemblent l'ensemble " + \
-                     "des [[subvention]]s à des associations votées par le " + \ (duplicate-code)
-utilitaires.py:1:0: R0801: Similar lines in 2 files
-==genCodeGroupement:[63:96]
-==genIndexSite:[56:90]
-def main(argv=None):
-    """ Génère le Wikicode et du HTML pour les groupements d'un département """
-    # Valeur par défaut des options
-    verbose = False
-
-    # Lecture du fichier de propriétés
-    config = configparser.RawConfigParser()
-    config.read('FinancesLocales.properties')
-
-    #############################
-    # Analyse des arguments reçus
-    #############################
-    if argv is None:
-        argv = sys.argv
-
-    nomProg = os.path.basename(argv[0])
-
-    # parse command line options
-    try:
-        opts, args = getopt.getopt(
-            argv[1:],
-            "huvV",
-            ["help", "usage", "version", "verbose"]
-            )
-    except getopt.error as msg:
-        print(msg)
-        print("To get help use --help ou -h")
-        sys.exit(1)
-
-    # process options
-    for option, arg in opts:
-        verboseOpt, sortiePgm = \
-            utilitaires.traiteOptionStd(config, option, nomProg, __doc__, (duplicate-code)
+    # process options (duplicate-code)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==genCodeGroupementTableaux:[247:266]
-==genCodeTableaux:[488:507]
+==genCodeTableaux:[487:506]
         }
     }
     grandeursAnalyse.append([dictEmploiInvest, emploisI,
@@ -572,7 +513,7 @@ utilitaires.py:1:0: R0801: Similar lines in 2 files
         }, (duplicate-code)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==genCodeGroupementTableaux:[44:65]
-==genCodeTableaux:[277:298]
+==genCodeTableaux:[276:297]
     couleurSolde = config.get('Tableaux', 'tableaux.couleurSolde')
     couleurRecettes = config.get('Tableaux', 'tableaux.couleurRecettes')
     couleurCharges = config.get('Tableaux', 'tableaux.couleurCharges')
@@ -618,7 +559,7 @@ utilitaires.py:1:0: R0801: Similar lines in 2 files
                                       config.get('Modele', 'modele.type'))
     textSection = textSection.replace("<NOM_MODELE>", modele)
 
-    # Tags pour la ville (duplicate-code)
+    # Tags pour la groupement (duplicate-code)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==genCodeGroupement:[75:89]
 ==initBdFomListeDep:[76:90]
@@ -688,7 +629,7 @@ utilitaires.py:1:0: R0801: Similar lines in 2 files
     pathCSVDataGouvFr = args[1] (duplicate-code)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==genCodeGroupementTableaux:[274:284]
-==genCodeTableaux:[516:526]
+==genCodeTableaux:[515:525]
                                                       isWikicode, verbose) + " reçue"
         },
         genCodeCommon.genLien(config, ["fonds de Compensation pour la TVA"],
@@ -701,7 +642,7 @@ utilitaires.py:1:0: R0801: Similar lines in 2 files
             'nul' : "aucune somme au titre des " + \ (duplicate-code)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==genCodeGroupementTableaux:[82:92]
-==genCodeTableaux:[313:323]
+==genCodeTableaux:[312:322]
         ' et charges externes' :
         {
             'libellePicto' : 'Achats et charges ext.',
@@ -732,10 +673,9 @@ utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==updateDataMinFiGroupementCommunes:[55:79]
 def main(argv=None):
     """
-        Met à jour les données de groupement de communes de
-        la base de données du ministère des finances
-        à partir des fichiers .csv du répertoire passé en paramètres.
-    """
+        Stocke dans la base de données les villes indiquées dans une liste
+        Sans accès à Internet.
+        """
     # Valeur par défaut des options
     verbose = False
 
@@ -796,8 +736,7 @@ utilitaires.py:1:0: R0801: Similar lines in 2 files
     urlMinFi = config.get('Extraction', 'dataGouvFr.Comptes')
     textSection = textSection.replace("<URL_BASE>", urlMinFi)
     textSection = textSection.replace("<DATE>", time.strftime("%d %B %G"))
-
-    # Commentaire definition strate (duplicate-code)
+ (duplicate-code)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==updateDataMinFiGroupementCommunes:[65:79]
 ==updateScoreWikipedia:[70:84]
@@ -845,6 +784,17 @@ utilitaires.py:1:0: R0801: Similar lines in 2 files
         verboseOpt, sortiePgm = \
             utilitaires.traiteOptionStd(config, option, nomProg, __doc__, (duplicate-code)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
+==updateDataMinFiGroupementCommunes:[81:89]
+==updateGroupementsCommunes:[120:128]
+    except getopt.error as msg:
+        print(msg)
+        print("Pour avoir de l'aide : --help ou -h", file=sys.stderr)
+        sys.exit(1)
+
+    # process options
+    for opt in opts:
+        verboseOpt, sortiePgm = \ (duplicate-code)
+utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==updateDataMinFi:[90:99]
 ==updateDataMinFiGroupementCommunes:[91:100]
         verbose = verbose or verboseOpt
@@ -856,17 +806,6 @@ utilitaires.py:1:0: R0801: Similar lines in 2 files
     # Récuperation et analyse des paramètres
     if len(args) != 2:
         msg = __doc__ + "\nDonnez au moins 2 paramètres :\n"  + \ (duplicate-code)
-utilitaires.py:1:0: R0801: Similar lines in 2 files
-==initBdFomListeDep:[88:96]
-==updateDataMinFiGroupementCommunes:[81:89]
-    except getopt.error as msg:
-        print(msg)
-        print("Pour avoir de l'aide : --help ou -h", file=sys.stderr)
-        sys.exit(1)
-
-    # process options
-    for option, arg in opts:
-        verboseOpt, sortiePgm = \ (duplicate-code)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==genHTMLCodeTableaux:[112:122]
 ==genWikiCodeTableaux:[111:121]
@@ -893,16 +832,16 @@ utilitaires.py:1:0: R0801: Similar lines in 2 files
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==genHTMLCodeTableaux:[34:41]
 ==genWikiCodeTableaux:[114:121]
-                  listAnnees, nbAnneesTableau,
-                  listeGrandeurs,
-                  dictAllGrandeur,
-                  couleurTitres, couleurStrate,
-                  avecStrate, verbose):
-    """ Génère le code HTML pour un tableau historique sur N années """
+                      listAnnees, nbAnneesTableau,
+                      listeGrandeurs,
+                      dictAllGrandeur,
+                      couleurTitres, couleurStrate,
+                      avecStrate, verbose):
+    """ Genere le wikicode pour un tableau de taux de fiscalité """
     if verbose: (duplicate-code)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==genCodeGroupementTableaux:[233:239]
-==genCodeTableaux:[475:481]
+==genCodeTableaux:[474:480]
                                         "remboursements"],
                                        isWikicode, verbose) + " d'emprunts" :
         {
@@ -911,7 +850,7 @@ utilitaires.py:1:0: R0801: Similar lines in 2 files
             'note' : "Les « [[Plan de remboursement|remboursement]]s d'emprunts » " + \ (duplicate-code)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==genCodeGroupementTableaux:[67:73]
-==genCodeTableaux:[299:305]
+==genCodeTableaux:[298:304]
                                                 "charges"],
                                        isWikicode, verbose) + ' de personnels' :
         {
@@ -930,32 +869,32 @@ import configparser
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==updateDataMinFi:[150:158]
 ==updateDataMinFiGroupementCommunes:[148:156]
-                                                   connDB, verbose)
-        # Print missing columns
-        if len(listMissingKeys) > 0:
-            print("Attention : les motcles suivants n'ont pas été trouvés :\n",
-                  ";".join(listMissingKeys))
+                                                            connDB, verbose)
+            # Print missing columns
+            if len(listMissingKeys) > 0:
+                print("Attention : les motcles suivants n'ont pas été trouvés :\n",
+                      ";".join(listMissingKeys))
 
-        # Enregistre si nécessaire chaque ligne du fichier
-        numLine = 1 (duplicate-code)
+            # Enregistre si nécessaire chaque ligne du fichier
+            numLine = 1 (duplicate-code)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==updateDataMinFi:[142:149]
 ==updateDataMinFiGroupementCommunes:[140:147]
-                  buffering=config.getint('Extraction',
-                                          'updateDataMinFi.bufferReadingSize'),
-                  encoding='utf-8') as hFicMinFi:
+              buffering=config.getint('Extraction',
+                                      'updateDataMinFi.bufferReadingSize'),
+              encoding='utf-8') as hFicMinFi:
 
-            # Analyse l'entête du fichier
-            header = hFicMinFi.readline().strip()
-            dictPositionColumns, listMissingKeys = \ (duplicate-code)
+        # Analyse l'entête du fichier
+        header = hFicMinFi.readline().strip()
+        dictPositionColumns, listMissingKeys = \ (duplicate-code)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==genereCode1Groupement:[158:163]
 ==genereCode1Ville:[164:169]
-                                                     grandeursAnalyse,
-                                                     textSection,
-                                                     listAnnees,
-                                                     isComplet,
-                                                     isWikicode, (duplicate-code)
+                                                             grandeursAnalyse,
+                                                             textSection,
+                                                             listAnnees,
+                                                             isComplet,
+                                                             isWikicode, (duplicate-code)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==genereCode1Groupement:[32:38]
 ==genereCode1Ville:[32:38]
@@ -997,7 +936,7 @@ def wikifieStrate(defStrate, verbose):
     # Formattage des nombres par les modèles wikipedia unité et unité/2 (duplicate-code)
 utilitaires.py:1:0: R0801: Similar lines in 2 files
 ==genCodeGroupementTableaux:[240:245]
-==genCodeTableaux:[482:487]
+==genCodeTableaux:[481:486]
                      "remboursement du capital de la dette.",
             'noteHtml' : "17",
             'nul' : "aucun " + genCodeCommon.genLien(config,
@@ -1021,6 +960,6 @@ if __name__ == "__main__":
     main()
     sys.exit(0) (duplicate-code)
 
------------------------------------
-Your code has been rated at 9.43/10
+------------------------------------------------------------------
+Your code has been rated at 9.61/10 (previous run: 9.61/10, +0.00)
 

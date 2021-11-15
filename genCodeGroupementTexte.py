@@ -156,7 +156,7 @@ def genTexte(config, dictAllGrandeur, modele, textSection, groupement,
         else:
             textSectionFileName = config.get('Test',
                                              'verbose.genCodeGroupementTexte')
-        with open(textSectionFileName, mode='w') as htext:
+        with open(textSectionFileName, mode='w', encoding='utf-8') as htext:
             htext.write(textSection)
         print("textSection resultat dans :", textSectionFileName)
         print("Sortie de genTexte")

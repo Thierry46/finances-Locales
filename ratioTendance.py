@@ -54,14 +54,13 @@ def calculeRatioDetteCAF(config, dictDetteCaf, verbose):
         print("seuilEcreteRatio =", seuilEcreteRatio)
 
     # Contruit un dicoRatio {annee (int) : valeurRatio=dette/caf,...}
-    dicoRatio = dict()
+    dicoRatio = {}
     for annee in dictDetteCaf:
         if dictDetteCaf[annee][1] < 0.5:
             ratio = seuilEcreteRatio
         else:
-            ratio = int(dictDetteCaf[annee][0] / dictDetteCaf[annee][1])
-            if ratio > seuilEcreteRatio:
-                ratio = seuilEcreteRatio
+            ratio = min(int(dictDetteCaf[annee][0] / dictDetteCaf[annee][1]),
+            	        seuilEcreteRatio)
         dicoRatio[annee] = ratio
 
     if verbose:

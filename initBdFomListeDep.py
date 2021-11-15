@@ -152,7 +152,7 @@ def main(argv=None):
             else:
                 raise ValueError(f"Numéro de département invalide : {numDep}")
         except ValueError as exc:
-            print(f"Fichier {ficVille} ignoré :\n{exc.value}")
+            print(f"Fichier {ficVille} ignoré :\n{exc}")
         except sqlite3.IntegrityError:
             print(f"Fichier {ficVille} ignoré :\ndoublons code commune détectés")
 
@@ -192,7 +192,7 @@ def recupVillesListe(config, listeVillesPath, numDep, verbose):
     print("Lecture de", pathFicListeVilleDep)
 
     listeVilles4Bd = []
-    with open(pathFicListeVilleDep, 'r') as hFic:
+    with open(pathFicListeVilleDep, 'r', encoding='utf-8') as hFic:
         for line in hFic.read().splitlines():
             ville = analyseLigneDep(line, numDep, verbose)
             if ville:

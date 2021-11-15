@@ -5,7 +5,7 @@ de la Communauté de communes des Portes de Sologne
 --------------------------------------------------------------------->
 
 <!-- !!! Contenu généré automatiquement par l'outil Finances locales !!!
-    Généré le 03 November 2021 par le programme test_genCodeGroupementTexte (complet)
+    Généré le 15 November 2021 par le programme test_genCodeGroupementTexte (complet)
     version 4.0.1 : Yin Yang Tau du 4/7/2020
     et le modèle modele_groupement_wikicode.txt pour l'article Communauté de communes des Portes de Sologne.
     En cas de problème, contactez-moi SVP : Utilisateur:Thierry46
@@ -233,7 +233,7 @@ Les courbes G4a et G4b présentent l'historique des [[Dette publique|dette]]s de
 
 [[Catégorie:<CATEGORIE_ARTICLE>|Communauté de communes des Portes de Sologne]]
 [[Catégorie:Communauté de communes des Portes de Sologne]]
-<!-- Fin du wikicode généré le 03 November 2021
+<!-- Fin du wikicode généré le 15 November 2021
     par le programme test_genCodeGroupementTexte complet version 4.0.1 : Yin Yang Tau 
     et le modèle modele_groupement_wikicode.txt pour l'article Communauté de communes des Portes de Sologne.
     En cas de problème, contactez-moi SVP : Utilisateur:Thierry46 -->

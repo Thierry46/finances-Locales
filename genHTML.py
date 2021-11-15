@@ -75,8 +75,9 @@ def litModeleHTML(ficModelHTML, verbose):
     if verbose:
         print("Entree dans litModeleHTML")
 
-    hFic = open(ficModelHTML, 'r')
-    htmlText = hFic.read()
+    htmlText = ""
+    with open(ficModelHTML, 'r', encoding='utf-8') as hFic:
+        htmlText = hFic.read()
 
     if verbose:
         print(len(htmlText), "caractères lus dans", ficModelHTML)
@@ -172,12 +173,9 @@ def enregistreFicHTML(pathFileHTML, htmlText, verbose):
 
     if verbose:
         print("Ouverture de :", pathFileHTML)
-    ficNotice = open(pathFileHTML, 'w')
-    print("Ecriture de :", pathFileHTML)
-    ficNotice.write(htmlText)
-    if verbose:
-        print("Fermeture de :", pathFileHTML)
-    ficNotice.close()
+    with open(pathFileHTML, 'w', encoding='utf-8') as ficNotice:
+        print("Ecriture de :", pathFileHTML)
+        ficNotice.write(htmlText)
 
     if verbose:
         print("Sortie de enregistreFicHTML")
@@ -191,9 +189,11 @@ def convertWikicode2Html(config, pathVille, verbose):
     # Lecture du wikicode produit en utf8
     if verbose:
         print("Lecture du wikicode dans :", pathVille)
-    hFic = open(pathVille, 'r')
-    wikicode = hFic.read()
-    wikicode = wikicode.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+
+    wikicode = ""
+    with open(pathVille, 'r', encoding='utf-8') as hFic:
+        wikicode = hFic.read()
+        wikicode = wikicode.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
 
     # Lecture du modèle
     ficModelHTML = config.get('EntreesSorties', 'io.nomModeleCodeHTML')

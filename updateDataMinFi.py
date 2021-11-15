@@ -219,14 +219,14 @@ def analyseLigneVille(config, ligneVille, dictPositionColumns, verbose):
         print("ligneVille =", ligneVille)
         print("dictPositionColumns =", dictPositionColumns)
 
-    dictValues = dict()
+    dictValues = {}
     lineList = ligneVille.split(";")
     try:
         for key in dictPositionColumns:
             dictValues[key] = lineList[dictPositionColumns[key]]
-    except IndexError:
+    except IndexError as exc:
         raise ValueError(f"{ligneVille} : manque clé {key} "
-                         f"en position {dictPositionColumns[key]}")
+                         f"en position {dictPositionColumns[key]}") from exc
 
     # 11/12/2019 : Correction code commune et code département
     # qui à partir de 2018 sont sur 2 car au lieu de 3 dans la bd MinFi

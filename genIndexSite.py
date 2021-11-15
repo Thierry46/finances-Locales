@@ -85,9 +85,9 @@ def main(argv=None):
         sys.exit(1)
 
     # process options
-    for option, arg in opts:
+    for opt in opts:
         verboseOpt, sortiePgm = \
-            utilitaires.traiteOptionStd(config, option, nomProg, __doc__,
+            utilitaires.traiteOptionStd(config, opt[0], nomProg, __doc__,
                                         ["../Resultats",])
         verbose = verbose or verboseOpt
         if sortiePgm:

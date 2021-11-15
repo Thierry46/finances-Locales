@@ -85,9 +85,9 @@ def main(argv=None):
         sys.exit(1)
 
     # process options
-    for option, arg in opts:
+    for opt in opts:
         verboseOpt, sortiePgm = \
-            utilitaires.traiteOptionStd(config, option, nomProg, __doc__, \
+            utilitaires.traiteOptionStd(config, opt[0], nomProg, __doc__, \
                  ['database/minfi.db ../recup_data_gouv_fr_colectivite/comptes-groupements.csv'])
         verbose = verbose or verboseOpt
         if sortiePgm:
@@ -193,7 +193,7 @@ def analyseLigneGroupement(ligneGroupement,
         print("ligneVille =", ligneGroupement)
         print("dictPositionColumns =", dictPositionColumns)
 
-    dictValues = dict()
+    dictValues = {}
     lineList = ligneGroupement.split(";")
     for key in dictPositionColumns:
         try:

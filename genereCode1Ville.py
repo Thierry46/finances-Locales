@@ -91,7 +91,7 @@ def traite1Ville(config, ville, repertoireDepBase,
                                                  indicateur, extensionFic)
             if verbose:
                 print("Ecriture du code dans :", nomFic)
-            with open(nomFic, 'w') as ficVille:
+            with open(nomFic, 'w', encoding='utf-8') as ficVille:
                 ficVille.write(textSection)
 
             if typeCode == "wikiArticle":

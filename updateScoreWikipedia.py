@@ -91,15 +91,15 @@ def main(argv=None):
         sys.exit(1)
 
     # process options
-    for option, arg in opts:
+    for opt in opts:
         verboseOpt, sortiePgm = \
-            utilitaires.traiteOptionStd(config, option, nomProg, __doc__,
+            utilitaires.traiteOptionStd(config, opt[0], nomProg, __doc__,
                                         ['database/minfi.db'])
         verbose = verbose or verboseOpt
         if sortiePgm:
             sys.exit(0)
 
-        if option in ("-f", "--fast"):
+        if opt[0] in ("-f", "--fast"):
             print("mode fast : ne traite que les villes de scores inconnus")
             isFast = True
 
@@ -174,7 +174,7 @@ def recupScoreDataVilles(config, listeCodeCommuneNomWkp, verbose):
         'popularite' : config.getint('Score', 'coef.popularite')
         }
 
-    scoresVille = dict()
+    scoresVille = {}
     for (codeCommune, nomWkpFr) in listeCodeCommuneNomWkp:
         # Construction du nom de la page de discussion (PDD) pour cette ville
         nomArticlePDD = config.get('Extraction', 'wikipediaFr.discussion') + \
@@ -184,7 +184,7 @@ def recupScoreDataVilles(config, listeCodeCommuneNomWkp, verbose):
         try:
             page = utilitaires.getPageWikipediaFr(config, nomArticlePDD, verbose)
             listeCriteres = recupScoreData1Ville(config, page, nomArticlePDD, verbose)
-            criteres1ville = dict()
+            criteres1ville = {}
             for critere in listeCriteres:
                 criteres1ville[critere['cle']] = critere['valeur']
 
@@ -218,7 +218,7 @@ def recupScoreData1Ville(config, page, nomArticlePDD, verbose):
 
     # Définition des éléments déterminant le score
     # Ligne du type : | Communes de France | faible ou  | avancement = AdQ
-    listeCriteres = list()
+    listeCriteres = []
     critereimportanceCDF = {
         'cle' : 'importanceCDF',
         'nomLabel' : config.get('Score', 'nom.importanceCDF'),

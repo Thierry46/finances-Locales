@@ -31,9 +31,6 @@ Copyright (c) 2015 - 2019 - Thierry Maillard
 *********************************************************
 """
 
-import os
-import os.path
-
 import database
 
 def getColumnPosition(header, typeEntite, connDB, verbose):
@@ -59,7 +56,7 @@ def getColumnPosition(header, typeEntite, connDB, verbose):
         print("listCodeCle=", listCodeCle)
 
     headerList = header.replace(' ', '').split(";")
-    dictPositionColumns = dict()
+    dictPositionColumns = {}
     for motCle in listCodeCle:
         try:
             dictPositionColumns[motCle] = headerList.index(motCle)

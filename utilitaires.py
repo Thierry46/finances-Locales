@@ -75,17 +75,16 @@ def lectureFiltreModele(modele, isComplet, verbose):
         print("modele =", modele)
         print("isComplet =", isComplet)
 
-    modelefile = open(modele, 'r')
-    htmlPage = ""
-    ecrit = True
-    for ligne in modelefile.read().splitlines():
-        if ligne.startswith("<STOP_COMPLET>"):
-            ecrit = True
-        elif ligne.startswith("<COMPLET>"):
-            ecrit = False
-        elif isComplet or ecrit:
-            htmlPage += ligne + '\n'
-    modelefile.close()
+    with open(modele, 'r', encoding='utf-8') as modelefile:
+        htmlPage = ""
+        ecrit = True
+        for ligne in modelefile.read().splitlines():
+            if ligne.startswith("<STOP_COMPLET>"):
+                ecrit = True
+            elif ligne.startswith("<COMPLET>"):
+                ecrit = False
+            elif isComplet or ecrit:
+                htmlPage += ligne + '\n'
 
     if verbose:
         print("Sortie de lectureFiltreModele")
@@ -394,9 +393,9 @@ def convertLettresAccents(ligne):
                'C': ['Ç'],
                '_': ['(', ')', ' ', '/']} # 32/7/2020 = Ajout /
 
-    for char in accents:
-        for accented_char in accents[char]:
-            ligne = ligne.replace(accented_char, char)
+    for char, listCharsAccent in accents.items():
+        for char2Replace in listCharsAccent:
+            ligne = ligne.replace(char2Replace, char)
     return ligne
 
 def setArrondi(dictAllGrandeurAnneeValeur, listAnneesOK,
@@ -462,7 +461,7 @@ def getNomsVille(config, nomVille, repertoireDepBase, verbose):
         print("Entrée dans getNomsVille")
         print('nomVille=', nomVille)
 
-    dictNomsVille = dict()
+    dictNomsVille = {}
     dictNomsVille['nom'] = nomVille
     dictNomsVille['villeNomDisque'] = convertLettresAccents(
         unicodedata.normalize('NFC', nomVille))
@@ -622,7 +621,7 @@ def getNomsGroupement(nomGroupement, repertoireGroupements, verbose):
         print("Entrée dans getNomsGroupement")
         print('nomGroupement=', nomGroupement)
 
-    dictNomsGroupement = dict()
+    dictNomsGroupement = {}
     dictNomsGroupement['nom'] = nomGroupement
     dictNomsGroupement['groupementNomDisque'] =\
             convertLettresAccents(unicodedata.normalize('NFC', nomGroupement))

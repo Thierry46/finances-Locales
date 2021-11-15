@@ -33,7 +33,6 @@ Copyright (c) 2015 - 2020 - Thierry Maillard
 import genCodeCommon
 import genWikiCodeTableaux
 import genHTMLCodeTableaux
-import utilitaires
 
 def genCodeTableaux(config, dictAllGrandeur,
                     textSection,
@@ -69,7 +68,7 @@ def genCodeTableaux(config, dictAllGrandeur,
     couleurEmploisInvest = config.get('Tableaux', 'tableaux.couleurEmploisInvest')
     couleurRessourcesInvest = config.get('Tableaux', 'tableaux.couleurRessourcesInvest')
 
-    listeTableaux = list()
+    listeTableaux = []
     # V1.0.5 : Précision investissement : ajout 2 lignes
     tableauPrincipal = \
         {

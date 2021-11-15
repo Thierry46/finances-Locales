@@ -68,7 +68,7 @@ def genCodeGraphiques(config, repVille, dictAllGrandeur,
     # Les couleurs matplotlib couleurMPL sont définies dans :
     # http://matplotlib.org/examples/color/named_colors.html
 
-    listeGraphiques = list()
+    listeGraphiques = []
 
     # V1.0.5 : Précision investissement : ajout 1 courbe  et séparation tableau
     courbesProduitsChargesFonctionnement = \
@@ -474,7 +474,7 @@ def controleSeries(dictAllGrandeur, courbes, listAnnees, verbose):
 
     # Recupération liste des années valides pour chaque clé
     # et conservation des seules clés qui ont au moins une année valide
-    anneesOKParCle = dict()
+    anneesOKParCle = {}
     setCles = {courbe['sousCle'] + ":" + courbe['cle'] for courbe in courbes}
     for cleAll in setCles:
         sousCle, cle = cleAll.split(":")
@@ -495,8 +495,8 @@ def controleSeries(dictAllGrandeur, courbes, listAnnees, verbose):
 
     # Détermination des annees communes aux clés restantes
     anneesOK = set(listAnnees)
-    for cle in anneesOKParCle:
-        anneesOK &= anneesOKParCle[cle]
+    for anneesOKParCleValues in anneesOKParCle.values():
+        anneesOK &= anneesOKParCleValues
 
     # Conservation des seules series (courbes) qui ont des annees communes
     # By assigning to the slice courbes[:], we mutate the existing list

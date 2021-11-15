@@ -94,7 +94,7 @@ def traite1Groupement(config, groupement,
                                                  typeCode, extensionFic)
             if verbose:
                 print("Ecriture du code dans :", nomFic)
-            with open(nomFic, 'w') as ficGroupement:
+            with open(nomFic, 'w', encoding='utf-8') as ficGroupement:
                 ficGroupement.write(textSection)
 
             if typeCode == "wikiArticle":
@@ -115,13 +115,13 @@ def genereCode1Groupement(config, connDB, repGroupement, groupement,
         print('groupement =', groupement)
         print('isMatplotlibOk', isMatplotlibOk)
 
-    isWikicode = True if typeCode == "wikicode" else False
+    isWikicode = (typeCode == "wikicode")
     modele = 'modele_groupement_' + typeCode + '.txt'
     isComplet = False
     isGroupement = True
 
     # Lecture du fichier modèle
-    with open(modele, 'r') as modelefile:
+    with open(modele, 'r',encoding='utf-8') as modelefile:
         textSection = modelefile.read()
 
         # Récupère toutes les données concernant ce groupement
