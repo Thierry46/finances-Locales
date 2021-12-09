@@ -1,11 +1,8 @@
-mkdir gitdir2
-cd gitdir2
 git clone https://github.com/Thierry46/finances-Locales.git
 cd finances-Locales
-Copie des fichiers modifiés ou modif ici (mieux)
+Copie des fichiers modifiés dans ce répertoire 
 cp -r <rep_ok_hors_git>/*.py .
 git add .
-
 git status
 On branch master
 Your branch is up to date with 'origin/master'.
@@ -17,7 +14,7 @@ Changes to be committed:
 	modified:   unittest/test_genHTML.py
 	modified:   utilitaires.py
 
-git commit -m "V4.0.1 : fix bug for strate text and strate comparison table legend"
+git commit -m "V4.0.3 : quality improvment and unittest correction"
 git push origin master
 
 Si Problème d'authentification
@@ -39,7 +36,15 @@ ssh -T git@github.com
 Warning: Permanently added the RSA host key for IP address '140.82.121.3' to the list of known hosts.
 Hi Thierry46! You've successfully authenticated, but GitHub does not provide shell access.
 
+Définir un Personal Access Token (PAT)
+Se connecter sous https://github.com/Thierry46, s'identifier : 2 facteurs
+Cliquer sur ma photo / Settings / Developpers settings / Personal Acces Token
 
+git add .
+git commit -m "V4.0.3 : quality improvment and unittest correction"
+Username: Thierry46
+Password: Copier le PAT (Personal Access Token) ici 
+git push origin master
 -----
 Enumerating objects: 219, done.
 Counting objects: 100% (216/216), done.
