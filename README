@@ -29,7 +29,7 @@ Supprimer l'option -f pour traiter toutes les villes
 ./genIndexSite.py ../resultats
 
 Pour les finances locales des groupements de communes :
-------------------------------------------------
+-----------------------------------------------------
 ./updateGroupementsCommunes.py ../database_testCC/bd_minfi.db 1000
 Utilisez l'option -f au prochain run.
 
@@ -39,3 +39,17 @@ Attention : les motcles suivants n'ont pas été trouvés :
  26869 lignes traitées, 1834 groupements enregistrés
 
 ./genCodeGroupement.py  ../database/bd_minfi.db ../resultats
+
+Transfert sur le site WEB :
+-------------------------
+Site : http://marielaure.monde.free.fr/Finances_Locales_Web/Finances_Locales.html
+Utiliser le logiciel Filezilla.
+Glisser déposer Le contenu du répertoire resultats sur le site.
+Paramétrer le remplacement de pour tous les fichiers si taille différente ou plus récent.
+Regarder les échecs de transfert et transférer à nouveau en cas de problème.
+
+A Faire :
+Problemes avec le département de la Meuse 55 : Valeurs manquantes.
+Cas test commencé : unittest/test_genCode.py/test_genereCode1Ville_55(typeCode)
+renommé en a_voir_test_genereCode1Ville_55(typeCode)
+

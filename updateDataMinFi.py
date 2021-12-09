@@ -76,7 +76,7 @@ def main(argv=None):
 
     # parse command line options
     try:
-        opts, args = getopt.getopt(argv[1:], "huvV",
+        opts, args = getopt.getopt(argv[1:], "huVv",
                                    ["help", "usage", "version", "verbose"])
     except getopt.error as msg:
         print(msg)
@@ -227,6 +227,8 @@ def analyseLigneVille(config, ligneVille, dictPositionColumns, verbose):
     except IndexError as exc:
         raise ValueError(f"{ligneVille} : manque clé {key} "
                          f"en position {dictPositionColumns[key]}") from exc
+
+    # 11/12/2019 : Correction code commune et code département
 
     # 11/12/2019 : Correction code commune et code département
     # qui à partir de 2018 sont sur 2 car au lieu de 3 dans la bd MinFi

@@ -2,6 +2,8 @@
 Evolutions du projet FinancesLocales
 ------------------------------------
 
+* v4.0.3 : Améliorations qualité et cas test
+
 * v4.0.0 : nom de code : Yin Yang Tau - 4/7/2020
 	13612 lignes au total : 7719 lignes de code + 5893 lignes de test
 	- Traitement des finances locales des groupements de communes

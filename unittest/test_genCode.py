@@ -158,4 +158,57 @@ def test_genCodeProg(verbose):
 
     # Fermeture base
     database.closeDatabase(connDB, False)
+
+@pytest.mark.parametrize( "typeCode", ["wikiArticle", "HTML"])
+def a_voir_test_genereCode1Ville_55(typeCode):
+    """
+    test génération des données pour une ville du département 55
+    qui pose des problèmes au 21/11/2021 : donnees incompletes
+    """
+
+    config = configparser.RawConfigParser()
+    config.read('FinancesLocales.properties')
+
+    nomProg = "test_genereCode1Ville"
+
+    # Création répertoire de sortie hebergeant les villes
+    repVilles = config.get('Test', 'genCode.pathVilles55')
+    if not os.path.isdir(repVilles):
+        os.mkdir(repVilles)
+        
+    # récup données de test
+    pathDatabaseMini = config.get('Test', 'genCode.pathDatabaseMini55')
+    pathCSVMini = config.get('Test', 'genCode.pathCSVMini55')
+    if os.path.isfile(pathDatabaseMini):
+        print("Destruction de la base de test :", pathDatabaseMini)
+        os.remove(pathDatabaseMini)
+
+    # Insertion dans la table ville des villes à traiter
+    # Création base
+    connDB = database.createDatabase(config, pathDatabaseMini, False)
+    connDB.executemany("""
+        INSERT INTO villes(codeCommune, nomMinFi, nom, nomWkpFr)
+        VALUES (?, ?, ?, ?)
+        """, (('055039', 'BEAUMONT-EN-VERDUNOIS', 'Beaumont-en-Verdunois',
+               'Beaumont-en-Verdunois'),)
+                       )
+    connDB.commit()
+
+    # Création de la base de test
+    param = ['updateDataMinFi.py', pathDatabaseMini, pathCSVMini]
+    updateDataMinFi.main(param)
+    assert os.path.isfile(pathDatabaseMini)
+
+    # Lit dans la base les infos concernant la ville à traiter
+    listeVille = database.getListeVilles4Departement(connDB, '055', True)
+    ville = listeVille[0]
+
+    # Test fonction de génération
+    genereCode1Ville.genereCode1Ville(config, connDB,
+                             repVilles, ville,
+                             nomProg, typeCode,
+                             True, True)
+    
+    # Fermeture base
+    database.closeDatabase(connDB, False)
   
