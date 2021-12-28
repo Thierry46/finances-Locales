@@ -70,7 +70,7 @@ Analyse run Py.test : python3 -m coverage run -m pytest .
 Affichage résultats : python3 -m coverage report > qualite/couv_test_verbose.txt
 
 Pylint :
-Ref : http://www.pylint.org
+Ref : https://pylint.org
 Install : python3 -m pip install -U pylint
 Successfully installed astroid-2.8.4 isort-5.10.0 lazy-object-proxy-1.6.0 mccabe-0.6.1 platformdirs-2.4.0 pylint-2.11.1 typing-extensions-3.10.0.2 wrapt-1.13.3
 

@@ -4,11 +4,11 @@
 *********************************************************
 Module : updateGroupementsCommunes.py
 Auteur : Thierry Maillard (TMD)
-Date : 8/3/2020 - 27/3/2020
+Date : 8/3/2020 - 28/12/2021
 
-Role : Met à jour dans la base les groupements de
-    communes en recherchant leur information pour
-    chaque villes enregistrée dans Wikipedia FR.
+Role : met à jour dans la base les groupements de communes
+       en recherchant dans Wikipedia les informations pour
+       chaque ville enregistrée dans la base de données.
 
 Options :
     -h ou --help : Affiche ce message d'aide.
@@ -26,7 +26,7 @@ Paramètre :
 
 ------------------------------------------------------------
 Licence : GPLv3 (en français dans le fichier gpl-3.0.fr.txt)
-Copyright (c) 2020 - Thierry Maillard
+Copyright (c) 2021 - Thierry Maillard
 ------------------------------------------------------------
 
     This file is part of FinancesLocales project.

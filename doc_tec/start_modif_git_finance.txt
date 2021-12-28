@@ -14,7 +14,7 @@ Changes to be committed:
 	modified:   unittest/test_genHTML.py
 	modified:   utilitaires.py
 
-git commit -m "V4.0.3 : quality improvment and unittest correction"
+git commit -m "V4.0.4 : usage sentence correction"
 git push origin master
 
 Si Problème d'authentification

@@ -5,13 +5,13 @@ de la Communauté de communes des Portes de Sologne
 --------------------------------------------------------------------->
 
 <!-- !!! Contenu généré automatiquement par l'outil Finances locales !!!
-    Généré le 09 December 2021 par le programme test_genCodeGroupementTexte (complet)
-    version 4.0.1 : Yin Yang Tau du 4/7/2020
+    Généré le 28 December 2021 par le programme test_genCodeGroupementTexte (complet)
+    version 4.0.4 : Yin Yang Tau du 28/12/2021
     et le modèle modele_groupement_wikicode.txt pour l'article Communauté de communes des Portes de Sologne.
     En cas de problème, contactez-moi SVP : Utilisateur:Thierry46
     Additionnons nos forces, partageons nos connaissances ! -->
 Cette section est consacrée aux [[Finances locales en France|finances locales]] de la Communauté de communes des Portes de Sologne de 2018 à 2018<ref group="Note">Cette section est réalisée à partir des données des données du site <URL_BASE_GROUPEMENT> du [[Ministère de l'Économie et des Finances (France)|ministère de l'Économie et des Finances]].
-Pour constituer cette partie, l'outil Finances locales version 4.0.1 : Yin Yang Tau a effectué la synthèse du tableau du site <URL_BASE_GROUPEMENT> pour les lignes concernant Communauté de communes des Portes de Sologne.
+Pour constituer cette partie, l'outil Finances locales version 4.0.4 : Yin Yang Tau a effectué la synthèse du tableau du site <URL_BASE_GROUPEMENT> pour les lignes concernant Communauté de communes des Portes de Sologne.
 Finances locales est un [[logiciels libres|logiciel libre]] distribué en [[copyleft]] sous [[licence (juridique)|licence]] [[Licence publique générale GNU|GNU GPL version 3]].
 </ref>.
 
@@ -233,7 +233,7 @@ Les courbes G4a et G4b présentent l'historique des [[Dette publique|dette]]s de
 
 [[Catégorie:<CATEGORIE_ARTICLE>|Communauté de communes des Portes de Sologne]]
 [[Catégorie:Communauté de communes des Portes de Sologne]]
-<!-- Fin du wikicode généré le 09 December 2021
-    par le programme test_genCodeGroupementTexte complet version 4.0.1 : Yin Yang Tau 
+<!-- Fin du wikicode généré le 28 December 2021
+    par le programme test_genCodeGroupementTexte complet version 4.0.4 : Yin Yang Tau 
     et le modèle modele_groupement_wikicode.txt pour l'article Communauté de communes des Portes de Sologne.
     En cas de problème, contactez-moi SVP : Utilisateur:Thierry46 -->

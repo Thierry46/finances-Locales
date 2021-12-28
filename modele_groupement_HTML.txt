@@ -11,7 +11,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>Finances locales <ARTICLE_GROUPEMENT><GROUPEMENT></title>
   <meta content="Finances locales <ARTICLE_GROUPEMENT><GROUPEMENT>" name="description">
-  <meta name="keywords" content="Finances locales, <GROUPEMENT>, budget, département, taxes, taux, ratio, dépenses publiques, coûts">
+  <meta name="keywords" content="Finances locales, <GROUPEMENT>, budget, département, taxes, taux, dépenses publiques, coûts">
 </head>
   
 <body>

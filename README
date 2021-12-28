@@ -2,6 +2,7 @@ Finances-Locales project
 
 Finances-Locales is group of Python script used to extract data from french finance web site :
 https://www.data.gouv.fr/fr/datasets/comptes-individuels-des-communes-fichier-global
+https://www.data.gouv.fr/fr/datasets/comptes-individuels-des-groupements-a-fiscalite-propre-fichier-global-a-compter-de-2007
 They adapt data to be used in fr.wikipedia or on a WEB site.
 
 For a description : https://fr.wikipedia.org/wiki/Utilisateur:Thierry46/Finances_Locales
@@ -15,7 +16,7 @@ Usage :
 
 Pour les finances locales des communes de France :
 ------------------------------------------------
-https://www.data.gouv.fr/fr/datasets/comptes-individuels-des-groupements-a-fiscalite-propre-fichier-global-a-compter-de-2007/
+https://www.data.gouv.fr/fr/datasets/comptes-individuels-des-communes-fichier-global
 
 cd /Users/thierry/Documents/wikipedia/finances_locales_wkpfr/FinancesLocales_v4.0.0
 ./initBdFomListeDep.py ../database/bd_minfi.db ../Listes_villes_par_departement
@@ -30,10 +31,12 @@ Supprimer l'option -f pour traiter toutes les villes
 
 Pour les finances locales des groupements de communes :
 -----------------------------------------------------
-./updateGroupementsCommunes.py ../database_testCC/bd_minfi.db 1000
+https://www.data.gouv.fr/fr/datasets/comptes-individuels-des-groupements-a-fiscalite-propre-fichier-global-a-compter-de-2007
+
+./updateGroupementsCommunes.py ../database/bd_minfi.db 1000
 Utilisez l'option -f au prochain run.
 
-./updateDataMinFiGroupementCommunes.py ../database_testCC/bd_minfi.db ../recup_data_gouv_fr_colectivite/comptes-groupements.csv
+./updateDataMinFiGroupementCommunes.py ../database/bd_minfi.db ../recup_data_gouv_fr_colectivite/comptes-individuels-groupements_2021.csv
 Attention : les motcles suivants n'ont pas été trouvés :
  ptp1;fptp1;ptp2;fptp2;ptp3;fptp3;ttp1;ttp2;ttp3
  26869 lignes traitées, 1834 groupements enregistrés

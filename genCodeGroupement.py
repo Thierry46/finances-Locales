@@ -6,10 +6,10 @@ Programme : genCodeGroupement.py
 Auteur : Thierry Maillard (TMD)
 Date : 12/4/2020 - 3/6/2020
 
-Role : Transforme les donnees traitées par updateDataMinFiGroupementCommunes.py
-        en wikicode pour enrichir les sections "Finances locale" des
-        articles de Wikipedia.fr concernant les groupements et les villages
-        de france et en html pour un site Web.
+Role : transforme les données traitées par
+       updateDataMinFiGroupementCommunes en wikicode et HTML
+       pour enrichir les sections "Finances locale" des
+       articles de Wikipedia.fr concernant les groupements.
 
 Options :
     -h ou --help : Affiche ce message d'aide.

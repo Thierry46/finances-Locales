@@ -4,12 +4,11 @@
 *********************************************************
 Module : updateDataMinFiGroupementCommunes.py
 Auteur : Thierry Maillard (TMD)
-Date : 9/4/2020
+Date : 28/12/2021
 
-Role : Met à jour les données de groupement de communes de
-    la base de données du ministère des finances
-    à partir des fichiers .csv du répertoire passé en paramètres
-    pour toute les villes présentes dans la base.
+Role : Met à jour les données de groupement de communes 
+        à partir du fichier .csv passé en paramètre pour
+        tous groupement présents dans la base.
 
 Paramètres :
     - chemin du fichier base de données sqlite3 d'extension .db
@@ -20,7 +19,7 @@ Paramètres :
 
 ------------------------------------------------------------
 Licence : GPLv3 (en français dans le fichier gpl-3.0.fr.txt)
-Copyright (c) 2015 - 2020 - Thierry Maillard
+Copyright (c) 2015 - 2021 - Thierry Maillard
 ------------------------------------------------------------
 
     This file is part of FinancesLocales project.
@@ -116,7 +115,7 @@ def main(argv=None):
     if not os.path.isfile(pathCSVDataGouvFr):
         msg = __doc__ + "Erreur : paramètre fichier .csv !\n" + \
             "Ce fichiers .csv doit être récupérés sur\n" + \
-            config.get('Extraction', 'dataGouvFr.Comptes') + ":\n" + \
+            config.get('Extraction', 'dataGouvFr.ComptesComptesGroupements') + ":\n" + \
             pathCSVDataGouvFr
         print(msg, file=sys.stderr)
         sys.exit(3)
