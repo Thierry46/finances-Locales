@@ -5,13 +5,13 @@ de la Communauté de communes des Portes de Sologne
 --------------------------------------------------------------------->
 
 <!-- !!! Contenu généré automatiquement par l'outil Finances locales !!!
-    Généré le 28 December 2021 par le programme test_genCodeGroupementTexte (complet)
-    version 4.0.4 : Yin Yang Tau du 28/12/2021
+    Généré le 31 décembre 2021 par le programme test_genCodeGroupementTexte (complet)
+    version 4.1.0 : Yin Yang Tau du 31/12/2021
     et le modèle modele_groupement_wikicode.txt pour l'article Communauté de communes des Portes de Sologne.
     En cas de problème, contactez-moi SVP : Utilisateur:Thierry46
     Additionnons nos forces, partageons nos connaissances ! -->
-Cette section est consacrée aux [[Finances locales en France|finances locales]] de la Communauté de communes des Portes de Sologne de 2018 à 2018<ref group="Note">Cette section est réalisée à partir des données des données du site <URL_BASE_GROUPEMENT> du [[Ministère de l'Économie et des Finances (France)|ministère de l'Économie et des Finances]].
-Pour constituer cette partie, l'outil Finances locales version 4.0.4 : Yin Yang Tau a effectué la synthèse du tableau du site <URL_BASE_GROUPEMENT> pour les lignes concernant Communauté de communes des Portes de Sologne.
+Cette section est consacrée aux [[Finances locales en France|finances locales]] de la Communauté de communes des Portes de Sologne de 2018 à 2018<ref group="Note">Cette section est réalisée à partir des données des données du site [https://www.data.gouv.fr data.gouv.fr] du [[Ministère de l'Économie et des Finances (France)|ministère de l'Économie et des Finances]].
+Pour constituer cette partie, l'outil Finances locales version 4.1.0 : Yin Yang Tau a effectué la synthèse du tableau [https://www.data.gouv.fr/fr/datasets/comptes-individuels-des-groupements-a-fiscalite-propre-fichier-global-a-compter-de-2007 des groupements de communes] pour les lignes concernant Communauté de communes des Portes de Sologne.
 Finances locales est un [[logiciels libres|logiciel libre]] distribué en [[copyleft]] sous [[licence (juridique)|licence]] [[Licence publique générale GNU|GNU GPL version 3]].
 </ref>.
 
@@ -48,21 +48,19 @@ Pour l'exercice 2018, le compte administratif du [[budget]] de la Communauté de
 {|class="wikitable right"
  |+T1p - Section de fonctionnement de la Communauté de communes des Portes de Sologne en 2018
  |----
- ! !! scope="col" | Communauté de communes des Portes de Sologne<br/>(€/hab.) !! scope="col" | Strate<br/>(€/hab.)
+ ! !! scope="col" | Communauté de communes des Portes de Sologne<br/>(€/hab.)
  <GEN_LIGNES_TABLEAU_PICTO_SOLDE_FONCT><GEN_LIGNES_TABLEAU_PICTO_CHARGE><GEN_LIGNES_TABLEAU_PICTO_RECETTE>
- |------
- | colspan="4" |Écart par rapport à la moyenne de la strate :<br/><LEGENDE_ECART_TABLEAU_PICTO>
  |}
-Pour Communauté de communes des Portes de Sologne en 2018, la section de fonctionnement<ref group="Note">La  « section de fonctionnement » est constituée des [[Dépenses publiques|dépense]]s courantes et récurrentes nécessaires au bon fonctionnement des services du groupement et à la mise en œuvre des actions décidées par les élus, mais sans influence sur la consistance du [[Patrimoine (droit)|patrimoine]] de la commune. Y figure aussi le [[Plan de remboursement|remboursement]] des [[Intérêt (finance)|intérêt]]s des [[Emprunt (finance)|emprunt]]s. Elle enregistre également les [[Recettes publiques|recettes]] fiscales, les [[Dotation publique|dotation]]s et participations de l’État ainsi que les recettes d’exploitation des services du groupement.</ref> se répartit en {{euro|4831000}}  de charges ({{euro|309}} par habitant) pour {{euro|6526000}} de produits ({{euro|417}} par habitant), soit un solde de la section de fonctionnement de {{euro|1695000}} ({{euro|108}} par habitant) :
+Pour le groupement Communauté de communes des Portes de Sologne en 2018, la section de fonctionnement<ref group="Note">La  « section de fonctionnement » est constituée des [[Dépenses publiques|dépense]]s courantes et récurrentes nécessaires au bon fonctionnement des services du groupement et à la mise en œuvre des actions décidées par les élus, mais sans influence sur la consistance du [[Patrimoine (droit)|patrimoine]] du groupement. Y figure aussi le [[Plan de remboursement|remboursement]] des [[Intérêt (finance)|intérêt]]s des [[Emprunt (finance)|emprunt]]s. Elle enregistre également les [[Recettes publiques|recettes]] fiscales, les [[Dotation publique|dotation]]s et participations de l’État ainsi que les recettes d’exploitation des services du groupement.</ref> se répartit en {{euro|4831000}}  de charges ({{euro|309}} par habitant) pour {{euro|6526000}} de produits ({{euro|417}} par habitant), soit un solde de la section de fonctionnement de {{euro|1695000}} ({{euro|108}} par habitant) :
 
-* le principal pôle de [[Dépenses publiques|dépenses]] de fonctionnement est celui <PHRASE_CHARGE1>. <VALEUR_CHARGE_TENDANCE_SERIE1>. Viennent ensuite les groupes <LIBELLE_CHARGE2><ref group="Note"><NOTE_CHARGE2></ref> pour <VALEUR_CHARGE_PC2>, <LIBELLE_CHARGE3><ref group="Note"><NOTE_CHARGE3></ref> pour <VALEUR_CHARGE_PC3>, <LIBELLE_CHARGE4><ref group="Note"><NOTE_CHARGE4></ref> pour <VALEUR_CHARGE_PC4> et finalement celui <LIBELLE_CHARGE5><ref group="Note"><NOTE_CHARGE5></ref> pour <VALEUR_CHARGE_PC5> ;
-* la plus grande part des [[Recettes publiques|recettes]] est constituée <PHRASE_RECETTE1>. <VALEUR_RECETTE_TENDANCE_SERIE1>. Viennent ensuite <LIBELLE_RECETTE2><ref group="Note"><NOTE_RECETTE2></ref> pour <VALEUR_RECETTE_PC2> et <LIBELLE_RECETTE3><ref group="Note"><NOTE_RECETTE3></ref> pour <VALEUR_CHARGE_PC3>.
+* le principal pôle de [[Dépenses publiques|dépenses]] de fonctionnement est celui <PHRASE_CHARGE1>. Viennent ensuite les groupes <LIBELLE_CHARGE2><ref group="Note"><NOTE_CHARGE2></ref> pour <VALEUR_CHARGE_PC2>, <LIBELLE_CHARGE3><ref group="Note"><NOTE_CHARGE3></ref> pour <VALEUR_CHARGE_PC3> et finalement celui <LIBELLE_CHARGE4><ref group="Note"><NOTE_CHARGE4></ref> pour <VALEUR_CHARGE_PC4> ;
+* la plus grande part des [[Recettes publiques|recettes]] est constituée <PHRASE_RECETTE1>. Viennent ensuite <LIBELLE_RECETTE2><ref group="Note"><NOTE_RECETTE2></ref> pour <VALEUR_RECETTE_PC2> et <LIBELLE_RECETTE3><ref group="Note"><NOTE_RECETTE3></ref> pour <VALEUR_CHARGE_PC3>.
 
 La dotation globale de fonctionnement est égale à celle versée en 2018.
 
 === Évolution des produits et charges de fonctionnement de 2018 à 2018 ===
 {| class="wikitable centre" style="width:80%;"
- |+G1a - Évolution des produits de fonctionnement pour Communauté de communes des Portes de Sologne
+ |+G1a - Évolution des produits de fonctionnement pour le groupement Communauté de communes des Portes de Sologne
  |------
  <GRAPHIQUE_PRODUITS>
  |------
@@ -70,14 +68,14 @@ La dotation globale de fonctionnement est égale à celle versée en 2018.
  |}
 
 {| class="wikitable centre" style="width:80%;"
- |+G1b1 - Évolution des charges de personnel et externes pour Communauté de communes des Portes de Sologne
+ |+G1b1 - Évolution des charges de personnel et externes pour le groupement Communauté de communes des Portes de Sologne
  |------
  <GRAPHIQUE_CHARGES_PERSONNELS_EXTERNES>
  |------
  | <LEGENDE_CHARGES_PERSONNELS_EXTERNES>
  |}
 {| class="wikitable centre" style="width:80%;"
- |+G1b2 - Évolution des charges financières et des subventions versées pour Communauté de communes des Portes de Sologne
+ |+G1b2 - Évolution des charges financières et des subventions versées pour le groupement Communauté de communes des Portes de Sologne
  |------
  <GRAPHIQUE_CHARGES_FINANCIERES_SUBVENTIONS_VERSEES>
  |------
@@ -87,23 +85,13 @@ La dotation globale de fonctionnement est égale à celle versée en 2018.
 
 === Tableau des valeurs pour les produits et charges de <ANNEE-N> à 2018 ===
 {|class="wikitable centre"
- |+T1v - Produits et charges de fonctionnement de la Communauté de communes des Portes de Sologne de <ANNEE-N> à 2018
+ |+T1v - Produits et charges de fonctionnement du groupement Communauté de communes des Portes de Sologne de <ANNEE-N> à 2018
  |------
  <TABLEAU_PRODUITS_CHARGES>
  |}
 {{Clr}}
 
 == Fiscalité communale ==
-{|class="wikitable right"
- |+T2p - Fiscalité de la Communauté de communes des Portes de Sologne en 2018
- |----
- ! !! scope="col" | Communauté de communes des Portes de Sologne<br/>(%) !! scope="col" | Strate<br/>(%)
- <GEN_LIGNES_TABLEAU_PICTO_TAXES>
- |------
- | colspan="4" |Écart par rapport à la moyenne de la strate :<br/><LEGENDE_ECART_TABLEAU_PICTO>
- |}
-Le tableau T2p compare les [[taux d'imposition]] locaux à ceux des autres communes de la même {{page h'|Strate#En_sciences_sociales|strate}} fiscale.
-
 Les taux des [[taxe]]s ci-dessous sont votés par de la Communauté de communes des Portes de Sologne. Ils ont varié de la façon suivante par rapport à 2018 :
 * la [[taxe d'habitation]] <TENDANCE_TAUX_TAXE_HABITATION_PAR_HABITANT1> <VALEUR_TAUX_TAXE_HABITATION_PAR_HABITANT1_NM1> % ;
 * la [[Taxe foncière|taxe foncière sur le bâti]] <TENDANCE_TAUX_FONCIER_BATI_PAR_HABITANT1> <VALEUR_TAUX_FONCIER_BATI_PAR_HABITANT1_NM1> % ;
@@ -112,7 +100,7 @@ Les taux des [[taxe]]s ci-dessous sont votés par de la Communauté de communes 
 
 === Évolution des taux des différentes taxes de 2018 à 2018 ===
 {| class="wikitable centre" style="width:80%;"
- |+G2a - Évolution de la taxe d'habitation et foncière sur le bâti pour Communauté de communes des Portes de Sologne
+ |+G2a - Évolution de la taxe d'habitation et foncière sur le bâti pour le groupement Communauté de communes des Portes de Sologne
  |------
  <GRAPHIQUE_TAXES>
  |------
@@ -120,7 +108,7 @@ Les taux des [[taxe]]s ci-dessous sont votés par de la Communauté de communes 
  |}
 
 {| class="wikitable centre" style="width:80%;"
- |+G2b - Évolution de la taxe foncière sur le non bâti pour Communauté de communes des Portes de Sologne
+ |+G2b - Évolution de la taxe foncière sur le non bâti pour le groupement Communauté de communes des Portes de Sologne
  |------
  <GRAPHIQUE_TAXES_NB>
  |------
@@ -129,7 +117,7 @@ Les taux des [[taxe]]s ci-dessous sont votés par de la Communauté de communes 
 
 === Tableau des taux des impôts et taxes de <ANNEE-N_TAUX> à 2018 ===
 {|class="wikitable centre"
- |+T2v - Taux des impôts et taxes pour Communauté de communes des Portes de Sologne de <ANNEE-N_TAUX> à 2018
+ |+T2v - Taux des impôts et taxes pour le groupement Communauté de communes des Portes de Sologne de <ANNEE-N_TAUX> à 2018
  |------
  <TABLEAU_TAXES>
  |}
@@ -137,33 +125,31 @@ Les taux des [[taxe]]s ci-dessous sont votés par de la Communauté de communes 
 
 == Investissement ==
 {|class="wikitable right"
- |+T3p - Investissement de la Communauté de communes des Portes de Sologne en 2018
+ |+T3p - Investissement Communauté de communes des Portes de Sologne en 2018
  |----
- ! !! scope="col" | Communauté de communes des Portes de Sologne<br/>(€/hab.) !! scope="col" | Strate<br/>(€/hab.)
+ ! !! scope="col" | Communauté de communes des Portes de Sologne<br/>(€/hab.)
  <GEN_LIGNES_TABLEAU_PICTO_EMPLOI_INVEST><GEN_LIGNES_TABLEAU_PICTO_RESSOURCES_INVEST>
- |------
- | colspan="4" |Écart par rapport à la moyenne de la strate :<br/><LEGENDE_ECART_TABLEAU_PICTO>
  |}
-Cette section détaille les [[investissement]]s<ref group="Note">La section « [[investissement]] » concerne essentiellement les opérations visant à [[Achat|acquérir]] des équipements d’envergure et aussi au [[Plan de remboursement|remboursement]] du capital de la [[Dette publique|dette]].</ref> réalisés par la commune de la Communauté de communes des Portes de Sologne.
+Cette section détaille les [[investissement]]s<ref group="Note">La section « [[investissement]] » concerne essentiellement les opérations visant à [[Achat|acquérir]] des équipements d’envergure et aussi au [[Plan de remboursement|remboursement]] du capital de la [[Dette publique|dette]].</ref> réalisés par le groupement Communauté de communes des Portes de Sologne.
 
 Les emplois d'investissement en 2018 comprenaient par ordre d'importance :
-* <PHRASE_EMPLOI_INVEST1>. <VALEUR_EMPLOI_INVEST_TENDANCE_SERIE1> ;
+* <PHRASE_EMPLOI_INVEST1> ;
 * <PHRASE_EMPLOI_INVEST2>.
 
-Les ressources en investissement de la Communauté de communes des Portes de Sologne se répartissent principalement en :
-* <PHRASE_RESSOURCES_INVEST1>. <VALEUR_RESSOURCES_INVEST_TENDANCE_SERIE1> ;
+Les ressources en investissement du groupement Communauté de communes des Portes de Sologne se répartissent principalement en :
+* <PHRASE_RESSOURCES_INVEST1> ;
 * <PHRASE_RESSOURCES_INVEST2>.
 
 === Évolution de l'investissement de 2018 à 2018 ===
 {| class="wikitable centre" style="width:80%;"
- |+G3a - Évolution des emplois d'investissement pour Communauté de communes des Portes de Sologne
+ |+G3a - Évolution des emplois d'investissement pour le groupement Communauté de communes des Portes de Sologne
  |------
 <GRAPHIQUE_EMPLOIS_INVEST>
  |------
  | <LEGENDE_EMPLOIS_INVEST>
  |}
 {| class="wikitable centre" style="width:80%;"
- |+G3b - Évolution des ressources d'investissement pour Communauté de communes des Portes de Sologne
+ |+G3b - Évolution des ressources d'investissement pour le groupement Communauté de communes des Portes de Sologne
  |------
 <GRAPHIQUE_RESSOURCES_INVEST>
  |------
@@ -173,7 +159,7 @@ Les ressources en investissement de la Communauté de communes des Portes de Sol
 
 === Tableau des valeurs d'investissement de <ANNEE-N> à 2018 ===
 {|class="wikitable centre"
- |+T3v - Investissement de la Communauté de communes des Portes de Sologne de <ANNEE-N> à 2018
+ |+T3v - Investissement Communauté de communes des Portes de Sologne de <ANNEE-N> à 2018
  |------
  <TABLEAU_INVEST>
  |}
@@ -181,23 +167,21 @@ Les ressources en investissement de la Communauté de communes des Portes de Sol
 
 == Endettement ==
 {|class="wikitable right"
- |+T4p - Endettement et capacité d'autofinancement de la Communauté de communes des Portes de Sologne en 2018
+ |+T4p - Endettement et capacité d'autofinancement Communauté de communes des Portes de Sologne en 2018
  |----
- ! !! scope="col" | Communauté de communes des Portes de Sologne<br/>(€/hab.) !! scope="col" | Strate<br/>(€/hab.)
+ ! !! scope="col" | Communauté de communes des Portes de Sologne<br/>(€/hab.)
  <GEN_LIGNES_TABLEAU_PICTO_ENCOURS_DETTE><GEN_LIGNES_TABLEAU_PICTO_ANNUITE_DETTE><GEN_LIGNES_TABLEAU_PICTO_CAF>
- |------
- | colspan="4" |Écart par rapport à la moyenne de la strate :<br/><LEGENDE_ECART_TABLEAU_PICTO>
  |}
-L'[[Emprunt (finance)|endettement]] de la Communauté de communes des Portes de Sologne au {{Date-|31|décembre|2018}} peut s'évaluer à partir de trois critères : l'encours de la dette<ref group="Note">L'« [[encours]] de la dette » représente la somme que la commune doit aux [[banque]]s au {{Date-|31/12}} de l'année considérée</ref>, l'annuité de la dette<ref group="Note">L'« annuité de la [[Emprunt (finance)|dette]] » équivaut à la somme des intérêts d'emprunts de la commune et du montant de remboursement du capital au cours de l'année</ref> et sa capacité de désendettement<ref group="Note">La « capacité de [[Dette publique|désendettement]] » est basée sur le ratio suivant défini par la formule : {{Formule|§=ratio = {{fraction|encours de la dette|capacité d'autofinancement}}}}. Ce ratio montre, à un instant donné, le nombre d'années qui seraient nécessaires au remboursement des dettes en considérant les ressources de la Communauté de communes des Portes de Sologne.</ref> :
-* <PHRASE_ENCOURS_DETTE1>. <VALEUR_ENCOURS_DETTE_TENDANCE_SERIE1> ;
-* <PHRASE_ANNUITE_DETTE1>. <VALEUR_ANNUITE_DETTE_TENDANCE_SERIE1> ;
-* <PHRASE_CAF1>. <VALEUR_CAF_TENDANCE_SERIE1>. La capacité de [[Dette publique|désendettement]] est d'environ {{nobr|2 années}} en 2018. Sur une période de {{nobr|1 années}}, ce ratio est constant et faible (inférieur à {{nobr|4}} ans)
+L'[[Emprunt (finance)|endettement]] du groupement Communauté de communes des Portes de Sologne au {{Date-|31|décembre|2018}} peut s'évaluer à partir de trois critères : l'encours de la dette<ref group="Note">L'« [[encours]] de la dette » représente la somme que le groupement doit aux [[banque]]s au {{Date-|31/12}} de l'année considérée</ref>, l'annuité de la dette<ref group="Note">L'« annuité de la [[Emprunt (finance)|dette]] » équivaut à la somme des intérêts d'emprunts du groupement et du montant de remboursement du capital au cours de l'année</ref> et sa capacité de désendettement<ref group="Note">La « capacité de [[Dette publique|désendettement]] » est basée sur le ratio suivant défini par la formule : {{Formule|§=ratio = {{fraction|encours de la dette|capacité d'autofinancement}}}}. Ce ratio montre, à un instant donné, le nombre d'années qui seraient nécessaires au remboursement des dettes en considérant les ressources du groupement Communauté de communes des Portes de Sologne.</ref> :
+* <PHRASE_ENCOURS_DETTE1> ;
+* <PHRASE_ANNUITE_DETTE1> ;
+* <PHRASE_CAF1>. La capacité de [[Dette publique|désendettement]] est d'environ {{nobr|2 années}} en 2018. Sur une période de {{nobr|1 années}}, ce ratio est constant et faible (inférieur à {{nobr|4}} ans)
 {{Clr}}
 
 === Évolution de la capacité d'autofinancement (CAF) et de l'encours de la dette de 2018 à 2018 ===
-Les courbes G4a et G4b présentent l'historique des [[Dette publique|dette]]s de la Communauté de communes des Portes de Sologne.
+Les courbes G4a et G4b présentent l'historique des [[Dette publique|dette]]s du groupement Communauté de communes des Portes de Sologne.
 {| class="wikitable centre" style="width:80%;"
- |+G4a - Capacité d'autofinancement et encours total de la dette de la Communauté de communes des Portes de Sologne
+ |+G4a - Capacité d'autofinancement et encours total de la dette du groupement Communauté de communes des Portes de Sologne
  |------
 <GRAPHIQUE_DETTE_CAF>
  |------
@@ -215,7 +199,7 @@ Les courbes G4a et G4b présentent l'historique des [[Dette publique|dette]]s de
 
 === Tableau des valeurs d'endettement de <ANNEE-N> à 2018 ===
 {|class="wikitable centre"
- |+T4v - Encours de la dette et capacité d'autofinancement de la Communauté de communes des Portes de Sologne de <ANNEE-N> à 2018
+ |+T4v - Encours de la dette et capacité d'autofinancement du groupement Communauté de communes des Portes de Sologne de <ANNEE-N> à 2018
  |------
  <TABLEAU_DETTE_CAF>
  |}
@@ -231,9 +215,9 @@ Les courbes G4a et G4b présentent l'historique des [[Dette publique|dette]]s de
 === Autres références ===
 {{Références|colonnes=2}}
 
-[[Catégorie:<CATEGORIE_ARTICLE>|Communauté de communes des Portes de Sologne]]
+[[Catégorie:Finances des groupements de la région Centre-Val de Loire|Communauté de communes des Portes de Sologne]]
 [[Catégorie:Communauté de communes des Portes de Sologne]]
-<!-- Fin du wikicode généré le 28 December 2021
-    par le programme test_genCodeGroupementTexte complet version 4.0.4 : Yin Yang Tau 
+<!-- Fin du wikicode généré le 31 décembre 2021
+    par le programme test_genCodeGroupementTexte complet version 4.1.0 : Yin Yang Tau 
     et le modèle modele_groupement_wikicode.txt pour l'article Communauté de communes des Portes de Sologne.
     En cas de problème, contactez-moi SVP : Utilisateur:Thierry46 -->

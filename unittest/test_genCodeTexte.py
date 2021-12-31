@@ -3,7 +3,7 @@
 """
 Name : test_genCodeTexte.py
 Author : Thierry Maillard (TMD)
-Date : 1/6/2015 - 14/4/2020
+Date : 1/6/2015 - 30/12/2021
 Role : Tests unitaires du projet FinancesLocales avec py.test
 Utilisation : python3 -m pytest [-k "nomTest"] .
 options :
@@ -152,6 +152,14 @@ def test_genCodeTexte_func(typeCode):
                                         "test_genCodeTexte", isWikicode,
                                         True)
     assert "21547710" in textSection
+    
+    if isWikicode:
+        # Vérification sources WEB dans texte généré
+        urlMinFi = config.get('Extraction', 'dataGouvFr.Comptes')
+        assert urlMinFi in textSection
+        urlMinFiVilles = config.get('Extraction', 'dataGouvFr.ComptesVilles')
+        assert urlMinFiVilles in textSection
+    
     if not isWikicode:
         assert "Sundgau" in textSection
     database.closeDatabase(connDB, False)

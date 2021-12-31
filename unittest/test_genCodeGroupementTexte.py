@@ -3,7 +3,7 @@
 """
 Name : test_genCodeGroupementTexte.py
 Author : Thierry Maillard (TMD)
-Date : 14/4/2020
+Date : 14/4/2020 - 30/12/2021
 Role : Tests unitaires du projet FinancesLocales avec py.test
 Utilisation : python3 -m pytest [-k "nomTest"] .
 options :
@@ -126,7 +126,15 @@ def test_genCodeGroupementTexte_func(typeCode):
                                         "test_genCodeGroupementTexte",
                                         isWikicode, verbose)
         assert textSection
+        
         assert "Communauté de communes des Portes de Sologne" in textSection
+        if typeCode == "wikicode":
+            # Vérification sources WEB dans texte généré
+            urlMinFi = config.get('Extraction', 'dataGouvFr.Comptes')
+            assert urlMinFi in textSection
+            urlMinFiGroupements = config.get('Extraction', 'dataGouvFr.ComptesGroupements')
+            assert urlMinFiGroupements in textSection
+
         if typeCode != "wikicode":
             assert "CC des Portes de Sologne" in textSection
             assert '200005932' in textSection

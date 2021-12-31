@@ -10,8 +10,8 @@ pour enrichir le chapitre consacré au finances locales
     et le modèle <NOM_MODELE> pour l'article <GROUPEMENT>.
     En cas de problème, contactez-moi SVP : Utilisateur:Thierry46
     Additionnons nos forces, partageons nos connaissances ! -->
-Cette section est consacrée aux [[Finances locales en France|finances locales]] <ARTICLE_GROUPEMENT><GROUPEMENT> de <ANNEE0> à <ANNEE><ref group="Note">Cette section est réalisée à partir des données des données du site <URL_BASE_GROUPEMENT> du [[Ministère de l'Économie et des Finances (France)|ministère de l'Économie et des Finances]].
-Pour constituer cette partie, l'outil <OUTIL_NOM> version <VERSION> a effectué la synthèse du tableau du site <URL_BASE_GROUPEMENT> pour les lignes concernant <GROUPEMENT>.
+Cette section est consacrée aux [[Finances locales en France|finances locales]] <ARTICLE_GROUPEMENT><GROUPEMENT> de <ANNEE0> à <ANNEE><ref group="Note">Cette section est réalisée à partir des données des données du site [<URL_BASE> data.gouv.fr] du [[Ministère de l'Économie et des Finances (France)|ministère de l'Économie et des Finances]].
+Pour constituer cette partie, l'outil <OUTIL_NOM> version <VERSION> a effectué la synthèse du tableau [<URL_BASE_GROUPEMENTS> des groupements de communes] pour les lignes concernant <GROUPEMENT>.
 Finances locales est un [[logiciels libres|logiciel libre]] distribué en [[copyleft]] sous [[licence (juridique)|licence]] [[Licence publique générale GNU|GNU GPL version 3]].
 </ref>.
 
@@ -48,21 +48,19 @@ Pour l'exercice <ANNEE>, le compte administratif du [[budget]] <ARTICLE_GROUPEME
 {|class="wikitable right"
  |+T1p - Section de fonctionnement <ARTICLE_GROUPEMENT><GROUPEMENT> en <ANNEE>
  |----
- ! !! scope="col" | <GROUPEMENT><br/>(€/hab.) !! scope="col" | Strate<br/>(€/hab.)
+ ! !! scope="col" | <GROUPEMENT><br/>(€/hab.)
  <GEN_LIGNES_TABLEAU_PICTO_SOLDE_FONCT><GEN_LIGNES_TABLEAU_PICTO_CHARGE><GEN_LIGNES_TABLEAU_PICTO_RECETTE>
- |------
- | colspan="4" |Écart par rapport à la moyenne de la strate :<br/><LEGENDE_ECART_TABLEAU_PICTO>
  |}
-Pour <GROUPEMENT> en <ANNEE>, la section de fonctionnement<ref group="Note">La  « section de fonctionnement » est constituée des [[Dépenses publiques|dépense]]s courantes et récurrentes nécessaires au bon fonctionnement des services du groupement et à la mise en œuvre des actions décidées par les élus, mais sans influence sur la consistance du [[Patrimoine (droit)|patrimoine]] de la commune. Y figure aussi le [[Plan de remboursement|remboursement]] des [[Intérêt (finance)|intérêt]]s des [[Emprunt (finance)|emprunt]]s. Elle enregistre également les [[Recettes publiques|recettes]] fiscales, les [[Dotation publique|dotation]]s et participations de l’État ainsi que les recettes d’exploitation des services du groupement.</ref> se répartit en {{euro|<CHARGES_FONCTIONNEMENT>}}  de charges ({{euro|<CHARGES_FONCTIONNEMENT_PAR_HAB>}} par habitant) pour {{euro|<PRODUITS_FONCTIONNEMENT>}} de produits ({{euro|<PRODUITS_FONCTIONNEMENT_PAR_HAB>}} par habitant), soit un solde de la section de fonctionnement de {{euro|<RESULTAT_COMPTABLE>}} ({{euro|<RESULTAT_COMPTABLE_PAR_HAB>}} par habitant) :
+Pour le groupement <GROUPEMENT> en <ANNEE>, la section de fonctionnement<ref group="Note">La  « section de fonctionnement » est constituée des [[Dépenses publiques|dépense]]s courantes et récurrentes nécessaires au bon fonctionnement des services du groupement et à la mise en œuvre des actions décidées par les élus, mais sans influence sur la consistance du [[Patrimoine (droit)|patrimoine]] du groupement. Y figure aussi le [[Plan de remboursement|remboursement]] des [[Intérêt (finance)|intérêt]]s des [[Emprunt (finance)|emprunt]]s. Elle enregistre également les [[Recettes publiques|recettes]] fiscales, les [[Dotation publique|dotation]]s et participations de l’État ainsi que les recettes d’exploitation des services du groupement.</ref> se répartit en {{euro|<CHARGES_FONCTIONNEMENT>}}  de charges ({{euro|<CHARGES_FONCTIONNEMENT_PAR_HAB>}} par habitant) pour {{euro|<PRODUITS_FONCTIONNEMENT>}} de produits ({{euro|<PRODUITS_FONCTIONNEMENT_PAR_HAB>}} par habitant), soit un solde de la section de fonctionnement de {{euro|<RESULTAT_COMPTABLE>}} ({{euro|<RESULTAT_COMPTABLE_PAR_HAB>}} par habitant) :
 
-* le principal pôle de [[Dépenses publiques|dépenses]] de fonctionnement est celui <PHRASE_CHARGE1>. <VALEUR_CHARGE_TENDANCE_SERIE1>. Viennent ensuite les groupes <LIBELLE_CHARGE2><ref group="Note"><NOTE_CHARGE2></ref> pour <VALEUR_CHARGE_PC2>, <LIBELLE_CHARGE3><ref group="Note"><NOTE_CHARGE3></ref> pour <VALEUR_CHARGE_PC3>, <LIBELLE_CHARGE4><ref group="Note"><NOTE_CHARGE4></ref> pour <VALEUR_CHARGE_PC4> et finalement celui <LIBELLE_CHARGE5><ref group="Note"><NOTE_CHARGE5></ref> pour <VALEUR_CHARGE_PC5> ;
-* la plus grande part des [[Recettes publiques|recettes]] est constituée <PHRASE_RECETTE1>. <VALEUR_RECETTE_TENDANCE_SERIE1>. Viennent ensuite <LIBELLE_RECETTE2><ref group="Note"><NOTE_RECETTE2></ref> pour <VALEUR_RECETTE_PC2> et <LIBELLE_RECETTE3><ref group="Note"><NOTE_RECETTE3></ref> pour <VALEUR_CHARGE_PC3>.
+* le principal pôle de [[Dépenses publiques|dépenses]] de fonctionnement est celui <PHRASE_CHARGE1>. Viennent ensuite les groupes <LIBELLE_CHARGE2><ref group="Note"><NOTE_CHARGE2></ref> pour <VALEUR_CHARGE_PC2>, <LIBELLE_CHARGE3><ref group="Note"><NOTE_CHARGE3></ref> pour <VALEUR_CHARGE_PC3> et finalement celui <LIBELLE_CHARGE4><ref group="Note"><NOTE_CHARGE4></ref> pour <VALEUR_CHARGE_PC4> ;
+* la plus grande part des [[Recettes publiques|recettes]] est constituée <PHRASE_RECETTE1>. Viennent ensuite <LIBELLE_RECETTE2><ref group="Note"><NOTE_RECETTE2></ref> pour <VALEUR_RECETTE_PC2> et <LIBELLE_RECETTE3><ref group="Note"><NOTE_RECETTE3></ref> pour <VALEUR_CHARGE_PC3>.
 
 La dotation globale de fonctionnement est <TENDANCE_DGF> à celle versée en <ANNEE-1>.
 
 === Évolution des produits et charges de fonctionnement de <ANNEE0> à <ANNEE> ===
 {| class="wikitable centre" style="width:80%;"
- |+G1a - Évolution des produits de fonctionnement pour <GROUPEMENT>
+ |+G1a - Évolution des produits de fonctionnement pour le groupement <GROUPEMENT>
  |------
  <GRAPHIQUE_PRODUITS>
  |------
@@ -70,14 +68,14 @@ La dotation globale de fonctionnement est <TENDANCE_DGF> à celle versée en <AN
  |}
 
 {| class="wikitable centre" style="width:80%;"
- |+G1b1 - Évolution des charges de personnel et externes pour <GROUPEMENT>
+ |+G1b1 - Évolution des charges de personnel et externes pour le groupement <GROUPEMENT>
  |------
  <GRAPHIQUE_CHARGES_PERSONNELS_EXTERNES>
  |------
  | <LEGENDE_CHARGES_PERSONNELS_EXTERNES>
  |}
 {| class="wikitable centre" style="width:80%;"
- |+G1b2 - Évolution des charges financières et des subventions versées pour <GROUPEMENT>
+ |+G1b2 - Évolution des charges financières et des subventions versées pour le groupement <GROUPEMENT>
  |------
  <GRAPHIQUE_CHARGES_FINANCIERES_SUBVENTIONS_VERSEES>
  |------
@@ -87,23 +85,13 @@ La dotation globale de fonctionnement est <TENDANCE_DGF> à celle versée en <AN
 
 === Tableau des valeurs pour les produits et charges de <ANNEE-N> à <ANNEE> ===
 {|class="wikitable centre"
- |+T1v - Produits et charges de fonctionnement <ARTICLE_GROUPEMENT><GROUPEMENT> de <ANNEE-N> à <ANNEE>
+ |+T1v - Produits et charges de fonctionnement du groupement <GROUPEMENT> de <ANNEE-N> à <ANNEE>
  |------
  <TABLEAU_PRODUITS_CHARGES>
  |}
 {{Clr}}
 
 == Fiscalité communale ==
-{|class="wikitable right"
- |+T2p - Fiscalité <ARTICLE_GROUPEMENT><GROUPEMENT> en <ANNEE>
- |----
- ! !! scope="col" | <GROUPEMENT><br/>(%) !! scope="col" | Strate<br/>(%)
- <GEN_LIGNES_TABLEAU_PICTO_TAXES>
- |------
- | colspan="4" |Écart par rapport à la moyenne de la strate :<br/><LEGENDE_ECART_TABLEAU_PICTO>
- |}
-Le tableau T2p compare les [[taux d'imposition]] locaux à ceux des autres communes de la même {{page h'|Strate#En_sciences_sociales|strate}} fiscale.
-
 Les taux des [[taxe]]s ci-dessous sont votés par <ARTICLE_GROUPEMENT><GROUPEMENT>. Ils ont varié de la façon suivante par rapport à <ANNEE-1> :
 * la [[taxe d'habitation]] <TENDANCE_TAUX_TAXE_HABITATION_PAR_HABITANT1> <VALEUR_TAUX_TAXE_HABITATION_PAR_HABITANT1_NM1> % ;
 * la [[Taxe foncière|taxe foncière sur le bâti]] <TENDANCE_TAUX_FONCIER_BATI_PAR_HABITANT1> <VALEUR_TAUX_FONCIER_BATI_PAR_HABITANT1_NM1> % ;
@@ -112,7 +100,7 @@ Les taux des [[taxe]]s ci-dessous sont votés par <ARTICLE_GROUPEMENT><GROUPEMEN
 
 === Évolution des taux des différentes taxes de <ANNEE0> à <ANNEE> ===
 {| class="wikitable centre" style="width:80%;"
- |+G2a - Évolution de la taxe d'habitation et foncière sur le bâti pour <GROUPEMENT>
+ |+G2a - Évolution de la taxe d'habitation et foncière sur le bâti pour le groupement <GROUPEMENT>
  |------
  <GRAPHIQUE_TAXES>
  |------
@@ -120,7 +108,7 @@ Les taux des [[taxe]]s ci-dessous sont votés par <ARTICLE_GROUPEMENT><GROUPEMEN
  |}
 
 {| class="wikitable centre" style="width:80%;"
- |+G2b - Évolution de la taxe foncière sur le non bâti pour <GROUPEMENT>
+ |+G2b - Évolution de la taxe foncière sur le non bâti pour le groupement <GROUPEMENT>
  |------
  <GRAPHIQUE_TAXES_NB>
  |------
@@ -129,7 +117,7 @@ Les taux des [[taxe]]s ci-dessous sont votés par <ARTICLE_GROUPEMENT><GROUPEMEN
 
 === Tableau des taux des impôts et taxes de <ANNEE-N_TAUX> à <ANNEE> ===
 {|class="wikitable centre"
- |+T2v - Taux des impôts et taxes pour <GROUPEMENT> de <ANNEE-N_TAUX> à <ANNEE>
+ |+T2v - Taux des impôts et taxes pour le groupement <GROUPEMENT> de <ANNEE-N_TAUX> à <ANNEE>
  |------
  <TABLEAU_TAXES>
  |}
@@ -137,33 +125,31 @@ Les taux des [[taxe]]s ci-dessous sont votés par <ARTICLE_GROUPEMENT><GROUPEMEN
 
 == Investissement ==
 {|class="wikitable right"
- |+T3p - Investissement <ARTICLE_GROUPEMENT><GROUPEMENT> en <ANNEE>
+ |+T3p - Investissement <GROUPEMENT> en <ANNEE>
  |----
- ! !! scope="col" | <GROUPEMENT><br/>(€/hab.) !! scope="col" | Strate<br/>(€/hab.)
+ ! !! scope="col" | <GROUPEMENT><br/>(€/hab.)
  <GEN_LIGNES_TABLEAU_PICTO_EMPLOI_INVEST><GEN_LIGNES_TABLEAU_PICTO_RESSOURCES_INVEST>
- |------
- | colspan="4" |Écart par rapport à la moyenne de la strate :<br/><LEGENDE_ECART_TABLEAU_PICTO>
  |}
-Cette section détaille les [[investissement]]s<ref group="Note">La section « [[investissement]] » concerne essentiellement les opérations visant à [[Achat|acquérir]] des équipements d’envergure et aussi au [[Plan de remboursement|remboursement]] du capital de la [[Dette publique|dette]].</ref> réalisés par la commune <ARTICLE_GROUPEMENT><GROUPEMENT>.
+Cette section détaille les [[investissement]]s<ref group="Note">La section « [[investissement]] » concerne essentiellement les opérations visant à [[Achat|acquérir]] des équipements d’envergure et aussi au [[Plan de remboursement|remboursement]] du capital de la [[Dette publique|dette]].</ref> réalisés par le groupement <GROUPEMENT>.
 
 Les emplois d'investissement en <ANNEE> comprenaient par ordre d'importance :
-* <PHRASE_EMPLOI_INVEST1>. <VALEUR_EMPLOI_INVEST_TENDANCE_SERIE1> ;
+* <PHRASE_EMPLOI_INVEST1> ;
 * <PHRASE_EMPLOI_INVEST2>.
 
-Les ressources en investissement <ARTICLE_GROUPEMENT><GROUPEMENT> se répartissent principalement en :
-* <PHRASE_RESSOURCES_INVEST1>. <VALEUR_RESSOURCES_INVEST_TENDANCE_SERIE1> ;
+Les ressources en investissement du groupement <GROUPEMENT> se répartissent principalement en :
+* <PHRASE_RESSOURCES_INVEST1> ;
 * <PHRASE_RESSOURCES_INVEST2>.
 
 === Évolution de l'investissement de <ANNEE0> à <ANNEE> ===
 {| class="wikitable centre" style="width:80%;"
- |+G3a - Évolution des emplois d'investissement pour <GROUPEMENT>
+ |+G3a - Évolution des emplois d'investissement pour le groupement <GROUPEMENT>
  |------
 <GRAPHIQUE_EMPLOIS_INVEST>
  |------
  | <LEGENDE_EMPLOIS_INVEST>
  |}
 {| class="wikitable centre" style="width:80%;"
- |+G3b - Évolution des ressources d'investissement pour <GROUPEMENT>
+ |+G3b - Évolution des ressources d'investissement pour le groupement <GROUPEMENT>
  |------
 <GRAPHIQUE_RESSOURCES_INVEST>
  |------
@@ -173,7 +159,7 @@ Les ressources en investissement <ARTICLE_GROUPEMENT><GROUPEMENT> se répartisse
 
 === Tableau des valeurs d'investissement de <ANNEE-N> à <ANNEE> ===
 {|class="wikitable centre"
- |+T3v - Investissement <ARTICLE_GROUPEMENT><GROUPEMENT> de <ANNEE-N> à <ANNEE>
+ |+T3v - Investissement <GROUPEMENT> de <ANNEE-N> à <ANNEE>
  |------
  <TABLEAU_INVEST>
  |}
@@ -181,23 +167,21 @@ Les ressources en investissement <ARTICLE_GROUPEMENT><GROUPEMENT> se répartisse
 
 == Endettement ==
 {|class="wikitable right"
- |+T4p - Endettement et capacité d'autofinancement <ARTICLE_GROUPEMENT><GROUPEMENT> en <ANNEE>
+ |+T4p - Endettement et capacité d'autofinancement <GROUPEMENT> en <ANNEE>
  |----
- ! !! scope="col" | <GROUPEMENT><br/>(€/hab.) !! scope="col" | Strate<br/>(€/hab.)
+ ! !! scope="col" | <GROUPEMENT><br/>(€/hab.)
  <GEN_LIGNES_TABLEAU_PICTO_ENCOURS_DETTE><GEN_LIGNES_TABLEAU_PICTO_ANNUITE_DETTE><GEN_LIGNES_TABLEAU_PICTO_CAF>
- |------
- | colspan="4" |Écart par rapport à la moyenne de la strate :<br/><LEGENDE_ECART_TABLEAU_PICTO>
  |}
-L'[[Emprunt (finance)|endettement]] <ARTICLE_GROUPEMENT><GROUPEMENT> au {{Date-|31|décembre|<ANNEE>}} peut s'évaluer à partir de trois critères : l'encours de la dette<ref group="Note">L'« [[encours]] de la dette » représente la somme que la commune doit aux [[banque]]s au {{Date-|31/12}} de l'année considérée</ref>, l'annuité de la dette<ref group="Note">L'« annuité de la [[Emprunt (finance)|dette]] » équivaut à la somme des intérêts d'emprunts de la commune et du montant de remboursement du capital au cours de l'année</ref> et sa capacité de désendettement<ref group="Note">La « capacité de [[Dette publique|désendettement]] » est basée sur le ratio suivant défini par la formule : {{Formule|§=ratio = {{fraction|encours de la dette|capacité d'autofinancement}}}}. Ce ratio montre, à un instant donné, le nombre d'années qui seraient nécessaires au remboursement des dettes en considérant les ressources <ARTICLE_GROUPEMENT><GROUPEMENT>.</ref> :
-* <PHRASE_ENCOURS_DETTE1>. <VALEUR_ENCOURS_DETTE_TENDANCE_SERIE1> ;
-* <PHRASE_ANNUITE_DETTE1>. <VALEUR_ANNUITE_DETTE_TENDANCE_SERIE1> ;
-* <PHRASE_CAF1>. <VALEUR_CAF_TENDANCE_SERIE1>. La capacité de [[Dette publique|désendettement]] est <RATIO_N> en <ANNEE>. <TENDANCE_RATIO_DETTE_CAF>
+L'[[Emprunt (finance)|endettement]] du groupement <GROUPEMENT> au {{Date-|31|décembre|<ANNEE>}} peut s'évaluer à partir de trois critères : l'encours de la dette<ref group="Note">L'« [[encours]] de la dette » représente la somme que le groupement doit aux [[banque]]s au {{Date-|31/12}} de l'année considérée</ref>, l'annuité de la dette<ref group="Note">L'« annuité de la [[Emprunt (finance)|dette]] » équivaut à la somme des intérêts d'emprunts du groupement et du montant de remboursement du capital au cours de l'année</ref> et sa capacité de désendettement<ref group="Note">La « capacité de [[Dette publique|désendettement]] » est basée sur le ratio suivant défini par la formule : {{Formule|§=ratio = {{fraction|encours de la dette|capacité d'autofinancement}}}}. Ce ratio montre, à un instant donné, le nombre d'années qui seraient nécessaires au remboursement des dettes en considérant les ressources du groupement <GROUPEMENT>.</ref> :
+* <PHRASE_ENCOURS_DETTE1> ;
+* <PHRASE_ANNUITE_DETTE1> ;
+* <PHRASE_CAF1>. La capacité de [[Dette publique|désendettement]] est <RATIO_N> en <ANNEE>. <TENDANCE_RATIO_DETTE_CAF>
 {{Clr}}
 
 === Évolution de la capacité d'autofinancement (CAF) et de l'encours de la dette de <ANNEE0> à <ANNEE> ===
-Les courbes G4a et G4b présentent l'historique des [[Dette publique|dette]]s <ARTICLE_GROUPEMENT><GROUPEMENT>.
+Les courbes G4a et G4b présentent l'historique des [[Dette publique|dette]]s du groupement <GROUPEMENT>.
 {| class="wikitable centre" style="width:80%;"
- |+G4a - Capacité d'autofinancement et encours total de la dette <ARTICLE_GROUPEMENT><GROUPEMENT>
+ |+G4a - Capacité d'autofinancement et encours total de la dette du groupement <GROUPEMENT>
  |------
 <GRAPHIQUE_DETTE_CAF>
  |------
@@ -215,7 +199,7 @@ Les courbes G4a et G4b présentent l'historique des [[Dette publique|dette]]s <A
 
 === Tableau des valeurs d'endettement de <ANNEE-N> à <ANNEE> ===
 {|class="wikitable centre"
- |+T4v - Encours de la dette et capacité d'autofinancement <ARTICLE_GROUPEMENT><GROUPEMENT> de <ANNEE-N> à <ANNEE>
+ |+T4v - Encours de la dette et capacité d'autofinancement du groupement <GROUPEMENT> de <ANNEE-N> à <ANNEE>
  |------
  <TABLEAU_DETTE_CAF>
  |}

@@ -1,7 +1,7 @@
 """
 Name : test_genCode.py
 Author : Thierry Maillard (TMD)
-Date : 25/9/2019 - 14/4/2020
+Date : 25/9/2019 - 30/12/2021
 Role : Tests unitaires du projet FinancesLocales avec py.test
 Utilisation : python3 -m pytest [-k "nomTest"] .
 options :
@@ -11,7 +11,7 @@ Ref : http://pytest.org/latest/
 prerequis : pip install pytest
 
 #Licence : GPLv3
-#Copyright (c) 2015 - 2020 - Thierry Maillard
+#Copyright (c) 2015 - 2021 - Thierry Maillard
 
    This file is part of Finance Locales project.
 
@@ -29,7 +29,10 @@ prerequis : pip install pytest
    along with Finance Locales project.  If not, see <http://www.gnu.org/licenses/>.
 """
 import configparser
+import locale
+import os
 import os.path
+import platform
 import shutil
 import time
 
@@ -44,6 +47,10 @@ import genereCode1Ville
 @pytest.mark.parametrize( "typeCode", ["wikiArticle", "HTML"])
 def test_genereCode1Ville_OK(typeCode):
     """ test génération des données pour une ville """
+
+    # Contournement OS X and Linux : invalide locale
+    if platform.system() in ('Darwin', 'Linux'):
+        locale.setlocale(locale.LC_ALL, os.getenv('LANG'))
 
     config = configparser.RawConfigParser()
     config.read('FinancesLocales.properties')
@@ -98,6 +105,10 @@ def test_genCodeProg(verbose):
     Teste le programme de génération du code Wiki et HTML
     sur base de test 1 ville et 3 années.
     """
+
+    # Contournement OS X and Linux : invalide locale
+    if platform.system() in ('Darwin', 'Linux'):
+        locale.setlocale(locale.LC_ALL, os.getenv('LANG'))
 
     config = configparser.RawConfigParser()
     config.read('FinancesLocales.properties')

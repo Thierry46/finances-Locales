@@ -3,7 +3,7 @@
 *********************************************************
 Module : genCodeGroupementTexte.py
 Auteur : Thierry Maillard (TMD)
-Date : 23/4/2020 - 13/5/2020
+Date : 23/4/2020 - 31/12/2021
 
 Role : Transforme les donnees traitées par extractionMinFi.py
         en wikicode pour les partie textuelles.
@@ -146,7 +146,15 @@ def genTexte(config, dictAllGrandeur, modele, textSection, groupement,
     # Réferences
     urlMinFi = config.get('Extraction', 'dataGouvFr.Comptes')
     textSection = textSection.replace("<URL_BASE>", urlMinFi)
+    urlMinFiGroupements = config.get('Extraction', 'dataGouvFr.ComptesGroupements')
+    textSection = textSection.replace("<URL_BASE_GROUPEMENTS>", urlMinFiGroupements)
     textSection = textSection.replace("<DATE>", time.strftime("%d %B %G"))
+
+    # Catégorie
+    nomRegion = groupement[3]
+    categorieArticle = config.get('GenCodeGroupement', 'gen.prefixeCategorieArticle') + \
+                       " " + nomRegion
+    textSection = textSection.replace("<CATEGORIE_ARTICLE>", categorieArticle)
 
     if verbose:
         textSectionFileName = ""

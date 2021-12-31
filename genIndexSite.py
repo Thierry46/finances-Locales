@@ -127,8 +127,8 @@ def main(argv=None):
 ##################################################
 #to be called as a script
 if __name__ == "__main__":
-    # Contournement OS X invalide locale
-    if platform.system() == 'Darwin':
+    # Contournement OS X and Linux : invalide locale
+    if platform.system() in ('Darwin', 'Linux'):
         locale.setlocale(locale.LC_ALL, os.getenv('LANG'))
     main()
     sys.exit(0)

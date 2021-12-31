@@ -4,7 +4,7 @@
 *********************************************************
 Programme : genCode.py
 Auteur : Thierry Maillard (TMD)
-Date : 24/5/2015 - 6/12/2019
+Date : 24/5/2015 - 30/12/2021
 
 Role : Transforme les donnees traitées par updateDataMinFi.py
         en wikicode pour enrichir les sections "Finances locale" des
@@ -173,8 +173,8 @@ def traiteDepartement(config, nomProg, isMatplotlibOk, connDB, resultatsPath, ve
 ##################################################
 # to be called as a script
 if __name__ == "__main__":
-    # Contournement OS X invalide locale
-    if platform.system() == 'Darwin':
+    # Contournement OS X and Linux : invalide locale
+    if platform.system() in ('Darwin', 'Linux'):
         locale.setlocale(locale.LC_ALL, os.getenv('LANG'))
     main()
     sys.exit(0)

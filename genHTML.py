@@ -3,7 +3,7 @@
 *********************************************************
 Module : genHTML.py
 Auteur : Thierry Maillard (TMD)
-Date : 15/7/2015 - 2/7/2020
+Date : 15/7/2015 - 30/12/2021
 
 Role : Routines de génération du code HTML de déploiement.
 ------------------------------------------------------------
@@ -342,7 +342,7 @@ def insertGroupementTableau(htmlText, listGroupements, verbose):
         # Lien Wikicode
         nomFic = utilitaires.construitNomFic(dictNomsGroupement['repGroupement'],
                                              dictNomsGroupement['groupementNomDisque'],
-                                             "wikicode", '.txt')
+                                             "wikicode", '.html')
         lignes += '<td><a href="' + nomFic + '" target="_blank">Wiki</a></td>\n'
 
         # Info score Wikipédia

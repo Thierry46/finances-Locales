@@ -88,7 +88,7 @@ def traite1Groupement(config, groupement,
 
             # Ecriture du fichier du Wikicode et du fichier html
             # Inclusion des fichiers Wikicode dans des fichiers HTML pour
-            # éviter problèmes d'encodage et travaller uniquement dans un navigateur Web.
+            # éviter problèmes d'encodage et travailler uniquement dans un navigateur Web.
             nomFic = utilitaires.construitNomFic(dictNomsGroupement['repGroupement'],
                                                  dictNomsGroupement['groupementNomDisque'],
                                                  typeCode, extensionFic)
@@ -97,7 +97,7 @@ def traite1Groupement(config, groupement,
             with open(nomFic, 'w', encoding='utf-8') as ficGroupement:
                 ficGroupement.write(textSection)
 
-            if typeCode == "wikiArticle":
+            if typeCode == "wikicode":
                 genHTML.convertWikicode2Html(config, nomFic, verbose)
 
     if verbose:
@@ -182,6 +182,9 @@ def genereCode1Groupement(config, connDB, repGroupement, groupement,
                                                               isWikicode,
                                                               isMatplotlibOk,
                                                               verbose)
+
+            # Suppression chaine ratio dont je ne trouve pas l'origine 
+            textSection = textSection.replace(', ratio ', '')
 
     if verbose:
         print("Sortie de genereCode1Groupement")

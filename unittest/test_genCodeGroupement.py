@@ -1,7 +1,7 @@
 """
 Name : test_genCodeGroupement.py
 Author : Thierry Maillard (TMD)
-Date : 25/9/2019 - 14/4/2020
+Date : 25/9/2019 - 30/12/2021
 Role : Tests unitaires du projet FinancesLocales avec py.test
 Utilisation : python3 -m pytest [-k "nomTest"] .
 options :
@@ -11,7 +11,7 @@ Ref : http://pytest.org/latest/
 prerequis : pip install pytest
 
 #Licence : GPLv3
-#Copyright (c) 2015 - 2020 - Thierry Maillard
+#Copyright (c) 2015 - 2021 - Thierry Maillard
 
    This file is part of Finance Locales project.
 
@@ -29,7 +29,10 @@ prerequis : pip install pytest
    along with Finance Locales project.  If not, see <http://www.gnu.org/licenses/>.
 """
 import configparser
+import locale
+import os
 import os.path
+import platform
 import shutil
 import time
 
@@ -43,14 +46,18 @@ import genereCode1Groupement
 
 @pytest.mark.parametrize( "typeCode", ["wikicode", "HTML"])
 def test_genereCode1Goupement_OK(typeCode):
-    """ test génération des données pour une ville """
+    """ test génération des données pour un groupement """
+
+    # Contournement OS X and Linux : invalide locale
+    if platform.system() in ('Darwin', 'Linux'):
+        locale.setlocale(locale.LC_ALL, os.getenv('LANG'))
 
     config = configparser.RawConfigParser()
     config.read('FinancesLocales.properties')
 
     nomProg = "test_genereCode1Goupement"
 
-    # Création répertoire de sortie hebergeant les Groupements de communes
+    # Création répertoire de production des Groupements de communes
     repGroupements = config.get('Test', 'genCode.pathGroupements')
     if not os.path.isdir(repGroupements):
         os.mkdir(repGroupements)
@@ -101,9 +108,14 @@ def test_genereCode1Goupement_OK(typeCode):
     assert len(listGroupements) == 1
     groupement = listGroupements[0]
 
+    # Création répertoire de sortie hebergeant les Groupements de communes
+    repGroupementsOutput = config.get('Test', 'genCode.pathGroupementsOutput')
+    if not os.path.isdir(repGroupementsOutput):
+        os.mkdir(repGroupementsOutput)
+
     # Test fonction de génération
     genereCode1Groupement.genereCode1Groupement(config, connDB,
-                             repGroupements, groupement,
+                             repGroupementsOutput, groupement,
                              nomProg, typeCode,
                              True, True)
     
@@ -117,12 +129,15 @@ def test_genCodeGroupementProg(verbose):
     sur base de test 1 ville et 3 années.
     """
 
+    # Contournement OS X and Linux : invalide locale
+    if platform.system() in ('Darwin', 'Linux'):
+        locale.setlocale(locale.LC_ALL, os.getenv('LANG'))
+
     config = configparser.RawConfigParser()
     config.read('FinancesLocales.properties')
 
     # Ménage répertoire de sortie
-    pathOutput = config.get('Test', 'genCode.pathGroupementsOutput')
-    resultatsPath = pathOutput
+    resultatsPath = config.get('Test', 'genCode.pathGroupementsOutput')
     print("resultatsPath =", resultatsPath)
 
     if os.path.isdir(resultatsPath):
@@ -155,12 +170,12 @@ def test_genCodeGroupementProg(verbose):
                'Logo_EPCI_Portes_de_Sologne.png',
                'http://www.cc-lafertesaintaubin.fr'),))
     connDB.commit()
+    assert os.path.isfile(pathDatabaseMini)
 
     # Appel programme
     param = ['updateDataMinFiGroupementCommunes.py',
              pathDatabaseMini, pathCSVMini]
     updateDataMinFiGroupementCommunes.main(param)
-    assert os.path.isfile(pathDatabaseMini)
 
     isComplet = True
 
@@ -187,6 +202,6 @@ def test_genCodeGroupementProg(verbose):
     assert os.path.isfile(os.path.join(resultatsPath,
                                       "Groupements",
                                        "Communaute_de_communes_des_Portes_de_Sologne",
-                                       "Communaute_de_communes_des_Portes_de_Sologne_wikicode.txt"))
+                                       "Communaute_de_communes_des_Portes_de_Sologne_wikicode.html"))
     # Fermeture base
     database.closeDatabase(connDB, False)

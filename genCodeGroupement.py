@@ -4,7 +4,7 @@
 *********************************************************
 Programme : genCodeGroupement.py
 Auteur : Thierry Maillard (TMD)
-Date : 12/4/2020 - 3/6/2020
+Date : 12/4/2020 - 31/12/2021
 
 Role : transforme les données traitées par
        updateDataMinFiGroupementCommunes en wikicode et HTML
@@ -164,8 +164,8 @@ def traiteGroupement(config, nomProg, isMatplotlibOk, connDB, resultatsPath, ver
 ##################################################
 # to be called as a script
 if __name__ == "__main__":
-    # Contournement OS X invalide locale
-    if platform.system() == 'Darwin':
+    # Contournement OS X and Linux : invalide locale
+    if platform.system() in ('Darwin', 'Linux'):
         locale.setlocale(locale.LC_ALL, os.getenv('LANG'))
     main()
     sys.exit(0)

@@ -3,7 +3,7 @@
 *********************************************************
 Module : genCodeTexte.py
 Auteur : Thierry Maillard (TMD)
-Date : 24/5/2015 - 8/12/2019
+Date : 24/5/2015 - 30/12/2019
 
 Role : Transforme les donnees traitées par extractionMinFi.py
         en wikicode pour les partie textuelles.
@@ -152,6 +152,8 @@ def genTexte(config, dictAllGrandeur, infosGroupement,
     # Réferences
     urlMinFi = config.get('Extraction', 'dataGouvFr.Comptes')
     textSection = textSection.replace("<URL_BASE>", urlMinFi)
+    urlMinFiVilles = config.get('Extraction', 'dataGouvFr.ComptesVilles')
+    textSection = textSection.replace("<URL_BASE_VILLES>", urlMinFiVilles)
     textSection = textSection.replace("<DATE>", time.strftime("%d %B %G"))
 
     # Commentaire definition strate

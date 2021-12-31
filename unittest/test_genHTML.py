@@ -3,7 +3,7 @@
 """
 Name : test_genHTML.py
 Author : Thierry Maillard (TMD)
-Date : 1/6/2015 - 4/6/2020
+Date : 1/6/2015 - 30/12/2021
 Role : Tests unitaires du projet FinancesLocales avec py.test
         not global : élimine les tests globaux très long
 Utilisation : python3 -m pytest [-k "nomTest"] .
@@ -319,4 +319,7 @@ def test_insertGroupementTableau():
     assert nomArticleCC in htmlText
     assert region in htmlText
     assert département in htmlText
+    assert '.html' in htmlText
+    assert '.txt' not in htmlText
+    
 
